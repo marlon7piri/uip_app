@@ -12,7 +12,7 @@ const ContainerProximosPartidos = () => {
     <div>
       <BreadCrum titulo='Proximos Partidos' url='/home/partidos/nuevo' />
 
-      <div className='flex flex-wrap justify-center items-center gap-10'>
+      <div className='flex flex-wrap justify-center items-center gap-10 p-10'>
         {partidos.map((e) => {
           return <CardProximosPartidos partido={e} key={e._id} />
         })}
