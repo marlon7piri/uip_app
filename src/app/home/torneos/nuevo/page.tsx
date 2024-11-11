@@ -3,7 +3,9 @@ import React from 'react'
 
 const NuevoTorneo = () => {
   return (
-    <FormTorneos />
+    <div className='h-screen'>
+      <FormTorneos />
+    </div>
   )
 }
 

@@ -1,14 +1,13 @@
-import CardProximosPartidos from '@/components/CardProximosPartidos'
+import ContainerProximosPartidos from '@/components/ContainerProximosPartidos'
 import ContainerTorneos from '@/components/ContainerTorneos'
-import { proximosPartidos } from '@/utils/teams'
 import React from 'react'
 
 const Torneos = () => {
   return (
-    <div>
+    <div className='min-h-screen'>
       <ContainerTorneos />
 
-
+      <ContainerProximosPartidos />
 
     </div>
   )

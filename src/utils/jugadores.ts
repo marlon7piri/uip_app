@@ -7,7 +7,7 @@ export const jugadores: Jugadores[] = [
     edad: 28,
     estatura: 1.8,
     foto: "/avatares/avatar1.jpg",
-    equipo: "/imagenes/logo1.jpg",
+    club: "/imagenes/logo1.jpg",
   },
   {
     nombre: "Luis",
@@ -15,7 +15,7 @@ export const jugadores: Jugadores[] = [
     edad: 25,
     estatura: 1.75,
     foto: "/avatares/avatar2.jpg",
-    equipo: "/imagenes/logo2.jpg",
+    club: "/imagenes/logo2.jpg",
   },
   {
     nombre: "Juan",
@@ -23,7 +23,7 @@ export const jugadores: Jugadores[] = [
     edad: 30,
     estatura: 1.85,
     foto: "/avatares/avatar3.jpg",
-    equipo: "/imagenes/logo3.jpg",
+    club: "/imagenes/logo3.jpg",
   },
   {
     nombre: "Miguel",
@@ -31,7 +31,7 @@ export const jugadores: Jugadores[] = [
     edad: 27,
     estatura: 1.78,
     foto: "/avatares/avatar4.jpg",
-    equipo: "/imagenes/logo4.jpg",
+    club: "/imagenes/logo4.jpg",
   },
   {
     nombre: "Andrés",
@@ -39,7 +39,7 @@ export const jugadores: Jugadores[] = [
     edad: 26,
     estatura: 1.82,
     foto: "/avatares/avatar5.jpg",
-    equipo: "/imagenes/logo5.jpg",
+    club: "/imagenes/logo5.jpg",
   },
   {
     nombre: "Santiago",
@@ -47,7 +47,7 @@ export const jugadores: Jugadores[] = [
     edad: 24,
     estatura: 1.77,
     foto: "/avatares/avatar6.jpg",
-    equipo: "/imagenes/logo6.jpg",
+    club: "/imagenes/logo6.jpg",
   },
   {
     nombre: "Pedro",
@@ -55,7 +55,7 @@ export const jugadores: Jugadores[] = [
     edad: 29,
     estatura: 1.79,
     foto: "/avatares/avatar7.jpg",
-    equipo: "/imagenes/logo7.jpg",
+    club: "/imagenes/logo7.jpg",
   },
   {
     nombre: "Daniel",
@@ -63,7 +63,7 @@ export const jugadores: Jugadores[] = [
     edad: 32,
     estatura: 1.83,
     foto: "/avatares/avatar8.jpg",
-    equipo: "/imagenes/logo8.jpg",
+    club: "/imagenes/logo8.jpg",
   },
   {
     nombre: "Francisco",
@@ -71,7 +71,7 @@ export const jugadores: Jugadores[] = [
     edad: 31,
     estatura: 1.81,
     foto: "/avatares/avatar9.jpg",
-    equipo: "/imagenes/logo9.jpg",
+    club: "/imagenes/logo9.jpg",
   },
   {
     nombre: "Javier",
@@ -79,7 +79,7 @@ export const jugadores: Jugadores[] = [
     edad: 23,
     estatura: 1.74,
     foto: "/avatares/avatar10.jpg",
-    equipo: "/imagenes/logo10.jpg",
+    club: "/imagenes/logo10.jpg",
   },
   {
     nombre: "Eduardo",
@@ -87,7 +87,7 @@ export const jugadores: Jugadores[] = [
     edad: 28,
     estatura: 1.8,
     foto: "/avatares/avatar11.jpg",
-    equipo: "/imagenes/logo11.jpg",
+    club: "/imagenes/logo11.jpg",
   },
   {
     nombre: "Roberto",
@@ -95,7 +95,7 @@ export const jugadores: Jugadores[] = [
     edad: 25,
     estatura: 1.76,
     foto: "/avatares/avatar12.jpg",
-    equipo: "/imagenes/logo12.jpg",
+    club: "/imagenes/logo12.jpg",
   },
   {
     nombre: "Antonio",
@@ -103,7 +103,7 @@ export const jugadores: Jugadores[] = [
     edad: 33,
     estatura: 1.88,
     foto: "/avatares/avatar13.jpg",
-    equipo: "/imagenes/logo13.jpg",
+    club: "/imagenes/logo13.jpg",
   },
   {
     nombre: "Rafael",
@@ -111,7 +111,7 @@ export const jugadores: Jugadores[] = [
     edad: 27,
     estatura: 1.78,
     foto: "/avatares/avatar14.jpg",
-    equipo: "/imagenes/logo14.jpg",
+    club: "/imagenes/logo14.jpg",
   },
   {
     nombre: "David",
@@ -119,7 +119,7 @@ export const jugadores: Jugadores[] = [
     edad: 26,
     estatura: 1.8,
     foto: "/avatares/avatar15.jpg",
-    equipo: "/imagenes/logo15.jpg",
+    club: "/imagenes/logo15.jpg",
   },
   {
     nombre: "Marco",
@@ -127,7 +127,7 @@ export const jugadores: Jugadores[] = [
     edad: 29,
     estatura: 1.82,
     foto: "/avatares/avatar16.jpg",
-    equipo: "/imagenes/logo16.jpg",
+    club: "/imagenes/logo16.jpg",
   },
   {
     nombre: "Felipe",
@@ -135,7 +135,7 @@ export const jugadores: Jugadores[] = [
     edad: 24,
     estatura: 1.73,
     foto: "/avatares/avatar17.jpg",
-    equipo: "/imagenes/logo7.jpg",
+    club: "/imagenes/logo7.jpg",
   },
   {
     nombre: "Oscar",
@@ -143,6 +143,6 @@ export const jugadores: Jugadores[] = [
     edad: 28,
     estatura: 1.79,
     foto: "/avatares/avatar18.jpg",
-    equipo: "/imagenes/logo8.jpg",
+    club: "/imagenes/logo8.jpg",
   },
 ];

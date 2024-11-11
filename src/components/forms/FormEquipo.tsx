@@ -3,29 +3,20 @@
 import { Button, FormLabel, Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useUploadPicture } from "../hooks/useUploadFile";
-import axios from "axios";
-import { useSession } from "next-auth/react";
+import { useEquipos } from "../hooks/useEquipos";
 
 export default function FormEquipo() {
   const { handleFileChange, imagen } = useUploadPicture();
-  const { data: session } = useSession();
-  const [torneo, setTorneo] = useState({
-    nombre: '',
-    foto: ''
-  });
+  const { equipo, setEquipo, createEquipo } = useEquipos()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL + '/torneos/create'}`, torneo, {
-      headers: {
-        token: session?.token
-      }
-    });
+    createEquipo()
   };
 
   const handleChangePicture = async (e) => {
     await handleFileChange(e);
-    setTorneo({ ...torneo, foto: imagen });
+    setEquipo({ ...equipo, logo: imagen });
   };
 
   return (
@@ -38,8 +29,8 @@ export default function FormEquipo() {
             name="namePlan"
             variant="outlined"
             fullWidth
-            value={torneo.nombre}
-            onChange={(e) => setTorneo({ ...torneo, nombre: e.target.value })}
+            value={equipo.nombre}
+            onChange={(e) => setEquipo({ ...equipo, nombre: e.target.value })}
           />
         </Grid>
 
@@ -49,7 +40,6 @@ export default function FormEquipo() {
             type="file"
             onChange={handleChangePicture}
           />
-          {/* <img src={imagen} alt="" className="w-[100px] h-[100px] rounded-full" /> */}
         </Grid>
 
         <Grid item xs={12}>

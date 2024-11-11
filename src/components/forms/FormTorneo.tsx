@@ -29,7 +29,7 @@ export default function FormTorneos() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-[600px] bg-slate-200 p-2">
+    <form onSubmit={handleSubmit} className="w-[600px] bg-slate-200 p-2 m-auto">
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <FormLabel>Nombre</FormLabel>

@@ -1,5 +1,5 @@
 'use client'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -12,6 +12,8 @@ const NavBar = () => {
       <Link href={'/home/equipos'}>Equipos</Link>
       <Link href={'/home/mercado'}>Mercado</Link>
       <Link href={'/home/noticias'}>Noticias</Link>
+
+      <button onClick={() => signOut({ callbackUrl: '/auth/login', redirect: true })}>Logout</button>
     </ul>
   )
 }

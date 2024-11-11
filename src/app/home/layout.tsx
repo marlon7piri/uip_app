@@ -2,6 +2,7 @@
 import NavBar from '@/components/NavBar'
 import React from 'react'
 import { SessionProvider, useSession } from "next-auth/react"
+import { Toaster } from 'react-hot-toast'
 
 const layout = ({
   children,
@@ -12,6 +13,7 @@ const layout = ({
     <SessionProvider>
       <NavBar />
       {children}
+      <Toaster />
     </SessionProvider>
   )
 }

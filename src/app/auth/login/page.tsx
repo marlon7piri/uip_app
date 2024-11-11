@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./login.module.css";
+import Link from "next/link";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -27,7 +28,7 @@ export default function Login() {
 
     if (res?.status == 200) {
 
-      router.push("/home/equipos");
+      router.push("/home/torneos");
       setLoginInProgress(false);
     }
 
@@ -85,9 +86,14 @@ export default function Login() {
             >
               {loginInProgress ? "loading..." : "Login"}
             </button>
+            <Link href={'/auth/register'} className=" p-2 text-sky-500 text-center">
+              Registrarse
+            </Link>
           </form>
+
         </div>
         <div className={styles.section}></div>
+
       </div>
 
     </section>

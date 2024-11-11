@@ -1,6 +1,5 @@
 import { HttpAdapter } from "@/config/adapters/http/httpAdapter";
 import { Torneos } from "@/infraestrcuture/entities/torneos";
-import { headers } from "next/headers";
 
 export const getTorneosUseCases = async (
   fetcherAdapter: HttpAdapter,

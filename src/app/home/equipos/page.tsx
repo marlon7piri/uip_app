@@ -3,11 +3,12 @@ import ContainerJugadores from '@/components/ContainerJugadores'
 import React from 'react'
 
 const Equipos = () => {
-  return (<div>
-    <ContainerEquipos />
-    <ContainerJugadores />
+  return (
+    <div className='min-h-screen'>
+      <ContainerEquipos />
+      <ContainerJugadores />
 
-  </div>
+    </div>
   )
 }
 

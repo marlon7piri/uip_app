@@ -6,8 +6,8 @@ import CardProximosPartidos from './CardProximosPartidos'
 import BreadCrum from './BreadCrum'
 import { useTorneos } from './hooks/useTorneos'
 import { Card, Typography } from '@mui/material'
-import Image from 'next/image'
 import CardTorneos from './CardTorneos'
+import ContainerProximosPartidos from './ContainerProximosPartidos'
 
 const ContainerTorneos = () => {
   const { torneos } = useTorneos()
@@ -19,12 +19,12 @@ const ContainerTorneos = () => {
 
       <div className='flex justify-center items-center gap-4'>
         {torneos.map((e) => {
-          return <CardTorneos torneo={e} key={e.nombre} />
+          return <CardTorneos torneo={e} key={e?._id} />
         })}
       </div>
-      {proximosPartidos.map((e) => {
-        return <CardProximosPartidos equipos={e} key={e.nombre} />
-      })}
+
+
+
     </div>
   )
 }
