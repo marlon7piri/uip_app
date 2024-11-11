@@ -44,7 +44,7 @@ export default function FormEquipo() {
         </Grid>
 
         <Grid item xs={12}>
-          <FormLabel>Foto</FormLabel>
+          <FormLabel>Logo</FormLabel>
           <input
             type="file"
             onChange={handleChangePicture}
