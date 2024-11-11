@@ -1,9 +1,13 @@
+'use client'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 
 const NavBar = () => {
+  const { data: session } = useSession()
   return (
     <ul className='flex gap-4 justify-center text-2xl'>
+      <span>Benvenido {session?.user?.name}</span>
       <Link href={'/home/torneos'}>Torneos</Link>
       <Link href={'/home/equipos'}>Equipos</Link>
       <Link href={'/home/mercado'}>Mercado</Link>
