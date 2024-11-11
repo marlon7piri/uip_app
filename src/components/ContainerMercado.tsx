@@ -9,10 +9,9 @@ export const ContainerMercado = () => {
   const { jugadores } = useJugador()
   return (
     <div className='h-screen'>
-      <BreadCrum titulo='Mercado' url='/home/mercado/transferencia' />
 
 
-      <div className='flex gap-4 p-4'>
+      <div className='flex gap-4 p-4 mt-20'>
         <MercadoTable rows={jugadores} />
         <ContainerInfoPlayerMercado />
       </div>
