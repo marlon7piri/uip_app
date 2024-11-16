@@ -1,16 +1,20 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Title } from './Title'
 import { proximosPartidos } from '@/utils/teams'
 import CardProximosPartidos from './CardProximosPartidos'
 import BreadCrum from './BreadCrum'
 import { useTorneos } from './hooks/useTorneos'
-import { Card, Typography } from '@mui/material'
+import { Card, CircularProgress, Typography } from '@mui/material'
 import CardTorneos from './CardTorneos'
 import ContainerProximosPartidos from './ContainerProximosPartidos'
 
 const ContainerTorneos = () => {
-  const { torneos } = useTorneos()
+  const { torneos, loading } = useTorneos()
+
+  if (loading) {
+    return <CircularProgress />
+  }
 
   return (
     <div>

@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 import { JugadorStore } from "@/utils/zustand/jugador";
 
 const initialStateJugador: Jugadores = {
-  _id: "",
   nombre: "",
   apellido: "",
   edad: 0,
@@ -16,27 +15,49 @@ const initialStateJugador: Jugadores = {
     nombre: "",
     logo: "",
   },
+  ataque: 0,
+  defensa: 0,
+  email: "",
+  estudiante: "",
+  posicion: "",
+  regate: 0,
+  rol: "jugador",
+  status: "activo",
+  valor_mercado: 0,
+  velocidad: 0,
 };
 export const useJugador = () => {
   const [jugador, setJugador] = useState<Jugadores>(initialStateJugador);
+  const [loading, setLoading] = useState<boolean>(false);
   const [jugadores, setJugadores] = useState<Jugadores[]>([]);
   const { data: session } = useSession();
   const loadJugadores = JugadorStore((state) => state.loadJugadores);
   const selectPlayer = JugadorStore((state) => state.selectPlayer);
+  const currentImage = JugadorStore((state) => state.currentImage);
 
   useEffect(() => {
-    getJugadores();
+    const loadJugadores = async () => {
+      await getJugadores();
+    };
+    loadJugadores();
   }, []);
 
   const getJugadores = async () => {
+    setLoading(true);
     const res = await UseCases.getJugadoresUseCases(fetcherDb, session?.token);
-    loadJugadores(res);
     setJugadores(res);
+    loadJugadores(res);
+    setLoading(false);
   };
   const createJugador = async () => {
+    const newPlayer = {
+      ...jugador,
+      foto: currentImage,
+    };
+
     const res = await UseCases.createJugadorUseCases(
       fetcherDb,
-      jugador,
+      newPlayer,
       session?.token
     );
   };
@@ -49,5 +70,6 @@ export const useJugador = () => {
     setJugador,
     createJugador,
     handlerPlayer,
+    loading,
   };
 };

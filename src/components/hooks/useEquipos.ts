@@ -11,17 +11,22 @@ const initialStateEquipo: Equipos = {
 export const useEquipos = () => {
   const { data: session } = useSession();
   const [equipos, setEquipos] = useState<Equipos[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [equipo, setEquipo] = useState<Equipos>(initialStateEquipo);
 
   useEffect(() => {
-    getEquipos();
+   
+     getEquipos();
   }, []);
 
-  console.log(session?.token);
+
 
   const getEquipos = async () => {
+    setLoading(true);
     const res = await UseCases.getEquiposUseCases(fetcherDb, session?.token);
     setEquipos(res);
+    setLoading(false);
   };
   const createEquipo = async () => {
     const res = await UseCases.createEquipoUseCases(
@@ -30,5 +35,5 @@ export const useEquipos = () => {
       session?.token
     );
   };
-  return { equipos, createEquipo, equipo, setEquipo };
+  return { equipos, createEquipo, equipo, setEquipo, loading };
 };

@@ -7,7 +7,6 @@ import CardNoticias from './CardNoticias'
 const ContainerNoticias = () => {
   const { ofertas } = useOfertas()
 
-  console.log(ofertas)
   return (
     <div className='min-h-screen'>
       <BreadCrum titulo='Noticias' url='/home/noticias/nueva' />

@@ -4,7 +4,7 @@ import React from 'react'
 
 
 interface Props {
-  equipos: Equipos[]
+  equipos: Equipos
 }
 const CardEquipos = ({ equipos }: Props) => {
   return (

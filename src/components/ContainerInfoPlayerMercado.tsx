@@ -38,7 +38,7 @@ const ContainerInfoPlayerMercado = () => {
 
       </div>
 
-      <Typography>Posicion:Delantero Centro</Typography>
+      <Typography>Posicion: {jugadorSelected?.posicion.toUpperCase()}</Typography>
       <Typography>Goles:23 <SportsSoccerIcon /></Typography>
       <Typography>Asistencias:34</Typography>
 
@@ -46,11 +46,11 @@ const ContainerInfoPlayerMercado = () => {
         Tarjetas Amarillas:2 <Typography className='bg-yellow-500 w-4 h-4 rounded-none' /> </Typography>
       <Typography>Tarjetas Rojas:3 <Typography className='bg-red-700 w-4 h-4 rounded-none' /></Typography>
 
-      <Typography className='flex items-center gap-2'>Ataque:<span className='bg-yellow-500 w-2 h-2 rounded-full' />  90</Typography>
-      <Typography className='flex items-center gap-2'>Defensa:<Typography className='bg-gray-500 w-2 h-2 rounded-full' /> 70 </Typography>
-      <Typography className='flex items-center gap-2'>Regate:<Typography className='bg-pink-500 w-2 h-2 rounded-full' /> 85</Typography>
+      <Typography className='flex items-center gap-2'>Ataque:<span className='bg-yellow-500 w-2 h-2 rounded-full' />  {jugadorSelected?.ataque}</Typography>
+      <Typography className='flex items-center gap-2'>Defensa:<Typography className='bg-gray-500 w-2 h-2 rounded-full' />  {jugadorSelected?.defensa} </Typography>
+      <Typography className='flex items-center gap-2'>Regate:<Typography className='bg-pink-500 w-2 h-2 rounded-full' />  {jugadorSelected?.regate}</Typography>
 
-      <Typography>Valor de mercado: <AttachMoneyIcon className='bg-yellow-500 w-4 h-4 rounded-full' /> 200.000</Typography>
+      <Typography>Valor de mercado: <AttachMoneyIcon className='bg-yellow-500 w-4 h-4 rounded-full' /> {jugadorSelected?.valor_mercado}</Typography>
     </Card>
   )
 }

@@ -4,9 +4,20 @@ import CardEquipos from './CardEquipos'
 
 import BreadCrum from './BreadCrum'
 import { useEquipos } from './hooks/useEquipos'
+import { CircularProgress } from '@mui/material'
+import { Equipos } from '@/infraestrcuture/entities/equipos'
 
-const ContainerEquipos = () => {
-  const { equipos } = useEquipos()
+
+interface Props {
+  equipos: Equipos[]
+}
+const ContainerEquipos = ({ equipos }: Props) => {
+  const { loading } = useEquipos()
+
+
+  if (loading) {
+    return <CircularProgress />
+  }
   return (
     <div className='p-4'>
       <BreadCrum titulo='Equipos' url='/home/equipos/nuevo' />

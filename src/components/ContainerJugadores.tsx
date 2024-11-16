@@ -1,14 +1,22 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import CardJugadores from './CardJugadores'
 import { Title } from './Title'
 import BreadCrum from './BreadCrum'
 import { useJugador } from './hooks/useJugador'
+import { CircularProgress } from '@mui/material'
+import { Jugadores } from '@/infraestrcuture/entities/jugadores'
 
-const ContainerJugadores = () => {
-  const { jugadores } = useJugador()
+interface Props {
+  jugadores: Jugadores[]
+}
+const ContainerJugadores = ({ jugadores }: Props) => {
+  const { loading } = useJugador()
 
 
+  if (loading) {
+    return <CircularProgress />
+  }
   return (
     <div className='p-4'>
       <BreadCrum titulo='Jugadores' url='/home/jugadores/nuevo' />

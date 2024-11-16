@@ -6,7 +6,7 @@ export const useUploadPicture = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleFileChange = async (event: any) => {
+  const handleFileChange = async (event: any, onChange: () => void) => {
     const selectedFile = event.target.files[0];
 
     if (!selectedFile) {
@@ -27,6 +27,7 @@ export const useUploadPicture = () => {
       setError(null);
 
       setImagen(resizedBase64);
+      onChange(resizedBase64);
       try {
         setLoading(false);
       } catch (error) {}

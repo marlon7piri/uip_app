@@ -7,15 +7,20 @@ import { Torneos } from "@/infraestrcuture/entities/torneos";
 export const useTorneos = () => {
   const { data: session } = useSession();
   const [torneos, setTorneos] = useState<Torneos[]>([]);
-
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
-    getTorneos();
+    const loadTorenos = async () => {
+      await getTorneos();
+    };
+    loadTorenos();
   }, []);
 
   const getTorneos = async () => {
+    setLoading(true);
     const res = await UseCases.getTorneosUseCases(fetcherDb, session?.token);
     setTorneos(res);
+    setLoading(false);
   };
 
-  return { torneos };
+  return { torneos, loading };
 };

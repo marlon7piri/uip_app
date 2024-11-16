@@ -24,11 +24,11 @@ export default function Login() {
       redirect: false,
     });
 
-    console.log({ res })
+
 
     if (res?.status == 200) {
 
-      router.push("/home/torneos");
+      router.push("/home/equipos");
       setLoginInProgress(false);
     }
 
