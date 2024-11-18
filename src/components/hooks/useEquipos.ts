@@ -3,6 +3,7 @@ import * as UseCases from "../../config/core/use-cases";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Equipos } from "@/infraestrcuture/entities/equipos";
+import { EquipoStore } from "@/utils/zustand/equipos";
 
 const initialStateEquipo: Equipos = {
   nombre: "",
@@ -14,6 +15,8 @@ export const useEquipos = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const [equipo, setEquipo] = useState<Equipos>(initialStateEquipo);
+  const currentImageEquipo = EquipoStore(state=>state.currentImageEquipo);
+
 
   useEffect(() => {
    
@@ -29,9 +32,13 @@ export const useEquipos = () => {
     setLoading(false);
   };
   const createEquipo = async () => {
+
+    const newEquipo ={
+      ...equipo,logo:currentImageEquipo
+    }
     const res = await UseCases.createEquipoUseCases(
       fetcherDb,
-      equipo,
+      newEquipo,
       session?.token
     );
   };

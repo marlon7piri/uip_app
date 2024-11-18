@@ -26,16 +26,22 @@ const PartidosByTorneos = () => {
 
     useEffect(() => {
         getPartidosByTorneo()
+        getEquiposRegistrados()
     }, [params.idTorneo])
 
+    
     const getPartidosByTorneo = async () => {
         const res = await UseCases.getEquiposRegistradosByTorneosUseCases(fetcherDb, params.idTorneo, session?.token);
         setPartidosByTorneos(res);
     };
-
+    const getEquiposRegistrados = async () => {
+        const res = await UseCases.getEquiposRegistrados(fetcherDb, params.idTorneo, session?.token);
+        setEquiposParticipantes(res);
+    };
+console.log(equiposParticipantes)
     return (
         <ContenedorCustom>
-            <BreadCrum titulo='Partidos del Torneo' url='/home/torneos/registrar' labelBtn='Registrar equipos' />
+            <BreadCrum titulo='Partidos del Torneo' url={`/home/torneos/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
 
 
             <div className='flex justify-evenly'>

@@ -1,4 +1,5 @@
 export * from "./torneos/getTorneos.use-cases";
+export * from "./torneos/registrarEquiposTorneos.use-cases";
 export * from "./jugadores/createJugador.use-cases";
 export * from "./jugadores/getJugadores.use-cases";
 export * from "./equipos/getEquipos.use-cases";

@@ -4,9 +4,12 @@ import { Button, FormLabel, Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useUploadPicture } from "../hooks/useUploadFile";
 import { useEquipos } from "../hooks/useEquipos";
+import { CustomInputFileFoto } from "../CustomInputFileFoto";
+import { EquipoStore } from "@/utils/zustand/equipos";
 
 export default function FormEquipo() {
-  const { handleFileChange, imagen } = useUploadPicture();
+  const saveImageEquipo = EquipoStore(state=>state.saveImageEquipo);
+  const currentImageEquipo = EquipoStore(state=>state.currentImageEquipo);
   const { equipo, setEquipo, createEquipo } = useEquipos()
 
   const handleSubmit = async (e) => {
@@ -14,10 +17,7 @@ export default function FormEquipo() {
     createEquipo()
   };
 
-  const handleChangePicture = async (e) => {
-    await handleFileChange(e);
-    setEquipo({ ...equipo, logo: imagen });
-  };
+  
 
   return (
     <form onSubmit={handleSubmit} className="w-[600px] bg-slate-200 p-2 m-auto">
@@ -36,10 +36,11 @@ export default function FormEquipo() {
 
         <Grid item xs={12}>
           <FormLabel>Logo</FormLabel>
-          <input
-            type="file"
-            onChange={handleChangePicture}
+          <CustomInputFileFoto
+            onChange={saveImageEquipo}
           />
+          <img src={currentImageEquipo} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={'imagen de un equipo de futbol'} />
+
         </Grid>
 
         <Grid item xs={12}>
