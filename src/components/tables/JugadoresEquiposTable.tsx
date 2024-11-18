@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -26,7 +27,7 @@ const FiltrosMercado = () => {
 }
 
 
-export default function MercadoTable({ rows }: Props) {
+export default function JugadoresEquiposTable({ rows }: Props) {
   const { handlerPlayer } = useJugador()
   const jugadores = JugadorStore(state => state.jugadores)
 
@@ -38,7 +39,7 @@ export default function MercadoTable({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ maxWidth: '60%', margin: 'auto' }}>
+    <TableContainer component={Paper} style={{ maxWidth: '100%', margin: 'auto' }}>
       {/* <FiltrosMercado /> */}
       <Table sx={{ minWidth: 450 }} aria-label="simple table">
         <TableHead>
@@ -47,7 +48,6 @@ export default function MercadoTable({ rows }: Props) {
             <TableCell>Nombre</TableCell>
             <TableCell align="right">Edad</TableCell>
             <TableCell align="right">Nacionalidad</TableCell>
-            <TableCell align="right">Club</TableCell>
 
             <TableCell align="right">Valor de mercado</TableCell>
             <TableCell align="right">Oferta</TableCell>
@@ -73,11 +73,7 @@ export default function MercadoTable({ rows }: Props) {
               </TableCell>
               <TableCell align="right">{row.edad}</TableCell>
               <TableCell align="right">nacionalidad</TableCell>
-              <TableCell align="right">
-                <Image src={row.club?.logo} width={50} height={50} alt={row.club?.nombre}
-                  className='rounded-full'
-                />
-              </TableCell>
+
 
 
               <TableCell align="right">${row.valor_mercado}</TableCell>

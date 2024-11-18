@@ -34,7 +34,7 @@ export default function Register() {
 
     const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/create`, user)
 
-    console.log({ res })
+
 
     if (res?.status == 200) {
 

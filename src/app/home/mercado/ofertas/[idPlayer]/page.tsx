@@ -5,9 +5,9 @@ import React from 'react'
 
 const Ofertas = () => {
 
-  const params = useParams()
 
-  console.log({ params })
+
+
 
   return (
     <div className='min-h-screen'>

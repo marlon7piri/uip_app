@@ -5,28 +5,26 @@ import React, { useState } from "react";
 import { useUploadPicture } from "../hooks/useUploadFile";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import { TorneoStore } from "@/utils/zustand/torneos";
+import { CustomInputFileFoto } from "../CustomInputFileFoto";
+import { useTorneos } from "../hooks/useTorneos";
+import toast from "react-hot-toast";
 
 export default function FormTorneos() {
-  const { handleFileChange, imagen } = useUploadPicture();
+  const saveImageTorneo = TorneoStore(state => state.saveImageTorneo)
+  const currentImageTorneo = TorneoStore(state => state.currentImageTorneo)
+  const { setTorneo, torneo, crearTorneo } = useTorneos()
   const { data: session } = useSession();
-  const [torneo, setTorneo] = useState({
-    nombre: '',
-    foto: ''
-  });
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL + '/torneos/create'}`, torneo, {
-      headers: {
-        token: session?.token
-      }
-    });
+    await crearTorneo()
+    toast.success("Torneo creado")
+
   };
 
-  const handleChangePicture = async (e) => {
-    await handleFileChange(e);
-    setTorneo({ ...torneo, foto: imagen });
-  };
+
 
   return (
     <form onSubmit={handleSubmit} className="w-[600px] bg-slate-200 p-2 m-auto">
@@ -45,11 +43,11 @@ export default function FormTorneos() {
 
         <Grid item xs={12}>
           <FormLabel>Foto</FormLabel>
-          <input
-            type="file"
-            onChange={handleChangePicture}
+          <CustomInputFileFoto
+            onChange={saveImageTorneo}
           />
-          {/* <img src={imagen} alt="" className="w-[100px] h-[100px] rounded-full" /> */}
+          <img src={currentImageTorneo} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={'imagen del torneo'} />
+
         </Grid>
 
         <Grid item xs={12}>

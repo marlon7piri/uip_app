@@ -11,7 +11,7 @@ interface Props {
 const CardPartidosByTorneo = ({ partido }: Props) => {
 
   return (
-    <div className='flex justify-center items-center gap-4 flex-col'>
+    <div className='flex justify-center items-center gap-4 flex-col bg-slate-900 p-2 rounded-lg'>
 
       <div className='flex gap-4'>
         <div>

@@ -3,11 +3,13 @@ import ContainerEquipos from '@/components/ContainerEquipos'
 import ContainerJugadores from '@/components/ContainerJugadores'
 import { useEquipos } from '@/components/hooks/useEquipos'
 import { useJugador } from '@/components/hooks/useJugador'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Equipos = () => {
   const { jugadores } = useJugador()
   const { equipos } = useEquipos()
+
+
   return (
     <div className='min-h-screen'>
       <ContainerEquipos equipos={equipos} />

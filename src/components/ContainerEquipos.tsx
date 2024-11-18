@@ -19,7 +19,7 @@ const ContainerEquipos = ({ equipos }: Props) => {
     return <CircularProgress />
   }
   return (
-    <div className='p-4'>
+    <div className='w-full min-h-screen  p-4'>
       <BreadCrum titulo='Equipos' url='/home/equipos/nuevo' />
 
       <div className='flex flex-wrap gap-4'>

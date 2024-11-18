@@ -4,6 +4,7 @@ import * as UseCases from "@/config/core/use-cases";
 import { fetcherDb } from "@/config/adapters/apiDbAdapter";
 import { useSession } from "next-auth/react";
 import { JugadorStore } from "@/utils/zustand/jugador";
+import { Equipos } from "@/infraestrcuture/entities/equipos";
 
 const initialStateJugador: Jugadores = {
   nombre: "",
@@ -30,6 +31,9 @@ export const useJugador = () => {
   const [jugador, setJugador] = useState<Jugadores>(initialStateJugador);
   const [loading, setLoading] = useState<boolean>(false);
   const [jugadores, setJugadores] = useState<Jugadores[]>([]);
+  const [jugadoresByEquipos, setJugadoresByEquipos] = useState<Jugadores[]>([]);
+  const [equipoDelJugador, setEquipoDelJugador] = useState<Equipos>(null);
+
   const { data: session } = useSession();
   const loadJugadores = JugadorStore((state) => state.loadJugadores);
   const selectPlayer = JugadorStore((state) => state.selectPlayer);
@@ -47,6 +51,20 @@ export const useJugador = () => {
     const res = await UseCases.getJugadoresUseCases(fetcherDb, session?.token);
     setJugadores(res);
     loadJugadores(res);
+    setLoading(false);
+  };
+
+  const getJugadoresByEquipos = async (idEquipo: string) => {
+    setLoading(true);
+    const res = await UseCases.getJugadoresByEquipoUseCases(
+      fetcherDb,
+      idEquipo,
+      session?.token
+    );
+
+    console.log(res);
+    setJugadoresByEquipos(res.jugadores);
+    setEquipoDelJugador(res.infoClub);
     setLoading(false);
   };
   const createJugador = async () => {
@@ -70,6 +88,9 @@ export const useJugador = () => {
     setJugador,
     createJugador,
     handlerPlayer,
+    jugadoresByEquipos,
+    equipoDelJugador,
+    getJugadoresByEquipos,
     loading,
   };
 };

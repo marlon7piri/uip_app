@@ -5,11 +5,18 @@ import { useEffect, useState } from "react";
 import { Torneos } from "@/infraestrcuture/entities/torneos";
 import { Equipos } from "@/infraestrcuture/entities/equipos";
 import { equiposFutbol } from "@/utils/teams";
+import { TorneoStore } from "@/utils/zustand/torneos";
 
 export const useTorneos = () => {
   const { data: session } = useSession();
   const [torneos, setTorneos] = useState<Torneos[]>([]);
   const [equiposRegistrados, setEquiposRegistrados] = useState<Equipos[]>([]);
+  const [torneo, setTorneo] = useState({
+    nombre: "",
+    foto: "",
+  });
+  const currentImageTorneo = TorneoStore((state) => state.currentImageTorneo);
+
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     const loadTorenos = async () => {
@@ -24,20 +31,44 @@ export const useTorneos = () => {
     setTorneos(res);
     setLoading(false);
   };
-  const registrarEquiposTorneos = async (idTorneo:string) => {
 
-    const ids = equiposRegistrados.map(e=>e._id)
+  const crearTorneo = async () => {
+    const newTorneo = {
+      ...torneo,
+      foto: currentImageTorneo,
+    };
+    const res = await UseCases.createTorneoUseCases(
+      fetcherDb,
+      newTorneo,
+      session?.token
+    );
+    setTorneos(res);
+    setLoading(false);
+  };
+  const registrarEquiposTorneos = async (idTorneo: string) => {
+    const ids = equiposRegistrados.map((e) => e._id);
 
-    const newRegistro={
-      idTorneo:idTorneo,
-      equipos:ids
-  }
+    const newRegistro = {
+      idTorneo: idTorneo,
+      equipos: ids,
+    };
 
-  console.log(newRegistro)
-    
-    const res = await UseCases.createRegistroTorneoUseCases(fetcherDb,newRegistro, session?.token);
+    const res = await UseCases.createRegistroTorneoUseCases(
+      fetcherDb,
+      newRegistro,
+      session?.token
+    );
     setLoading(false);
   };
 
-  return { torneos, loading,equiposRegistrados,setEquiposRegistrados,registrarEquiposTorneos };
+  return {
+    torneos,
+    torneo,
+    setTorneo,
+    loading,
+    equiposRegistrados,
+    setEquiposRegistrados,
+    registrarEquiposTorneos,
+    crearTorneo,
+  };
 };

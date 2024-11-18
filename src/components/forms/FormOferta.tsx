@@ -12,7 +12,7 @@ export default function FormOferta() {
   const params = useParams()
 
 
-  console.log(session?.user?.id)
+
   const [oferta, setOferta] = useState({
     descripcion: '',
     monto: '',

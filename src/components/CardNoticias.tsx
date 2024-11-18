@@ -8,7 +8,7 @@ interface Props {
 
 const CardNoticias = ({ ofertas }: Props) => {
 
-  console.log(ofertas)
+
   return (
     <div className='flex  p-2 justify-center  items-center bg-slate-50 gap-4 text-slate-900 mt-2 w-full
      rounded-3xl  transition-all duration-300'>

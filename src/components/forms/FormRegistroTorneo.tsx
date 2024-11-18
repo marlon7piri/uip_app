@@ -17,26 +17,26 @@ import { usePartidos } from "../hooks/usePartidos";
 export default function FormRegistroTorneo() {
 
   const { partido, setPartido, createPartido } = usePartidos()
-  const { equiposRegistrados,setEquiposRegistrados,registrarEquiposTorneos } = useTorneos()
+  const { equiposRegistrados, setEquiposRegistrados, registrarEquiposTorneos } = useTorneos()
   const { equipos } = useEquipos()
   const router = useRouter();
   const search = useSearchParams()
-const idTorneo = search.get('idTorneo')
+  const idTorneo = search.get('idTorneo')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(idTorneo)
+
     await registrarEquiposTorneos(idTorneo)
 
     toast.success('Registro creado')
     router.back()
   };
 
-const registrarEquipos = (e)=>{
-    console.log(e.target.value)
-    setEquiposRegistrados([...equiposRegistrados,e.target.value])
-}
+  const registrarEquipos = (e) => {
+
+    setEquiposRegistrados([...equiposRegistrados, e.target.value])
+  }
 
 
 
@@ -63,9 +63,9 @@ const registrarEquipos = (e)=>{
           </Select>
         </div>
         <div>
-            {equiposRegistrados.length == 0 ? <p>No hay equipos registrados</p> : equiposRegistrados.map((e)=>{
-                return <p>{e.nombre}</p>
-            })}
+          {equiposRegistrados.length == 0 ? <p>No hay equipos registrados</p> : equiposRegistrados.map((e) => {
+            return <p>{e.nombre}</p>
+          })}
         </div>
 
 

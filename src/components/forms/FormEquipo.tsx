@@ -6,18 +6,21 @@ import { useUploadPicture } from "../hooks/useUploadFile";
 import { useEquipos } from "../hooks/useEquipos";
 import { CustomInputFileFoto } from "../CustomInputFileFoto";
 import { EquipoStore } from "@/utils/zustand/equipos";
+import toast from "react-hot-toast";
 
 export default function FormEquipo() {
-  const saveImageEquipo = EquipoStore(state=>state.saveImageEquipo);
-  const currentImageEquipo = EquipoStore(state=>state.currentImageEquipo);
+  const saveImageEquipo = EquipoStore(state => state.saveImageEquipo);
+  const currentImageEquipo = EquipoStore(state => state.currentImageEquipo);
   const { equipo, setEquipo, createEquipo } = useEquipos()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    toast.success('Equipo creado')
+
     createEquipo()
   };
 
-  
+
 
   return (
     <form onSubmit={handleSubmit} className="w-[600px] bg-slate-200 p-2 m-auto">
