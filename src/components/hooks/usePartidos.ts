@@ -43,6 +43,7 @@ export const usePartidos = () => {
     const res = await UseCases.getPartidosUseCases(fetcherDb, session?.token);
     setPartidos(res);
   };
+  
   const createPartido = async () => {
     const res = await UseCases.createPartidoUseCases(
       fetcherDb,

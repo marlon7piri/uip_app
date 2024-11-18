@@ -7,7 +7,9 @@ import React from 'react'
 interface Props {
   partido: Partidos
 }
-const CardProximosPartidos = ({ partido }: Props) => {
+
+const CardPartidosByTorneo = ({ partido }: Props) => {
+
   return (
     <div className='flex justify-center items-center gap-4 flex-col'>
 
@@ -15,14 +17,14 @@ const CardProximosPartidos = ({ partido }: Props) => {
         <div>
           <h3 className='text-slate-50'>{partido?.local?.nombre}</h3>
 
-          <img src={partido?.local?.logo} className='w-[100px] h-[100px] rounded-full bg-cover' alt={partido.local.nombre} />
+          <img src={partido?.local?.logo} className='w-[100px] h-[100px] rounded-full bg-cover' alt={partido?.local?.nombre} />
 
         </div>
         <h3 className='text-slate-50'>VS</h3>
 
         <div>
-          <h3 className='text-slate-50'>{partido.visitante.nombre}</h3>
-          <img src={partido?.visitante?.logo} className='w-[100px] h-[100px] rounded-full bg-cover' alt={partido.visitante.nombre} />
+          <h3 className='text-slate-50'>{partido?.visitante?.nombre}</h3>
+          <img src={partido?.visitante?.logo} className='w-[100px] h-[100px] rounded-full bg-cover' alt={partido?.visitante?.nombre} />
 
         </div>
       </div>
@@ -39,4 +41,4 @@ const CardProximosPartidos = ({ partido }: Props) => {
   )
 }
 
-export default CardProximosPartidos
+export default CardPartidosByTorneo

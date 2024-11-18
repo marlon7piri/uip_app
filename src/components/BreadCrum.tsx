@@ -6,14 +6,15 @@ import { useSession } from 'next-auth/react'
 
 interface Props {
   titulo: string,
-  url: string
+  url: string,
+  labelBtn: string
 }
-const BreadCrum = ({ titulo, url }: Props) => {
+const BreadCrum = ({ titulo, url,labelBtn ='Nuevo'}: Props) => {
   const { data: session } = useSession()
   return (
     <div className='flex justify-between items-center p-4'>
       <Title content={titulo} size='text-6xl' />
-      {session?.rol === 'admin' && <Link href={url} className='bg-slate-50 p-2 rounded-md hover:bg-slate-900 hover:text-slate-50 transition duration-500'>Nuevo</Link>}
+      {session?.rol === 'admin' && <Link href={url} className='bg-slate-50 p-2 rounded-md hover:bg-slate-900 hover:text-slate-50 transition duration-500'>{labelBtn}</Link>}
     </div>
   )
 }
