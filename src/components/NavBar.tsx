@@ -5,6 +5,10 @@ import React from 'react'
 
 const NavBar = () => {
   const { data: session } = useSession()
+
+
+
+  
   return (
     <ul className='flex gap-4 justify-between text-2xl p-2 bg-slate-50'>
       <div>

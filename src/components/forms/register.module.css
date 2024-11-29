@@ -16,6 +16,10 @@
   background-color: rgb(15 23 42);
 }
 
+.containerLogin input{
+  border:1px solid red
+}
+
 @media (width<600px) {
   .containerLogin {
     width: 100%;

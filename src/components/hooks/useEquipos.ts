@@ -7,7 +7,7 @@ import { Jugadores } from "@/infraestrcuture/entities/jugadores";
 
 const initialStateEquipo: Equipos = {
   nombre: "",
-  logo: "",
+  logo: "", 
 };
 export const useEquipos = () => {
   const { data: session } = useSession();
@@ -28,11 +28,12 @@ export const useEquipos = () => {
   };
 
   const createEquipo = async () => {
-    const res = await UseCases.createEquipoUseCases(
+    console.log(equipo)
+   /*  const res = await UseCases.createEquipoUseCases(
       fetcherDb,
       equipo,
       session?.token
-    );
+    ); */
   };
   return {
     equipos,

@@ -62,7 +62,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
               className='hover:bg-slate-200 cursor-pointer'
             >
               <TableCell align="right">
-                <Image src={row.foto} width={50} height={50} alt={row.club?.nombre}
+                <Image src={row.foto ? row.foto : ''} width={50} height={50} alt={row.club?.nombre ? row.club?.nombre : 'foto del club'}
                   className='rounded-full'
                 />
               </TableCell>

@@ -10,11 +10,11 @@ const layout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <SessionProvider>
+    <>
       <NavBar />
       {children}
       <Toaster />
-    </SessionProvider>
+    </>
   )
 }
 

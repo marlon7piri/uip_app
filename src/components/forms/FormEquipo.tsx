@@ -17,7 +17,7 @@ export default function FormEquipo() {
     e.preventDefault();
     toast.success('Equipo creado')
 
-    createEquipo()
+    await createEquipo()
   };
 
 

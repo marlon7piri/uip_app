@@ -1,41 +1,100 @@
 'use client'
-import { useRouter } from 'next/navigation'
 import React from 'react'
+import { signIn } from "next-auth/react";
+import Image from "next/image";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import styles from "./login.module.css";
+import Link from "next/link";
 
 export const FormLogin = () => {
-  const router = useRouter()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginInProgress, setLoginInProgress] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  const handlerSubmit = (e) => {
-    e.preventDefault()
-    router.push('/home/torneos')
+  async function handleFormSubmit(ev) {
+    ev.preventDefault();
+
+    setLoginInProgress(true);
+
+    const res = await signIn("credentials", {
+      username: email,
+      password: password,
+      redirect: false,
+    });
+
+
+
+    if (res?.status == 200) {
+
+      router.push("/home/torneos");
+      setLoginInProgress(false);
+    }
+
+    if (res.error) {
+      setError(res.error);
+      setEmail("");
+      setPassword("");
+      setLoginInProgress(false);
+
+
+    }
+
+
+
+
   }
   return (
-    <div className="w-full max-w-xs">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handlerSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
-            Username
-          </label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
-        </div>
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" for="password">
-            Password
-          </label>
-          <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
-          <p className="text-red-500 text-xs italic">Please choose a password.</p>
-        </div>
-        <div className="flex items-center justify-between">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-            Sign In
-          </button>
-          <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-            Forgot Password?
-          </a>
-        </div>
-      </form>
+    <div className={styles.containerLogin}>
 
-    </div>
+
+        <div className="p-4">
+          <h1 className="text-center text-primary text-4xl mb-4 text-slate-50 font-bold">
+            Login
+          </h1>
+          <form
+            className=" max-w-xs mx-auto flex flex-col p-4 bg-slate-50  gap-4 rounded-md"
+            onSubmit={handleFormSubmit}
+          >
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              value={email}
+              disabled={loginInProgress}
+              onChange={(ev) => setEmail(ev.target.value)}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              value={password}
+              disabled={loginInProgress}
+              onChange={(ev) => setPassword(ev.target.value)}
+            />
+            {error && (
+              <span className="bg-red-500 p-2 text-salte-50 text-center">
+                {error}
+              </span>
+            )}
+            <button
+              disabled={loginInProgress}
+              type="submit"
+              className="bg-sky-500 hover:bg-sky-900 px-8  py-2 rounded-md w-max m-auto"
+            >
+              {loginInProgress ? "loading..." : "Login"}
+            </button>
+            <Link href={'/auth/register'} className=" p-2 text-sky-500 text-center">
+              Registrarse
+            </Link>
+          </form>
+
+        </div>
+        <div className={styles.section}></div>
+
+      </div>
   )
 }
 
