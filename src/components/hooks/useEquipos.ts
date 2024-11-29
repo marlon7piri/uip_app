@@ -4,6 +4,9 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Equipos } from "@/infraestrcuture/entities/equipos";
 import { Jugadores } from "@/infraestrcuture/entities/jugadores";
+import { EquipoStore } from "@/utils/zustand/equipos";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const initialStateEquipo: Equipos = {
   nombre: "",
@@ -13,8 +16,10 @@ export const useEquipos = () => {
   const { data: session } = useSession();
   const [equipos, setEquipos] = useState<Equipos[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter()
 
   const [equipo, setEquipo] = useState<Equipos>(initialStateEquipo);
+  const currentImageEquipo = EquipoStore(state=>state.currentImageEquipo)
 
   useEffect(() => {
     getEquipos();
@@ -28,12 +33,19 @@ export const useEquipos = () => {
   };
 
   const createEquipo = async () => {
-    console.log(equipo)
-   /*  const res = await UseCases.createEquipoUseCases(
+
+    const newEquipo = {
+      ...equipo,logo:currentImageEquipo
+    }
+    const res = await UseCases.createEquipoUseCases(
       fetcherDb,
-      equipo,
+      newEquipo,
       session?.token
-    ); */
+    );
+
+    toast.success('Equipo creado')
+    router.push('/home/equipos')
+    
   };
   return {
     equipos,

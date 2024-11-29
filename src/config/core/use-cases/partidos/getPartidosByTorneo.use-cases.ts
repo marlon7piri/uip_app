@@ -12,7 +12,7 @@ export const getPartidosByTorneosUseCases = async (
       `torneos/partidosbytorneo/${idTorneo}`,
       {
         headers: {
-          token,
+          token
         },
       }
     );

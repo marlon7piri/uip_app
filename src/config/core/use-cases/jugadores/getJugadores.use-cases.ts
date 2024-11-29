@@ -8,7 +8,7 @@ export const getJugadoresUseCases = async (
   try {
     const res = await fetcherAdapter.get<Jugadores>("/jugadores/list", {
       headers: {
-        token,
+        token
       },
     });
     return res;

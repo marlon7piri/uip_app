@@ -12,7 +12,7 @@ export const createJugadorUseCases = async (
       jugador,
       {
         headers: {
-          token,
+          token
         },
       }
     );

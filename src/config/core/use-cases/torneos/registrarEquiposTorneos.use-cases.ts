@@ -13,7 +13,7 @@ export const createRegistroTorneoUseCases = async (
       equipos,
       {
         headers: {
-          token,
+          token
         },
       }
     );

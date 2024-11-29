@@ -8,7 +8,7 @@ export const getPartidosUseCases = async (
   try {
     const res = await fetcherAdapter.get<Partidos>("/matcher/list", {
       headers: {
-        token,
+        token
       },
     });
     return res;

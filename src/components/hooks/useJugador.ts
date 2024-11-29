@@ -62,7 +62,6 @@ export const useJugador = () => {
       session?.token
     );
 
-    console.log(res);
     setJugadoresByEquipos(res.jugadores);
     setEquipoDelJugador(res.infoClub);
     setLoading(false);

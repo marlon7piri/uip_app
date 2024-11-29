@@ -10,7 +10,7 @@ export const createTorneoUseCases = async (
   try {
     const res = await fetcherAdapter.post<Torneos>("/torneos/create", torneo, {
       headers: {
-        token,
+        token
       },
     });
     return res;

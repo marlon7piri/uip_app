@@ -15,7 +15,6 @@ export default function FormEquipo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success('Equipo creado')
 
     await createEquipo()
   };

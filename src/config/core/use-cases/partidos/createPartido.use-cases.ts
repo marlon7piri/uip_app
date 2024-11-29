@@ -12,7 +12,7 @@ export const createPartidoUseCases = async (
       partido,
       {
         headers: {
-          token,
+          token
         },
       }
     );

@@ -9,7 +9,7 @@ export const getEquiposRegistrados = async (
   try {
     const res = await fetcherAdapter.get<any>(`/torneos/equiposRegistrados/${idTorneo}`, {
       headers: {
-        token,
+        token
       },
     });
     return res;

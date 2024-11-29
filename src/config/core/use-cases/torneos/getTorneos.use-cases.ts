@@ -8,7 +8,7 @@ export const getTorneosUseCases = async (
   try {
     const res = await fetcherAdapter.get<Torneos>("/torneos/list", {
       headers: {
-        token,
+        token
       },
     });
     return res;

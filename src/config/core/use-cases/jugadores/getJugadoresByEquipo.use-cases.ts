@@ -11,7 +11,7 @@ export const getJugadoresByEquipoUseCases = async (
       `jugadores/listByEquipo/${idEquipo}`,
       {
         headers: {
-          token,
+          token
         },
       }
     );
