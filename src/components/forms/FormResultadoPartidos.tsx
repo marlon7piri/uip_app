@@ -1,51 +1,99 @@
 'use client'
 
-import { Button, FormLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Button, FormLabel, MenuItem, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { useUploadPicture } from "../hooks/useUploadFile";
-import axios from "axios";
-import { useSession } from "next-auth/react";
-import { useJugador } from "../hooks/useJugador";
 import { useEquipos } from "../hooks/useEquipos";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { JugadorStore } from "@/utils/zustand/jugador";
-import { CustomInputFileFoto } from "../CustomInputFileFoto";
 import { useTorneos } from "../hooks/useTorneos";
 import { usePartidos } from "../hooks/usePartidos";
+import { Jugadores } from "@/infraestrcuture/entities/jugadores";
 
-export default function FormResultadoPartidos() {
-  const saveImage = JugadorStore(state => state.saveImage)
-  const currentImage = JugadorStore(state => state.currentImage)
+interface Props{
+  jugadores:Jugadores
+}
 
-  const { partido, setPartido, createPartido } = usePartidos()
+export default function FormResultadoPartidos({ jugadores }:Props) {
+
+
+  const { partido, setPartido, createPartido, resultadoPartido, setResultadoPartido } = usePartidos()
   const { torneos } = useTorneos()
   const { equipos } = useEquipos()
   const router = useRouter();
+  const [jugadoresSelected, setJugadoresSelected] = useState([])
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    createPartido()
-    toast.success('Partido creado')
-    router.push('/home/torneos')
+    console.log(resultadoPartido)
+
   };
 
 
+  const handlerGoleadores = (e) => {
 
+    const idPlayer = e.target.value
+    setResultadoPartido((prevState) => {
+
+      const { goleadores } = prevState
+
+      const new_goleador = goleadores.includes(idPlayer) ? goleadores.filter(item => item !== idPlayer) : [...goleadores, idPlayer]
+
+      return { ...prevState, goleadores: new_goleador }
+
+
+
+    })
+  }
+  const handlerAsistentes = (e) => {
+
+    const idPlayer = e.target.value
+
+    setResultadoPartido((prevState) => {
+      const { asistentes } = prevState
+
+      const new_asistente = asistentes.includes(idPlayer) ? asistentes.filter(item => item !== idPlayer) : [...asistentes, idPlayer]
+
+      return { ...prevState, asistentes: new_asistente }
+
+
+
+
+
+
+    })
+  }
 
 
   return (
     <form onSubmit={handleSubmit} className="w-[600px] h-[300px] bg-slate-200 p-2 m-auto overflow-y-scroll ">
       <div className="flex flex-col gap-4">
         <div >
-          <FormLabel>Club Visitante</FormLabel>
+          <FormLabel>Es Empate?</FormLabel>
 
           <Select
             fullWidth
-            value={partido.visitante}
+            value={resultadoPartido.is_draw}
 
-            onChange={(e) => setPartido({ ...partido, visitante: e.target.value })}>
+            onChange={(e) => setResultadoPartido({ ...resultadoPartido, is_draw: e.target.value })}>
+            <MenuItem value={true} >Si</MenuItem>
+            <MenuItem value={false} >No</MenuItem>
+
+
+
+
+
+          </Select>
+        </div>
+        {!resultadoPartido.is_draw ? <div >
+          <FormLabel>Ganador</FormLabel>
+
+          <Select
+            fullWidth
+            value={resultadoPartido.ganador_id}
+            onChange={(e) => setResultadoPartido({ ...resultadoPartido, ganador_id: e.target.value })}>
+
             {equipos.map((e) => {
               return <MenuItem key={e?._id} value={e?._id} >
 
@@ -56,15 +104,15 @@ export default function FormResultadoPartidos() {
             })}
 
           </Select>
-        </div>
-        <div >
-          <FormLabel>Club Local</FormLabel>
+        </div> : ''}
+        {!resultadoPartido.is_draw ? <div >
+          <FormLabel>Perdedor</FormLabel>
 
           <Select
             fullWidth
-            value={partido.local}
+            value={resultadoPartido.perdedor_id}
 
-            onChange={(e) => setPartido({ ...partido, local: e.target.value })}>
+            onChange={(e) => setResultadoPartido({ ...resultadoPartido, perdedor_id: e.target.value })}>
             {equipos.map((e) => {
               return <MenuItem key={e?._id} value={e?._id} >
 
@@ -75,46 +123,71 @@ export default function FormResultadoPartidos() {
             })}
 
           </Select>
+        </div> : ''}
+        <div >
+          <FormLabel>Goles</FormLabel>
+
+          <TextField
+            type="number"
+            fullWidth
+            value={resultadoPartido.goles_anotados}
+
+            onChange={(e) => setResultadoPartido({ ...resultadoPartido, goles_anotados: parseInt(e.target.value) })} />
+
+
         </div>
         <div >
-          <FormLabel>Torneo</FormLabel>
+          <FormLabel>Asistencias</FormLabel>
+
+          <TextField
+            type="number"
+            fullWidth
+            value={resultadoPartido.asistencias}
+
+            onChange={(e) => setResultadoPartido({ ...resultadoPartido, asistencias: parseInt(e.target.value) })} />
+
+
+        </div>
+        
+        <div >
+          <FormLabel>Goleadores</FormLabel>
 
           <Select
             fullWidth
-            value={partido.torneo_id}
+            value={resultadoPartido.goleadores}
 
-            onChange={(e) => setPartido({ ...partido, torneo_id: e.target.value })}>
-            {torneos.map((e) => {
-              return <MenuItem key={e?._id} value={e?._id} >
+            onChange={handlerGoleadores}>
 
-                {e?.nombre}</MenuItem>
-
-
+            {jugadores?.map(elem => {
+              return <MenuItem key={elem._id} value={elem._id} >{elem.nombre + " " + elem.apellido}</MenuItem>
 
             })}
+
+
+
+
 
           </Select>
         </div>
         <div >
-          <FormLabel>Estadio</FormLabel>
+          <FormLabel>Asistentes</FormLabel>
 
-          <TextField
+          <Select
             fullWidth
-            value={partido.estadio}
+            value={resultadoPartido.asistentes}
 
-            onChange={(e) => setPartido({ ...partido, estadio: e.target.value })} />
+            onChange={handlerAsistentes}>
 
-        </div>
-        <div >
-          <FormLabel>Fecha</FormLabel>
+            {jugadores?.map(elem => {
+              return <MenuItem key={elem._id} value={elem._id} >{elem.nombre + " " + elem.apellido}</MenuItem>
 
-          <TextField
-            type="date"
-            fullWidth
-            value={partido.fecha}
+            })}
 
-            onChange={(e) => setPartido({ ...partido, fecha: e.target.value })} />
 
+
+
+
+          </Select>
         </div>
 
 

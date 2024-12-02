@@ -2,52 +2,61 @@
 import ContenedorCustom from '@/components/ContenedorCustom'
 import FormResultadoPartidos from '@/components/forms/FormResultadoPartidos'
 import { useJugador } from '@/components/hooks/useJugador'
+import { usePartidos } from '@/components/hooks/usePartidos'
 import { Title } from '@/components/Title'
+import { fetcherDb } from '@/config/adapters/apiDbAdapter'
+import *  as UseCases from '@/config/core/use-cases'
+import { useSession } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 
-interface ResultadoType {
-    ganador_id: string
-    perdedor_id: string
-    goles: number
-    asistencias: number
-    is_draw: boolean
-    goleadores: string[]
-}
+
+
+
 
 const EditPartido = () => {
+
     const search = useSearchParams()
+    const { data: session } = useSession()
+
     const idTorneo = search.get('idTorneo')
     const local = search.get('idLocal')
     const visitante = search.get('idVisitante')
-    const { getJugadoresByEquipos } = useJugador()
-    const [jugadoresVisitantes, setJugadoresVisitantes] = useState([])
-    const [jugadoresLocales, setJugadoresLocales] = useState([])
+
+
+    const [jugadores, setJugadores] = useState([])
 
 
 
     useEffect(() => {
-        const loadJugadores = async () => {
-            const dataLocal = await getJugadoresByEquipos(local)
-            const dataVisitante = await getJugadoresByEquipos(visitante)
-            console.log(dataLocal?.jugadores)
 
-            setJugadoresLocales(dataLocal?.jugadores)
-            setJugadoresVisitantes(dataVisitante?.jugadores)
 
-        }
-
-        loadJugadores()
-        console.log(jugadoresLocales)
+        getJugadores()
 
     }, [])
+
+
+    const getJugadores = async () => {
+        const resLocal = await UseCases.getJugadoresByEquipoUseCases(
+            fetcherDb,
+            local,
+            session?.token
+        );
+        const resVisitante = await UseCases.getJugadoresByEquipoUseCases(
+            fetcherDb,
+            visitante,
+            session?.token
+        );
+        setJugadores([...resLocal?.jugadores,...resVisitante?.jugadores])
+    }
+
 
     return (
         <ContenedorCustom>
 
             <Title content='Modificar resultado' size='text-4xl' />
-            <FormResultadoPartidos />
+            <FormResultadoPartidos jugadores={jugadores}/>
         </ContenedorCustom>
     )
 }

@@ -15,8 +15,7 @@ import { useTorneos } from "../hooks/useTorneos";
 import { usePartidos } from "../hooks/usePartidos";
 
 export default function FormPartido() {
-  const saveImage = JugadorStore(state => state.saveImage)
-  const currentImage = JugadorStore(state => state.currentImage)
+  
 
   const { partido, setPartido, createPartido } = usePartidos()
   const { torneos } = useTorneos()

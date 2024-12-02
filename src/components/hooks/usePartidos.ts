@@ -17,6 +17,16 @@ interface TypePartido {
   is_draw: false;
   torneo_id: string;
 }
+interface TypeResultado {
+  is_draw: false;
+  ganador_id: string;
+  perdedor_id: string;
+  goles_anotados: number;
+  asistencias: number;
+  goleadores:string[]
+  asistentes: string[];
+  torneo_id: string;
+}
 
 const initialPartido: TypePartido = {
   visitante: "",
@@ -29,11 +39,22 @@ const initialPartido: TypePartido = {
   is_draw: false,
   torneo_id: "",
 };
+const initialResultado: TypeResultado = {
+  is_draw: false,
+  ganador_id: '',
+  perdedor_id: '',
+  goles_anotados: 0,
+  asistencias: 0,
+  goleadores:[],
+  asistentes: [],
+  torneo_id: '',
+};
 export const usePartidos = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [partidos, setPartidos] = useState<Partidos[]>([]);
   const [partido, setPartido] = useState<TypePartido>(initialPartido);
+  const [resultadoPartido, setResultadoPartido] = useState<TypeResultado>(initialResultado);
 
   useEffect(() => {
     getPartidos();
@@ -52,5 +73,5 @@ export const usePartidos = () => {
     );
     router.refresh();
   };
-  return { partidos, partido, setPartido, createPartido };
+  return { partidos, partido, setPartido, createPartido,resultadoPartido, setResultadoPartido };
 };
