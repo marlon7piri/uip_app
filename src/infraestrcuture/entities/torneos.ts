@@ -2,11 +2,11 @@ export interface Torneos {
   _id:                  string;
   nombre:               string;
   logo:                 string;
-  estadisticasGlobales: EstadisticasGlobales;
+  estadisticasGlobales: Estadisticas;
   estadisticasTorneo:   EstadisticasTorneo;
 }
 
-export interface EstadisticasGlobales {
+export interface Estadisticas {
   goles_favor:        number;
   goles_contra:       number;
   asistencias:        number;
@@ -14,16 +14,11 @@ export interface EstadisticasGlobales {
   partidos_ganados:   number;
   partidos_perdidos:  number;
   partidos_empatados: number;
+  puntos?:            number;
 }
 
 export interface EstadisticasTorneo {
   estadisticas: Estadisticas;
   torneoId:     string;
   _id:          string;
-}
-
-export interface Estadisticas {
-  goles:       number;
-  asistencias: number;
-  puntos:      number;
 }

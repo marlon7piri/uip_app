@@ -51,7 +51,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
         <TableBody>
           {rows?.map((row, index: number) => {
 
-            const {goles,asistencias,puntos} = row.estadisticasTorneo.estadisticas
+            const {goles_favor,asistencias,puntos} = row.estadisticasTorneo.estadisticas
             return <TableRow
               key={row._id}
               
@@ -74,7 +74,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
               <TableCell align="left">{row.estadisticasGlobales.partidos_ganados}</TableCell>
               <TableCell align="left">{row.estadisticasGlobales.partidos_empatados}</TableCell>
               <TableCell align="left">{row.estadisticasGlobales.partidos_perdidos}</TableCell>
-              <TableCell align="left">{goles}</TableCell>
+              <TableCell align="left">{goles_favor}</TableCell>
               <TableCell align="left">{row.estadisticasGlobales.goles_contra}</TableCell>
               <TableCell align="left">{row.estadisticasGlobales.goles_favor - row.estadisticasGlobales.goles_contra}</TableCell>
               <TableCell align="left">{puntos}</TableCell>
