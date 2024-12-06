@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import MyApp from "./app";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
 
 const geistSans = localFont({
@@ -26,6 +28,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+  const session = getServerSession(authOptions)
   return (
     <html lang="en">
       <body
@@ -33,7 +38,7 @@ export default function RootLayout({
       >
 
        
-        <MyApp  children={children} session={undefined}/>
+        <MyApp  children={children} session={session}/>
        
       </body>
     </html>

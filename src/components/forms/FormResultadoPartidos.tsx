@@ -11,16 +11,15 @@ import { usePartidos } from "../hooks/usePartidos";
 import { Jugadores } from "@/infraestrcuture/entities/jugadores";
 
 interface Props{
-  jugadores:Jugadores
+  jugadores:Jugadores;
+  
 }
 
 export default function FormResultadoPartidos({ jugadores }:Props) {
 
 
-  const { partido, setPartido, createPartido, resultadoPartido, setResultadoPartido } = usePartidos()
-  const { torneos } = useTorneos()
+  const {resultadoPartido, setResultadoPartido } = usePartidos()
   const { equipos } = useEquipos()
-  const router = useRouter();
   const [jugadoresSelected, setJugadoresSelected] = useState([])
 
 

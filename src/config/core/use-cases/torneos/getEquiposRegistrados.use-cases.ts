@@ -1,13 +1,13 @@
 import { HttpAdapter } from "@/config/adapters/http/httpAdapter";
-import { Equipos } from "@/infraestrcuture/entities/equipos";
+import { Torneos } from "@/infraestrcuture/entities/torneos";
 
 export const getEquiposRegistrados = async (
   fetcherAdapter: HttpAdapter,
+  token: string,
   idTorneo:string,
-  token: string
-): Promise<any[]> => {
+): Promise<Torneos[]> => {
   try {
-    const res = await fetcherAdapter.get<any>(`/torneos/equiposRegistrados/${idTorneo}`, {
+    const res = await fetcherAdapter.get<any>(`/torneos/${idTorneo}`, {
       headers: {
         token
       },

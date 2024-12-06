@@ -31,5 +31,5 @@ export async function middleware(req: NextRequest) {
 
 // Apply middleware to all routes
 export const config = {
-  matcher: "/home/:path*",
+  matcher: ["/","/home/:path*"],
 };

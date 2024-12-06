@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <ul className='flex gap-4 justify-between text-2xl p-2 bg-slate-50'>
       <div>
-        <span>BEBELAPP</span>
+        <span>PlayAndEnjoy</span>
       </div>
       <div>
         <span>Beinvenid@ {session?.user?.name}</span>

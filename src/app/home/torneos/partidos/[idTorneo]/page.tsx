@@ -7,8 +7,8 @@ import TorneoTablePositioon from '@/components/tables/TorneoTablePositioon'
 import { Title } from '@/components/Title'
 import { fetcherDb } from '@/config/adapters/apiDbAdapter'
 import * as UseCases from '@/config/core/use-cases'
-import { Equipos } from '@/infraestrcuture/entities/equipos'
 import { Partidos } from '@/infraestrcuture/entities/partidos'
+import { EquipoTorneo } from '@/infraestrcuture/entities/torneos'
 import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
 
@@ -18,22 +18,23 @@ const PartidosByTorneos = () => {
     const { data: session } = useSession()
     const params = useParams()
     const [partidosByTorneos, setPartidosByTorneos] = useState<Partidos[]>([])
-    const [equiposParticipantes, setEquiposParticipantes] = useState<Equipos[]>([])
+    const [equiposParticipantes, setEquiposParticipantes] = useState<EquipoTorneo[]>([])
 
 
     useEffect(() => {
-        getPartidosByTorneo()
+        //getPartidosByTorneo()
         getEquiposRegistrados()
     }, [params.idTorneo])
 
 
-    const getPartidosByTorneo = async () => {
+    /* const getPartidosByTorneo = async () => {
         const res = await UseCases.getPartidosByTorneosUseCases(fetcherDb, params.idTorneo, session?.token);
         setPartidosByTorneos(res);
-    };
+    }; */
 
     const getEquiposRegistrados = async () => {
-        const res = await UseCases.getEquiposRegistrados(fetcherDb, params.idTorneo, session?.token);
+        const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
+
         setEquiposParticipantes(res);
     };
 

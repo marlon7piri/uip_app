@@ -9,8 +9,13 @@ const ContainerInfoPlayerMercado = () => {
   const jugadorSelected = JugadorStore(state => state.jugadorSelected)
 
 
+
+  if(!jugadorSelected){
+    return <Typography className='text-slate-50 text-2xl'>Seleccione un jugador</Typography>
+  }
+  
   return (
-    <Card className='w-[30%] p-4'>
+   <Card className='w-[30%] p-4'>
 
       <div className='flex justify-between p-2 items-center'>
         <div className='flex flex-col items-center'>

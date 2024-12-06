@@ -6,17 +6,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Jugadores } from '@/infraestrcuture/entities/jugadores';
 import Image from 'next/image';
-import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import { IconButton, TextField, Tooltip, Typography } from '@mui/material';
-import { useJugador } from '../hooks/useJugador';
-import { JugadorStore } from '@/utils/zustand/jugador';
-import Link from 'next/link';
-import { Equipos } from '@/infraestrcuture/entities/equipos';
+
+import { TextField, Typography } from '@mui/material';
+
+import {  Torneos } from '@/infraestrcuture/entities/torneos';
 
 interface Props {
-  rows: Equipos[]
+  rows: Torneos[]
 }
 const FiltrosMercado = () => {
   return (
@@ -52,10 +49,12 @@ export default function TorneoTablePositioon({ rows }: Props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows[0]?.equipos?.map((row: Equipos, index: number) => (
-            <TableRow
+          {rows?.map((row, index: number) => {
+
+            const {goles,asistencias,puntos} = row.estadisticasTorneo.estadisticas
+            return <TableRow
               key={row._id}
-              onClick={() => handlerClickPlayer(row._id)}
+              
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-200 cursor-pointer'
             >
@@ -71,20 +70,20 @@ export default function TorneoTablePositioon({ rows }: Props) {
                   {row.nombre}
                 </Typography>
               </TableCell>
-              <TableCell align="left">{row.partidos_jugados}</TableCell>
-              <TableCell align="left">{row.partidos_ganados}</TableCell>
-              <TableCell align="left">{row.partidos_empatados}</TableCell>
-              <TableCell align="left">{row.partidos_perdidos}</TableCell>
-              <TableCell align="left">{row.goles_favor}</TableCell>
-              <TableCell align="left">{row.goles_contra}</TableCell>
-              <TableCell align="left">{row.diferencia_goles}</TableCell>
-              <TableCell align="left">{row.puntos}</TableCell>
+              <TableCell align="left">{row.estadisticasGlobales.partidos_jugados}</TableCell>
+              <TableCell align="left">{row.estadisticasGlobales.partidos_ganados}</TableCell>
+              <TableCell align="left">{row.estadisticasGlobales.partidos_empatados}</TableCell>
+              <TableCell align="left">{row.estadisticasGlobales.partidos_perdidos}</TableCell>
+              <TableCell align="left">{goles}</TableCell>
+              <TableCell align="left">{row.estadisticasGlobales.goles_contra}</TableCell>
+              <TableCell align="left">{row.estadisticasGlobales.goles_favor - row.estadisticasGlobales.goles_contra}</TableCell>
+              <TableCell align="left">{puntos}</TableCell>
 
 
 
 
             </TableRow>
-          ))}
+})}
         </TableBody>
       </Table>
     </TableContainer>

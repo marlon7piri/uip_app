@@ -4,7 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import axios from "axios";
 
-const handler = NextAuth({
+export const authOptions = {
   pages: {
     signIn: "/auth/login",
     signOut: "/auth/login",
@@ -73,5 +73,6 @@ const handler = NextAuth({
       return session;
     },
   },
-});
+}
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
