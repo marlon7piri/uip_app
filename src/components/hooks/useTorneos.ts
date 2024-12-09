@@ -18,8 +18,11 @@ export const useTorneos = () => {
   const currentImageTorneo = TorneoStore((state) => state.currentImageTorneo);
 
   const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     const loadTorenos = async () => {
+  console.log(session)
+
       await getTorneos();
     };
     loadTorenos();

@@ -1,5 +1,7 @@
 'use client'
-import { signOut, useSession } from 'next-auth/react'
+import { logoutAuth } from '@/actions/auth-login'
+import { signOut } from '@/auth'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -24,7 +26,7 @@ const NavBar = () => {
         <Link href={'/home/noticias'} className='hover:text-sky-900 transition duration-500'>Noticias</Link>
       </div>
 
-      <button onClick={() => signOut({ callbackUrl: '/auth/login', redirect: true })}>Logout</button>
+      <button onClick={logoutAuth}>Logout</button>
     </ul>
   )
 }
