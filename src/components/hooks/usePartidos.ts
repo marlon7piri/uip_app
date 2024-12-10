@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Torneos } from "@/infraestrcuture/entities/torneos";
 import { Partidos } from "@/infraestrcuture/entities/partidos";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 interface TypePartido {
   visitante: string;
@@ -23,7 +23,7 @@ interface TypeResultado {
   perdedor_id: string;
   goles_anotados: number;
   asistencias: number;
-  goleadores:string[]
+  goleadores: string[]
   asistentes: string[];
   torneo_id: string;
 }
@@ -45,33 +45,37 @@ const initialResultado: TypeResultado = {
   perdedor_id: '',
   goles_anotados: 0,
   asistencias: 0,
-  goleadores:[],
+  goleadores: [],
   asistentes: [],
   torneo_id: '',
 };
 export const usePartidos = () => {
   const { data: session } = useSession();
   const router = useRouter();
+  const params = useParams()
   const [partidos, setPartidos] = useState<Partidos[]>([]);
   const [partido, setPartido] = useState<TypePartido>(initialPartido);
   const [resultadoPartido, setResultadoPartido] = useState<TypeResultado>(initialResultado);
 
   useEffect(() => {
     getPartidos();
-  }, []);
 
+
+  }, []);
   const getPartidos = async () => {
     const res = await UseCases.getPartidosUseCases(fetcherDb, session?.token);
     setPartidos(res);
   };
-  
+
   const createPartido = async () => {
+
+    const newMatch: TypePartido = { ...partido, torneo_id: params.idTorneo }
     const res = await UseCases.createPartidoUseCases(
       fetcherDb,
-      partido,
+      newMatch,
       session?.token
     );
     router.refresh();
   };
-  return { partidos, partido, setPartido, createPartido,resultadoPartido, setResultadoPartido };
+  return { partidos, partido, setPartido, createPartido, resultadoPartido, setResultadoPartido };
 };

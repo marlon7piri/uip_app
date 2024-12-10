@@ -36,6 +36,8 @@ export default function MercadoTable({ rows }: Props) {
   }
 
 
+  console.log(rows)
+
 
   return (
     <TableContainer component={Paper} style={{ maxWidth: '60%', margin: 'auto' }}>
@@ -80,12 +82,13 @@ export default function MercadoTable({ rows }: Props) {
               </TableCell>
 
 
-              <TableCell align="right">${row.valor_mercado}</TableCell>
+              <TableCell align="right">${row.estadisticasGlobales
+?.valor_mercado}</TableCell>
               <TableCell align="right">
                 <IconButton>
                   <Tooltip title='hacer oferta'>
                     <Link href={`/home/mercado/ofertas/${row?._id}`}>
-                      <CurrencyExchangeIcon size={20} />
+                      <CurrencyExchangeIcon size={20} color='inherit'/>
 
                     </Link>
 

@@ -4,13 +4,14 @@ import React from 'react'
 import CardProximosPartidos from './CardProximosPartidos'
 import BreadCrum from './BreadCrum'
 import { usePartidos } from './hooks/usePartidos'
+import { Title } from './Title'
 
 const ContainerProximosPartidos = () => {
   const { partidos } = usePartidos()
 
   return (
     <div>
-      <BreadCrum titulo='Proximos Partidos' url='/home/partidos/nuevo' />
+      <Title content='Proximos Partidos' size='text-3xl' />
 
       <div className='flex flex-wrap justify-center items-center gap-10 p-10'>
         {partidos.map((e) => {

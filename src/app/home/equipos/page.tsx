@@ -6,14 +6,13 @@ import { useJugador } from '@/components/hooks/useJugador'
 import React, { useEffect } from 'react'
 
 const Equipos = () => {
-  const { jugadores } = useJugador()
   const { equipos } = useEquipos()
 
 
   return (
     <div className='min-h-screen'>
       <ContainerEquipos equipos={equipos} />
-      <ContainerJugadores jugadores={jugadores} />
+     
 
     </div>
   )

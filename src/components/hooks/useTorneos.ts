@@ -21,24 +21,24 @@ export const useTorneos = () => {
 
   useEffect(() => {
     const loadTorenos = async () => {
-  console.log(session)
+      console.log(session)
 
       await getTorneos();
     };
     loadTorenos();
   }, []);
-  
+
   const getTorneos = async () => {
     setLoading(true);
     const res = await UseCases.getTorneosUseCases(fetcherDb, session?.token);
     setTorneos(res);
     setLoading(false);
   };
-  const getEquiposByTorneo = async (idTorneo:string) => {
+  const getEquiposByTorneo = async (idTorneo: string) => {
     setLoading(true);
-    const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token,idTorneo);
-   console.log(res)
-    
+    const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, idTorneo);
+    console.log(res)
+
   };
 
   const crearTorneo = async () => {

@@ -14,7 +14,12 @@ import { CustomInputFileFoto } from "../CustomInputFileFoto";
 import { useTorneos } from "../hooks/useTorneos";
 import { usePartidos } from "../hooks/usePartidos";
 
-export default function FormPartido() {
+
+interface Props{
+  equiposParticipantes:any[]
+}
+
+export default function FormPartido({equiposParticipantes}:Props) {
   
 
   const { partido, setPartido, createPartido } = usePartidos()
@@ -45,7 +50,7 @@ export default function FormPartido() {
             value={partido.visitante}
 
             onChange={(e) => setPartido({ ...partido, visitante: e.target.value })}>
-            {equipos.map((e) => {
+            {equiposParticipantes.map((e) => {
               return <MenuItem key={e?._id} value={e?._id} >
 
                 {e?.nombre}</MenuItem>
@@ -64,7 +69,7 @@ export default function FormPartido() {
             value={partido.local}
 
             onChange={(e) => setPartido({ ...partido, local: e.target.value })}>
-            {equipos.map((e) => {
+            {equiposParticipantes.map((e) => {
               return <MenuItem key={e?._id} value={e?._id} >
 
                 {e?.nombre}</MenuItem>
@@ -75,25 +80,7 @@ export default function FormPartido() {
 
           </Select>
         </div>
-        <div >
-          <FormLabel>Torneo</FormLabel>
-
-          <Select
-            fullWidth
-            value={partido.torneo_id}
-
-            onChange={(e) => setPartido({ ...partido, torneo_id: e.target.value })}>
-            {torneos.map((e) => {
-              return <MenuItem key={e?._id} value={e?._id} >
-
-                {e?.nombre}</MenuItem>
-
-
-
-            })}
-
-          </Select>
-        </div>
+       
         <div >
           <FormLabel>Estadio</FormLabel>
 

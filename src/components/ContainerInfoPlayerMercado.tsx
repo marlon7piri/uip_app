@@ -43,19 +43,20 @@ const ContainerInfoPlayerMercado = () => {
 
       </div>
 
-      <Typography>Posicion: {jugadorSelected?.posicion.toUpperCase()}</Typography>
-      <Typography>Goles:23 <SportsSoccerIcon /></Typography>
-      <Typography>Asistencias:34</Typography>
+      <Typography>Posicion: {jugadorSelected?.estadisticasGlobales?.posicion?.toUpperCase()}</Typography>
+      <Typography>Estatura: {jugadorSelected?.estatura} cm</Typography>
+      <Typography>Goles:{jugadorSelected?.estadisticasGlobales?.goles} <SportsSoccerIcon /></Typography>
+      <Typography>Asistencias:{jugadorSelected?.estadisticasGlobales?.asistencias}</Typography>
 
       <Typography>
         Tarjetas Amarillas:2 <Typography className='bg-yellow-500 w-4 h-4 rounded-none' /> </Typography>
       <Typography>Tarjetas Rojas:3 <Typography className='bg-red-700 w-4 h-4 rounded-none' /></Typography>
 
-      <Typography className='flex items-center gap-2'>Ataque:<span className='bg-yellow-500 w-2 h-2 rounded-full' />  {jugadorSelected?.ataque}</Typography>
-      <Typography className='flex items-center gap-2'>Defensa:<Typography className='bg-gray-500 w-2 h-2 rounded-full' />  {jugadorSelected?.defensa} </Typography>
-      <Typography className='flex items-center gap-2'>Regate:<Typography className='bg-pink-500 w-2 h-2 rounded-full' />  {jugadorSelected?.regate}</Typography>
+      <Typography className='flex items-center gap-2'>Ataque:<span className='bg-yellow-500 w-2 h-2 rounded-full' />  {jugadorSelected?.estadisticasGlobales?.ataque}</Typography>
+      <Typography className='flex items-center gap-2'>Defensa:<Typography className='bg-gray-500 w-2 h-2 rounded-full' />  {jugadorSelected?.estadisticasGlobales?.defensa} </Typography>
+      <Typography className='flex items-center gap-2'>Regate:<Typography className='bg-pink-500 w-2 h-2 rounded-full' />  {jugadorSelected?.estadisticasGlobales?.regate}</Typography>
 
-      <Typography>Valor de mercado: <AttachMoneyIcon className='bg-yellow-500 w-4 h-4 rounded-full' /> {jugadorSelected?.valor_mercado}</Typography>
+      <Typography>Valor de mercado: <AttachMoneyIcon className='bg-yellow-500 w-4 h-4 rounded-full' /> {jugadorSelected?.estadisticasGlobales?.valor_mercado}</Typography>
     </Card>
   )
 }
