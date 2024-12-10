@@ -12,7 +12,7 @@ const Torneos = () => {
     <div className='min-h-screen'>
       <ContainerTorneos />
 
-      <ContainerProximosPartidos />
+     
 
     </div>
   )

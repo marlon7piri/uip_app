@@ -16,6 +16,8 @@ const CardProximosPartidos = ({ partido }: Props) => {
           <h3 className='text-slate-50'>{partido?.local?.nombre}</h3>
 
           <img src={partido?.local?.logo} className='w-[100px] h-[100px] rounded-full bg-cover' alt={partido.local.nombre} />
+          <h3 className='text-slate-50'>Torneo: {partido?.resultado?.golesLocal}</h3>
+
 
         </div>
         <h3 className='text-slate-50'>VS</h3>
@@ -23,6 +25,8 @@ const CardProximosPartidos = ({ partido }: Props) => {
         <div>
           <h3 className='text-slate-50'>{partido.visitante.nombre}</h3>
           <img src={partido?.visitante?.logo} className='w-[100px] h-[100px] rounded-full bg-cover' alt={partido.visitante.nombre} />
+          <h3 className='text-slate-50'>Torneo: {partido?.resultado?.golesVisitante}</h3>
+
 
         </div>
       </div>

@@ -18,14 +18,19 @@ interface TypePartido {
   torneo_id: string;
 }
 interface TypeResultado {
-  is_draw: false;
-  ganador_id: string;
-  perdedor_id: string;
-  goles_anotados: number;
-  asistencias: number;
-  goleadores: string[]
-  asistentes: string[];
-  torneo_id: string;
+  id_local: string,
+  id_visitante: string,
+  goles_local: number,
+  goles_visitante: number,
+  asistencias_local: number,
+  asistencias_visitantes: number,
+  tarjetas_amarillas: number,
+  tarjetas_rojas: number,
+  is_draw: true,
+  torneoId: string,
+  partidoId:string,
+  goleadores:string[],
+  asistentes:string[]
 }
 
 const initialPartido: TypePartido = {
@@ -40,14 +45,21 @@ const initialPartido: TypePartido = {
   torneo_id: "",
 };
 const initialResultado: TypeResultado = {
-  is_draw: false,
-  ganador_id: '',
-  perdedor_id: '',
-  goles_anotados: 0,
-  asistencias: 0,
-  goleadores: [],
-  asistentes: [],
-  torneo_id: '',
+  
+    id_local: "",
+    id_visitante: "",
+    goles_local: 0,
+    goles_visitante: 0,
+    asistencias_local: 0,
+    asistencias_visitantes: 0,
+    tarjetas_amarillas: 0,
+    tarjetas_rojas: 0,
+    is_draw: true,
+    torneoId: "",
+    partidoId:"",
+    goleadores:[],
+    asistentes:[]
+  
 };
 export const usePartidos = () => {
   const { data: session } = useSession();

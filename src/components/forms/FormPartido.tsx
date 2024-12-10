@@ -42,14 +42,15 @@ export default function FormPartido({equiposParticipantes}:Props) {
   return (
     <form onSubmit={handleSubmit} className="w-[600px] h-[300px] bg-slate-200 p-2 m-auto overflow-y-scroll ">
       <div className="flex flex-col gap-4">
+        
         <div >
-          <FormLabel>Club Visitante</FormLabel>
+          <FormLabel>Club Local</FormLabel>
 
           <Select
             fullWidth
-            value={partido.visitante}
+            value={partido.local}
 
-            onChange={(e) => setPartido({ ...partido, visitante: e.target.value })}>
+            onChange={(e) => setPartido({ ...partido, local: e.target.value })}>
             {equiposParticipantes.map((e) => {
               return <MenuItem key={e?._id} value={e?._id} >
 
@@ -62,13 +63,13 @@ export default function FormPartido({equiposParticipantes}:Props) {
           </Select>
         </div>
         <div >
-          <FormLabel>Club Local</FormLabel>
+          <FormLabel>Club Visitante</FormLabel>
 
           <Select
             fullWidth
-            value={partido.local}
+            value={partido.visitante}
 
-            onChange={(e) => setPartido({ ...partido, local: e.target.value })}>
+            onChange={(e) => setPartido({ ...partido, visitante: e.target.value })}>
             {equiposParticipantes.map((e) => {
               return <MenuItem key={e?._id} value={e?._id} >
 
