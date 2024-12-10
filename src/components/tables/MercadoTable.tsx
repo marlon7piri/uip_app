@@ -83,12 +83,12 @@ export default function MercadoTable({ rows }: Props) {
 
 
               <TableCell align="right">${row.estadisticasGlobales
-?.valor_mercado}</TableCell>
+                ?.valor_mercado}</TableCell>
               <TableCell align="right">
                 <IconButton>
                   <Tooltip title='hacer oferta'>
                     <Link href={`/home/mercado/ofertas/${row?._id}`}>
-                      <CurrencyExchangeIcon size={20} color='inherit'/>
+                      <CurrencyExchangeIcon size={20} color='inherit' />
 
                     </Link>
 

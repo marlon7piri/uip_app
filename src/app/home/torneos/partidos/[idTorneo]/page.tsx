@@ -30,10 +30,10 @@ const PartidosByTorneos = () => {
     }, [params.idTorneo])
 
 
-     const getPartidosByTorneo = async () => {
+    const getPartidosByTorneo = async () => {
         const res = await UseCases.getPartidosByTorneosUseCases(fetcherDb, params.idTorneo, session?.token);
         setPartidosByTorneos(res);
-    }; 
+    };
 
     const handlerModal = () => {
         setOpenModal(!openModal)
@@ -69,7 +69,7 @@ const PartidosByTorneos = () => {
 
                 <Modal open={openModal} onClose={handlerModal}>
                     <div className='w-max h-max m-auto translate-y-52 bg-slate-700 p-4 rounded-md '>
-                        <FormPartido equiposParticipantes={equiposParticipantes}/>
+                        <FormPartido equiposParticipantes={equiposParticipantes} />
                     </div>
                 </Modal>
 
