@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Torneos } from "@/infraestrcuture/entities/torneos";
 import { Partidos } from "@/infraestrcuture/entities/partidos";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 interface TypePartido {
   visitante: string;
@@ -17,9 +17,9 @@ interface TypePartido {
   is_draw: false;
   torneo_id: string;
 }
-interface TypeResultado {
-  id_local: string,
-  id_visitante: string,
+export interface TypeResultado {
+  id_local: string | null,
+  id_visitante: string | null,
   goles_local: number,
   goles_visitante: number,
   asistencias_local: number,
@@ -27,8 +27,8 @@ interface TypeResultado {
   tarjetas_amarillas: number,
   tarjetas_rojas: number,
   is_draw: true,
-  torneoId: string,
-  partidoId:string,
+  torneoId: string | null,
+  partidoId:string | null,
   goleadores:string[],
   asistentes:string[]
 }
@@ -67,7 +67,16 @@ export const usePartidos = () => {
   const params = useParams()
   const [partidos, setPartidos] = useState<Partidos[]>([]);
   const [partido, setPartido] = useState<TypePartido>(initialPartido);
+  const [equiposByPartido, setEquiposByPartido] = useState([])
   const [resultadoPartido, setResultadoPartido] = useState<TypeResultado>(initialResultado);
+
+
+  const search = useSearchParams()
+
+  const local = search.get('idLocal')
+  const visitante = search.get('idVisitante')
+  const idTorneo = search.get('idTorneo')
+  const idPartido = search.get('idPartido')
 
   useEffect(() => {
     getPartidos();
@@ -77,6 +86,11 @@ export const usePartidos = () => {
   const getPartidos = async () => {
     const res = await UseCases.getPartidosUseCases(fetcherDb, session?.token);
     setPartidos(res);
+  };
+
+  const getEquiposPorPartido= async (id_local:string,id_visitante:string) => {
+    const res = await UseCases.getEquiposPorPartidoUseCases(fetcherDb,id_local,id_visitante, session?.token);
+    setEquiposByPartido(res);
   };
 
   const createPartido = async () => {
@@ -89,5 +103,17 @@ export const usePartidos = () => {
     );
     router.refresh();
   };
-  return { partidos, partido, setPartido, createPartido, resultadoPartido, setResultadoPartido };
+  const evaluarPartido = async () => {
+
+    const result: TypeResultado = { ...resultadoPartido, id_local: local ,id_visitante:visitante,torneoId:idTorneo ,partidoId:idPartido}
+
+    console.log(result)
+     const res = await UseCases.evaluarPartidoUseCases(
+      fetcherDb,
+      result,
+      session?.token
+    );
+    router.refresh();
+  };
+  return { partidos, partido, setPartido, createPartido, resultadoPartido, setResultadoPartido ,equiposByPartido,getEquiposPorPartido,evaluarPartido};
 };

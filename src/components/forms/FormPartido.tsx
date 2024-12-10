@@ -32,7 +32,7 @@ export default function FormPartido({equiposParticipantes}:Props) {
     e.preventDefault();
     createPartido()
     toast.success('Partido creado')
-    router.push('/home/torneos')
+    router.back()
   };
 
 
