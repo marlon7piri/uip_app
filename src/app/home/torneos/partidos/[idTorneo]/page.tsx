@@ -4,12 +4,15 @@ import BreadCrum from '@/components/BreadCrum'
 import ContainerProximosPartidosByTorneo from '@/components/ContainerProximosPartidosByTorneo'
 import ContenedorCustom from '@/components/ContenedorCustom'
 import FormPartido from '@/components/forms/FormPartido'
+import { useJugador } from '@/components/hooks/useJugador'
+import MercadoTable from '@/components/tables/MercadoTable'
+import TorneoTableGoleadores from '@/components/tables/TorneoTableGoleadores'
 import TorneoTablePositioon from '@/components/tables/TorneoTablePositioon'
 import { Title } from '@/components/Title'
 import { fetcherDb } from '@/config/adapters/apiDbAdapter'
 import * as UseCases from '@/config/core/use-cases'
 import { Partidos } from '@/infraestrcuture/entities/partidos'
-import { EquipoTorneo } from '@/infraestrcuture/entities/torneos'
+import { Torneos } from '@/infraestrcuture/entities/torneos'
 import { Button, Modal } from '@mui/material'
 import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
@@ -20,8 +23,11 @@ const PartidosByTorneos = () => {
     const { data: session } = useSession()
     const params = useParams()
     const [openModal, setOpenModal] = useState(false)
+  const { jugadores } = useJugador()
+
     const [partidosByTorneos, setPartidosByTorneos] = useState<Partidos[]>([])
-    const [equiposParticipantes, setEquiposParticipantes] = useState<EquipoTorneo[]>([])
+    const [equiposParticipantes, setEquiposParticipantes] = useState<Torneos[]>([])
+    const [goleadores, setGoleadores] = useState([])
 
 
     useEffect(() => {
@@ -42,27 +48,41 @@ const PartidosByTorneos = () => {
     const getEquiposRegistrados = async () => {
         const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
 
-        setEquiposParticipantes(res);
+        setEquiposParticipantes(res.torneo_especifico);
+        setGoleadores(res.torneo);
     };
 
     return (
-        <ContenedorCustom>
+        <ContenedorCustom >
             <div className='flex gap-2 justify-end items-center'>
                 <BreadCrum titulo='' url={`/home/torneos/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
                 <button onClick={handlerModal} className='bg-slate-50 p-2 rounded-md h-max hover:bg-slate-900 hover:text-slate-50 duration-300'>Nuevo partido</button>
             </div>
 
 
-            <div className='flex flex-col gap-10'>
+            <div className='flex flex-col '>
                 <div>
                     <Title content='Proximos partidos' size='text-2xl' />
 
                     <ContainerProximosPartidosByTorneo partidos={partidosByTorneos} />
 
                 </div>
-                <div>
-                    <Title content='Tabla Posiciones' size='text-2xl' />
-                    <TorneoTablePositioon rows={equiposParticipantes} />
+                <div className='w-full flex gap-2'>
+
+                    <div>
+                        <Title content='Tabla Posiciones' size='text-2xl' />
+                        <TorneoTablePositioon rows={equiposParticipantes} />
+                    </div>
+                    <div>
+                        <Title content='Goleadores' size='text-2xl' />
+                        <TorneoTableGoleadores rows={jugadores} />
+
+                        <Title content='Asistentes' size='text-2xl' />
+                        <TorneoTableGoleadores rows={jugadores} />
+
+                    </div>
+                    
+
 
                 </div>
 

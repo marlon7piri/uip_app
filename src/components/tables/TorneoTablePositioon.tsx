@@ -30,9 +30,9 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ maxWidth: '100%', margin: 'auto' }}>
+    <TableContainer component={Paper} style={{ width: '100%' }}>
       {/* <FiltrosMercado /> */}
-      <Table sx={{ minWidth: 450 }} aria-label="simple table">
+      <Table  aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell></TableCell>

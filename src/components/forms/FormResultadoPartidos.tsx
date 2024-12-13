@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, FormLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, FormLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useEquipos } from "../hooks/useEquipos";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -36,27 +36,32 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
   const handlerGoleadores = (e) => {
 
-    const idPlayer = e.target.value
+    const player = e.target.value
+    
     setResultadoPartido((prevState) => {
 
       const { goleadores } = prevState
 
-      const new_goleador = [...goleadores, idPlayer]
+      const new_goleador = [...goleadores,  {ids:player._id,nombre:player.nombre + player.apellido}]
 
       return { ...prevState, goleadores: new_goleador }
 
 
 
     })
+   
+
   }
   const handlerAsistentes = (e) => {
 
-    const idPlayer = e.target.value
+
+    const player = e.target.value
+
 
     setResultadoPartido((prevState) => {
       const { asistentes } = prevState
 
-      const new_asistente = [...asistentes, idPlayer]
+      const new_asistente = [...asistentes, {ids:player._id,nombre:player.nombre + player.apellido}]
 
       return { ...prevState, asistentes: new_asistente }
 
@@ -74,6 +79,8 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
     
   }, [])
 
+
+  console.log(resultadoPartido)
   return (
     <form onSubmit={handleSubmit} className="w-[600px] h-[300px] bg-slate-200 p-2 m-auto overflow-y-scroll ">
       <div className="flex flex-col gap-4">
@@ -155,7 +162,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
             onChange={handlerGoleadores}>
 
             {jugadores?.map(elem => {
-              return <MenuItem key={elem._id} value={elem._id} >{elem.nombre + " " + elem.apellido}</MenuItem>
+              return <MenuItem key={elem._id} value={elem} >{elem.nombre + " " + elem.apellido}</MenuItem>
 
             })}
 
@@ -164,6 +171,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
 
           </Select>
+          {resultadoPartido.goleadores.map((e)=><Typography>{e.nombre}</Typography>)}
         </div>
         <div >
           <FormLabel>Asistentes</FormLabel>
@@ -175,7 +183,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
             onChange={handlerAsistentes}>
 
             {jugadores?.map(elem => {
-              return <MenuItem key={elem._id} value={elem._id} >{elem.nombre + " " + elem.apellido}</MenuItem>
+              return <MenuItem key={elem._id} value={elem} >{elem.nombre + " " + elem.apellido}</MenuItem>
 
             })}
 
@@ -184,6 +192,8 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
 
           </Select>
+          {resultadoPartido.asistentes.map((e)=><Typography>{e.nombre}</Typography>)}
+
         </div>
 
 

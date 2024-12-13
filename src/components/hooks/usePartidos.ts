@@ -105,7 +105,11 @@ export const usePartidos = () => {
   };
   const evaluarPartido = async () => {
 
-    const result: TypeResultado = { ...resultadoPartido, id_local: local ,id_visitante:visitante,torneoId:idTorneo ,partidoId:idPartido}
+
+    const idsGoleadores = resultadoPartido.goleadores.map(e=>e.ids)
+    const idsAsistentes= resultadoPartido.asistentes.map(e=>e.ids)
+    
+    const result: TypeResultado = { ...resultadoPartido,goleadores:idsGoleadores,asistentes:idsAsistentes, id_local: local ,id_visitante:visitante,torneoId:idTorneo ,partidoId:idPartido}
 
     console.log(result)
      const res = await UseCases.evaluarPartidoUseCases(

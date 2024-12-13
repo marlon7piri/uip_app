@@ -14,7 +14,7 @@ const CardEquipos = ({ equipos }: Props) => {
      flex-col gap-2 justify-center items-center rounded-3xl cursor-pointer hover:scale-105 transition-all duration-300'>
       <h3>{equipos.nombre}</h3>
       <Image src={equipos.logo} width={100} height={100} alt={equipos?.nombre}
-        className='rounded-full object-cover'
+        className='rounded-full object-contain'
       />
     </Link>
   )
