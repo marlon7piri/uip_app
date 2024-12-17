@@ -62,7 +62,7 @@ const PartidosByTorneos = () => {
 
             <div className='flex flex-col '>
                 <div>
-                    <Title content='Proximos partidos' size='text-2xl' />
+                    <Title content='Partidos' size='text-2xl' />
 
                     <ContainerProximosPartidosByTorneo partidos={partidosByTorneos} />
 

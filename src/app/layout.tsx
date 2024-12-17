@@ -2,8 +2,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import MyApp from "./app";
-import {auth} from "@/auth"
+import MyApp from "./page";
+import { auth } from "@/auth"
+import { SessionProvider } from "next-auth/react";
+import NavBar from "@/components/NavBar";
+import { Toaster } from "react-hot-toast";
+import AuthWrapper from "./auth_wrapper";
 
 
 const geistSans = localFont({
@@ -35,10 +39,10 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <AuthWrapper>
+       {children}
 
-       
-        <MyApp  children={children} session={session}/>
-       
+       </AuthWrapper>
       </body>
     </html>
   );

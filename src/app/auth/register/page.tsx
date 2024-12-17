@@ -1,22 +1,17 @@
 "use client";
 
 import { FormRegister } from "@/components/forms/FormRegister";
+import styles from '../login/login.module.css'
 
 
-/* 
 
-{
-  "nameUser": "marlon",
-  "email": "marlon7piri@gmail.com",
-  "password": "password123",
-  "rol":"admin"
-}*/
 export default function Register() {
   
   return (
-    <section className="w-full h-screen ">
-     <FormRegister/>
+     <main className={styles.containerLogin}>
+         <FormRegister/>
 
-    </section>
+
+    </main>
   );
 }

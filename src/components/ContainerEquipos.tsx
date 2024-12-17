@@ -6,20 +6,21 @@ import BreadCrum from './BreadCrum'
 import { useEquipos } from './hooks/useEquipos'
 import { CircularProgress } from '@mui/material'
 import { Equipos } from '@/infraestrcuture/entities/equipos'
+import ContenedorCustom from './ContenedorCustom'
 
 
 interface Props {
   equipos: Equipos[]
 }
 const ContainerEquipos = ({ equipos }: Props) => {
-  const { loading } = useEquipos()
+ 
 
 
-  if (loading) {
+  if (!equipos) {
     return <CircularProgress />
   }
   return (
-    <div className='w-full min-h-screen  p-4'>
+    <ContenedorCustom>
       <BreadCrum titulo='Equipos' url='/home/equipos/nuevo' />
 
       <div className='flex flex-wrap gap-4'>
@@ -29,7 +30,7 @@ const ContainerEquipos = ({ equipos }: Props) => {
         })}
       </div>
 
-    </div>
+    </ContenedorCustom>
   )
 }
 

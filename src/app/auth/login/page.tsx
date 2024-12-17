@@ -1,12 +1,13 @@
 "use client";
 
 import { FormLogin } from "@/components/forms/FormLogin";
+import styles from './login.module.css'
 
 
 export default function Login() {
   
   return (
-    <section className="w-full h-screen ">
+    <section className={styles.containerLogin}>
      <FormLogin/>
 
     </section>

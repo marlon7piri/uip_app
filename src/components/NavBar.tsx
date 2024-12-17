@@ -20,10 +20,10 @@ const NavBar = () => {
         <span>Beinvenid@ {session?.user?.name}</span>
       </div>
       <div className='flex gap-2'>
-        <Link href={'/home/torneos'} className='hover:text-sky-900 transition duration-500'>Torneos</Link>
-        <Link href={'/home/equipos'} className='hover:text-sky-900 transition duration-500'>Equipos</Link>
-        <Link href={'/home/mercado'} className='hover:text-sky-900 transition duration-500'>Mercado</Link>
-        <Link href={'/home/noticias'} className='hover:text-sky-900 transition duration-500'>Noticias</Link>
+        <Link href={'/torneos'} className='hover:text-sky-900 transition duration-500'>Torneos</Link>
+        <Link href={'/equipos'} className='hover:text-sky-900 transition duration-500'>Equipos</Link>
+        <Link href={'/mercado'} className='hover:text-sky-900 transition duration-500'>Mercado</Link>
+        <Link href={'/noticias'} className='hover:text-sky-900 transition duration-500'>Noticias</Link>
       </div>
 
       <button onClick={logoutAuth}>Logout</button>

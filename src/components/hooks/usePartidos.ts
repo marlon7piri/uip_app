@@ -105,6 +105,8 @@ export const usePartidos = () => {
   };
   const evaluarPartido = async () => {
 
+    console.log(session)
+
 
     const idsGoleadores = resultadoPartido.goleadores.map(e=>e.ids)
     const idsAsistentes= resultadoPartido.asistentes.map(e=>e.ids)
@@ -117,7 +119,6 @@ export const usePartidos = () => {
       result,
       session?.token
     );
-    router.refresh();
   };
   return { partidos, partido, setPartido, createPartido, resultadoPartido, setResultadoPartido ,equiposByPartido,getEquiposPorPartido,evaluarPartido};
 };

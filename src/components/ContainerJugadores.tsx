@@ -17,9 +17,10 @@ const ContainerJugadores = ({ jugadores }: Props) => {
   if (loading) {
     return <CircularProgress />
   }
+
   return (
     <div className='w-full min-h-screen p-4'>
-      <BreadCrum titulo='Jugadores' url='/home/jugadores/nuevo' />
+      <BreadCrum titulo='Jugadores' url='/jugadores/nuevo' />
 
       <div className='flex flex-wrap gap-4'>
         {jugadores.map((e) => {

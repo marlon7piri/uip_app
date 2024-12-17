@@ -16,7 +16,7 @@
 
 body {
   color: var(--foreground);
-  background-image: linear-gradient(4deg, #111434, #204259, #277480, #25aaaa);
+  background-image: linear-gradient(2deg, #111434, #204259, #277480, #25aaaa);
   background-repeat: no-repeat;
   height: 100%;
 }

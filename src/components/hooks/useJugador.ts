@@ -40,10 +40,14 @@ export const useJugador = () => {
   const currentImage = JugadorStore((state) => state.currentImage);
 
   useEffect(() => {
+
+    
     const loadJugadores = async () => {
       await getJugadores();
     };
-    loadJugadores();
+
+
+    session && loadJugadores();
   }, []);
 
   const getJugadores = async () => {

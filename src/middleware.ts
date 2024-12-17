@@ -1,33 +1,46 @@
- import { getToken } from "next-auth/jwt";
+import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
-import {auth } from "@/auth"
+import authConfig from "@/auth.config"
+import NextAuth from 'next-auth'
+import { ApiAuthPefix, protectedRoutes, DefaultLoginRedirect,AuthRoutes,publicRoutes } from "./routes";
 
-const secret = process.env.NEXTAUTH_SECRET;
 
- export  default auth(async function middleware(req: NextRequest) {
-  const token = await getToken({req,secret})
+const secret = process.env.AUTH_SECRET;
 
-  const { pathname } = req.nextUrl;
-  
-  // Excluir rutas específicas
-  if (pathname.startsWith("/api/auth") || pathname.startsWith("/auth/login")) {
-    return NextResponse.next();
+const { auth } = NextAuth(authConfig)
+
+
+
+export default auth((req) => {
+
+  const { nextUrl } = req
+
+  const isLoggin = !!req.auth
+
+  const isApiRoute = nextUrl.pathname.startsWith(ApiAuthPefix)
+  const isAuthRoute = AuthRoutes.includes(nextUrl.pathname)
+  const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
+
+  if (isApiRoute) {
+    return null
   }
 
-
-
-  if (!token) {
-    return NextResponse.redirect(new URL("/auth/login", req.url));
+  if(isAuthRoute){
+    if(isLoggin){
+      return Response.redirect(new URL(DefaultLoginRedirect,nextUrl))
+    }
+    return null
+  }
+  if (!isLoggin && !isPublicRoute) {
+    return Response.redirect(new URL('/auth/login', nextUrl))
   }
 
-  // Si el rol no tiene acceso a la ruta, redirigir al dashboard
-  return NextResponse.next();
+  return null
+
 })
-
-// Apply middleware to all routes
 export const config = {
-  matcher: ["/","/home/:path*"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)","/","/(api|trpc)(.*)"],
 };
 
- 
+
 

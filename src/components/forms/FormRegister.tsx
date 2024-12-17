@@ -3,8 +3,10 @@ import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./register.module.css";
+import './formlogin.css'
+
 import axios from "axios";
+import Link from 'next/link';
 
 export const FormRegister = () => {
 
@@ -43,67 +45,64 @@ export const FormRegister = () => {
 
     }
     return (
-        <div className={styles.containerLogin}>
 
 
-            <div className="p-4">
-                <h1 className="text-center text-primary text-4xl mb-4 text-slate-50 font-bold">
-                    Register
-                </h1>
-                <form
-                    className=" max-w-xs mx-auto flex flex-col p-4 bg-slate-50  gap-4 rounded-md"
-                    onSubmit={handleFormSubmit}
-                >
-                    <label htmlFor="">Usuario</label>
+        <div className="p-4">
+            <h1 className="text-center text-primary text-4xl mb-4 text-slate-50 font-bold">
+                Register
+            </h1>
+            <form
+                onSubmit={handleFormSubmit}
+            >
 
-                    <input
-                        type="text"
-                        name="username"
-                        placeholder=""
-                        value={user.nameUser}
-                        disabled={loginInProgress}
-                        onChange={(ev) => setUser({ ...user, nameUser: ev.target.value })}
-                    />
-                    <label htmlFor="">Contraseña</label>
+
+                <input
+                    type="text"
                     
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder=""
-                        value={user.password}
-                        disabled={loginInProgress}
-                        onChange={(ev) => setUser({ ...user, password: ev.target.value })}
-                    />
-                    <label htmlFor="">Email</label>
+                    name="username"
+                    placeholder="Usuario"
+                    value={user.nameUser}
+                    disabled={loginInProgress}
+                    onChange={(ev) => setUser({ ...user, nameUser: ev.target.value })}
+                />
 
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder=""
-                        value={user.email}
-                        disabled={loginInProgress}
-                        onChange={(ev) => setUser({ ...user, email: ev.target.value })}
-                    />
-                    {error && (
-                        <span className="bg-red-500 p-2 text-salte-50 text-center">
-                            {error}
-                        </span>
-                    )}
-                    <label htmlFor="">Categoria</label>
-                    <select name="" id="" onChange={(ev) => setUser({ ...user, clasificacion: ev.target.value })} value={user.clasificacion}>
-                        <option value="jugador">jugador</option>
-                        <option value="entrenador">entrenador</option>
-                    </select>
-                    <button
-                        disabled={loginInProgress}
-                        type="submit"
-                        className="bg-sky-500 hover:bg-sky-900 px-8  py-2 rounded-md w-max m-auto"
-                    >
-                        {loginInProgress ? "loading..." : "Register"}
-                    </button>
-                </form>
-            </div>
-            <div className={styles.section}></div>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Contraseña"
+                    value={user.password}
+                    disabled={loginInProgress}
+                    onChange={(ev) => setUser({ ...user, password: ev.target.value })}
+                />
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={user.email}
+                    disabled={loginInProgress}
+                    onChange={(ev) => setUser({ ...user, email: ev.target.value })}
+                />
+                {error && (
+                    <span className="bg-red-500 p-2 text-salte-50 text-center">
+                        {error}
+                    </span>
+                )}
+                <label htmlFor="" className='text-slate-50'>Categoria</label>
+                <select name="" id="" onChange={(ev) => setUser({ ...user, clasificacion: ev.target.value })} value={user.clasificacion} className='p-2 rounded-md'>
+                    <option value="jugador">jugador</option>
+                    <option value="entrenador">entrenador</option>
+                </select>
+                <button
+                    disabled={loginInProgress}
+                    type="submit"
+                >
+                    {loginInProgress ? "loading..." : "Register"}
+                </button>
+                <Link href={'/auth/login'} className=" p-2 text-slate-50 text-center">
+                    Login
+                </Link>
+            </form>
         </div>
     )
 }

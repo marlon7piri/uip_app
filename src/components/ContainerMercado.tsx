@@ -1,20 +1,29 @@
 'use client'
-import React from 'react'
-import BreadCrum from './BreadCrum'
+import React, { useEffect, useState } from 'react'
 import MercadoTable from './tables/MercadoTable'
 import { useJugador } from './hooks/useJugador'
 import ContainerInfoPlayerMercado from './ContainerInfoPlayerMercado'
+import ContenedorCustom from './ContenedorCustom'
+
+
+
+
 
 export const ContainerMercado = () => {
-  const { jugadores } = useJugador()
+  const { jugadores } = useJugador() 
+ 
+
   return (
-    <div className='h-screen'>
+    <ContenedorCustom >
 
 
       <div className='flex gap-4 p-4 mt-20'>
         <MercadoTable rows={jugadores} />
         <ContainerInfoPlayerMercado />
       </div>
-    </div>
+    </ContenedorCustom>
   )
 }
+
+
+

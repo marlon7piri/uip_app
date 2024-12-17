@@ -26,10 +26,15 @@ export const useEquipos = () => {
   }, []);
 
   const getEquipos = async () => {
-    setLoading(true);
+    try {
+      setLoading(true);
     const res = await UseCases.getEquiposUseCases(fetcherDb, session?.token);
     setEquipos(res);
     setLoading(false);
+    } catch (error) {
+      throw new Error('Error obteniendo los equipos')
+    }
+    
   };
 
   const createEquipo = async () => {

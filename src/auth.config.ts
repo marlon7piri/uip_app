@@ -8,12 +8,8 @@ export default {
 
         Credentials({
 
-            credentials: {
-                username: {},
-                password: {},
-            },
-            authorize: async (credentials) => {
-                console.log(credentials)
+            
+            async authorize(credentials){
                 try {
                     const response = await axios.post(
                         process.env.NEXT_PUBLIC_API_URL + "/users/login",
@@ -23,10 +19,10 @@ export default {
                         }
                     );
 
-                    console.log(response)
 
                     if (response.data.status === "success") {
                         const user = response.data.data;
+                        console.log(response.data.token)
 
 
                         return {
@@ -41,7 +37,6 @@ export default {
                         throw new Error(response?.data?.message || "Authentication failed");
                     }
                 } catch (error) {
-                    console.error("Authorize Error:", error.message || error.response?.data);
                     throw new Error("Error connecting to authentication server");
                 }
             },
