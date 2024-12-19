@@ -2,10 +2,9 @@
 import React from 'react'
 import BreadCrum from './BreadCrum'
 import CardTorneos from './CardTorneos'
-import { Torneos } from '@/infraestrcuture/entities/torneos'
 import ContenedorCustom from './ContenedorCustom'
 import { useTorneos } from './hooks/useTorneos'
-import { SessionProvider, useSession } from 'next-auth/react'
+import {  useSession } from 'next-auth/react'
 
 
 
@@ -18,7 +17,7 @@ const ContainerTorneos = () => {
 
   return (
     <ContenedorCustom>
-      {JSON.stringify(session)}
+      
       <BreadCrum titulo='Torneos' url='/torneos/nuevo' labelBtn=''/>
 
 

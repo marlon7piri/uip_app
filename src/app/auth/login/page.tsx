@@ -7,9 +7,9 @@ import styles from './login.module.css'
 export default function Login() {
   
   return (
-    <section className={styles.containerLogin}>
+    <main className={styles.containerLogin}>
      <FormLogin/>
 
-    </section>
+    </main>
   );
 }
