@@ -27,6 +27,7 @@ const initialStateJugador: Jugadores = {
   valor_mercado: 0,
   velocidad: 0,
 };
+
 export const useJugador = () => {
   const [jugador, setJugador] = useState<Jugadores>(initialStateJugador);
   const [loading, setLoading] = useState<boolean>(false);
@@ -41,7 +42,7 @@ export const useJugador = () => {
 
   useEffect(() => {
 
-    
+
     const loadJugadores = async () => {
       await getJugadores();
     };
@@ -73,6 +74,15 @@ export const useJugador = () => {
   const createJugador = async () => {
     const newPlayer = {
       ...jugador,
+      estadisticasGlobales: {
+        posicion: jugador.posicion,
+        valor_mercado: jugador.valor_mercado,
+        velocidad: jugador.velocidad,
+        ataque: jugador.ataque,
+        defensa: jugador.defensa,
+        regate: jugador.regate
+
+      },
       foto: currentImage,
     };
 

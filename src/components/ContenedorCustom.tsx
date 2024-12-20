@@ -5,7 +5,7 @@ import { Container } from '@mui/material'
 
 import React, { useEffect, useState } from 'react'
 
-const ContenedorCustom = ({ children }: React.JSX.Element) => {
+const ContenedorCustom = ({ children }:{children:React.ReactNode} ) => {
 
 
     return (

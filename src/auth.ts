@@ -1,8 +1,8 @@
 import NextAuth from "next-auth"
 import authconfig from './auth.config'
 
-export const { handlers, auth,signIn,signOut } = NextAuth({
-  
+export const { handlers, auth, signIn, signOut } = NextAuth({
+
   callbacks: {
     async session({ session, token }) {
       if (token) {
@@ -15,21 +15,25 @@ export const { handlers, auth,signIn,signOut } = NextAuth({
       return session;
     },
     async jwt({ token, user }) {
-       if (user) {
+      if (user) {
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
         token.token = user.token; // Guarda el token en el JWT si lo necesitas
         token.rol = user.rol; // Guarda el rol en el JWT si lo necesitas
-      } 
+      }
       return token;
     },
-  
+
   },
   ...authconfig,
- session: {
-    strategy: "jwt",
-   
+  pages: {
+    signIn: '/auth/login',
+    signOut: '/auth/login'
   },
-  
+  session: {
+    strategy: "jwt",
+
+  },
+
 })

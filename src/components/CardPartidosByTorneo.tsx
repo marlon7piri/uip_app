@@ -12,7 +12,7 @@ interface Props {
 const CardPartidosByTorneo = ({ partido }: Props) => {
 
   return (
-   <Link href={`/home/torneos/partidos/edit?idTorneo=${partido.torneo_id._id}&idPartido=${partido._id}&idLocal=${partido.local._id}&idVisitante=${partido.visitante._id}`}>
+   <Link href={`/torneos/partidos/edit?idTorneo=${partido.torneo_id._id}&idPartido=${partido._id}&idLocal=${partido.local._id}&idVisitante=${partido.visitante._id}`}>
     <div className='flex justify-center items-center gap-4 flex-col bg-slate-900 p-2 rounded-lg'>
 
 <div className='flex gap-4 justify-center items-center'>

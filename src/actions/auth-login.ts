@@ -13,6 +13,7 @@ export const loginAuth = async (credentials: any) => {
             redirectTo: DefaultLoginRedirect,
         })
 
+
         return res
     } catch (error) {
         if (error instanceof AuthError) {

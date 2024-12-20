@@ -4,13 +4,14 @@ import BreadCrum from './BreadCrum'
 import { useOfertas } from './hooks/useOfertas'
 import CardNoticias from './CardNoticias'
 import ContenedorCustom from './ContenedorCustom'
+import { Title } from './Title'
 
 const ContainerNoticias = () => {
   const { ofertas } = useOfertas()
 
   return (
     <ContenedorCustom >
-      <BreadCrum titulo='Noticias' url='/home/noticias/nueva' />
+      <Title content='Noticias' size='text-6xl'/>
 
       <div className='p-4'>
         {

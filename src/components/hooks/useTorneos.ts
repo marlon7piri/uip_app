@@ -1,10 +1,10 @@
+'use client'
 import { fetcherDb } from "@/config/adapters/apiDbAdapter";
 import * as UseCases from "../../config/core/use-cases";
-import { useSession } from "next-auth/react";
+import { useSession ,getSession} from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Torneos } from "@/infraestrcuture/entities/torneos";
 import { Equipos } from "@/infraestrcuture/entities/equipos";
-import { equiposFutbol } from "@/utils/teams";
 import { TorneoStore } from "@/utils/zustand/torneos";
 
 export const useTorneos = () => {
@@ -20,12 +20,16 @@ export const useTorneos = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
+   
     const loadTorenos = async () => {
-      console.log(session)
 
       await getTorneos();
     };
-    loadTorenos();
+
+    if(session){
+      loadTorenos();
+
+    }
   }, []);
 
   const getTorneos = async () => {

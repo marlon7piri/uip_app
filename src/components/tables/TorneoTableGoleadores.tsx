@@ -28,7 +28,6 @@ const FiltrosMercado = () => {
 
 export default function TorneoTableGoleadores({ rows }: Props) {
   const { handlerPlayer } = useJugador()
-  const jugadores = JugadorStore(state => state.jugadores)
 
 
   const handlerClickPlayer = (e: string) => {
@@ -52,7 +51,7 @@ export default function TorneoTableGoleadores({ rows }: Props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row,index) => (
+          {rows?.map((row,index) => (
             <TableRow
               key={row._id}
               onClick={() => handlerClickPlayer(row._id)}
@@ -62,14 +61,14 @@ export default function TorneoTableGoleadores({ rows }: Props) {
               <TableCell align="right">{index +1}</TableCell>
 
               <TableCell align="center" style={{display:'flex',justifyContent:'left',alignItems:'center',gap:1}}>
-                <Image src={row.foto} width={50} height={50} alt={row.club?.nombre}
+                <Image src={row.jugador?.foto} width={50} height={50} alt={row.club?.nombre}
                   className='rounded-full'
                 />
-                 {row.nombre + " " + row.apellido}
+                 {row.jugador?.nombre + " " + row.jugador?.apellido}
               </TableCell>
 
              
-              <TableCell align="right">{row.edad}</TableCell>
+              <TableCell align="right">{row?.cantidad}</TableCell>
              
             </TableRow>
           ))}

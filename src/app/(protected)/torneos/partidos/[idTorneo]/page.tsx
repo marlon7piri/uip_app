@@ -28,6 +28,7 @@ const PartidosByTorneos = () => {
     const [partidosByTorneos, setPartidosByTorneos] = useState<Partidos[]>([])
     const [equiposParticipantes, setEquiposParticipantes] = useState<Torneos[]>([])
     const [goleadores, setGoleadores] = useState([])
+    const [asistentes, setAsistentes] = useState([])
 
 
     useEffect(() => {
@@ -49,13 +50,17 @@ const PartidosByTorneos = () => {
         const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
 
         setEquiposParticipantes(res.torneo_especifico);
-        setGoleadores(res.torneo);
+
+        const goleadoresSorted = res.torneo?.goleadores.sort((a,b)=>b.cantidad - a.cantidad)
+        const asistentesSorted = res.torneo?.asistentes.sort((a,b)=>b.cantidad - a.cantidad)
+        setGoleadores(goleadoresSorted);
+        setAsistentes(asistentesSorted);
     };
 
     return (
         <ContenedorCustom >
             <div className='flex gap-2 justify-end items-center'>
-                <BreadCrum titulo='' url={`/home/torneos/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
+                <BreadCrum titulo='' url={`/torneos/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
                 <button onClick={handlerModal} className='bg-slate-50 p-2 rounded-md h-max hover:bg-slate-900 hover:text-slate-50 duration-300'>Nuevo partido</button>
             </div>
 
@@ -75,10 +80,10 @@ const PartidosByTorneos = () => {
                     </div>
                     <div>
                         <Title content='Goleadores' size='text-2xl' />
-                        <TorneoTableGoleadores rows={jugadores} />
+                        <TorneoTableGoleadores rows={goleadores} />
 
                         <Title content='Asistentes' size='text-2xl' />
-                        <TorneoTableGoleadores rows={jugadores} />
+                        <TorneoTableGoleadores rows={asistentes} />
 
                     </div>
                     

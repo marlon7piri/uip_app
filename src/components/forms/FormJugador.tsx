@@ -152,7 +152,7 @@ export default function FormJugador() {
             variant="outlined"
             fullWidth
             value={jugador.valor_mercado}
-            onChange={(e) => setJugador({ ...jugador, valor_mercado: e.target.value })}
+            onChange={(e) => setJugador({ ...jugador, valor_mercado:e.target.value  })}
           />
         </Grid2>
 

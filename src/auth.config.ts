@@ -22,7 +22,6 @@ export default {
 
                     if (response.data.status === "success") {
                         const user = response.data.data;
-                        console.log(response.data.token)
 
 
                         return {

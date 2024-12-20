@@ -11,7 +11,6 @@ const Mercado =  () => {
 
   return (
     <div>
-      {JSON.stringify(session)}
       <BreadCrum titulo='Mercado' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
       <ContainerMercado />
 
