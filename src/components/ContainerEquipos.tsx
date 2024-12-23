@@ -21,7 +21,7 @@ const ContainerEquipos = ({ equipos }: Props) => {
   }
   return (
     <ContenedorCustom>
-      <BreadCrum titulo='Equipos' url='/equipos/nuevo' labelBtn=''/>
+      <BreadCrum titulo='Equipos' url='/equipos/nuevo' labelBtn='Nuevo Equipo'/>
 
       <div className='flex flex-wrap gap-4'>
         {equipos.map((e) => {

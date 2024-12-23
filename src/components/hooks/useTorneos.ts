@@ -15,9 +15,20 @@ export const useTorneos = () => {
     nombre: "",
     foto: "",
   });
+  const [token, setToken] = useState(null)
   const currentImageTorneo = TorneoStore((state) => state.currentImageTorneo);
 
   const [loading, setLoading] = useState<boolean>(false);
+
+
+  useEffect(() => {
+
+    const token = localStorage.getItem('token')
+
+    console.log({tokenStorage:token})
+   
+   
+  }, []);
 
   useEffect(() => {
    

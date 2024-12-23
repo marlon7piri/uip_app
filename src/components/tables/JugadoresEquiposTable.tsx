@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import { Jugadores } from '@/infraestrcuture/entities/jugadores';
 import Image from 'next/image';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import { IconButton, TextField, Tooltip } from '@mui/material';
+import { IconButton, TextField, Tooltip, Typography } from '@mui/material';
 import { useJugador } from '../hooks/useJugador';
 import { JugadorStore } from '@/utils/zustand/jugador';
 import Link from 'next/link';

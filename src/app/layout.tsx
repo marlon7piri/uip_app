@@ -7,7 +7,7 @@ import { auth } from "@/auth"
 import { SessionProvider } from "next-auth/react";
 import NavBar from "@/components/NavBar";
 import { Toaster } from "react-hot-toast";
-import AuthWrapper from "./auth_wrapper";
+import AuthWrapper from "./AuthWraper";
 
 
 const geistSans = localFont({

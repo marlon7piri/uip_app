@@ -49,7 +49,7 @@ export const useEquipos = () => {
     );
 
     toast.success('Equipo creado')
-    router.push('/home/equipos')
+    router.push('/equipos')
     
   };
   return {

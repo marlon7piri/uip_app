@@ -35,7 +35,6 @@ export default function TorneoTableGoleadores({ rows }: Props) {
   }
 
 
-  console.log(rows)
 
 
   return (
@@ -61,7 +60,7 @@ export default function TorneoTableGoleadores({ rows }: Props) {
               <TableCell align="right">{index +1}</TableCell>
 
               <TableCell align="center" style={{display:'flex',justifyContent:'left',alignItems:'center',gap:1}}>
-                <Image src={row.jugador?.foto} width={50} height={50} alt={row.club?.nombre}
+                <Image src={row.jugador?.foto} width={50} height={50} alt='una imagen del jugador'
                   className='rounded-full'
                 />
                  {row.jugador?.nombre + " " + row.jugador?.apellido}

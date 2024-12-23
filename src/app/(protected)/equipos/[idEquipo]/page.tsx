@@ -3,6 +3,8 @@ import ContenedorCustom from '@/components/ContenedorCustom'
 import HeaderEquipoInfo from '@/components/HeaderEquipoInfo'
 import { useJugador } from '@/components/hooks/useJugador'
 import JugadoresEquiposTable from '@/components/tables/JugadoresEquiposTable'
+import { Title } from '@/components/Title'
+import { Typography } from '@mui/material'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import React, { useEffect } from 'react'
@@ -21,6 +23,7 @@ const EquipoInfo = () => {
     <ContenedorCustom>
 
       <HeaderEquipoInfo equipo={equipoDelJugador} />
+      <Title content='Jugadores' size='text-3xl'/>
       <JugadoresEquiposTable rows={jugadoresByEquipos} />
     </ContenedorCustom>
   )
