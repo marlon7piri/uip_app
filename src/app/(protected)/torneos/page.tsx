@@ -1,26 +1,24 @@
-import { auth } from '@/auth';
+'use client'
 import ContainerTorneos from '@/components/ContainerTorneos'
-import { fetcherDb } from '@/config/adapters/apiDbAdapter';
-import * as UseCases from "@/config/core/use-cases";
+import { useSessionAuth } from '@/components/hooks/useSessionAuth';
+import { useTorneos } from '@/components/hooks/useTorneos';
 
 
 
 
-const getTorneos = async (token: string) => {
-  return await UseCases.getTorneosUseCases(fetcherDb, token);
-};
 
 
-const Torneos = async() => {
-    const session = await auth()
-  
-    const torneos = await getTorneos(session?.token)
+
+
+const Torneos = () => {
+
+  const { session } = useSessionAuth()
+   const { torneos } = useTorneos() 
 
   return (
 
     <div className='min-h-screen'>
-
-      <ContainerTorneos torneos={torneos}/>
+      <ContainerTorneos torneos={torneos} />
 
 
 

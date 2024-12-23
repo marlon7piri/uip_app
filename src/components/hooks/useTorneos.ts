@@ -1,49 +1,39 @@
 'use client'
 import { fetcherDb } from "@/config/adapters/apiDbAdapter";
 import * as UseCases from "../../config/core/use-cases";
-import { useSession ,getSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Torneos } from "@/infraestrcuture/entities/torneos";
 import { Equipos } from "@/infraestrcuture/entities/equipos";
 import { TorneoStore } from "@/utils/zustand/torneos";
+import { useSessionAuth } from "./useSessionAuth";
+import { getSession } from "@/actions/get-session";
 
 export const useTorneos = () => {
-  const { data: session } = useSession();
   const [torneos, setTorneos] = useState<Torneos[]>([]);
   const [equiposRegistrados, setEquiposRegistrados] = useState<Equipos[]>([]);
   const [torneo, setTorneo] = useState({
     nombre: "",
     foto: "",
   });
-  const [token, setToken] = useState(null)
   const currentImageTorneo = TorneoStore((state) => state.currentImageTorneo);
-
   const [loading, setLoading] = useState<boolean>(false);
 
 
-  useEffect(() => {
 
-    const token = localStorage.getItem('token')
-
-    console.log({tokenStorage:token})
-   
-   
-  }, []);
 
   useEffect(() => {
-   
-    const loadTorenos = async () => {
 
+    const loadTorneos = async () => {
       await getTorneos();
     };
+    loadTorneos();
 
-    if(session){
-      loadTorenos();
 
-    }
   }, []);
 
   const getTorneos = async () => {
+const session = await getSession()
     setLoading(true);
     const res = await UseCases.getTorneosUseCases(fetcherDb, session?.token);
     setTorneos(res);

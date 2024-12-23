@@ -1,12 +1,13 @@
 'use client'
+import { getSession } from '@/actions/get-session'
 import BreadCrum from '@/components/BreadCrum'
 import { ContainerMercado } from '@/components/ContainerMercado'
-import { Title } from '@/components/Title'
-import { useSession } from 'next-auth/react'
-import React from 'react'
+import { useSessionAuth } from '@/components/hooks/useSessionAuth'
+import React, { useEffect, useState } from 'react'
 
 const Mercado =  () => {
-  const {data:session} = useSession()
+ 
+  
   
 
   return (

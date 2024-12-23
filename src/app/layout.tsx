@@ -39,7 +39,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AuthWrapper session={session}>
+        <AuthWrapper>
        {children}
 
        </AuthWrapper>

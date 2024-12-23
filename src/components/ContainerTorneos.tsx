@@ -11,7 +11,7 @@ interface Props  {
   torneos:Torneos[]
 }
 
-const ContainerTorneos = async ({torneos}:Props) => {
+const ContainerTorneos =  ({torneos}:Props) => {
 
   
 

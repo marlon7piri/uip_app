@@ -35,13 +35,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   session: {
     strategy: "jwt",
 
-  }, events: {
-    async signIn({ user }) {
-      // Guarda el token en localStorage después del inicio de sesión
-      if (typeof window !== "undefined" && user.token) {
-        localStorage.setItem("token", user.token);
-      }
-    }
   }
 
 })

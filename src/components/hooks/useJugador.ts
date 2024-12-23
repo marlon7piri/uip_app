@@ -5,6 +5,7 @@ import { fetcherDb } from "@/config/adapters/apiDbAdapter";
 import { useSession } from "next-auth/react";
 import { JugadorStore } from "@/utils/zustand/jugador";
 import { Equipos } from "@/infraestrcuture/entities/equipos";
+import { getSession } from "@/actions/get-session";
 
 const initialStateJugador: Jugadores = {
   nombre: "",
@@ -35,7 +36,6 @@ export const useJugador = () => {
   const [jugadoresByEquipos, setJugadoresByEquipos] = useState<Jugadores[]>([]);
   const [equipoDelJugador, setEquipoDelJugador] = useState<Equipos>(null);
 
-  const { data: session } = useSession();
   const loadJugadores = JugadorStore((state) => state.loadJugadores);
   const selectPlayer = JugadorStore((state) => state.selectPlayer);
   const currentImage = JugadorStore((state) => state.currentImage);
@@ -48,10 +48,12 @@ export const useJugador = () => {
     };
 
 
-    session && loadJugadores();
+     loadJugadores();
   }, []);
 
   const getJugadores = async () => {
+    const session = await getSession();
+
     setLoading(true);
     const res = await UseCases.getJugadoresUseCases(fetcherDb, session?.token);
     setJugadores(res);
@@ -60,6 +62,8 @@ export const useJugador = () => {
   };
 
   const getJugadoresByEquipos = async (idEquipo: string) => {
+    const session = await getSession();
+
     setLoading(true);
     const res = await UseCases.getJugadoresByEquipoUseCases(
       fetcherDb,
@@ -72,6 +76,8 @@ export const useJugador = () => {
     setLoading(false);
   };
   const createJugador = async () => {
+    const session = await getSession();
+
     const newPlayer = {
       ...jugador,
       estadisticasGlobales: {

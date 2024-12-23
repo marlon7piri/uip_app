@@ -4,20 +4,21 @@ import { signOut } from '@/auth'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
+import { useSessionAuth } from './hooks/useSessionAuth'
 
 const NavBar = () => {
-  const { data: session } = useSession()
+  const { session }= useSessionAuth()
 
 
 
-  
+  console.log(session)
   return (
     <ul className='flex gap-4 justify-between text-2xl p-2 bg-slate-50'>
       <div>
-        <span>PlayAndEnjoy</span>
+      <span>Beinvenid@ {session?.user?.name}</span>
+
       </div>
       <div>
-        <span>Beinvenid@ {session?.user?.name}</span>
       </div>
       <div className='flex gap-2'>
         <Link href={'/torneos'} className='hover:text-sky-900 transition duration-500'>Torneos</Link>
