@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Torneos } from "@/infraestrcuture/entities/torneos";
 import { Partidos } from "@/infraestrcuture/entities/partidos";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { getSession } from "@/actions/get-session";
 
 interface TypePartido {
   visitante: string;
@@ -62,7 +63,6 @@ const initialResultado: TypeResultado = {
   
 };
 export const usePartidos = () => {
-  const { data: session } = useSession();
   const router = useRouter();
   const params = useParams()
   const [partidos, setPartidos] = useState<Partidos[]>([]);
@@ -84,16 +84,22 @@ export const usePartidos = () => {
 
   }, []);
   const getPartidos = async () => {
+  const session = await getSession();
+
     const res = await UseCases.getPartidosUseCases(fetcherDb, session?.token);
     setPartidos(res);
   };
 
   const getEquiposPorPartido= async (id_local:string,id_visitante:string) => {
+  const session = await getSession();
+
     const res = await UseCases.getEquiposPorPartidoUseCases(fetcherDb,id_local,id_visitante, session?.token);
     setEquiposByPartido(res);
   };
 
   const createPartido = async () => {
+  const session = await getSession();
+
 
     const newMatch: TypePartido = { ...partido, torneo_id: params.idTorneo }
     const res = await UseCases.createPartidoUseCases(
@@ -105,7 +111,7 @@ export const usePartidos = () => {
   };
   const evaluarPartido = async () => {
 
-    console.log(session)
+    const session = await getSession();
 
 
     const idsGoleadores = resultadoPartido.goleadores.map(e=>e.ids)

@@ -11,7 +11,6 @@ const NavBar = () => {
 
 
 
-  console.log(session)
   return (
     <ul className='flex gap-4 justify-between text-2xl p-2 bg-slate-50'>
       <div>

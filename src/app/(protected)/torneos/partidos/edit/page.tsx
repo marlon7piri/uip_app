@@ -1,4 +1,5 @@
 'use client'
+import { getSession } from '@/actions/get-session'
 import ContenedorCustom from '@/components/ContenedorCustom'
 import FormResultadoPartidos from '@/components/forms/FormResultadoPartidos'
 import { useJugador } from '@/components/hooks/useJugador'
@@ -18,7 +19,6 @@ import React, { useEffect, useState } from 'react'
 const EditPartido = () => {
 
     const search = useSearchParams()
-    const { data: session } = useSession()
 
     const idTorneo = search.get('idTorneo')
     const local = search.get('idLocal')
@@ -38,6 +38,8 @@ const EditPartido = () => {
 
 
     const getJugadores = async () => {
+        const session = await getSession()
+
         const resLocal = await UseCases.getJugadoresByEquipoUseCases(
             fetcherDb,
             local,

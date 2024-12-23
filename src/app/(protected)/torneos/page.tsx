@@ -12,7 +12,6 @@ import { useTorneos } from '@/components/hooks/useTorneos';
 
 const Torneos = () => {
 
-  const { session } = useSessionAuth()
    const { torneos } = useTorneos() 
 
   return (

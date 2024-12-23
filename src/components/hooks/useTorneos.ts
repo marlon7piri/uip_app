@@ -33,13 +33,15 @@ export const useTorneos = () => {
   }, []);
 
   const getTorneos = async () => {
-const session = await getSession()
+    const session = await getSession()
     setLoading(true);
     const res = await UseCases.getTorneosUseCases(fetcherDb, session?.token);
     setTorneos(res);
     setLoading(false);
   };
   const getEquiposByTorneo = async (idTorneo: string) => {
+    const session = await getSession()
+
     setLoading(true);
     const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, idTorneo);
     console.log(res)
@@ -47,6 +49,8 @@ const session = await getSession()
   };
 
   const crearTorneo = async () => {
+    const session = await getSession()
+
     const newTorneo = {
       ...torneo,
       foto: currentImageTorneo,
@@ -60,6 +64,8 @@ const session = await getSession()
     setLoading(false);
   };
   const registrarEquiposTorneos = async (idTorneo: string) => {
+    const session = await getSession()
+
     const ids = equiposRegistrados.map((e) => e._id);
 
     const newRegistro = {

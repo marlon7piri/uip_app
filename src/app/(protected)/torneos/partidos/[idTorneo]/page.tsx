@@ -1,10 +1,12 @@
 'use client'
 
+import { getSession } from '@/actions/get-session'
 import BreadCrum from '@/components/BreadCrum'
 import ContainerProximosPartidosByTorneo from '@/components/ContainerProximosPartidosByTorneo'
 import ContenedorCustom from '@/components/ContenedorCustom'
 import FormPartido from '@/components/forms/FormPartido'
 import { useJugador } from '@/components/hooks/useJugador'
+import { useSessionAuth } from '@/components/hooks/useSessionAuth'
 import MercadoTable from '@/components/tables/MercadoTable'
 import TorneoTableGoleadores from '@/components/tables/TorneoTableGoleadores'
 import TorneoTablePositioon from '@/components/tables/TorneoTablePositioon'
@@ -20,7 +22,6 @@ import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 const PartidosByTorneos = () => {
-    const { data: session } = useSession()
     const params = useParams()
     const [openModal, setOpenModal] = useState(false)
   const { jugadores } = useJugador()
@@ -32,12 +33,14 @@ const PartidosByTorneos = () => {
 
 
     useEffect(() => {
+
         getPartidosByTorneo()
         getEquiposRegistrados()
     }, [params.idTorneo])
 
 
     const getPartidosByTorneo = async () => {
+        const session = await getSession()
         const res = await UseCases.getPartidosByTorneosUseCases(fetcherDb, params.idTorneo, session?.token);
         setPartidosByTorneos(res);
     };
@@ -47,6 +50,8 @@ const PartidosByTorneos = () => {
     }
 
     const getEquiposRegistrados = async () => {
+        const session = await getSession()
+
         const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
 
         setEquiposParticipantes(res.torneo_especifico);
