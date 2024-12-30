@@ -7,6 +7,7 @@ import './formlogin.css'
 
 import axios from "axios";
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 
 export const FormRegister = () => {
 
@@ -33,7 +34,7 @@ export const FormRegister = () => {
 
 
         if (res?.status == 200) {
-
+            toast.success('Usuario creado correctamente')
             router.push("/auth/login");
             setLoginInProgress(false);
         }
@@ -58,7 +59,7 @@ export const FormRegister = () => {
 
                 <input
                     type="text"
-                    
+
                     name="username"
                     placeholder="Usuario"
                     value={user.nameUser}

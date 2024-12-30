@@ -6,10 +6,12 @@ import React from 'react'
 const NuevoEquipo = () => {
   return (
     <div className='h-screen'>
-      <Title content='NuevoEquipo' size='text-6xl' />
+      <Title content='Nuevo equipo' size='text-4xl' />
 
+      <div className='flex justify-center items-center'>
+        <FormEquipo />
 
-      <FormEquipo />
+      </div>
 
     </div>
   )

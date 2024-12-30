@@ -1,11 +1,15 @@
+import ContenedorCustom from '@/components/ContenedorCustom'
 import FormJugador from '@/components/forms/FormJugador'
 import React from 'react'
 
 const NuevoJugador = () => {
   return (
-    <div className='h-screen'>
+    <ContenedorCustom >
+      <div className='flex justify-center items-center p-4'>
       <FormJugador />
-    </div>
+
+      </div>
+    </ContenedorCustom>
   )
 }
 
