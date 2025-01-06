@@ -1,8 +1,7 @@
 'use client'
 import ContainerTorneos from '@/components/ContainerTorneos'
-import { useSessionAuth } from '@/components/hooks/useSessionAuth';
+import styles from './home.module.css'
 import { useTorneos } from '@/components/hooks/useTorneos';
-
 
 
 
@@ -13,10 +12,10 @@ import { useTorneos } from '@/components/hooks/useTorneos';
 const Torneos = () => {
 
    const { torneos } = useTorneos() 
-
+  
   return (
 
-    <div className='min-h-screen'>
+    <div className={styles.container}>
       <ContainerTorneos torneos={torneos} />
 
 

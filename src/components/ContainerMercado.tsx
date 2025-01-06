@@ -4,23 +4,24 @@ import MercadoTable from './tables/MercadoTable'
 import { useJugador } from './hooks/useJugador'
 import ContainerInfoPlayerMercado from './ContainerInfoPlayerMercado'
 import ContenedorCustom from './ContenedorCustom'
+import Spinner from './Spinner'
 
 
 
 
 
 export const ContainerMercado = () => {
-  const { jugadores } = useJugador() 
+  const { jugadores,loading } = useJugador() 
  
 
   return (
     <ContenedorCustom >
 
 
-      <div className='flex gap-4 p-4 mt-20'>
+     {loading ? <Spinner/> : <div className='flex gap-4 '>
         <MercadoTable rows={jugadores} />
         <ContainerInfoPlayerMercado />
-      </div>
+      </div>}
     </ContenedorCustom>
   )
 }

@@ -1,0 +1,10 @@
+.container{
+  
+        width: 100%;
+        height: 100vh;
+      
+        background-size: cover;
+        background-position: center;
+        background-image: url("../../../../public/imagenes/fondoestadio.jpg");
+        background-repeat: no-repeat;
+}

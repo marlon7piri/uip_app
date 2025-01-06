@@ -36,7 +36,6 @@ export default function MercadoTable({ rows }: Props) {
   }
 
 
-  console.log(rows)
 
 
   return (

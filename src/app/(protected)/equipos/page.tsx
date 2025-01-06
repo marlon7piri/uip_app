@@ -1,7 +1,7 @@
 import { auth } from '@/auth'
 import ContainerEquipos from '@/components/ContainerEquipos'
 import * as UseCases from "../../../config/core/use-cases";
-
+import styles from './equipos.module.css'
 import React from 'react'
 import { fetcherDb } from '@/config/adapters/apiDbAdapter';
 
@@ -22,7 +22,7 @@ const Equipos = async() => {
 
 
   return (
-    <div className='min-h-screen'>
+    <div className={styles.container}>
       <ContainerEquipos equipos={equipos} />
      
 

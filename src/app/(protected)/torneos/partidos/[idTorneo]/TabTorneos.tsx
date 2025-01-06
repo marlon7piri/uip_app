@@ -1,0 +1,65 @@
+import * as React from 'react';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import TabPartidos from './TabPartidos';
+import TabTablaPosicion from './TabTablaPosicion';
+import TabGoleadoresAsistentes from './TabGoleadoresAsistentes';
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function CustomTabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  );
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+export default function TabTorneos() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'white' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab label="Tabla de Posiciones" {...a11yProps(0)} className='bg-[rgba(25,33,36,0.5)] rounded-md mx-2 text-slate-50 font-bold'/>
+          <Tab label="Partidos del Torneo" {...a11yProps(1)} className='bg-[rgba(25,33,36,0.5)] rounded-md mx-2 text-slate-50 font-bold'/>
+          <Tab label="Goleadores y Asistentes" {...a11yProps(2)} className='bg-[rgba(25,33,36,0.5)] rounded-md mx-2 text-slate-50 font-bold'/>
+        </Tabs>
+      </Box>
+      <CustomTabPanel value={value} index={0}>
+        <TabTablaPosicion/>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+       <TabPartidos/>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+       <TabGoleadoresAsistentes/>
+      </CustomTabPanel>
+    </Box>
+  );
+}

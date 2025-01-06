@@ -24,7 +24,7 @@ export default function FormJugador() {
     e.preventDefault();
     createJugador()
     toast.success('Jugador creado')
-    router.push('/home/equipos')
+    router.push('/equipos')
   };
 
 

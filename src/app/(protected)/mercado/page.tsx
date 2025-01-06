@@ -1,9 +1,8 @@
 'use client'
-import { getSession } from '@/actions/get-session'
 import BreadCrum from '@/components/BreadCrum'
 import { ContainerMercado } from '@/components/ContainerMercado'
-import { useSessionAuth } from '@/components/hooks/useSessionAuth'
 import React, { useEffect, useState } from 'react'
+import styles from './mercado.module.css'
 
 const Mercado =  () => {
  
@@ -11,7 +10,7 @@ const Mercado =  () => {
   
 
   return (
-    <div>
+    <div className={styles.containerMercado}>
       <BreadCrum titulo='Mercado' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
       <ContainerMercado />
 

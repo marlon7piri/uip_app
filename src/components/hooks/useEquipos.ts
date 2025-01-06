@@ -7,13 +7,13 @@ import { Jugadores } from "@/infraestrcuture/entities/jugadores";
 import { EquipoStore } from "@/utils/zustand/equipos";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { getSession } from "@/actions/get-session";
 
 const initialStateEquipo: Equipos = {
   nombre: "",
   logo: "", 
 };
 export const useEquipos = () => {
-  const { data: session } = useSession();
   const [equipos, setEquipos] = useState<Equipos[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter()
@@ -26,9 +26,12 @@ export const useEquipos = () => {
   }, []);
 
   const getEquipos = async () => {
+    const session = await getSession()
     try {
       setLoading(true);
     const res = await UseCases.getEquiposUseCases(fetcherDb, session?.token);
+
+    console.log(res)
     setEquipos(res);
     setLoading(false);
     } catch (error) {
@@ -38,6 +41,7 @@ export const useEquipos = () => {
   };
 
   const createEquipo = async () => {
+    const session = await getSession()
 
     const newEquipo = {
       ...equipo,logo:currentImageEquipo

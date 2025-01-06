@@ -20,8 +20,8 @@ const initialStateJugador: Jugadores = {
   ataque: 0,
   defensa: 0,
   email: "",
-  estudiante: "",
-  posicion: "",
+  estudiante: "si",
+  posicion: "delantero",
   regate: 0,
   rol: "jugador",
   status: "activo",
@@ -52,13 +52,19 @@ export const useJugador = () => {
   }, []);
 
   const getJugadores = async () => {
-    const session = await getSession();
+    try {
+      const session = await getSession();
 
     setLoading(true);
     const res = await UseCases.getJugadoresUseCases(fetcherDb, session?.token);
     setJugadores(res);
     loadJugadores(res);
-    setLoading(false);
+    } catch (error) {
+      
+    }finally{
+      setLoading(false);
+
+    }
   };
 
   const getJugadoresByEquipos = async (idEquipo: string) => {

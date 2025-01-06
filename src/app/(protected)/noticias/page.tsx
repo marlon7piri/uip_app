@@ -1,10 +1,10 @@
 import ContainerNoticias from '@/components/ContainerNoticias'
-import { Title } from '@/components/Title'
 import React from 'react'
+import styles from './mercado.module.css'
 
 const Noticias = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <ContainerNoticias />
     </div>
   )

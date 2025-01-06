@@ -80,7 +80,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
               <TableCell align="right">
                 <IconButton>
                   <Tooltip title='hacer oferta'>
-                    <Link href={`/home/mercado/ofertas/${row?._id}`}>
+                    <Link href={`/mercado/ofertas/${row?._id}`}>
                       <CurrencyExchangeIcon size={20} />
 
                     </Link>

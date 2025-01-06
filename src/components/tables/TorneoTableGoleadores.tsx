@@ -40,7 +40,7 @@ export default function TorneoTableGoleadores({ rows }: Props) {
   return (
     <TableContainer component={Paper} >
       {/* <FiltrosMercado /> */}
-      <Table sx={{ minWidth: 250 }} aria-label="simple table">
+      <Table sx={{ minWidth: 400 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
