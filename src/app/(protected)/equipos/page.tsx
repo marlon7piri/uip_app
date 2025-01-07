@@ -16,18 +16,16 @@ const getEquipos = async (session) => {
   
 };
 
-const Equipos = async() => {
-  const session = await auth()
-  const equipos = await getEquipos(session)
-
+const Equipos = async () => {
+  const session = await auth();
+  const equipos = await getEquipos(session);
 
   return (
     <div className={styles.container}>
+      <div className={styles.background_layer} /> {/* La capa de fondo */}
       <ContainerEquipos equipos={equipos} />
-     
-
     </div>
-  )
-}
+  );
+};
 
-export default Equipos
+export default Equipos;

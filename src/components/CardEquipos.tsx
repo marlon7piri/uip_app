@@ -12,9 +12,9 @@ interface Props {
 const CardEquipos = ({ equipos }: Props) => {
   return (
     <Link href={`/equipos/${equipos._id}`} key={equipos.nombre} className={styles.card}>
-      <h3>{equipos.nombre}</h3>
-      <Image src={equipos.logo} width={100} height={100} alt={equipos?.nombre}
-        className='rounded-full object-contain'
+      <h3 className={styles.txtTitle}>{equipos.nombre}</h3>
+      <Image src={equipos.logo} width={200} height={200} alt={equipos?.nombre}
+        className='rounded-full object-cover'
       />
     </Link>
   )

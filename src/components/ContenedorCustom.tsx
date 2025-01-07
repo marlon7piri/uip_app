@@ -1,8 +1,5 @@
 
-
-
-
-import React, { useEffect, useState } from 'react'
+import React  from 'react'
 
 const ContenedorCustom = ({ children }:{children:React.ReactNode} ) => {
 

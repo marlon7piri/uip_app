@@ -14,7 +14,6 @@ interface Props {
   equipos: Equipos[]
 }
 const ContainerEquipos = ({ equipos }: Props) => {
- const {loading}=useEquipos()
 
 
   
@@ -22,12 +21,12 @@ const ContainerEquipos = ({ equipos }: Props) => {
     <ContenedorCustom>
       <BreadCrum titulo='Equipos' url='/equipos/nuevo' labelBtn='Nuevo Equipo'/>
 
-     {loading ? <Spinner/> : <div className='flex flex-wrap gap-4'>
+    <div className='flex flex-wrap gap-8'>
         {equipos.map((e) => {
           return <CardEquipos equipos={e} key={e.logo} />
 
         })}
-      </div>}
+      </div>
 
     </ContenedorCustom>
   )

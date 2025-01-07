@@ -113,11 +113,11 @@ export default function FormJugador() {
 
         <option value={'si'} >
 
-          <Typography>Si</Typography>
+          Si
         </option>
         <option value={'no'} >
 
-          <Typography>No</Typography>
+         No
         </option>
 
       </select>

@@ -9,6 +9,8 @@ import { useTorneos } from '@/components/hooks/useTorneos';
 
 
 
+
+
 const Torneos = () => {
 
    const { torneos } = useTorneos() 
@@ -16,8 +18,8 @@ const Torneos = () => {
   return (
 
     <div className={styles.container}>
+      <div className={styles.background_layer}/>
       <ContainerTorneos torneos={torneos} />
-
 
 
     </div>

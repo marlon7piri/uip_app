@@ -1,0 +1,28 @@
+@keyframes gradient-rotation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient-border {
+  position: relative;
+  padding: 4px; /* Espacio para el borde animado */
+  border-radius: 16px;
+  background: linear-gradient(45deg, rgba(243, 234, 234, 0.384), rgba(21, 22, 26, 0.658), rgb(5, 117, 112)); /* Gradiente inicial */
+  background-size: 300% 300%; /* Para la animación */
+  animation: gradient-rotation 5s infinite linear; /* Animación de rotación */
+}
+
+.animated-gradient-border > .content {
+  position: relative;
+  z-index: 1;
+  background: rgba(20, 18, 18, 0.5); /* Fondo del contenido */
+  border-radius: 12px; /* Radio interior */
+  padding: 16px; /* Ajusta según sea necesario */
+}

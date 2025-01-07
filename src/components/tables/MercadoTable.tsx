@@ -13,6 +13,7 @@ import { IconButton, TextField, Tooltip } from '@mui/material';
 import { useJugador } from '../hooks/useJugador';
 import { JugadorStore } from '@/utils/zustand/jugador';
 import Link from 'next/link';
+import Spinner from '../Spinner';
 
 interface Props {
   rows: Jugadores[]
@@ -28,7 +29,6 @@ const FiltrosMercado = () => {
 
 export default function MercadoTable({ rows }: Props) {
   const { handlerPlayer } = useJugador()
-  const jugadores = JugadorStore(state => state.jugadores)
 
 
   const handlerClickPlayer = (e: string) => {
@@ -39,28 +39,28 @@ export default function MercadoTable({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ maxWidth: '60%', margin: 'auto' }}>
+    <TableContainer component={Paper} style={{ maxWidth: '60%',background:'rgba(20,18,18,0.5)',borderWidth:1,color:'white',margin:'auto' }}>
       {/* <FiltrosMercado /> */}
-      <Table sx={{ minWidth: 450 }} aria-label="simple table">
-        <TableHead>
+      <Table sx={{ minWidth: 490,}} aria-label="simple table">
+        <TableHead >
           <TableRow>
-            <TableCell>Foto</TableCell>
-            <TableCell>Nombre</TableCell>
-            <TableCell align="right">Edad</TableCell>
-            <TableCell align="right">Nacionalidad</TableCell>
-            <TableCell align="right">Club</TableCell>
+            <TableCell className='text-slate-50 font-semibold'>Foto</TableCell>
+            <TableCell className='text-slate-50 font-semibold'>Nombre</TableCell>
+            <TableCell className='text-slate-50 font-semibold' align="right">Edad</TableCell>
+            <TableCell  className='text-slate-50 font-semibold'align="right">Nacionalidad</TableCell>
+            <TableCell className='text-slate-50 font-semibold' align="right">Club</TableCell>
 
-            <TableCell align="right">Valor de mercado</TableCell>
-            <TableCell align="right">Oferta</TableCell>
+            <TableCell className='text-slate-50 font-semibold' align="right">Valor de mercado</TableCell>
+            <TableCell className='text-slate-50 font-semibold' align="right">Oferta</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody className='w-full text-center'>
           {rows.map((row) => (
             <TableRow
               key={row._id}
               onClick={() => handlerClickPlayer(row._id)}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              className='hover:bg-slate-200 cursor-pointer'
+              className='hover:bg-slate-900 cursor-pointer transition duration-300'
             >
               <TableCell align="right">
                 <Image src={row.foto} width={50} height={50} alt={row.club?.nombre}
@@ -68,25 +68,25 @@ export default function MercadoTable({ rows }: Props) {
                 />
               </TableCell>
 
-              <TableCell component="th" scope="row">
+              <TableCell className='text-slate-50 font-bold' component="th" scope="row">
 
                 {row.nombre + " " + row.apellido}
               </TableCell>
-              <TableCell align="right">{row.edad}</TableCell>
-              <TableCell align="right">nacionalidad</TableCell>
-              <TableCell align="right">
+              <TableCell  className='text-slate-50 font-bold'  align="right">{row.edad}</TableCell>
+              <TableCell  className='text-slate-50 font-bold' align="right">nacionalidad</TableCell>
+              <TableCell  className='text-slate-50 font-bold' align="right">
                 <Image src={row.club?.logo} width={50} height={50} alt={row.club?.nombre}
                   className='rounded-full'
                 />
               </TableCell>
 
 
-              <TableCell align="right">${row.estadisticasGlobales
+              <TableCell  className='text-slate-50 font-bold' align="right">${row.estadisticasGlobales
                 ?.valor_mercado}</TableCell>
               <TableCell align="right">
                 <IconButton>
                   <Tooltip title='hacer oferta'>
-                    <Link href={`/mercado/ofertas/${row?._id}`}>
+                    <Link href={`/mercado/ofertas/${row?._id}`} className='text-slate-50 font-bold'>
                       <CurrencyExchangeIcon size={20} color='inherit' />
 
                     </Link>

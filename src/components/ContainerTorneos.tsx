@@ -26,11 +26,11 @@ const ContainerTorneos = ({ torneos }: Props) => {
 
       <BreadCrum titulo='Torneos' url='/torneos/nuevo' labelBtn='Crear Torneo' />
 
-      {loading ? <Spinner/> : <div className='flex justify-center items-center gap-6'>
+      <div className='flex justify-center items-center gap-6'>
         {torneos?.map((e) => {
           return <CardTorneos torneo={e} key={e?._id} />
         })}
-      </div>}
+      </div>
 
 
 

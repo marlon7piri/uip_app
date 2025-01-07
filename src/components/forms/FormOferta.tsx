@@ -1,11 +1,10 @@
 'use client'
 
-import { Button, FormLabel, Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useUploadPicture } from "../hooks/useUploadFile";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
+import './forms.css'
 
 export default function FormOferta() {
   const { data: session } = useSession();
@@ -32,46 +31,29 @@ export default function FormOferta() {
 
 
   return (
-    <form onSubmit={handleSubmit} className="w-[600px] bg-slate-200 p-2 m-auto">
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <FormLabel>Descripcion</FormLabel>
-          <TextField
-            size="small"
+    <form onSubmit={handleSubmit} >
+          <label>Descripcion</label>
+          <input
             name="namePlan"
-            variant="outlined"
-            fullWidth
             value={oferta.descripcion}
             onChange={(e) => setOferta({ ...oferta, descripcion: e.target.value })}
           />
-        </Grid>
-        <Grid item xs={12}>
-          <FormLabel>Monto</FormLabel>
-          <TextField
+          <label>Monto</label>
+          <input
             type='number'
-            size="small"
             name="namePlan"
-            variant="outlined"
-            fullWidth
             value={oferta.monto}
             onChange={(e) => setOferta({ ...oferta, monto: e.target.value })}
           />
-        </Grid>
 
 
 
-        <Grid item xs={12}>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ mr: 1 }}
+          <button
             type="submit"
           >
             Hacer Oferta
-          </Button>
+          </button>
 
-        </Grid>
-      </Grid>
     </form>
   );
 }

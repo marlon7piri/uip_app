@@ -1,11 +1,18 @@
+import ContenedorCustom from '@/components/ContenedorCustom'
 import FormTorneos from '@/components/forms/FormTorneo'
+import { Title } from '@/components/Title'
 import React from 'react'
 
 const NuevoTorneo = () => {
   return (
-    <div className='h-screen'>
-      <FormTorneos />
-    </div>
+    <ContenedorCustom >
+        <Title content='Nuevo Torneo' size='text-4xl' />
+
+      <div className=' flex justify-center items-center'>
+        <FormTorneos />
+
+      </div>
+    </ContenedorCustom>
   )
 }
 
