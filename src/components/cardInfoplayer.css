@@ -24,5 +24,14 @@
   z-index: 1;
   background: rgba(20, 18, 18, 0.5); /* Fondo del contenido */
   border-radius: 12px; /* Radio interior */
-  padding: 16px; /* Ajusta según sea necesario */
+}
+
+
+.mask-gradient {
+  -webkit-mask-image: linear-gradient(to bottom,black 70% ,transparent);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-image: linear-gradient(to bottom, black 70%, transparent);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
 }

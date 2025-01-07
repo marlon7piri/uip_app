@@ -1,10 +1,15 @@
+'use client'
 import React from 'react'
 import styles from './spiner.module.css'
+import { usePathname } from 'next/navigation'
 
 const Spinner = () => {
+  const pathname = usePathname()
+
+  const normalStyle = pathname.includes('torneos/partidos') ?  'items-start' :'items-center'
   return (
 
-    <div className='w-full h-screen flex justify-center items-center bg-transparent'>
+    <div className={`w-full h-screen flex justify-center  bg-transparent ${normalStyle}`}>
     <div className={styles.loader}></div>
 
     </div>

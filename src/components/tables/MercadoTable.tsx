@@ -47,7 +47,6 @@ export default function MercadoTable({ rows }: Props) {
             <TableCell className='text-slate-50 font-semibold'>Foto</TableCell>
             <TableCell className='text-slate-50 font-semibold'>Nombre</TableCell>
             <TableCell className='text-slate-50 font-semibold' align="right">Edad</TableCell>
-            <TableCell  className='text-slate-50 font-semibold'align="right">Nacionalidad</TableCell>
             <TableCell className='text-slate-50 font-semibold' align="right">Club</TableCell>
 
             <TableCell className='text-slate-50 font-semibold' align="right">Valor de mercado</TableCell>
@@ -63,8 +62,8 @@ export default function MercadoTable({ rows }: Props) {
               className='hover:bg-slate-900 cursor-pointer transition duration-300'
             >
               <TableCell align="right">
-                <Image src={row.foto} width={50} height={50} alt={row.club?.nombre}
-                  className='rounded-full'
+                <Image src={row.foto} width={80} height={80} alt={row.club?.nombre}
+                  className='object-contain'
                 />
               </TableCell>
 
@@ -73,10 +72,9 @@ export default function MercadoTable({ rows }: Props) {
                 {row.nombre + " " + row.apellido}
               </TableCell>
               <TableCell  className='text-slate-50 font-bold'  align="right">{row.edad}</TableCell>
-              <TableCell  className='text-slate-50 font-bold' align="right">nacionalidad</TableCell>
               <TableCell  className='text-slate-50 font-bold' align="right">
                 <Image src={row.club?.logo} width={50} height={50} alt={row.club?.nombre}
-                  className='rounded-full'
+                  className='object-cover'
                 />
               </TableCell>
 

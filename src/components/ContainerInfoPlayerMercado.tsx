@@ -16,35 +16,34 @@ const ContainerInfoPlayerMercado = () => {
   }
 
   return (
-    <div className='w-[30%] h-[500px] rounded-2xl shadow-2xl shadow-slate-700 p-2 bg-[rgba(20,18,18,0.5)] text-slate-50 animated-gradient-border'>
+    <div className='w-[90%] h-[450px] rounded-2xl shadow-2xl shadow-slate-700 p-4 bg-[rgba(20,18,18,0.5)] text-slate-50 animated-gradient-border overflow-hidden'>
 
-      <div className='flex justify-between p-6 items-center '>
-        <div className='flex flex-col items-center'>
+      <div className='flex justify-between'>
+        <div className='flex flex-col items-center  w-[60%] h-full '>
           <Typography>
 
             {jugadorSelected?.nombre + " " + jugadorSelected?.apellido}
           </Typography>
 
-          <Image src={jugadorSelected ? jugadorSelected?.foto : ''} width={100} height={100} alt='imagen de un futbolista'
-            className=''
+          <Image src={jugadorSelected ? jugadorSelected?.foto : ''} width={500} height={600} alt='imagen de un futbolista'
+            className='object-cover mask-gradient'
           />
+          
         </div>
 
 
+       
+        <div className='w-[40%] p-2 '>
         <div className='flex flex-col items-center'>
-          <Typography>Club</Typography>
+         
 
 
-          <Image src={jugadorSelected ? jugadorSelected?.club?.logo : ''} width={100} height={100} alt='imagen de un futbolista'
-            className='rounded-full'
-          />
+         <Image src={jugadorSelected ? jugadorSelected?.club?.logo : ''} width={130} height={130} alt='imagen de un futbolista'
+           className='object-cover'
+         />
 
 
-        </div>
-
-      </div>
-
-      <div className='p-6'>
+       </div>
         <Typography>Posicion: {jugadorSelected?.estadisticasGlobales?.posicion?.toUpperCase()}</Typography>
         <Typography>Estatura: {jugadorSelected?.estatura} cm</Typography>
         <Typography>Goles:{jugadorSelected?.estadisticasGlobales?.goles} <SportsSoccerIcon /></Typography>
@@ -74,6 +73,10 @@ const ContainerInfoPlayerMercado = () => {
 
         </div>
       </div>
+      
+      </div>
+
+      
     </div>
   )
 }

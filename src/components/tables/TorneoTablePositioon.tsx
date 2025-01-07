@@ -65,7 +65,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
               <TableCell  className='text-slate-50' component="th" scope="row">
                 <Typography className='flex gap-2 justify-start items-center'>
                   <Image src={row.logo} width={50} height={50} alt={row?.nombre}
-                    className='rounded-full'
+                    className='object-cover'
                   />
                   {row.nombre}
                 </Typography>

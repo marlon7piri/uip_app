@@ -86,12 +86,16 @@ export const CustomInputFileFoto = ({ onChange, value }: Props) => {
         canvas.width = width;
         canvas.height = height;
         const ctx = canvas.getContext('2d');
+        
+        // Dibujar la imagen redimensionada en el canvas sin alterar la transparencia
+      if (ctx) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Asegura que el lienzo sea transparente
+        ctx.drawImage(img, 0, 0, width, height);
+      }
 
-        // Dibujar la imagen redimensionada en el canvas
-        ctx?.drawImage(img, 0, 0, width, height);
-
+       
         // Convertir el canvas a base64
-        const resizedBase64 = canvas.toDataURL('image/jpeg', 0.7); // Puedes ajustar la calidad de la compresión (0.7 es el 70% de calidad)
+        const resizedBase64 = canvas.toDataURL('image/png', 0.5); // Puedes ajustar la calidad de la compresión (0.7 es el 70% de calidad)
         resolve(resizedBase64);
       };
     });

@@ -6,6 +6,8 @@ import JugadoresEquiposTable from '@/components/tables/JugadoresEquiposTable'
 import { Title } from '@/components/Title'
 import { useParams } from 'next/navigation'
 import React, { useEffect } from 'react'
+import styles from './equipodetalle.module.css'
+import Spinner from '@/components/Spinner'
 
 const EquipoInfo = () => {
 
@@ -17,15 +19,20 @@ const EquipoInfo = () => {
     getJugadoresByEquipos(params?.idEquipo)
   }, [params?.idEquipo])
 
-  return (
-    <ContenedorCustom>
-     
-      <HeaderEquipoInfo equipo={equipoDelJugador} />
-      <Title content='Jugadores' size='text-3xl'/>
-      <JugadoresEquiposTable rows={jugadoresByEquipos} />
+  if (!equipoDelJugador || !jugadoresByEquipos) {
+    return <Spinner />
+  }
 
-     
-    </ContenedorCustom>
+  return (
+    <div className={styles.container}>
+      <div className={styles.background_layer} />
+
+      {equipoDelJugador && <HeaderEquipoInfo equipo={equipoDelJugador} />}
+      <Title content='Jugadores' size='text-3xl' />
+      {jugadoresByEquipos && <JugadoresEquiposTable rows={jugadoresByEquipos} />}
+
+
+    </div>
   )
 }
 
