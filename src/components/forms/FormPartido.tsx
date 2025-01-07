@@ -41,6 +41,7 @@ export default function FormPartido({equiposParticipantes}:Props) {
             value={partido.local}
 
             onChange={(e) => setPartido({ ...partido, local: e.target.value })}>
+               <option  value={''} ></option>
             {equiposParticipantes.map((e) => {
               return <option key={e?._id} value={e?._id} >
 
@@ -57,6 +58,7 @@ export default function FormPartido({equiposParticipantes}:Props) {
             value={partido.visitante}
 
             onChange={(e) => setPartido({ ...partido, visitante: e.target.value })}>
+               <option  value={''} ></option>
             {equiposParticipantes.map((e) => {
               return <option key={e?._id} value={e?._id} >
 
