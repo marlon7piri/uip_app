@@ -29,16 +29,10 @@ export const useTorneos = () => {
     };
     loadTorneos();
 
-    // Simulación con Promise
-   const simulateLoad = new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(loadTorneos()); // Llama a la función después de 3 segundos
-    }, 10000);
-  });
+    
+ 
 
-  simulateLoad.catch((error) => {
-    console.error('Error al cargar los torneos:', error);
-  });
+ 
 
  
   }, []);

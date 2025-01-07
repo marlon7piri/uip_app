@@ -18,6 +18,7 @@ import { Torneos } from '@/infraestrcuture/entities/torneos'
 import { Button, Modal } from '@mui/material'
 import { useParams } from 'next/navigation'
 import styles from './styles.module.css'
+import '@/components/botonlink.css'
 
 import React, { useEffect, useState } from 'react'
 import TabTorneos from './TabTorneos'
@@ -68,7 +69,7 @@ const PartidosByTorneos = () => {
             <ContenedorCustom >
                 <div className='flex gap-2 justify-end items-center'>
                     <BreadCrum titulo='' url={`/torneos/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
-                    <button onClick={handlerModal} className='bg-slate-50 p-2 rounded-md h-max hover:bg-slate-900 hover:text-slate-50 duration-300'>Nuevo partido</button>
+                    <button onClick={handlerModal} className='btn_link'>Nuevo partido</button>
                 </div>
                 <TabTorneos />
 

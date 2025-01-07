@@ -30,22 +30,22 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ width: '100%' }}>
+    <TableContainer component={Paper} style={{ width: '100%',background:'rgba(20,18,18,0.5)',borderWidth:1,color:'white', }}>
       {/* <FiltrosMercado /> */}
       <Table  aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell></TableCell>
-            <TableCell>Equipo</TableCell>
-            <TableCell align="left">Partidos</TableCell>
-            <TableCell align="left">Victorias</TableCell>
-            <TableCell align="left">Empates</TableCell>
+            <TableCell className='text-slate-50'></TableCell>
+            <TableCell className='text-slate-50'>Equipo</TableCell>
+            <TableCell  className='text-slate-50'align="left">Partidos</TableCell>
+            <TableCell className='text-slate-50' align="left">Victorias</TableCell>
+            <TableCell className='text-slate-50' align="left">Empates</TableCell>
 
-            <TableCell align="left">Derrotas</TableCell>
-            <TableCell align="left">GF</TableCell>
-            <TableCell align="left">GC</TableCell>
-            <TableCell align="left">DG</TableCell>
-            <TableCell align="left">Puntos</TableCell>
+            <TableCell className='text-slate-50' align="left">Derrotas</TableCell>
+            <TableCell className='text-slate-50' align="left">GF</TableCell>
+            <TableCell className='text-slate-50' align="left">GC</TableCell>
+            <TableCell className='text-slate-50' align="left">DG</TableCell>
+            <TableCell className='text-slate-50' align="left">Puntos</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,13 +56,13 @@ export default function TorneoTablePositioon({ rows }: Props) {
               key={row._id}
               
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              className='hover:bg-slate-200 cursor-pointer'
+              className='hover:bg-slate-900 cursor-pointer'
             >
-              <TableCell align="left">{index + 1}</TableCell>
+              <TableCell className='text-slate-50' align="left">{index + 1}</TableCell>
 
 
 
-              <TableCell component="th" scope="row">
+              <TableCell  className='text-slate-50' component="th" scope="row">
                 <Typography className='flex gap-2 justify-start items-center'>
                   <Image src={row.logo} width={50} height={50} alt={row?.nombre}
                     className='rounded-full'
@@ -70,14 +70,14 @@ export default function TorneoTablePositioon({ rows }: Props) {
                   {row.nombre}
                 </Typography>
               </TableCell>
-              <TableCell align="left">{partidos_jugados}</TableCell>
-              <TableCell align="left">{partidos_ganados}</TableCell>
-              <TableCell align="left">{partidos_empatados}</TableCell>
-              <TableCell align="left">{partidos_perdidos}</TableCell>
-              <TableCell align="left">{goles_favor}</TableCell>
-              <TableCell align="left">{goles_contra}</TableCell>
-              <TableCell align="left">{goles_favor - goles_contra}</TableCell>
-              <TableCell align="left">{puntos}</TableCell>
+              <TableCell className='text-slate-50'  align="left">{partidos_jugados}</TableCell>
+              <TableCell  className='text-slate-50' align="left">{partidos_ganados}</TableCell>
+              <TableCell  className='text-slate-50' align="left">{partidos_empatados}</TableCell>
+              <TableCell  className='text-slate-50' align="left">{partidos_perdidos}</TableCell>
+              <TableCell  className='text-slate-50' align="left">{goles_favor}</TableCell>
+              <TableCell  className='text-slate-50' align="left">{goles_contra}</TableCell>
+              <TableCell className='text-slate-50'  align="left">{goles_favor - goles_contra}</TableCell>
+              <TableCell  className='text-slate-50' align="left">{puntos}</TableCell>
 
 
 

@@ -13,9 +13,10 @@ const CardEquipos = ({ equipos }: Props) => {
   return (
     <Link href={`/equipos/${equipos._id}`} key={equipos.nombre} className={styles.card}>
       <h3 className={styles.txtTitle}>{equipos.nombre}</h3>
-      <Image src={equipos.logo} width={200} height={200} alt={equipos?.nombre}
-        className='rounded-full object-cover'
-      />
+     
+       <Image src={equipos.logo} width={200} height={200} alt={equipos?.nombre}
+        className='rounded-full object-contain '
+      /> 
     </Link>
   )
 }

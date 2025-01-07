@@ -4,6 +4,7 @@ import MercadoTable from './tables/MercadoTable'
 import { useJugador } from './hooks/useJugador'
 import ContainerInfoPlayerMercado from './ContainerInfoPlayerMercado'
 import ContenedorCustom from './ContenedorCustom'
+import BreadCrum from './BreadCrum'
 
 
 
@@ -15,6 +16,7 @@ export const ContainerMercado = () => {
 
   return (
     <ContenedorCustom >
+      <BreadCrum titulo='Mercado' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
 
 
      <div className='flex gap-4 relative'>

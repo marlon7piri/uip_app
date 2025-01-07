@@ -6,7 +6,10 @@ import React from 'react'
 const Registro = () => {
   return (
     <ContenedorCustom >
+      <div className='w-full h-screen flex justify-center items-center'>
+
       <FormRegistroTorneo />
+      </div>
     </ContenedorCustom>
   )
 }

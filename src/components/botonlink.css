@@ -1,0 +1,17 @@
+.btn_link{
+    padding:1rem;
+    border-radius: 1rem;
+    background-color: rgba(0,0,0,0.5);
+    box-shadow: 
+    inset 0px 0px 20px 10px rgba(2, 95, 133, 0.5);
+    color:white;
+    transition:  .5s ease-in-out ;
+}
+
+.btn_link:hover{
+   
+    background-color: rgba(2, 95, 133, 0.5) ;
+    box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.5) 
+    ;
+
+}

@@ -13,6 +13,7 @@ import { JugadorStore } from "@/utils/zustand/jugador";
 import { CustomInputFileFoto } from "../CustomInputFileFoto";
 import { useTorneos } from "../hooks/useTorneos";
 import { usePartidos } from "../hooks/usePartidos";
+import './forms.css'
 
 export default function FormRegistroTorneo() {
 
@@ -35,21 +36,34 @@ export default function FormRegistroTorneo() {
 
   const registrarEquipos = (e) => {
 
-    setEquiposRegistrados([...equiposRegistrados, e.target.value])
+    const { _id, nombre } = e.target.value
+    setEquiposRegistrados((prevState) => {
+      const exist = prevState.find(item => item._id === _id)
+
+      if (!exist) {
+        return [...prevState, e.target.value]
+      }
+
+
+      return [...prevState]
+
+    })
+
+
   }
 
 
 
 
   return (
-    <form onSubmit={handleSubmit} className="w-[600px] h-[300px] bg-slate-200 p-2 m-auto overflow-y-scroll ">
+    <form onSubmit={handleSubmit} >
       <div className="flex flex-col gap-4">
-        <div >
-          <FormLabel>Equipos</FormLabel>
-
+        
+          <label className="text-2xl font-bold text-slate-50">Equipos</label>
+         
           <Select
             fullWidth
-
+className="border border-slate-50"
             onChange={(e) => registrarEquipos(e)}>
             {equipos.map((e) => {
               return <MenuItem key={e?._id} value={e} >
@@ -60,13 +74,11 @@ export default function FormRegistroTorneo() {
 
             })}
 
-          </Select>
-        </div>
-        <div>
+          </Select> 
+        
           {equiposRegistrados.length == 0 ? <p>No hay equipos registrados</p> : equiposRegistrados.map((e) => {
-            return <p>{e.nombre}</p>
+            return <p key={e._id} className="text-slate-50">{e.nombre}</p>
           })}
-        </div>
 
 
 

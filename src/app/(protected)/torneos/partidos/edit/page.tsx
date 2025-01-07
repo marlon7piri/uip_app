@@ -58,7 +58,10 @@ const EditPartido = () => {
         <ContenedorCustom>
 
             <Title content='Modificar resultado' size='text-4xl' />
+            <div className='w-full h-full flex justify-center items-center'>
+
             <FormResultadoPartidos jugadores={jugadores}/>
+            </div>
         </ContenedorCustom>
     )
 }

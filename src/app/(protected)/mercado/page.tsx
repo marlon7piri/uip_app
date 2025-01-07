@@ -11,7 +11,6 @@ const Mercado =  () => {
 
   return (
     <div className={styles.containerMercado}>
-      <BreadCrum titulo='Mercado' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
       <ContainerMercado />
 
     </div>
