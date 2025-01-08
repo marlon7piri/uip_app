@@ -4,7 +4,6 @@ import { Title } from './Title'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import './botonlink.css'
-import { useSessionAuth } from './hooks/useSessionAuth'
 
 interface Props {
   titulo: string,
@@ -12,7 +11,7 @@ interface Props {
   labelBtn: string
 }
 const BreadCrum = ({ titulo, url,labelBtn ='Nuevo'}: Props) => {
-  const { session } = useSessionAuth()
+  const { data: session } = useSession()
   return (
     <div className='flex justify-between items-center p-4'>
       <Title content={titulo} size='text-6xl' />
