@@ -19,9 +19,9 @@ export const loginAuth = async (credentials: any) => {
         if (error instanceof AuthError) {
             switch (error.type) {
                 case 'CredentialsSignin':
-                    return { error: 'Credenciales invalidas' }
+                    return { error: 'Credenciales invalidas' + (error) }
                 default:
-                    return { error: 'Algo ha pasado, intente de nuevo' }
+                    return { error: 'Algo ha pasado, intente de nuevo' + (error)}
             }
         }
         throw error
