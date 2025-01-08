@@ -1,15 +1,29 @@
-
 export interface Equipos {
-  _id?:                string;
-  nombre:             string;
-  logo:               string;
-  goles_favor?:        number;
-  goles_contra?:       number;
-  asistencias?:        number;
-  puntos?:             number;
-  partidos_jugados?:   number;
-  partidos_ganados?:   number;
-  partidos_perdidos?:  number;
-  partidos_empatados?: number;
-  diferencia_goles?:   number;
+  estadisticasGlobales: Estadisticas;
+  _id:                  string;
+  nombre:               string;
+  logo:                 string;
+  torneos:              Torneo[];
+  __v:                  number;
+}
+
+export interface Estadisticas {
+  goles_favor:        number;
+  goles_contra:       number;
+  asistencias:        number;
+  partidos_jugados:   number;
+  partidos_ganados:   number;
+  partidos_perdidos:  number;
+  partidos_empatados: number;
+  puntos?:            number;
+}
+
+export interface Torneo {
+  estadisticas: Estadisticas;
+  torneoId:     TorneoID;
+  _id:          string;
+}
+
+export enum TorneoID {
+  The677227753Ef85Dabdefe6B5A = "677227753ef85dabdefe6b5a",
 }

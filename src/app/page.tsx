@@ -1,6 +1,5 @@
 'use client'
 
-import Torneos from "./(protected)/torneos/page";
 import Login from "./auth/login/page";
 
 

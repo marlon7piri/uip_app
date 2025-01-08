@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import authconfig from './auth.config'
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-
+trustHost:true,
   callbacks: {
     async session({ session, token }) {
       if (token) {

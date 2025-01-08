@@ -26,7 +26,7 @@ const HeaderEquipoInfo = ({ equipo }: Props) => {
           <li>Partidos Jugados: {equipo?.estadisticasGlobales?.partidos_jugados}</li>
           <li>Partidos Ganados: {equipo?.estadisticasGlobales?.partidos_ganados}</li>
           <li>Partidos Perdidos: {equipo?.estadisticasGlobales?.partidos_perdidos}</li>
-          <li>Partidos Empatados: {equipo?.estadisticasGlobales?.partidos_empatados}</li>
+          <li>Partidos Empatados:  {equipo?.estadisticasGlobales?.partidos_empatados}</li>
         </ul>
       </div>
     </div>

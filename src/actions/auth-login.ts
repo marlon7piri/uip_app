@@ -29,4 +29,4 @@ export const loginAuth = async (credentials: any) => {
     }
 
 }
-export const logoutAuth = async () => signOut({ redirectTo: '/auth/login', redirect: true })
+export const logoutAuth = async () => await signOut({ redirectTo: '/auth/login', redirect: true })

@@ -1,9 +1,7 @@
 
 export const publicRoutes = ['/settings']
 
-export const protectedRoutes = ['/','/torneos',
-    '/equipos','/mercado','/noticias'
-]
+export const protectedRoutes = ['/']
 
 export const AuthRoutes = ['/auth/login','/auth/register']
 export const ApiAuthPefix = '/api/auth'
