@@ -1,7 +1,7 @@
 'use client'
 
 import { Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 import { useJugador } from "../hooks/useJugador";
 import { useEquipos } from "../hooks/useEquipos";
@@ -10,12 +10,13 @@ import toast from "react-hot-toast";
 import { JugadorStore } from "@/utils/zustand/jugador";
 import { CustomInputFileFoto } from "../CustomInputFileFoto";
 import './forms.css'
+import {CloudinaryFile} from "../CloudinaryFile";
 
 export default function FormJugador() {
   const saveImage = JugadorStore(state => state.saveImage)
   const currentImage = JugadorStore(state => state.currentImage)
 
-  const { jugador, setJugador, createJugador } = useJugador()
+  const { jugador, setJugador, createJugador,setImage ,image} = useJugador()
   const { equipos } = useEquipos()
   const router = useRouter();
 
@@ -28,227 +29,243 @@ export default function FormJugador() {
   };
 
 
+  
+  // Manejar cambio de archivo
+  const handleFileChange = (event) => {
+    setImage(event.target.files[0]);
+  };
 
-
-
+console.log(image)
   return (
-    <form onSubmit={handleSubmit} >
-      <label>Nombre</label>
-      <input
-        name="namePlan"
-        value={jugador.nombre}
-        onChange={(e) => setJugador({ ...jugador, nombre: e.target.value })}
-      />
-      <label>Apellido</label>
-      <input
 
-        name="namePlan"
+    <>
+
+      
+
+       <form onSubmit={handleSubmit} >
 
 
-        value={jugador.apellido}
-        onChange={(e) => setJugador({ ...jugador, apellido: e.target.value })}
-      />
-      <label>Edad</label>
-      <input
-        type="number"
+        <label>Nombre</label>
+        <input
+          name="namePlan"
+          value={jugador.nombre}
+          onChange={(e) => setJugador({ ...jugador, nombre: e.target.value })}
+        />
+        <label>Apellido</label>
+        <input
 
-        name="namePlan"
-
-
-        value={jugador.edad}
-        onChange={(e) => setJugador({ ...jugador, edad: e.target.value })}
-      />
-      <label>Estatura</label>
-      <input
-        type="number"
-
-        name="estatura"
+          name="namePlan"
 
 
-        value={jugador.estatura}
-        onChange={(e) => setJugador({ ...jugador, estatura: e.target.value })}
-      />
-      <label>Foto</label>
-      <CustomInputFileFoto
+          value={jugador.apellido}
+          onChange={(e) => setJugador({ ...jugador, apellido: e.target.value })}
+        />
+        <label>Edad</label>
+        <input
+          type="number"
+
+          name="namePlan"
+
+
+          value={jugador.edad}
+          onChange={(e) => setJugador({ ...jugador, edad: e.target.value })}
+        />
+        <label>Estatura</label>
+        <input
+          type="number"
+
+          name="estatura"
+
+
+          value={jugador.estatura}
+          onChange={(e) => setJugador({ ...jugador, estatura: e.target.value })}
+        />
+        {/*  <CustomInputFileFoto
         onChange={saveImage}
-      />
-      <img src={currentImage} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={jugador.nombre} />
+      /> */}
+      
+        <input type="file" accept='image/*' onChange={handleFileChange} />
 
-      <label>Rol</label>
+        {image && <img src={image} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={jugador.nombre} />}
 
-      <select
+        <label>Rol</label>
 
-        value={jugador.rol}
+        <select
 
-        onChange={(e) => setJugador({ ...jugador, rol: e.target.value })}>
+          value={jugador.rol}
 
-        <option value={'jugador'} >
+          onChange={(e) => setJugador({ ...jugador, rol: e.target.value })}>
 
-          Jugador
-        </option>
-        <option value={'dt'} >
+          <option value={'jugador'} >
 
-          Director
-        </option>
+            Jugador
+          </option>
+          <option value={'dt'} >
 
-      </select>
+            Director
+          </option>
 
-      <label>Email</label>
-      <input
-        type="email"
+        </select>
 
-        name="email"
+        <label>Email</label>
+        <input
+          type="email"
 
+          name="email"
 
-        value={jugador.email}
-        onChange={(e) => setJugador({ ...jugador, email: e.target.value })}
-      />
-      <label>Estudiante</label>
 
-      <select
+          value={jugador.email}
+          onChange={(e) => setJugador({ ...jugador, email: e.target.value })}
+        />
+        <label>Estudiante</label>
 
-        value={jugador.estudiante}
+        <select
 
-        onChange={(e) => setJugador({ ...jugador, estudiante: e.target.value })}>
+          value={jugador.estudiante}
 
-        <option value={'si'} >
+          onChange={(e) => setJugador({ ...jugador, estudiante: e.target.value })}>
 
-          Si
-        </option>
-        <option value={'no'} >
+          <option value={'si'} >
 
-         No
-        </option>
+            Si
+          </option>
+          <option value={'no'} >
 
-      </select>
+            No
+          </option>
 
-      <label>Valor del mercado</label>
-      <input
-        type="number"
+        </select>
 
-        name="namePlan"
+        <label>Valor del mercado</label>
+        <input
+          type="number"
 
+          name="namePlan"
 
-        value={jugador.valor_mercado}
-        onChange={(e) => setJugador({ ...jugador, valor_mercado: e.target.value })}
-      />
 
-      <label>Posicion</label>
+          value={jugador.valor_mercado}
+          onChange={(e) => setJugador({ ...jugador, valor_mercado: e.target.value })}
+        />
 
-      <select
+        <label>Posicion</label>
 
-        value={jugador.posicion}
+        <select
 
-        onChange={(e) => setJugador({ ...jugador, posicion: e.target.value })}>
+          value={jugador.posicion}
 
-        <option value={'delantero'} >
+          onChange={(e) => setJugador({ ...jugador, posicion: e.target.value })}>
 
-          Delantero
-        </option>
-        <option value={'Defensa'} >
+          <option value={'delantero'} >
 
-          Defensa
-        </option>
-        <option value={'Centro Campista'} >
+            Delantero
+          </option>
+          <option value={'Defensa'} >
 
-          Centro Campista
-        </option>
-        <option value={'Portero'} >
+            Defensa
+          </option>
+          <option value={'Centro Campista'} >
 
-          Portero
-        </option>
+            Centro Campista
+          </option>
+          <option value={'Portero'} >
 
-      </select>
+            Portero
+          </option>
 
-      <label>Velocidad</label>
-      <input
-        type="number"
+        </select>
 
-        name="velocidad"
+        <label>Velocidad</label>
+        <input
+          type="number"
 
+          name="velocidad"
 
-        value={jugador.velocidad}
-        onChange={(e) => setJugador({ ...jugador, velocidad: e.target.value })}
-      />
-      <label>Ataque</label>
-      <input
-        type="number"
 
-        name="velocidad"
+          value={jugador.velocidad}
+          onChange={(e) => setJugador({ ...jugador, velocidad: e.target.value })}
+        />
+        <label>Ataque</label>
+        <input
+          type="number"
 
+          name="velocidad"
 
-        value={jugador.ataque}
-        onChange={(e) => setJugador({ ...jugador, ataque: e.target.value })}
-      />
-      <label>Defensa</label>
-      <input
-        type="number"
 
-        name="defensa"
+          value={jugador.ataque}
+          onChange={(e) => setJugador({ ...jugador, ataque: e.target.value })}
+        />
+        <label>Defensa</label>
+        <input
+          type="number"
 
+          name="defensa"
 
-        value={jugador.defensa}
-        onChange={(e) => setJugador({ ...jugador, defensa: e.target.value })}
-      />
-      <label>Regate</label>
-      <input
-        type="number"
 
-        name="regate"
+          value={jugador.defensa}
+          onChange={(e) => setJugador({ ...jugador, defensa: e.target.value })}
+        />
+        <label>Regate</label>
+        <input
+          type="number"
 
+          name="regate"
 
-        value={jugador.regate}
-        onChange={(e) => setJugador({ ...jugador, regate: e.target.value })}
-      />
 
-      <label>Club</label>
+          value={jugador.regate}
+          onChange={(e) => setJugador({ ...jugador, regate: e.target.value })}
+        />
 
-      <select
+        <label>Club</label>
 
-        value={jugador.club}
+        <select
 
-        onChange={(e) => setJugador({ ...jugador, club: e.target.value })}>
-        {equipos.map((e) => {
-          return <option key={e?._id} value={e?._id} >
+          value={jugador.club}
 
-            {e?.nombre}</option>
+          onChange={(e) => setJugador({ ...jugador, club: e.target.value })}>
+          {equipos.map((e) => {
+            return <option key={e?._id} value={e?._id} >
 
+              {e?.nombre}</option>
 
 
-        })}
 
-      </select>
+          })}
 
+        </select>
 
-      <label>Estado</label>
 
-      <select
+        <label>Estado</label>
 
-        value={jugador.status}
+        <select
 
-        onChange={(e) => setJugador({ ...jugador, status: e.target.value })}>
+          value={jugador.status}
 
-        <option value={'activo'} >
+          onChange={(e) => setJugador({ ...jugador, status: e.target.value })}>
 
-          Activo
-        </option>
-        <option value={'inactivo'} >
+          <option value={'activo'} >
 
-          Inactivo
+            Activo
+          </option>
+          <option value={'inactivo'} >
 
+            Inactivo
 
-        </option>
 
-      </select>
+          </option>
 
+        </select>
 
-      <button
 
-        type="submit"
-      >
-        Crear
-      </button>
+        <button
 
-    </form >
+          type="submit"
+        >
+          Crear
+        </button>
+        
+
+      </form >
+    </>
+
   );
 }

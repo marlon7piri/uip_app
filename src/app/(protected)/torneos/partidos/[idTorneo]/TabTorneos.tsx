@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import TabPartidos from './TabPartidos';
 import TabTablaPosicion from './TabTablaPosicion';
 import TabGoleadoresAsistentes from './TabGoleadoresAsistentes';
+import styles from './styles.module.css'
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -46,9 +47,9 @@ export default function TabTorneos() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'white' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Tabla de Posiciones" {...a11yProps(0)} className='bg-[rgba(25,33,36,0.5)] hover:bg-[rgba(42,84,124,0.47)] hover:text-slate-50 rounded-md mx-2 text-slate-50 font-bold'/>
-          <Tab label="Partidos del Torneo" {...a11yProps(1)} className='bg-[rgba(25,33,36,0.5)] hover:bg-[rgba(42,84,124,0.47)] hover:text-slate-50 rounded-md mx-2 text-slate-50 font-bold'/>
-          <Tab label="Goleadores y Asistentes" {...a11yProps(2)} className='bg-[rgba(25,33,36,0.5)] hover:bg-[rgba(42,84,124,0.47)] hover:text-slate-50 rounded-md mx-2 text-slate-50 font-bold'/>
+          <Tab label="Tabla de Posiciones" {...a11yProps(0)} className={styles.tabTitle}/>
+          <Tab label="Partidos del Torneo" {...a11yProps(1)} className={styles.tabTitle}/>
+          <Tab label="Goleadores y Asistentes" {...a11yProps(2)} className={styles.tabTitle}/>
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>

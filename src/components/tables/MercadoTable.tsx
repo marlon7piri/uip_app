@@ -13,7 +13,8 @@ import { IconButton, TextField, Tooltip } from '@mui/material';
 import { useJugador } from '../hooks/useJugador';
 import { JugadorStore } from '@/utils/zustand/jugador';
 import Link from 'next/link';
-import Spinner from '../Spinner';
+import styles from './styles.module.css'
+
 
 interface Props {
   rows: Jugadores[]
@@ -44,13 +45,13 @@ export default function MercadoTable({ rows }: Props) {
       <Table sx={{ minWidth: 490,}} aria-label="simple table">
         <TableHead >
           <TableRow>
-            <TableCell className='text-slate-50 font-semibold'>Foto</TableCell>
-            <TableCell className='text-slate-50 font-semibold'>Nombre</TableCell>
-            <TableCell className='text-slate-50 font-semibold' align="right">Edad</TableCell>
-            <TableCell className='text-slate-50 font-semibold' align="right">Club</TableCell>
+            <TableCell className={styles.rows}>Foto</TableCell>
+            <TableCell className={styles.rows}>Nombre</TableCell>
+            <TableCell className={styles.rows} align="right">Edad</TableCell>
+            <TableCell className={styles.rows} align="right">Club</TableCell>
 
-            <TableCell className='text-slate-50 font-semibold' align="right">Valor de mercado</TableCell>
-            <TableCell className='text-slate-50 font-semibold' align="right">Oferta</TableCell>
+            <TableCell className={styles.rows} align="right">Valor de mercado</TableCell>
+            <TableCell className={styles.rows} align="right">Oferta</TableCell>
           </TableRow>
         </TableHead>
         <TableBody className='w-full text-center'>
@@ -67,24 +68,24 @@ export default function MercadoTable({ rows }: Props) {
                 />
               </TableCell>
 
-              <TableCell className='text-slate-50 font-bold' component="th" scope="row">
+              <TableCell className={styles.rows} component="th" scope="row">
 
                 {row.nombre + " " + row.apellido}
               </TableCell>
-              <TableCell  className='text-slate-50 font-bold'  align="right">{row.edad}</TableCell>
-              <TableCell  className='text-slate-50 font-bold' align="right">
+              <TableCell  className={styles.rows}  align="right">{row.edad}</TableCell>
+              <TableCell  className={styles.rows} align="right">
                 <Image src={row.club?.logo} width={50} height={50} alt={row.club?.nombre}
                   className='object-cover'
                 />
               </TableCell>
 
 
-              <TableCell  className='text-slate-50 font-bold' align="right">${row.estadisticasGlobales
+              <TableCell  className={styles.rows} align="right">${row.estadisticasGlobales
                 ?.valor_mercado}</TableCell>
               <TableCell align="right">
                 <IconButton>
                   <Tooltip title='hacer oferta'>
-                    <Link href={`/mercado/ofertas/${row?._id}`} className='text-slate-50 font-bold'>
+                    <Link href={`/mercado/ofertas/${row?._id}`} className={styles.rows}>
                       <CurrencyExchangeIcon size={20} color='inherit' />
 
                     </Link>

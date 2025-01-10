@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { JugadorStore } from "@/utils/zustand/jugador";
 import { Equipos } from "@/infraestrcuture/entities/equipos";
 import { getSession } from "@/actions/get-session";
+import { uploadFile } from "@/utils/imagenes";
 
 const initialStateJugador: Jugadores = {
   nombre: "",
@@ -35,6 +36,7 @@ export const useJugador = () => {
   const [jugadores, setJugadores] = useState<Jugadores[]>([]);
   const [jugadoresByEquipos, setJugadoresByEquipos] = useState<Jugadores[]>([]);
   const [equipoDelJugador, setEquipoDelJugador] = useState<Equipos>(null);
+  const [image, setImage] = useState(null);
 
   const loadJugadores = JugadorStore((state) => state.loadJugadores);
   const selectPlayer = JugadorStore((state) => state.selectPlayer);
@@ -83,30 +85,37 @@ export const useJugador = () => {
   };
   const createJugador = async () => {
     const session = await getSession();
+    const img= await uploadFile(image)
 
-    const newPlayer = {
-      ...jugador,
-      estadisticasGlobales: {
-        posicion: jugador.posicion,
-        valor_mercado: jugador.valor_mercado,
-        velocidad: jugador.velocidad,
-        ataque: jugador.ataque,
-        defensa: jugador.defensa,
-        regate: jugador.regate
+    if(img){
 
-      },
-      foto: currentImage,
-    };
-
-    const res = await UseCases.createJugadorUseCases(
-      fetcherDb,
-      newPlayer,
-      session?.token
-    );
+      const newPlayer = {
+        ...jugador,
+        estadisticasGlobales: {
+          posicion: jugador.posicion,
+          valor_mercado: jugador.valor_mercado,
+          velocidad: jugador.velocidad,
+          ataque: jugador.ataque,
+          defensa: jugador.defensa,
+          regate: jugador.regate
+  
+        },
+        foto: img,
+      };
+  
+      const res = await UseCases.createJugadorUseCases(
+        fetcherDb,
+        newPlayer,
+        session?.token
+      );
+    }
+    
   };
   const handlerPlayer = (id: string) => {
     selectPlayer(id);
   };
+
+  
   return {
     jugador,
     jugadores,
@@ -117,5 +126,7 @@ export const useJugador = () => {
     equipoDelJugador,
     getJugadoresByEquipos,
     loading,
+    setImage,
+    image
   };
 };

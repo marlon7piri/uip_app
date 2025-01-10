@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Image from 'next/image';
+import styles from './styles.module.css'
 
 import { TextField, Typography } from '@mui/material';
 
@@ -35,17 +36,17 @@ export default function TorneoTablePositioon({ rows }: Props) {
       <Table  aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className='text-slate-50'></TableCell>
-            <TableCell className='text-slate-50'>Equipo</TableCell>
-            <TableCell  className='text-slate-50'align="left">Partidos</TableCell>
-            <TableCell className='text-slate-50' align="left">Victorias</TableCell>
-            <TableCell className='text-slate-50' align="left">Empates</TableCell>
+            <TableCell className={styles.rows}></TableCell>
+            <TableCell className={styles.rows}>Equipo</TableCell>
+            <TableCell  className={styles.rows}align="left">Partidos</TableCell>
+            <TableCell className={styles.rows} align="left">Victorias</TableCell>
+            <TableCell className={styles.rows} align="left">Empates</TableCell>
 
-            <TableCell className='text-slate-50' align="left">Derrotas</TableCell>
-            <TableCell className='text-slate-50' align="left">GF</TableCell>
-            <TableCell className='text-slate-50' align="left">GC</TableCell>
-            <TableCell className='text-slate-50' align="left">DG</TableCell>
-            <TableCell className='text-slate-50' align="left">Puntos</TableCell>
+            <TableCell className={styles.rows} align="left">Derrotas</TableCell>
+            <TableCell className={styles.rows} align="left">GF</TableCell>
+            <TableCell className={styles.rows} align="left">GC</TableCell>
+            <TableCell className={styles.rows} align="left">DG</TableCell>
+            <TableCell className={styles.rows} align="left">Puntos</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -58,11 +59,11 @@ export default function TorneoTablePositioon({ rows }: Props) {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer'
             >
-              <TableCell className='text-slate-50' align="left">{index + 1}</TableCell>
+              <TableCell className={styles.rows} align="left">{index + 1}</TableCell>
 
 
 
-              <TableCell  className='text-slate-50' component="th" scope="row">
+              <TableCell  className={styles.rows} component="th" scope="row">
                 <Typography className='flex gap-2 justify-start items-center'>
                   <Image src={row.logo} width={50} height={50} alt={row?.nombre}
                     className='object-cover'
@@ -70,14 +71,14 @@ export default function TorneoTablePositioon({ rows }: Props) {
                   {row.nombre}
                 </Typography>
               </TableCell>
-              <TableCell className='text-slate-50'  align="left">{partidos_jugados}</TableCell>
-              <TableCell  className='text-slate-50' align="left">{partidos_ganados}</TableCell>
-              <TableCell  className='text-slate-50' align="left">{partidos_empatados}</TableCell>
-              <TableCell  className='text-slate-50' align="left">{partidos_perdidos}</TableCell>
-              <TableCell  className='text-slate-50' align="left">{goles_favor}</TableCell>
-              <TableCell  className='text-slate-50' align="left">{goles_contra}</TableCell>
-              <TableCell className='text-slate-50'  align="left">{goles_favor - goles_contra}</TableCell>
-              <TableCell  className='text-slate-50' align="left">{puntos}</TableCell>
+              <TableCell className={styles.rows}  align="left">{partidos_jugados}</TableCell>
+              <TableCell  className={styles.rows} align="left">{partidos_ganados}</TableCell>
+              <TableCell  className={styles.rows} align="left">{partidos_empatados}</TableCell>
+              <TableCell  className={styles.rows} align="left">{partidos_perdidos}</TableCell>
+              <TableCell  className={styles.rows} align="left">{goles_favor}</TableCell>
+              <TableCell  className={styles.rows} align="left">{goles_contra}</TableCell>
+              <TableCell className={styles.rows}  align="left">{goles_favor - goles_contra}</TableCell>
+              <TableCell  className={styles.rows} align="left">{puntos}</TableCell>
 
 
 
