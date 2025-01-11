@@ -135,7 +135,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
       <select
         value={resultadoPartido.goleadores}
-        multiple
+        
         onChange={handlerGoleadores}>
         <option ></option>
         {jugadores?.map(elem => {
@@ -153,7 +153,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
       <select
         value={resultadoPartido.asistentes}
-        multiple
+        
         onChange={handlerAsistentes}>
         <option ></option>
 
