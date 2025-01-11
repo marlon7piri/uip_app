@@ -38,6 +38,9 @@ input, select {
     background-clip: padding-box, border-box;
     transition: all 0.3s ease-in-out;
 }
+label{
+    color:#f8fafc
+}
 
 input:focus, select:focus {
     border-color: transparent;

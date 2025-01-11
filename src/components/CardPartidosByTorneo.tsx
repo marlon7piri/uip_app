@@ -3,6 +3,7 @@ import { Partidos } from '@/infraestrcuture/entities/partidos'
 import Link from 'next/link'
 import React from 'react'
 import styles from '@/app/(protected)/torneos/partidos/[idTorneo]/styles.module.css'
+import Image from 'next/image'
 
 
 
@@ -16,11 +17,11 @@ const CardPartidosByTorneo = ({ partido }: Props) => {
    <Link href={`/torneos/partidos/edit?idTorneo=${partido.torneo_id._id}&idPartido=${partido._id}&idLocal=${partido.local._id}&idVisitante=${partido.visitante._id}`}>
     <div className={styles.cardPartidos}>
 
-<div className='flex gap-4 justify-center items-center'>
+<div className='flex gap-4 justify-center items-center '>
   <div className='flex flex-col justify-center items-center '>
     <h3 className={styles.textTitle}>{partido?.local?.nombre}</h3>
 
-    <img src={partido?.local?.logo} className='w-[100px] h-[100px] rounded-full bg-cover' alt={partido?.local?.nombre} />
+    <Image src={partido?.local?.logo} width={100} height={100} className=' object-cover' alt={partido?.local?.nombre} />
 
 
   </div>
@@ -28,7 +29,8 @@ const CardPartidosByTorneo = ({ partido }: Props) => {
 
   <div className='flex flex-col justify-center items-center '>
     <h3 className={styles.textTitle}>{partido?.visitante?.nombre}</h3>
-    <img src={partido?.visitante?.logo} className='w-[100px] h-[100px] rounded-full bg-cover' alt={partido?.visitante?.nombre} />
+    <Image src={partido?.visitante?.logo} width={100} height={100} className=' object-cover' alt={partido?.visitante?.nombre} />
+
 
 
   </div>

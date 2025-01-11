@@ -1,21 +1,21 @@
 'use client'
 
 import React, { useEffect, } from "react";
-import {  useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import { usePartidos } from "../hooks/usePartidos";
 import { Jugadores } from "@/infraestrcuture/entities/jugadores";
 import './forms.css'
 
 interface Props {
-  jugadores: Jugadores;
+  jugadores: Jugadores[];
 
 }
 
 export default function FormResultadoPartidos({ jugadores }: Props) {
 
 
-  const { resultadoPartido, setResultadoPartido, getEquiposPorPartido,  evaluarPartido } = usePartidos()
+  const { resultadoPartido, setResultadoPartido, getEquiposPorPartido, evaluarPartido } = usePartidos()
   const search = useSearchParams()
 
   const local = search.get('idLocal')
@@ -31,13 +31,14 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
   const handlerGoleadores = (e) => {
 
-    const player = e.target.value
+    const id = e.target.value
+    const player = jugadores.find(item => item._id == id)
 
     setResultadoPartido((prevState) => {
 
       const { goleadores } = prevState
 
-      const new_goleador = [...goleadores, { ids: player._id, nombre: player.nombre + player.apellido }]
+      const new_goleador = [...goleadores, { ids: player._id, nombre: player.nombre + " " + player.apellido }]
 
       return { ...prevState, goleadores: new_goleador }
 
@@ -50,13 +51,13 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
   const handlerAsistentes = (e) => {
 
 
-    const player = e.target.value
-
+    const id = e.target.value
+    const player = jugadores.find(item => item._id == id)
 
     setResultadoPartido((prevState) => {
       const { asistentes } = prevState
 
-      const new_asistente = [...asistentes, { ids: player._id, nombre: player.nombre + player.apellido }]
+      const new_asistente = [...asistentes, { ids: player._id, nombre: player.nombre + " " + player.apellido }]
 
       return { ...prevState, asistentes: new_asistente }
 
@@ -75,7 +76,6 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
   }, [])
 
 
-  console.log(resultadoPartido)
   return (
     <form onSubmit={handleSubmit}>
       <label>Es Empate?</label>
@@ -135,11 +135,11 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
       <select
         value={resultadoPartido.goleadores}
-
+        multiple
         onChange={handlerGoleadores}>
-
+        <option ></option>
         {jugadores?.map(elem => {
-          return <option key={elem._id} value={elem} >{elem.nombre + " " + elem.apellido}</option>
+          return <option key={elem._id} value={elem._id}>{elem.nombre + " " + elem.apellido}</option>
 
         })}
 
@@ -148,16 +148,17 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
 
       </select>
-      {resultadoPartido.goleadores.map((e) => <p>{e.nombre}</p>)}
+      {resultadoPartido.goleadores.map((e) => <p className="text-slate-50">{e.nombre}</p>)}
       <label>Asistentes</label>
 
       <select
         value={resultadoPartido.asistentes}
-
+        multiple
         onChange={handlerAsistentes}>
+        <option ></option>
 
         {jugadores?.map(elem => {
-          return <option key={elem._id} value={elem} >{elem.nombre + " " + elem.apellido}</option>
+          return <option key={elem._id} value={elem._id} >{elem.nombre + " " + elem.apellido}</option>
 
         })}
 
@@ -166,7 +167,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
 
       </select>
-      {resultadoPartido.asistentes.map((e) => <p>{e.nombre}</p>)}
+      {resultadoPartido.asistentes.map((e) => <p className="text-slate-50">{e.nombre}</p>)}
 
 
 
