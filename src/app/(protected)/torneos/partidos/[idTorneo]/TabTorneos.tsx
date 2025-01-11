@@ -47,19 +47,37 @@ export default function TabTorneos() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'white' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Tabla de Posiciones" {...a11yProps(0)} className={styles.tabTitle}/>
-          <Tab label="Partidos del Torneo" {...a11yProps(1)} className={styles.tabTitle}/>
-          <Tab label="Goleadores y Asistentes" {...a11yProps(2)} className={styles.tabTitle}/>
+          <Tab label="Tabla de Posiciones" {...a11yProps(0)}  sx={{
+            color: '#fcf8f8',
+            background: 'rgba(25, 33, 36, 0.5)',
+            fontWeight: '700',
+            borderRadius: '1rem',
+            margiRight: '.5rem',
+          }} />
+          <Tab label="Partidos del Torneo" {...a11yProps(1)} sx={{
+            color: '#fcf8f8',
+            background: 'rgba(25, 33, 36, 0.5)',
+            fontWeight: '700',
+            borderRadius: '1rem',
+            margiRight: '.5rem',
+          }}/>
+          <Tab label="Goleadores y Asistentes" {...a11yProps(2)} sx={{
+            color: '#fcf8f8',
+            background: 'rgba(25, 33, 36, 0.5)',
+            fontWeight: '700',
+            borderRadius: '1rem',
+            margiRight: '.5rem',
+          }} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <TabTablaPosicion/>
+        <TabTablaPosicion />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-       <TabPartidos/>
+        <TabPartidos />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-       <TabGoleadoresAsistentes/>
+        <TabGoleadoresAsistentes />
       </CustomTabPanel>
     </Box>
   );

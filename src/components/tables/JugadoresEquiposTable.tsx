@@ -38,19 +38,33 @@ export default function JugadoresEquiposTable({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ maxWidth: '62%',background:'rgba(20,18,18,0.5)',borderWidth:1,color:'white', }}>
+    <TableContainer component={Paper} style={{ maxWidth: '62%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
       {/* <FiltrosMercado /> */}
-      <Table sx={{ minWidth: 490,}} aria-label="simple table">
+      <Table sx={{ minWidth: 490, }} aria-label="simple table">
         <TableHead >
-          <TableRow> 
-            <TableCell className={styles.rows}>Foto</TableCell>
-            <TableCell className={styles.rows}>Nombre</TableCell>
-            <TableCell className={styles.rows}>Posicion</TableCell>
-            <TableCell className={styles.rows}  align="right">Edad</TableCell>
-            <TableCell  className={styles.rows} align="right">Nacionalidad</TableCell>
+          <TableRow>
+            <TableCell >
+              <Typography className={styles.rows}>Foto</Typography>
+            </TableCell>
+            <TableCell >
+              <Typography className={styles.rows}>Nombre</Typography>
+            </TableCell>
+            <TableCell >
+              <Typography className={styles.rows}>Posicion</Typography>
+            </TableCell>
+            <TableCell align="right">
+              <Typography className={styles.rows}>Edad</Typography>
+            </TableCell>
+            <TableCell align="right">
+              <Typography className={styles.rows}>Nacionalidad</Typography>
+            </TableCell>
 
-            <TableCell className={styles.rows} align="right">Valor de mercado</TableCell>
-            <TableCell className={styles.rows} align="right">Oferta</TableCell>
+            <TableCell align="right">
+              <Typography className={styles.rows}>Valor de mercado</Typography>
+            </TableCell>
+            <TableCell align="right">
+              <Typography className={styles.rows}> Oferta</Typography>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody className='w-full text-center'>
@@ -67,18 +81,28 @@ export default function JugadoresEquiposTable({ rows }: Props) {
                 />
               </TableCell>
 
-              <TableCell className={styles.rows} component="th" scope="row">
+              <TableCell component="th" scope="row">
+                <Typography className={styles.rows}> {row.nombre + " " + row.apellido}</Typography>
 
-                {row.nombre + " " + row.apellido}
+
+
               </TableCell>
-              <TableCell  className={styles.rows}  align="right">{row.estadisticasGlobales?.posicion}</TableCell>
-              <TableCell  className={styles.rows}  align="right">{row.edad}</TableCell>
-              <TableCell  className={styles.rows} align="right">nacionalidad</TableCell>
-              
+              <TableCell align="right">
+                <Typography className={styles.rows}>{row.estadisticasGlobales?.posicion}</Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Typography className={styles.rows}> {row.edad}</Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Typography className={styles.rows}>nacionalidad</Typography>
+              </TableCell>
 
 
-              <TableCell  className={styles.rows} align="right">${row.estadisticasGlobales
-                ?.valor_mercado}</TableCell>
+
+              <TableCell align="right">
+                <Typography className={styles.rows}> ${row.estadisticasGlobales
+                  ?.valor_mercado}</Typography>
+              </TableCell>
               <TableCell align="right">
                 <IconButton>
                   <Tooltip title='hacer oferta'>

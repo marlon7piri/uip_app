@@ -46,12 +46,27 @@ export default function MercadoTable({ rows }: Props) {
         <TableHead >
           <TableRow>
             <TableCell className={styles.rows}>Foto</TableCell>
-            <TableCell className={styles.rows}>Nombre</TableCell>
-            <TableCell className={styles.rows} align="right">Edad</TableCell>
-            <TableCell className={styles.rows} align="right">Club</TableCell>
+            <TableCell >
+              <Typography className={styles.rows}>Nombre</Typography>
 
-            <TableCell className={styles.rows} align="right">Valor de mercado</TableCell>
-            <TableCell className={styles.rows} align="right">Oferta</TableCell>
+            </TableCell>
+            <TableCell align="right">
+              <Typography className={styles.rows}>Edad</Typography>
+
+            </TableCell>
+            <TableCell align="right">
+              <Typography className={styles.rows}>Club</Typography>
+
+            </TableCell>
+
+            <TableCell align="right">
+              <Typography className={styles.rows}>Valor de mercado</Typography>
+
+            </TableCell>
+            <TableCell align="right">
+              <Typography className={styles.rows}>Oferta</Typography>
+
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody className='w-full text-center'>
@@ -72,18 +87,18 @@ export default function MercadoTable({ rows }: Props) {
                 <Typography className={styles.rows}>{row.nombre + " " + row.apellido}</Typography>
 
               </TableCell>
-              <TableCell  align="right">
+              <TableCell align="right">
                 <Typography className={styles.rows}>{row.edad}</Typography>
 
               </TableCell>
-              <TableCell  align="right">
+              <TableCell align="right">
                 <Image src={row.club?.logo} width={50} height={50} alt={row.club?.nombre}
                   className='object-cover'
                 />
               </TableCell>
 
 
-              <TableCell  align="right">
+              <TableCell align="right">
                 <Typography className={styles.rows}>${row.estadisticasGlobales
                   ?.valor_mercado}</Typography>
               </TableCell>
