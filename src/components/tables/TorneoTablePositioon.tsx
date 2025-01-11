@@ -11,7 +11,7 @@ import styles from './styles.module.css'
 
 import { TextField, Typography } from '@mui/material';
 
-import {  Torneos } from '@/infraestrcuture/entities/torneos';
+import { Torneos } from '@/infraestrcuture/entities/torneos';
 
 interface Props {
   rows: Torneos[]
@@ -31,60 +31,117 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ width: '100%',background:'rgba(20,18,18,0.5)',borderWidth:1,color:'white', }}>
+    <TableContainer component={Paper} style={{ width: '100%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
       {/* <FiltrosMercado /> */}
-      <Table  aria-label="simple table">
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className={styles.rows}></TableCell>
-            <TableCell className={styles.rows}>Equipo</TableCell>
-            <TableCell  className={styles.rows}align="left">Partidos</TableCell>
-            <TableCell className={styles.rows} align="left">Victorias</TableCell>
-            <TableCell className={styles.rows} align="left">Empates</TableCell>
+            <TableCell>
 
-            <TableCell className={styles.rows} align="left">Derrotas</TableCell>
-            <TableCell className={styles.rows} align="left">GF</TableCell>
-            <TableCell className={styles.rows} align="left">GC</TableCell>
-            <TableCell className={styles.rows} align="left">DG</TableCell>
-            <TableCell className={styles.rows} align="left">Puntos</TableCell>
+              <Typography className={styles.rows}></Typography>
+            </TableCell>
+            <TableCell >
+              <Typography className={styles.rows}>Equipo</Typography>
+            </TableCell>
+            <TableCell align="left">
+              <Typography className={styles.rows}>Partidos</Typography>
+            </TableCell>
+            <TableCell align="left">
+              <Typography className={styles.rows}>Victorias</Typography>
+
+            </TableCell>
+            <TableCell align="left">
+              <Typography className={styles.rows}>Empates</Typography>
+
+            </TableCell>
+
+            <TableCell align="left">
+              <Typography className={styles.rows}>Derrotas</Typography>
+
+            </TableCell>
+            <TableCell align="left">
+              <Typography className={styles.rows}>GF</Typography>
+
+            </TableCell>
+            <TableCell align="left">
+              <Typography className={styles.rows}>GC</Typography>
+
+            </TableCell>
+            <TableCell align="left">
+              <Typography className={styles.rows}>DG</Typography>
+
+            </TableCell>
+            <TableCell align="left">
+              <Typography className={styles.rows}>Puntos</Typography>
+
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows?.map((row, index: number) => {
 
-            const {goles_favor,asistencias,puntos,goles_contra,partidos_jugados,partidos_ganados,partidos_empatados,partidos_perdidos} = row.estadisticasTorneo.estadisticas
+            const { goles_favor, asistencias, puntos, goles_contra, partidos_jugados, partidos_ganados, partidos_empatados, partidos_perdidos } = row.estadisticasTorneo.estadisticas
             return <TableRow
               key={row._id}
-              
+
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer'
             >
-              <TableCell className={styles.rows} align="left">{index + 1}</TableCell>
+              <TableCell align="left">
+                <Typography className={styles.rows}>{index + 1}</Typography>
+
+              </TableCell>
 
 
 
-              <TableCell  className={styles.rows} component="th" scope="row">
+              <TableCell component="th" scope="row">
                 <Typography className='flex gap-2 justify-start items-center'>
                   <Image src={row.logo} width={50} height={50} alt={row?.nombre}
                     className='object-cover'
                   />
-                  {row.nombre}
+                  <Typography className={styles.rows}>  {row.nombre}</Typography>
+
+
                 </Typography>
               </TableCell>
-              <TableCell className={styles.rows}  align="left">{partidos_jugados}</TableCell>
-              <TableCell  className={styles.rows} align="left">{partidos_ganados}</TableCell>
-              <TableCell  className={styles.rows} align="left">{partidos_empatados}</TableCell>
-              <TableCell  className={styles.rows} align="left">{partidos_perdidos}</TableCell>
-              <TableCell  className={styles.rows} align="left">{goles_favor}</TableCell>
-              <TableCell  className={styles.rows} align="left">{goles_contra}</TableCell>
-              <TableCell className={styles.rows}  align="left">{goles_favor - goles_contra}</TableCell>
-              <TableCell  className={styles.rows} align="left">{puntos}</TableCell>
+              <TableCell  align="left">
+                <Typography className={styles.rows}>{partidos_jugados}</Typography>
+
+                </TableCell>
+              <TableCell  align="left">
+                <Typography className={styles.rows}>  {partidos_ganados}</Typography>
+
+                </TableCell>
+              <TableCell  align="left">
+                <Typography className={styles.rows}> {partidos_empatados}</Typography>
+
+                </TableCell>
+              <TableCell  align="left">
+                <Typography className={styles.rows}>{partidos_perdidos}</Typography>
+
+                </TableCell>
+              <TableCell  align="left">
+                <Typography className={styles.rows}>  {goles_favor}</Typography>
+
+               </TableCell>
+              <TableCell  align="left">
+                <Typography className={styles.rows}>{goles_contra}</Typography>
+
+                </TableCell>
+              <TableCell  align="left">
+                <Typography className={styles.rows}> {goles_favor - goles_contra}</Typography>
+
+               </TableCell>
+              <TableCell  align="left">
+                <Typography className={styles.rows}>  {puntos}</Typography>
+
+              </TableCell>
 
 
 
 
             </TableRow>
-})}
+          })}
         </TableBody>
       </Table>
     </TableContainer>

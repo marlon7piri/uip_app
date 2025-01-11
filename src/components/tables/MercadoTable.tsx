@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import { Jugadores } from '@/infraestrcuture/entities/jugadores';
 import Image from 'next/image';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import { IconButton, TextField, Tooltip } from '@mui/material';
+import { IconButton, TextField, Tooltip, Typography } from '@mui/material';
 import { useJugador } from '../hooks/useJugador';
 import { JugadorStore } from '@/utils/zustand/jugador';
 import Link from 'next/link';
@@ -40,9 +40,9 @@ export default function MercadoTable({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ maxWidth: '60%',background:'rgba(20,18,18,0.5)',borderWidth:1,color:'white', }}>
+    <TableContainer component={Paper} style={{ maxWidth: '60%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
       {/* <FiltrosMercado /> */}
-      <Table sx={{ minWidth: 490,}} aria-label="simple table">
+      <Table sx={{ minWidth: 490, }} aria-label="simple table">
         <TableHead >
           <TableRow>
             <TableCell className={styles.rows}>Foto</TableCell>
@@ -68,20 +68,25 @@ export default function MercadoTable({ rows }: Props) {
                 />
               </TableCell>
 
-              <TableCell className={styles.rows} component="th" scope="row">
+              <TableCell component="th" scope="row">
+                <Typography className={styles.rows}>{row.nombre + " " + row.apellido}</Typography>
 
-                {row.nombre + " " + row.apellido}
               </TableCell>
-              <TableCell  className={styles.rows}  align="right">{row.edad}</TableCell>
-              <TableCell  className={styles.rows} align="right">
+              <TableCell  align="right">
+                <Typography className={styles.rows}>{row.edad}</Typography>
+
+              </TableCell>
+              <TableCell  align="right">
                 <Image src={row.club?.logo} width={50} height={50} alt={row.club?.nombre}
                   className='object-cover'
                 />
               </TableCell>
 
 
-              <TableCell  className={styles.rows} align="right">${row.estadisticasGlobales
-                ?.valor_mercado}</TableCell>
+              <TableCell  align="right">
+                <Typography className={styles.rows}>${row.estadisticasGlobales
+                  ?.valor_mercado}</Typography>
+              </TableCell>
               <TableCell align="right">
                 <IconButton>
                   <Tooltip title='hacer oferta'>
