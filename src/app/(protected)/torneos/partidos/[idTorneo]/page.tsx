@@ -28,42 +28,45 @@ const PartidosByTorneos = () => {
     const [openModal, setOpenModal] = useState(false)
     const { jugadores } = useJugador()
 
+
     const [partidosByTorneos, setPartidosByTorneos] = useState<Partidos[]>([])
     const [equiposParticipantes, setEquiposParticipantes] = useState<Torneos[]>([])
     const [goleadores, setGoleadores] = useState([])
     const [asistentes, setAsistentes] = useState([])
+      const [loading, setLoading] = React.useState(false);
+    
 
 
     useEffect(() => {
-
+        const getPartidosByTorneo = async () => {
+            const session = await getSession()
+            const res = await UseCases.getPartidosByTorneosUseCases(fetcherDb, params.idTorneo, session?.token);
+            setPartidosByTorneos(res);
+        };
+    
+        
+    
+        const getEquiposRegistrados = async () => {
+            const session = await getSession()
+    
+            const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
+    
+            setEquiposParticipantes(res.torneo_especifico);
+    
+            const goleadoresSorted = res.torneo?.goleadores.sort((a, b) => b.cantidad - a.cantidad)
+            const asistentesSorted = res.torneo?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
+            setGoleadores(goleadoresSorted);
+            setAsistentes(asistentesSorted);
+        };
         getPartidosByTorneo()
         getEquiposRegistrados()
     }, [params.idTorneo])
 
 
-    const getPartidosByTorneo = async () => {
-        const session = await getSession()
-        const res = await UseCases.getPartidosByTorneosUseCases(fetcherDb, params.idTorneo, session?.token);
-        setPartidosByTorneos(res);
-    };
-
+    
     const handlerModal = () => {
         setOpenModal(!openModal)
     }
-
-    const getEquiposRegistrados = async () => {
-        const session = await getSession()
-
-        const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
-
-        setEquiposParticipantes(res.torneo_especifico);
-
-        const goleadoresSorted = res.torneo?.goleadores.sort((a, b) => b.cantidad - a.cantidad)
-        const asistentesSorted = res.torneo?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
-        setGoleadores(goleadoresSorted);
-        setAsistentes(asistentesSorted);
-    };
-
     return (
         <div className={styles.container}>
             <ContenedorCustom >
@@ -71,7 +74,7 @@ const PartidosByTorneos = () => {
                     <BreadCrum titulo='' url={`/torneos/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
                     <button onClick={handlerModal} className='btn_link'>Nuevo partido</button>
                 </div>
-                <TabTorneos />
+                <TabTorneos partidosByTorneos={partidosByTorneos}  loading={loading}/>
 
                 <Modal open={openModal} onClose={handlerModal}>
                     <div className='w-max h-max m-auto translate-y-52 bg-slate-700 p-4 rounded-md '>

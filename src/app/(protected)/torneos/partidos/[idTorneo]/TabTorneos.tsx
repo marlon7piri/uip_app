@@ -6,6 +6,12 @@ import TabPartidos from './TabPartidos';
 import TabTablaPosicion from './TabTablaPosicion';
 import TabGoleadoresAsistentes from './TabGoleadoresAsistentes';
 import styles from './styles.module.css'
+import { getSession } from '@/actions/get-session';
+import * as UseCases from '@/config/core/use-cases';
+import { fetcherDb } from '@/config/adapters/apiDbAdapter';
+import { Partidos } from '@/infraestrcuture/entities/partidos';
+import { useParams } from 'next/navigation';
+
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -36,13 +42,13 @@ function a11yProps(index: number) {
   };
 }
 
-export default function TabTorneos() {
+export default function TabTorneos({partidosByTorneos,loading}:{partidosByTorneos:any,loading:boolean}) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
+  
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'white' }}>
@@ -74,7 +80,7 @@ export default function TabTorneos() {
         <TabTablaPosicion />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <TabPartidos />
+        <TabPartidos partidosByTorneos={partidosByTorneos} loading={loading}/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <TabGoleadoresAsistentes />

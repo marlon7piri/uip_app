@@ -47,7 +47,7 @@ export default function TorneoTableGoleadores({ rows }: Props) {
               <Typography className={styles.rows}>Nombre</Typography>
             </TableCell>
             <TableCell align="right">
-              <Typography className={styles.rows}>Goles</Typography>
+              <Typography className={styles.rows}>Cantidad</Typography>
 
             </TableCell>
 
@@ -61,17 +61,24 @@ export default function TorneoTableGoleadores({ rows }: Props) {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-200 cursor-pointer'
             >
-              <TableCell align="right" className={styles.rows}>{index + 1}</TableCell>
+              <TableCell align="right" >
+              <Typography className={styles.rows}>{index + 1}</Typography>
+                </TableCell>
 
               <TableCell align="center" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', gap: 1 }}>
-                <Image src={row.jugador?.foto} width={50} height={50} alt='una imagen del jugador'
+                <Image src={row?.jugador?.foto} width={50} height={50} alt='una imagen del jugador'
                   className='rounded-full'
                 />
-                {row.jugador?.nombre + " " + row.jugador?.apellido}
+              <Typography className={styles.rows}>{row.jugador?.nombre + " " + row.jugador?.apellido}</Typography>
+
+                
               </TableCell>
 
 
-              <TableCell align="right" className={styles.rows}>{row?.cantidad}</TableCell>
+              <TableCell align="right" >
+              <Typography className={styles.rows}>{row?.cantidad}</Typography>
+                
+                </TableCell>
 
             </TableRow>
           ))}
