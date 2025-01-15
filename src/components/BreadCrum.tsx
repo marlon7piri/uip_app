@@ -34,7 +34,7 @@ const BreadCrum = ({ titulo, url,labelBtn ='Nuevo',isLink =true,onClick}: Props)
   }
 
   return (
-    <div className='flex justify-between items-center p-4'>
+    <div className='container_breadcrum'>
       <Title content={titulo} size='text-6xl' />
       {session?.rol === 'admin' && renderItem()}
     </div>

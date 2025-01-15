@@ -27,6 +27,12 @@ export interface Jugador {
   edad: number;
   estatura: number;
   foto: string;
-  club: string;
+  club: Club;
   __v: number;
+}
+
+
+interface Club{
+  logo:string;
+  nombre:string
 }

@@ -25,7 +25,7 @@ const ContainerTorneos = ({ torneos }: Props) => {
 
       <BreadCrum titulo='Torneos' url='/torneos/nuevo' labelBtn='Crear Torneo' />
 
-      <div className='w-full h-full flex justify-center items-center gap-6'>
+      <div className='w-full h-full flex  flex-wrap justify-center items-center gap-6'>
         {torneos?.map((e) => {
           return <CardTorneos torneo={e} key={e?._id} />
         })}

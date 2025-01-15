@@ -37,18 +37,22 @@ function a11yProps(index: number) {
   };
 }
 
-export default function TabTorneos({partidosByTorneos,loading}:{partidosByTorneos:any,loading:boolean}) {
+export default function TabTorneos({ partidosByTorneos, loading }: { partidosByTorneos: any, loading: boolean }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  
+
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'white',paddingBottom:1 }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Tabla de Posiciones" {...a11yProps(0)}  sx={{
+      <Box sx={{ borderBottom: 1, borderColor: 'white', paddingBottom: 1 }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' }, // Cambia la dirección según el tamaño de pantalla
+          gap: { xs: 1, sm: 0 }, // Añade espacio entre elementos en pantallas pequeñas
+        }}>
+          <Tab label="Tabla de Posiciones" {...a11yProps(0)} sx={{
             color: '#fcf8f8',
             background: 'rgba(25, 33, 36, 0.5)',
             fontWeight: '700',
@@ -61,7 +65,7 @@ export default function TabTorneos({partidosByTorneos,loading}:{partidosByTorneo
             fontWeight: '700',
             borderRadius: '1rem',
             marginRight: '.5rem',
-          }}/>
+          }} />
           <Tab label="Goleadores y Asistentes" {...a11yProps(2)} sx={{
             color: '#fcf8f8',
             background: 'rgba(25, 33, 36, 0.5)',
@@ -75,7 +79,7 @@ export default function TabTorneos({partidosByTorneos,loading}:{partidosByTorneo
         <TabTablaPosicion />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <TabPartidos partidosByTorneos={partidosByTorneos} loading={loading}/>
+        <TabPartidos partidosByTorneos={partidosByTorneos} loading={loading} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <TabGoleadoresAsistentes />

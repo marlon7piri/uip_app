@@ -24,16 +24,16 @@ const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
 
 
   return (
-    <div className='w-[90%] h-[450px] rounded-2xl shadow-2xl shadow-slate-700 p-4 bg-[rgba(20,18,18,0.5)] text-slate-50 animated-gradient-border overflow-hidden'>
+    <div className='w-[90%]  rounded-2xl shadow-2xl shadow-slate-700 p-4 bg-[rgba(20,18,18,0.5)] text-slate-50 animated-gradient-border overflow-hidden'>
 
-      <div className='flex justify-between'>
-        <div className='flex flex-col items-center  w-[60%] h-full '>
-          <h2 className='text-3xl'>
+      <div className='container_card'>
+        <div className='flex flex-col items-center  w-[100%] h-full '>
+          <h2 className='text-3xl text-center'>
 
             {jugador?.nombre + " " + jugador?.apellido}
           </h2>
 
-          <Image src={jugador ? jugador?.foto : ''} width={500} height={600} alt='imagen de un futbolista'
+          <Image src={jugador ? jugador?.foto : ''} width={400} height={400} alt='imagen de un futbolista'
             className='object-cover mask-gradient'
           />
 
@@ -41,13 +41,15 @@ const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
 
 
 
-        <div className='w-[40%] p-2 '>
+        <div className='w-[100%] p-2 '>
 
 
+          <div className=' flex justify-start items-center'>
+            <Image src={jugador ? jugador?.club?.logo : ''} width={130} height={130} alt='imagen de un futbolista'
+              className='object-cover mb-8 '
+            />
+          </div>
 
-          <Image src={jugador ? jugador?.club?.logo : ''} width={130} height={130} alt='imagen de un futbolista'
-            className='object-cover mb-8'
-          />
 
 
 

@@ -4,7 +4,7 @@
     height: 100%;
     min-height: 100vh;
     overflow: hidden;
-   
+
 
 
 }
@@ -13,7 +13,7 @@
 
     width: 320px;
     height: 320px;
-    
+
     color: white;
     padding: 1rem;
     cursor: pointer;
@@ -38,6 +38,14 @@
     font-size: 1rem;
 }
 
+
+.tabContainer {
+    border-bottom: 1px;
+    border-color: white;
+    padding-bottom: 1px;
+    
+}
+
 .tabTitle {
     color: #fcf8f8;
     background-color: rgba(25, 33, 36, 0.5);
@@ -51,4 +59,15 @@
     color: #fcf8f8;
 
 
+}
+
+@media (width<600px){
+    .tabContainer {
+        display: flex;
+        flex-direction: column;
+       
+       
+        
+    }
+    
 }
