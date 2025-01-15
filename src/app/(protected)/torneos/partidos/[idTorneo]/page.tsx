@@ -69,7 +69,8 @@ const PartidosByTorneos = () => {
             <ContenedorCustom >
                 <div className='flex gap-2 justify-end items-center'>
                     <BreadCrum titulo='' url={`/torneos/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
-                    <button onClick={handlerModal} className='btn_link'>Nuevo partido</button>
+                    <BreadCrum titulo='' isLink={false} onClick={handlerModal} labelBtn='Nuevo Partido' />
+
                 </div>
                 <TabTorneos partidosByTorneos={partidosByTorneos}  loading={loading}/>
 

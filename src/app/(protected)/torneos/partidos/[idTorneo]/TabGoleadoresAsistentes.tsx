@@ -10,7 +10,7 @@ import Spinner from '@/components/Spinner'
 
 
 const TabGoleadoresAsistentes = () => {
- const params = useParams() 
+    const params = useParams()
 
 
 
@@ -28,22 +28,22 @@ const TabGoleadoresAsistentes = () => {
 
 
 
-    const getEquiposRegistrados =  async() => {
+    const getEquiposRegistrados = async () => {
         const session = await getSession()
         try {
             setLoading(true)
 
-           
 
-            const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo); 
+
+            const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
 
 
             const goleadoresSorted = res.torneo?.goleadores.sort((a, b) => b.cantidad - a.cantidad)
             const asistentesSorted = res.torneo?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
             setGoleadores(goleadoresSorted);
             setAsistentes(asistentesSorted);
-           
 
+            setLoading(false)
         } catch (error) {
             throw new Error('Error fetching los goleadores y asistentes')
         }
@@ -52,12 +52,12 @@ const TabGoleadoresAsistentes = () => {
     };
 
 
-   
+
     return (
         <div className='w-full flex gap-2'>
 
 
-          {loading ? <Spinner/>:  <div className='w-full flex justify-between items-center gap-4'>
+            {loading ? <Spinner /> : <div className='w-full flex justify-between items-center gap-4'>
                 <div>
                     <Title content='Goleadores' size='text-2xl' color='text-slate-50' />
                     <TorneoTableGoleadores rows={goleadores} />
@@ -71,7 +71,7 @@ const TabGoleadoresAsistentes = () => {
 
 
             </div>}
-          
+
 
 
         </div>

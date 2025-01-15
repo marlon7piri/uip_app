@@ -11,6 +11,7 @@ import Image from 'next/image';
 import { TextField, Typography } from '@mui/material';
 import { useJugador } from '../hooks/useJugador';
 import styles from './styles.module.css'
+import { useRouter } from 'next/navigation';
 
 
 interface Props {
@@ -26,18 +27,15 @@ const FiltrosMercado = () => {
 
 
 export default function TorneoTableGoleadores({ rows }: Props) {
-  const { handlerPlayer } = useJugador()
 
 
-  const handlerClickPlayer = (e: string) => {
-    handlerPlayer(e)
-  }
+  const router = useRouter()
 
 
 
 
   return (
-    <TableContainer component={Paper} style={{ width: '100%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white' }}>
+    <TableContainer component={Paper} style={{ width: '100%',minHeight:'100vh', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white' }}>
       {/* <FiltrosMercado /> */}
       <Table aria-label="simple table">
         <TableHead>
@@ -57,9 +55,9 @@ export default function TorneoTableGoleadores({ rows }: Props) {
           {rows?.map((row, index) => (
             <TableRow
               key={row._id}
-              onClick={() => handlerClickPlayer(row._id)}
+              onClick={()=>router.push(`/jugadores/${row._id}`)}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              className='hover:bg-slate-200 cursor-pointer'
+              className='hover:bg-slate-900 cursor-pointer'
             >
               <TableCell align="right" >
               <Typography className={styles.rows}>{index + 1}</Typography>

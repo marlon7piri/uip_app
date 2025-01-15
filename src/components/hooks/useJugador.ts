@@ -60,14 +60,11 @@ export const useJugador = () => {
     setLoading(true);
     const res = await UseCases.getJugadoresUseCases(fetcherDb, session?.token);
 
-    console.log(res)
     setJugadores(res);
     loadJugadores(res);
+    setLoading(false);
     } catch (error) {
       
-    }finally{
-      setLoading(false);
-
     }
   };
 

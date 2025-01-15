@@ -3,7 +3,7 @@
     width: 55px;
     height: 65px;
     aspect-ratio: .75;
-    --c: no-repeat linear-gradient(#000 0 0);
+    --c: no-repeat linear-gradient(#fcf5f5 0 0);
     background: 
       var(--c) 0%   50%,
       var(--c) 50%  50%,

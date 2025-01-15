@@ -9,11 +9,12 @@ import Paper from '@mui/material/Paper';
 import { Jugadores } from '@/infraestrcuture/entities/jugadores';
 import Image from 'next/image';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import { IconButton, TextField, Tooltip, Typography } from '@mui/material';
+import { CircularProgress, IconButton, TextField, Tooltip, Typography } from '@mui/material';
 import { useJugador } from '../hooks/useJugador';
 import { JugadorStore } from '@/utils/zustand/jugador';
 import Link from 'next/link';
 import styles from './styles.module.css'
+import Spinner from '../Spinner';
 
 
 interface Props {
@@ -22,7 +23,7 @@ interface Props {
 
 
 export default function MercadoTable({ rows }: Props) {
-  const { handlerPlayer } = useJugador()
+
 
 
   
@@ -35,8 +36,8 @@ export default function MercadoTable({ rows }: Props) {
         <TableHead >
           <TableRow>
             <TableCell >
-              
-            <Typography className={styles.rows}>Foto</Typography></TableCell>
+
+              <Typography className={styles.rows}>Foto</Typography></TableCell>
             <TableCell >
               <Typography className={styles.rows}>Nombre</Typography>
 
@@ -65,10 +66,10 @@ export default function MercadoTable({ rows }: Props) {
           </TableRow>
         </TableHead>
         <TableBody className='w-full text-center'>
-          {rows.map((row) => (
+          { rows?.map((row) => (
             <TableRow
               key={row._id}
-              
+
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer transition duration-300'
             >
@@ -114,7 +115,7 @@ export default function MercadoTable({ rows }: Props) {
                 <IconButton>
                   <Tooltip title='Ver detalles'>
                     <Link href={`/jugadores/${row?._id}`} className={styles.rows}>
-                     <Typography>Ver</Typography>
+                      <Typography>Ver</Typography>
 
                     </Link>
 

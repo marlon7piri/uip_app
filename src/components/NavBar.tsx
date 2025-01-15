@@ -14,7 +14,7 @@ const NavBar = () => {
 
 
   return (
-    <ul className='flex gap-4 justify-between items-center text-2xl p-2 bg-slate-900 shadow-inner shadow-slate-50'>
+    <ul className='w-screen flex gap-4 justify-between items-center text-2xl p-2 bg-slate-900 shadow-inner shadow-slate-50'>
       <div className='flex gap-2 justify-center items-center'>
         <Image src={require('../../public/imagenes/logouipApp.png')} alt='logo' width={60} height={40} className='object-cover' />
         <span className='text-sky-50'>Bienvenid@ {session?.user?.name}</span>
