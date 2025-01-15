@@ -55,9 +55,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
             <TableCell align="right">
               <Typography className={styles.rows}>Edad</Typography>
             </TableCell>
-            <TableCell align="right">
-              <Typography className={styles.rows}>Nacionalidad</Typography>
-            </TableCell>
+           
 
             <TableCell align="right">
               <Typography className={styles.rows}>Valor de mercado</Typography>
@@ -93,9 +91,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
               <TableCell align="right">
                 <Typography className={styles.rows}> {row.edad}</Typography>
               </TableCell>
-              <TableCell align="right">
-                <Typography className={styles.rows}>nacionalidad</Typography>
-              </TableCell>
+             
 
 
 

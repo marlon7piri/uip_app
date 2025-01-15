@@ -22,7 +22,6 @@ const Equipos = async () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.background_layer} /> {/* La capa de fondo */}
       <ContainerEquipos equipos={equipos} />
     </div>
   );

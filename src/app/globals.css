@@ -16,6 +16,5 @@
 
 body {
   color: var(--foreground);
-  background-image: linear-gradient(2deg, #111434, #204259, #277480, #25aaaa);
-  background-repeat: no-repeat; 
+  background-image: linear-gradient(to right, #0572ee 0%, #304352 70%);
 }

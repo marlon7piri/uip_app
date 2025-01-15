@@ -25,7 +25,6 @@ const EquipoInfo = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.background_layer} />
 
       {equipoDelJugador && <HeaderEquipoInfo equipo={equipoDelJugador} />}
       <Title content='Jugadores' size='text-3xl' />
