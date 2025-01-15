@@ -37,6 +37,10 @@ export default function JugadoresEquiposTable({ rows }: Props) {
 
 
 
+  if(rows.length== 0){
+    return <Typography className='text-slate-50 font-bold text-xl'>Este equipo no tiene jugadores aún</Typography>
+  }
+
   return (
     <TableContainer component={Paper} style={{ maxWidth: '62%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
       {/* <FiltrosMercado /> */}
@@ -66,7 +70,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
           </TableRow>
         </TableHead>
         <TableBody className='w-full text-center'>
-          {rows.map((row) => (
+          { rows.map((row) => (
             <TableRow
               key={row._id}
               onClick={() => handlerClickPlayer(row._id)}
