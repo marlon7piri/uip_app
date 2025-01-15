@@ -2,11 +2,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import MyApp from "./page";
-import { auth } from "@/auth"
-import { SessionProvider } from "next-auth/react";
-import NavBar from "@/components/NavBar";
-import { Toaster } from "react-hot-toast";
 import AuthWrapper from "./AuthWraper";
 
 
@@ -32,18 +27,20 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-
-  const session = await auth()
+ 
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthWrapper>
-       {children}
+          {children}
 
-       </AuthWrapper>
+        </AuthWrapper>
+        
+        
       </body>
+
     </html>
   );
 }

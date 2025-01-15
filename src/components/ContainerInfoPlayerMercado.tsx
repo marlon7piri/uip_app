@@ -28,10 +28,10 @@ const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
 
       <div className='flex justify-between'>
         <div className='flex flex-col items-center  w-[60%] h-full '>
-          <Typography>
+          <h2 className='text-3xl'>
 
             {jugador?.nombre + " " + jugador?.apellido}
-          </Typography>
+          </h2>
 
           <Image src={jugador ? jugador?.foto : ''} width={500} height={600} alt='imagen de un futbolista'
             className='object-cover mask-gradient'

@@ -15,11 +15,13 @@ interface Props {
 export default function FormResultadoPartidos({ jugadores }: Props) {
 
 
-  const { resultadoPartido, setResultadoPartido, getEquiposPorPartido, evaluarPartido } = usePartidos()
+  const { resultadoPartido, setResultadoPartido, getEquiposPorPartido, evaluarPartido, loading } = usePartidos()
   const search = useSearchParams()
 
   const local = search.get('idLocal')
   const visitante = search.get('idVisitante')
+  const nombreLocal = search.get('nombreLocal')
+  const nombreVisitante = search.get('nombreVisitante')
 
 
   const handleSubmit = async (e) => {
@@ -94,7 +96,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
       </select>
 
 
-      <label>Goles Local</label>
+      <label>Goles del {nombreLocal}</label>
 
       <input
         type="number"
@@ -103,7 +105,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
         onChange={(e) => setResultadoPartido({ ...resultadoPartido, goles_local: parseInt(e.target.value) })} />
 
 
-      <label>Goles Visitante</label>
+      <label>Goles del {nombreVisitante}</label>
 
       <input
         type="number"
@@ -112,7 +114,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
         onChange={(e) => setResultadoPartido({ ...resultadoPartido, goles_visitante: parseInt(e.target.value) })} />
 
 
-      <label>Asistencias Local</label>
+      <label>Asistencias del {nombreLocal}</label>
 
       <input
         type="number"
@@ -121,7 +123,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
         onChange={(e) => setResultadoPartido({ ...resultadoPartido, asistencias_local: parseInt(e.target.value) })} />
 
 
-      <label>Asistencias Visitante</label>
+      <label>Asistencias del {nombreVisitante}</label>
 
       <input
         type="number"
@@ -135,7 +137,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
       <select
         value={resultadoPartido.goleadores}
-        
+
         onChange={handlerGoleadores}>
         <option ></option>
         {jugadores?.map(elem => {
@@ -153,7 +155,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
       <select
         value={resultadoPartido.asistentes}
-        
+
         onChange={handlerAsistentes}>
         <option ></option>
 
@@ -175,7 +177,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
       <button
         type="submit"
       >
-        Crear
+        {loading ? 'Cargando...' : 'Evaluar Partido'}
       </button>
 
 

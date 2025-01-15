@@ -10,7 +10,8 @@ export default function Login() {
   return (
     <main className={styles.containerLogin}>
       <FormLogin />
-      <Image src={require('../../../../public/imagenes/logouipApp.png')} alt='logo' width={400} height={580} className='object-cover' />
+      <div className={styles.image}/>
+      
 
 
     </main>

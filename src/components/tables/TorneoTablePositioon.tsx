@@ -12,6 +12,7 @@ import styles from './styles.module.css'
 import { TextField, Typography } from '@mui/material';
 
 import { Torneos } from '@/infraestrcuture/entities/torneos';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   rows: Torneos[]
@@ -27,7 +28,7 @@ const FiltrosMercado = () => {
 
 export default function TorneoTablePositioon({ rows }: Props) {
 
-
+const router = useRouter()
 
 
   return (
@@ -83,7 +84,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
             const { goles_favor, asistencias, puntos, goles_contra, partidos_jugados, partidos_ganados, partidos_empatados, partidos_perdidos } = row.estadisticasTorneo.estadisticas
             return <TableRow
               key={row._id}
-
+              onClick={()=>router.push(`/equipos/${row._id}`)}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer'
             >

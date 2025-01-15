@@ -1,6 +1,6 @@
 import React from 'react'
-import { signIn, useSession } from "next-auth/react";
-import Image from "next/image";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import './formlogin.css'
@@ -20,12 +20,21 @@ export const FormRegister = () => {
     });
 
     const [loginInProgress, setLoginInProgress] = useState(false);
+    const [showPassword, setShowPassword] = useState(false)
+
     const [error, setError] = useState("");
     const router = useRouter();
 
     async function handleFormSubmit(ev) {
 
+       
+
         ev.preventDefault();
+
+        if(!user.clasificacion){
+            alert("Debe seleccionar una categoria")
+            return
+        }
 
         setLoginInProgress(true);
 
@@ -45,12 +54,17 @@ export const FormRegister = () => {
 
 
     }
+
+    const handlerShowPassword = () => {
+        setShowPassword(!showPassword)
+    }
+
     return (
 
 
         <div className="p-4">
             <h1 className="text-center text-primary text-4xl mb-4 text-slate-50 font-bold">
-                Register
+                Registro
             </h1>
             <form
                 onSubmit={handleFormSubmit}
@@ -66,15 +80,23 @@ export const FormRegister = () => {
                     disabled={loginInProgress}
                     onChange={(ev) => setUser({ ...user, nameUser: ev.target.value })}
                 />
+                <div className='relative w-full'>
 
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Contraseña"
-                    value={user.password}
-                    disabled={loginInProgress}
-                    onChange={(ev) => setUser({ ...user, password: ev.target.value })}
-                />
+                    <input
+                        type={!showPassword ? "password" : "text"}
+                        name="password"
+                        placeholder="Contraseña"
+                        className='w-full'
+                        value={user.password}
+                        disabled={loginInProgress}
+                        onChange={(ev) => setUser({ ...user, password: ev.target.value })}
+                    />
+
+                    {showPassword
+                        ? <RemoveRedEyeIcon onClick={handlerShowPassword} className='text-slate-900 absolute right-4 top-4 hover:text-sky-900 cursor-pointer' />
+                        : <VisibilityOffIcon onClick={handlerShowPassword} className='text-slate-900 absolute right-4 top-4 hover:text-sky-900 cursor-pointer' />}
+                </div>
+
 
                 <input
                     type="email"
@@ -90,7 +112,8 @@ export const FormRegister = () => {
                     </span>
                 )}
                 <label htmlFor="" className='text-slate-50'>Categoria</label>
-                <select name="" id="" onChange={(ev) => setUser({ ...user, clasificacion: ev.target.value })} value={user.clasificacion} className='p-2 rounded-md'>
+                <select name="" id=""  onChange={(ev) => setUser({ ...user, clasificacion: ev.target.value })} value={user.clasificacion} className='p-2 rounded-md'>
+                    <option value=""></option>
                     <option value="jugador">jugador</option>
                     <option value="entrenador">entrenador</option>
                 </select>
@@ -98,9 +121,9 @@ export const FormRegister = () => {
                     disabled={loginInProgress}
                     type="submit"
                 >
-                    {loginInProgress ? "loading..." : "Register"}
+                    {loginInProgress ? "loading..." : "Registrarse"}
                 </button>
-                <Link href={'/auth/login'} className=" p-2 text-slate-50 text-center">
+                <Link href={'/auth/login'} className=" p-2 text-slate-50 text-center hover:text-sky-500">
                     Login
                 </Link>
             </form>

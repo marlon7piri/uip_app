@@ -13,7 +13,7 @@ const CardPartidosByTorneo = ({ partido }: Props) => {
   const isFinalizado = partido.estado === "finalizado";
 
   const renderCardContent = () => (
-    <div className={styles.cardPartidos}>
+    <div  className={`${styles.cardPartidos} ${partido?.estado == 'pendiente' ? 'bg-sky-700' : 'bg-[#140e0e85]'}`}>
       <div className="flex gap-4 justify-center items-center">
         <div className="flex flex-col justify-center items-center">
           <h3 className={styles.textTitle}>{partido?.local?.nombre}</h3>
@@ -62,7 +62,7 @@ const CardPartidosByTorneo = ({ partido }: Props) => {
     renderCardContent()
   ) : (
     <Link
-      href={`/torneos/partidos/edit?idTorneo=${partido.torneo_id._id}&idPartido=${partido._id}&idLocal=${partido.local._id}&idVisitante=${partido.visitante._id}`}
+      href={`/torneos/partidos/edit?idTorneo=${partido.torneo_id._id}&idPartido=${partido._id}&idLocal=${partido.local._id}&nombreLocal=${partido?.local?.nombre}&idVisitante=${partido.visitante._id}&nombreVisitante=${partido?.visitante?.nombre}`}
     >
       {renderCardContent()}
     </Link>

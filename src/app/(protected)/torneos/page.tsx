@@ -2,6 +2,9 @@
 import ContainerTorneos from '@/components/ContainerTorneos'
 import styles from './home.module.css'
 import { useTorneos } from '@/components/hooks/useTorneos';
+import Spinner from '@/components/Spinner';
+
+
 
 
 
@@ -13,8 +16,14 @@ import { useTorneos } from '@/components/hooks/useTorneos';
 
 const Torneos = () => {
 
-   const { torneos } = useTorneos() 
-  
+  const { torneos } = useTorneos()
+
+
+  if (!torneos) {
+    return <Spinner />
+  }
+
+
   return (
 
     <div className={styles.container}>

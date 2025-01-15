@@ -9,7 +9,6 @@ import Paper from '@mui/material/Paper';
 import { Jugadores } from '@/infraestrcuture/entities/jugadores';
 import Image from 'next/image';
 import { TextField, Typography } from '@mui/material';
-import { useJugador } from '../hooks/useJugador';
 import styles from './styles.module.css'
 import { useRouter } from 'next/navigation';
 
@@ -17,13 +16,7 @@ import { useRouter } from 'next/navigation';
 interface Props {
   rows: Jugadores[]
 }
-const FiltrosMercado = () => {
-  return (
-    <div className='p-2'>
-      <TextField type="text" placeholder='nombre' />
-    </div>
-  )
-}
+
 
 
 export default function TorneoTableGoleadores({ rows }: Props) {
@@ -36,7 +29,7 @@ export default function TorneoTableGoleadores({ rows }: Props) {
 
   return (
     <TableContainer component={Paper} style={{ width: '100%',minHeight:'100vh', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white' }}>
-      {/* <FiltrosMercado /> */}
+     
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -55,7 +48,7 @@ export default function TorneoTableGoleadores({ rows }: Props) {
           {rows?.map((row, index) => (
             <TableRow
               key={row._id}
-              onClick={()=>router.push(`/jugadores/${row._id}`)}
+              onClick={()=>router.push(`/jugadores/${row.jugador?._id}`)}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer'
             >

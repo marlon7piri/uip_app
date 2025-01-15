@@ -15,6 +15,7 @@ import { JugadorStore } from '@/utils/zustand/jugador';
 import Link from 'next/link';
 import styles from './styles.module.css'
 import Spinner from '../Spinner';
+import { useRouter } from 'next/navigation';
 
 
 interface Props {
@@ -24,6 +25,7 @@ interface Props {
 
 export default function MercadoTable({ rows }: Props) {
 
+  const router = useRouter()
 
 
   
@@ -59,17 +61,14 @@ export default function MercadoTable({ rows }: Props) {
               <Typography className={styles.rows}>Oferta</Typography>
 
             </TableCell>
-            <TableCell align="right">
-              <Typography className={styles.rows}>Ver</Typography>
-
-            </TableCell>
+            
           </TableRow>
         </TableHead>
         <TableBody className='w-full text-center'>
           { rows?.map((row) => (
             <TableRow
               key={row._id}
-
+              onClick={()=>router.push(`/jugadores/${row._id}`)}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer transition duration-300'
             >
@@ -111,19 +110,7 @@ export default function MercadoTable({ rows }: Props) {
                 </IconButton>
 
               </TableCell>
-              <TableCell align="right">
-                <IconButton>
-                  <Tooltip title='Ver detalles'>
-                    <Link href={`/jugadores/${row?._id}`} className={styles.rows}>
-                      <Typography>Ver</Typography>
-
-                    </Link>
-
-
-                  </Tooltip>
-                </IconButton>
-
-              </TableCell>
+             
             </TableRow>
           ))}
         </TableBody>

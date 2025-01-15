@@ -14,21 +14,17 @@ import { IconButton, TextField, Tooltip, Typography } from '@mui/material';
 import { useJugador } from '../hooks/useJugador';
 import Link from 'next/link';
 import styles from './styles.module.css'
+import { useRouter } from 'next/navigation';
 
 interface Props {
   rows: Jugadores[]
 }
-const FiltrosMercado = () => {
-  return (
-    <div className='p-2'>
-      <TextField type="text" placeholder='nombre' />
-    </div>
-  )
-}
+
 
 
 export default function JugadoresEquiposTable({ rows }: Props) {
   const { handlerPlayer } = useJugador()
+  const router = useRouter()
 
 
   const handlerClickPlayer = (e: string) => {
@@ -43,7 +39,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
 
   return (
     <TableContainer component={Paper} style={{ maxWidth: '62%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
-      {/* <FiltrosMercado /> */}
+    
       <Table sx={{ minWidth: 490, }} aria-label="simple table">
         <TableHead >
           <TableRow>
@@ -73,7 +69,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
           { rows.map((row) => (
             <TableRow
               key={row._id}
-              onClick={() => handlerClickPlayer(row._id)}
+              onClick={()=>router.push(`/jugadores/${row._id}`)}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer transition duration-300'
             >

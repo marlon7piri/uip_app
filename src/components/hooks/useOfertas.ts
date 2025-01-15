@@ -3,9 +3,9 @@ import * as UseCases from "../../config/core/use-cases";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Ofertas } from "@/infraestrcuture/entities/ofertas";
+import { getSession } from "@/actions/get-session";
 
 export const useOfertas = () => {
-  const { data: session } = useSession();
   const [ofertas, setOfertas] = useState<Ofertas[]>([]);
 
   useEffect(() => {
@@ -13,6 +13,7 @@ export const useOfertas = () => {
   }, []);
 
   const getOfertas = async () => {
+    const session = await getSession()
     const res = await UseCases.getOfertasUseCases(fetcherDb, session?.token);
     setOfertas(res);
   };

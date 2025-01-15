@@ -70,6 +70,7 @@ export const usePartidos = () => {
   const [partido, setPartido] = useState<TypePartido>(initialPartido);
   const [equiposByPartido, setEquiposByPartido] = useState([])
   const [resultadoPartido, setResultadoPartido] = useState<TypeResultado>(initialResultado);
+  const [loading,setLoading]=useState(false)
   
 
 
@@ -116,7 +117,7 @@ export const usePartidos = () => {
   const evaluarPartido = async () => {
 
     const session = await getSession();
-
+    setLoading(true)
 
     const idsGoleadores = resultadoPartido.goleadores.map(e=>e.ids)
     const idsAsistentes= resultadoPartido.asistentes.map(e=>e.ids)
@@ -130,8 +131,10 @@ export const usePartidos = () => {
     );
 
     toast.success('Partido evaluado')
+    router.push(`/torneos/partidos/${idTorneo}`)
     router.refresh();
+    setLoading(false)
 
   };
-  return { partidos, partido, setPartido, createPartido, resultadoPartido, setResultadoPartido ,equiposByPartido,getEquiposPorPartido,evaluarPartido};
+  return { partidos, partido, setPartido, createPartido, resultadoPartido, setResultadoPartido ,equiposByPartido,getEquiposPorPartido,evaluarPartido,loading};
 };

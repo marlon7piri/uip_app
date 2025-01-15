@@ -5,12 +5,7 @@ import Box from '@mui/material/Box';
 import TabPartidos from './TabPartidos';
 import TabTablaPosicion from './TabTablaPosicion';
 import TabGoleadoresAsistentes from './TabGoleadoresAsistentes';
-import styles from './styles.module.css'
-import { getSession } from '@/actions/get-session';
-import * as UseCases from '@/config/core/use-cases';
-import { fetcherDb } from '@/config/adapters/apiDbAdapter';
-import { Partidos } from '@/infraestrcuture/entities/partidos';
-import { useParams } from 'next/navigation';
+
 
 
 interface TabPanelProps {
@@ -51,28 +46,28 @@ export default function TabTorneos({partidosByTorneos,loading}:{partidosByTorneo
   
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'white' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'white',paddingBottom:1 }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="Tabla de Posiciones" {...a11yProps(0)}  sx={{
             color: '#fcf8f8',
             background: 'rgba(25, 33, 36, 0.5)',
             fontWeight: '700',
             borderRadius: '1rem',
-            margiRight: '.5rem',
+            marginRight: '.5rem',
           }} />
           <Tab label="Partidos del Torneo" {...a11yProps(1)} sx={{
             color: '#fcf8f8',
             background: 'rgba(25, 33, 36, 0.5)',
             fontWeight: '700',
             borderRadius: '1rem',
-            margiRight: '.5rem',
+            marginRight: '.5rem',
           }}/>
           <Tab label="Goleadores y Asistentes" {...a11yProps(2)} sx={{
             color: '#fcf8f8',
             background: 'rgba(25, 33, 36, 0.5)',
             fontWeight: '700',
             borderRadius: '1rem',
-            margiRight: '.5rem',
+            marginRight: '.5rem',
           }} />
         </Tabs>
       </Box>

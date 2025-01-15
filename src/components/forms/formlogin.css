@@ -46,3 +46,14 @@ form button:hover{
 
     
 }
+
+@media (width < 600px){
+    form{
+        width: 350px;
+        height: 100%;
+        
+    
+    
+    }
+}
+
