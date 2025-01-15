@@ -18,14 +18,12 @@ export default function FormPartido({equiposParticipantes}:Props) {
 
   const { partido, setPartido, createPartido } = usePartidos()
   
-  const router = useRouter();
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     createPartido()
-    toast.success('Partido creado')
-    router.back()
+    
   };
 
 

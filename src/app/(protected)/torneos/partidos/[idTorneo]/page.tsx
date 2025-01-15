@@ -26,13 +26,11 @@ import TabTorneos from './TabTorneos'
 const PartidosByTorneos = () => {
     const params = useParams()
     const [openModal, setOpenModal] = useState(false)
-    const { jugadores } = useJugador()
 
 
     const [partidosByTorneos, setPartidosByTorneos] = useState<Partidos[]>([])
     const [equiposParticipantes, setEquiposParticipantes] = useState<Torneos[]>([])
-    const [goleadores, setGoleadores] = useState([])
-    const [asistentes, setAsistentes] = useState([])
+    
       const [loading, setLoading] = React.useState(false);
     
 
@@ -55,8 +53,7 @@ const PartidosByTorneos = () => {
     
             const goleadoresSorted = res.torneo?.goleadores.sort((a, b) => b.cantidad - a.cantidad)
             const asistentesSorted = res.torneo?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
-            setGoleadores(goleadoresSorted);
-            setAsistentes(asistentesSorted);
+           
         };
         getPartidosByTorneo()
         getEquiposRegistrados()

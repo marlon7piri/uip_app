@@ -6,6 +6,7 @@ import { Torneos } from "@/infraestrcuture/entities/torneos";
 import { Partidos } from "@/infraestrcuture/entities/partidos";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { getSession } from "@/actions/get-session";
+import toast from "react-hot-toast";
 
 interface TypePartido {
   visitante: string;
@@ -27,7 +28,7 @@ export interface TypeResultado {
   asistencias_visitantes: number,
   tarjetas_amarillas: number,
   tarjetas_rojas: number,
-  is_draw: true,
+  is_draw: boolean,
   torneoId: string | null,
   partidoId:string | null,
   goleadores:string[],
@@ -69,6 +70,7 @@ export const usePartidos = () => {
   const [partido, setPartido] = useState<TypePartido>(initialPartido);
   const [equiposByPartido, setEquiposByPartido] = useState([])
   const [resultadoPartido, setResultadoPartido] = useState<TypeResultado>(initialResultado);
+  
 
 
   const search = useSearchParams()
@@ -107,7 +109,9 @@ export const usePartidos = () => {
       newMatch,
       session?.token
     );
-    router.refresh();
+    toast.success('Partido creado')
+    router.back()
+    await getPartidos()
   };
   const evaluarPartido = async () => {
 
@@ -119,12 +123,15 @@ export const usePartidos = () => {
     
     const result: TypeResultado = { ...resultadoPartido,goleadores:idsGoleadores,asistentes:idsAsistentes, id_local: local ,id_visitante:visitante,torneoId:idTorneo ,partidoId:idPartido}
 
-    console.log(result)
      const res = await UseCases.evaluarPartidoUseCases(
       fetcherDb,
       result,
       session?.token
     );
+
+    toast.success('Partido evaluado')
+    router.refresh();
+
   };
   return { partidos, partido, setPartido, createPartido, resultadoPartido, setResultadoPartido ,equiposByPartido,getEquiposPorPartido,evaluarPartido};
 };

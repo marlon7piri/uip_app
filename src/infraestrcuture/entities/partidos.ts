@@ -4,10 +4,12 @@ export interface Partidos {
   visitante: Local;
   torneo_id: TorneoID;
   fecha: Date;
+  estado:string;
   exist_ganador: boolean;
   is_draw: boolean;
   goles: number;
   asistencias: number;
+  
   estadio: string;
   __v?: number;
 }

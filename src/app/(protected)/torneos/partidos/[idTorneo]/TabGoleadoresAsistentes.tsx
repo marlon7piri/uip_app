@@ -42,12 +42,10 @@ const TabGoleadoresAsistentes = () => {
             const asistentesSorted = res.torneo?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
             setGoleadores(goleadoresSorted);
             setAsistentes(asistentesSorted);
-            setLoading(false)
+           
 
         } catch (error) {
             throw new Error('Error fetching los goleadores y asistentes')
-        } finally {
-            setLoading(false)
         }
 
 

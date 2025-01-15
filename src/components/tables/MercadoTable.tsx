@@ -19,33 +19,24 @@ import styles from './styles.module.css'
 interface Props {
   rows: Jugadores[]
 }
-const FiltrosMercado = () => {
-  return (
-    <div className='p-2'>
-      <TextField type="text" placeholder='nombre' />
-    </div>
-  )
-}
 
 
 export default function MercadoTable({ rows }: Props) {
   const { handlerPlayer } = useJugador()
 
 
-  const handlerClickPlayer = (e: string) => {
-    handlerPlayer(e)
-  }
-
+  
 
 
 
   return (
-    <TableContainer component={Paper} style={{ maxWidth: '60%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
-      {/* <FiltrosMercado /> */}
+    <TableContainer component={Paper} style={{ maxWidth: '100%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
       <Table sx={{ minWidth: 490, }} aria-label="simple table">
         <TableHead >
           <TableRow>
-            <TableCell className={styles.rows}>Foto</TableCell>
+            <TableCell >
+              
+            <Typography className={styles.rows}>Foto</Typography></TableCell>
             <TableCell >
               <Typography className={styles.rows}>Nombre</Typography>
 
@@ -67,13 +58,17 @@ export default function MercadoTable({ rows }: Props) {
               <Typography className={styles.rows}>Oferta</Typography>
 
             </TableCell>
+            <TableCell align="right">
+              <Typography className={styles.rows}>Ver</Typography>
+
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody className='w-full text-center'>
           {rows.map((row) => (
             <TableRow
               key={row._id}
-              onClick={() => handlerClickPlayer(row._id)}
+              
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer transition duration-300'
             >
@@ -107,6 +102,19 @@ export default function MercadoTable({ rows }: Props) {
                   <Tooltip title='hacer oferta'>
                     <Link href={`/mercado/ofertas/${row?._id}`} className={styles.rows}>
                       <CurrencyExchangeIcon size={20} color='inherit' />
+
+                    </Link>
+
+
+                  </Tooltip>
+                </IconButton>
+
+              </TableCell>
+              <TableCell align="right">
+                <IconButton>
+                  <Tooltip title='Ver detalles'>
+                    <Link href={`/jugadores/${row?._id}`} className={styles.rows}>
+                     <Typography>Ver</Typography>
 
                     </Link>
 

@@ -2,27 +2,60 @@
 import React, { useEffect, useState } from 'react'
 import MercadoTable from './tables/MercadoTable'
 import { useJugador } from './hooks/useJugador'
-import ContainerInfoPlayerMercado from './ContainerInfoPlayerMercado'
 import ContenedorCustom from './ContenedorCustom'
 import BreadCrum from './BreadCrum'
+import {  usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 
 
+const FiltrosMercado = () => {
+
+  
+
+const searchparams = useSearchParams()
+const pathname = usePathname()
+const {replace}=useRouter()
+
+
+const handlerChange =(text:string)=>{
+  const params = new URLSearchParams(searchparams)
+
+  console.log(text)
+  if(text){
+    params.set('query',text)
+
+    console.log(params)
+  }else{
+    params.delete('query')
+  }
+  replace(`${pathname}?${params.toString()}`)
+
+}
+
+
+  return (
+    <div className='p-2'>
+      <input type="text" placeholder='nombre'
+      defaultValue={searchparams.get('query')?.toString()}
+      onChange={(e)=>handlerChange(e.target.value)}
+      
+      className='p-4 outline-none rounded-md bg-transparent border border-slate-50 text-slate-50 font-bold'/>
+    </div>
+  )
+}
 
 
 export const ContainerMercado = () => {
   const { jugadores } = useJugador() 
  
-
   return (
     <ContenedorCustom >
       <BreadCrum titulo='Mercado' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
 
 
-     <div className='flex gap-4 relative'>
+     <FiltrosMercado/> 
+
         <MercadoTable rows={jugadores} />
-        <ContainerInfoPlayerMercado />
-      </div>
     </ContenedorCustom>
   )
 }
