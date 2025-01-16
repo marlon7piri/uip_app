@@ -2,7 +2,7 @@ import { Equipos } from '@/infraestrcuture/entities/equipos'
 import { Partidos } from '@/infraestrcuture/entities/partidos'
 import Link from 'next/link'
 import React from 'react'
-import styles from '@/app/(protected)/torneos/partidos/[idTorneo]/styles.module.css'
+import styles from '@/app/(protected)/ligas/partidos/[idTorneo]/styles.module.css'
 import Image from 'next/image'
 
 interface Props {
@@ -13,7 +13,7 @@ const CardPartidosByTorneo = ({ partido }: Props) => {
   const isFinalizado = partido.estado === "finalizado";
 
   const renderCardContent = () => (
-    <div  className={`${styles.cardPartidos} ${partido?.estado == 'pendiente' ? 'bg-sky-700' : 'bg-[#140e0e85]'}`}>
+    <div className={`${styles.cardPartidos} ${partido?.estado == 'pendiente' ? 'bg-sky-700' : 'bg-[#140e0e85]'}`}>
       <div className="flex gap-4 justify-center items-center">
         <div className="flex flex-col justify-center items-center">
           <h3 className={styles.textTitle}>{partido?.local?.nombre}</h3>

@@ -1,37 +1,13 @@
-'use client'
-import ContainerTorneos from '@/components/ContainerTorneos'
-import styles from './home.module.css'
-import { useTorneos } from '@/components/hooks/useTorneos';
-import Spinner from '@/components/Spinner';
-
-
-
-
-
-
-
-
-
-
+import BreadCrum from '@/components/BreadCrum'
+import ContenedorCustom from '@/components/ContenedorCustom'
+import React from 'react'
 
 const Torneos = () => {
-
-  const { torneos } = useTorneos()
-
-
-  if (!torneos) {
-    return <Spinner />
-  }
-
-
   return (
+    <ContenedorCustom>
 
-    <div className={styles.container}>
-      <ContainerTorneos torneos={torneos} />
-
-
-    </div>
-
+      <BreadCrum titulo='Torneos' labelBtn='Crear Torneo' url='/torneos/nueva' />
+    </ContenedorCustom>
   )
 }
 

@@ -1,77 +1,81 @@
 .listaContainer {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    background-image: linear-gradient(to right, black 0%, blue 90%);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background-image: linear-gradient(to right, black 0%, blue 90%);
+  position: sticky;
+  top: 0;
 }
 
 .containerLogo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ulContainer {
-    display: flex;
-    justify-content: center;
-    gap: 1rem
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .hamburguerBoottom {
-    display: none;
+  display: none;
 }
 
-@media(width<600px) {
-    .listaContainer {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        align-items: start;
-        flex-direction: column;
-        position: absolute;
-        transform: translateX(-400px);
-        background-image: linear-gradient(to right, black 0%, blue 90%);
+@media (width<600px) {
+  .listaContainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    transform: translateX(-500px);
+    background-image: linear-gradient(to right, black 0%, blue 90%);
+    transition: 0.3s ease-in-out;
+    z-index: 100;
+  }
 
+  .showMenu {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
 
-    }
+    flex-direction: column;
+    position: absolute;
+    transform: translateX(0px);
+    background-image: linear-gradient(to right, black 0%, blue 90%);
+    transition: 0.3s ease-in-out;
+  }
 
-    .showMenu{
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        align-items: start;
-        flex-direction: column;
-        position: absolute;
-        transform: translateX(0px);
-        background-image: linear-gradient(to right, black 0%, blue 90%);
+  .containerLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    }
+  .ulContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
 
-    .containerLogo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1rem;
-    }
-
-    .ulContainer {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem
-    }
-
-    .hamburguerBoottom {
-        display: block;
-        position: absolute;
-        right: 1px;
-    }
+  .hamburguerBoottom {
+    width: 100%;
+    display: block;
+    position: absolute;
+    right: 0;
+    z-index: 500;
+    background-image: linear-gradient(to right, white 0%, blue 70%);
+  }
 }

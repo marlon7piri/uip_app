@@ -6,11 +6,11 @@ import { usePathname } from 'next/navigation'
 const Spinner = () => {
   const pathname = usePathname()
 
-  const normalStyle = pathname.includes('torneos/partidos') ?  'items-start' :'items-center'
+  const normalStyle = pathname.includes('ligas/partidos') ? 'items-start' : 'items-center'
   return (
 
     <div className={`w-screen h-screen  flex justify-center  bg-transparent ${normalStyle}`}>
-    <div className={styles.loader}></div>
+      <div className={styles.loader}></div>
 
     </div>
   )

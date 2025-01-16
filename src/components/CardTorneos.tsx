@@ -10,12 +10,12 @@ interface Props {
 
 const CardTorneos = ({ torneo }: Props) => {
 
-  
+
   return (
-    <Link href={`/torneos/partidos/${torneo._id}`} className={'card'} 
-    
-     
-      >
+    <Link href={`/ligas/partidos/${torneo._id}`} className={'card'}
+
+
+    >
       <img src={torneo?.foto}
         alt={torneo.nombre}
         className='w-full h-[250px]  object-cover' />

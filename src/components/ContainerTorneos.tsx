@@ -23,7 +23,7 @@ const ContainerTorneos = ({ torneos }: Props) => {
   return (
     <ContenedorCustom>
 
-      <BreadCrum titulo='Torneos' url='/torneos/nuevo' labelBtn='Crear Torneo' />
+      <BreadCrum titulo='Ligas' url='/ligas/nuevo' labelBtn='Crear Liga' />
 
       <div className='w-full h-full flex  flex-wrap justify-center items-center gap-6'>
         {torneos?.map((e) => {

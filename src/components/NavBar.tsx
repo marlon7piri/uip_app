@@ -2,22 +2,31 @@
 import { logoutAuth } from '@/actions/auth-login'
 import Logout from '@mui/icons-material/Logout';
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSessionAuth } from './hooks/useSessionAuth'
 import { IconButton, Tooltip } from '@mui/material';
 import Image from 'next/image';
 import styles from './navbar.module.css'
-import MenuIcon from '@mui/icons-material/Menu';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import { usePathname } from 'next/navigation';
 
 const NavBar = () => {
   const { session } = useSessionAuth()
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
 
 
   const handlerMenu = () => {
     setOpen(!open)
-    console.log('open')
   }
+
+  useEffect(() => {
+    if (open) {
+      handlerMenu()
+
+    }
+  }, [pathname])
 
   return (
 
@@ -31,6 +40,7 @@ const NavBar = () => {
 
         <div className={styles.ulContainer}>
           <Link href={'/torneos'} className='text-[18px] text-sky-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Torneos</Link>
+          <Link href={'/ligas'} className='text-[18px] text-sky-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Ligas</Link>
           <Link href={'/equipos'} className='text-[18px] text-sky-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Equipos</Link>
           <Link href={'/mercado'} className='text-[18px] text-sky-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Mercado</Link>
           <Link href={'/noticias'} className='text-[18px] text-sky-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Noticias</Link>
@@ -41,7 +51,8 @@ const NavBar = () => {
 
       </ul>
       <div className={styles.hamburguerBoottom}>
-        <MenuIcon onClick={()=>handlerMenu()} className='w-18 h-18 text-sky-50 hover:bg-slate-900 rounded-full p-2 transition-colors duration-500' />
+        {!open ? <MenuRoundedIcon onClick={() => handlerMenu()} className='w-16 h-16 text-slate-900 ' /> :
+          <CloseRoundedIcon onClick={() => handlerMenu()} className='w-16 h-16 text-slate-900  ' />}
 
       </div>
     </div>

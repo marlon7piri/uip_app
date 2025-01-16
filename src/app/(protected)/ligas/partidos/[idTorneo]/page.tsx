@@ -30,9 +30,9 @@ const PartidosByTorneos = () => {
 
     const [partidosByTorneos, setPartidosByTorneos] = useState<Partidos[]>([])
     const [equiposParticipantes, setEquiposParticipantes] = useState<Torneos[]>([])
-    
-      const [loading, setLoading] = React.useState(false);
-    
+
+    const [loading, setLoading] = React.useState(false);
+
 
 
     useEffect(() => {
@@ -41,26 +41,26 @@ const PartidosByTorneos = () => {
             const res = await UseCases.getPartidosByTorneosUseCases(fetcherDb, params.idTorneo, session?.token);
             setPartidosByTorneos(res);
         };
-    
-        
-    
+
+
+
         const getEquiposRegistrados = async () => {
             const session = await getSession()
-    
+
             const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
-    
+
             setEquiposParticipantes(res.torneo_especifico);
-    
+
             const goleadoresSorted = res.torneo?.goleadores.sort((a, b) => b.cantidad - a.cantidad)
             const asistentesSorted = res.torneo?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
-           
+
         };
         getPartidosByTorneo()
         getEquiposRegistrados()
     }, [params.idTorneo])
 
 
-    
+
     const handlerModal = () => {
         setOpenModal(!openModal)
     }
@@ -68,11 +68,11 @@ const PartidosByTorneos = () => {
         <div className={styles.container}>
             <ContenedorCustom >
                 <div className='flex gap-2 justify-end items-center'>
-                    <BreadCrum titulo='' url={`/torneos/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
+                    <BreadCrum titulo='' url={`/ligas/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
                     <BreadCrum titulo='' isLink={false} onClick={handlerModal} labelBtn='Nuevo Partido' />
 
                 </div>
-                <TabTorneos partidosByTorneos={partidosByTorneos}  loading={loading}/>
+                <TabTorneos partidosByTorneos={partidosByTorneos} loading={loading} />
 
                 <Modal open={openModal} onClose={handlerModal}>
                     <div className='w-max h-max m-auto translate-y-52 bg-slate-700 p-4 rounded-md '>
