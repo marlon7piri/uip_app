@@ -77,6 +77,6 @@
     position: absolute;
     right: 0;
     z-index: 500;
-    background-color: white;
+    background-color: rgb(5, 228, 5);
   }
 }
