@@ -40,7 +40,7 @@ const FiltrosMercado = () => {
         defaultValue={searchparams.get('query')?.toString()}
         onChange={(e) => handlerChange(e.target.value)}
 
-        className='p-4 outline-none rounded-md bg-transparent border border-slate-900 text-slate-50 font-bold' />
+        className='p-4 outline-none rounded-md bg-transparent border border-slate-900 text-slate-900 font-bold' />
     </div>
   )
 }

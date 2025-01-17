@@ -55,7 +55,7 @@ const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
 
           <Typography>Posicion: {jugador?.estadisticasGlobales?.posicion?.toUpperCase()}</Typography>
           <Typography>Estatura: {jugador?.estatura} cm</Typography>
-          <Typography>Goles:{jugador?.estadisticasGlobales?.goles} <SportsSoccerIcon /></Typography>
+          <Typography>Goles:{jugador?.estadisticasGlobales?.goles}</Typography>
           <Typography>Asistencias:{jugador?.estadisticasGlobales?.asistencias}</Typography>
 
           <div>
@@ -78,7 +78,7 @@ const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
           <Typography className='flex items-center gap-2'>Regate: {jugador?.estadisticasGlobales?.regate}</Typography>
 
           <div>
-            <Typography>Valor de mercado: <AttachMoneyIcon className='bg-yellow-500 w-4 h-4 rounded-full' /> {jugador?.estadisticasGlobales?.valor_mercado}</Typography>
+            <Typography>Valor de mercado: ${jugador?.estadisticasGlobales?.valor_mercado}</Typography>
 
           </div>
         </div>

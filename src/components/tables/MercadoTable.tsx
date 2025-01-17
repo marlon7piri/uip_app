@@ -28,8 +28,8 @@ export default function MercadoTable({ rows }: Props) {
   const router = useRouter()
 
 
-  
 
+  console.log(rows)
 
 
   return (
@@ -44,35 +44,35 @@ export default function MercadoTable({ rows }: Props) {
               <Typography className={styles.rows}>Nombre</Typography>
 
             </TableCell>
-            <TableCell align="right">
+            <TableCell align="center">
               <Typography className={styles.rows}>Edad</Typography>
 
             </TableCell>
-            <TableCell align="right">
+            <TableCell align="center">
               <Typography className={styles.rows}>Club</Typography>
 
             </TableCell>
 
-            <TableCell align="right">
+            <TableCell align="center">
               <Typography className={styles.rows}>Valor de mercado</Typography>
 
             </TableCell>
-            <TableCell align="right">
+            <TableCell align="center">
               <Typography className={styles.rows}>Oferta</Typography>
 
             </TableCell>
-            
+
           </TableRow>
         </TableHead>
-        <TableBody className='w-full text-center'>
-          { rows?.map((row) => (
+        <TableBody className='w-full'>
+          {rows?.map((row) => (
             <TableRow
               key={row._id}
-              onClick={()=>router.push(`/jugadores/${row._id}`)}
+              onClick={() => router.push(`/jugadores/${row._id}`)}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer transition duration-300'
             >
-              <TableCell align="right">
+              <TableCell align="center">
                 <Image src={row.foto} width={80} height={80} alt={row.club?.nombre}
                   className='object-contain'
                 />
@@ -82,22 +82,25 @@ export default function MercadoTable({ rows }: Props) {
                 <Typography className={styles.rows}>{row.nombre + " " + row.apellido}</Typography>
 
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="center">
                 <Typography className={styles.rows}>{row.edad}</Typography>
 
               </TableCell>
-              <TableCell align="right">
-                <Image src={row.club?.logo} width={50} height={50} alt={row.club?.nombre}
-                  className='object-cover'
-                />
+              <TableCell align="center" >
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Image src={row.club?.logo} width={50} height={50} alt={row.club?.nombre}
+                    className='object-cover '
+                  />
+                </div>
+
               </TableCell>
 
 
-              <TableCell align="right">
+              <TableCell align="center">
                 <Typography className={styles.rows}>${row.estadisticasGlobales
                   ?.valor_mercado}</Typography>
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="center">
                 <IconButton>
                   <Tooltip title='hacer oferta'>
                     <Link href={`/mercado/ofertas/${row?._id}`} className={styles.rows}>
@@ -110,7 +113,7 @@ export default function MercadoTable({ rows }: Props) {
                 </IconButton>
 
               </TableCell>
-             
+
             </TableRow>
           ))}
         </TableBody>
