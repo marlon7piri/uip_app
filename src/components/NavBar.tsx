@@ -51,8 +51,8 @@ const NavBar = () => {
 
       </ul>
       <div className={styles.hamburguerBoottom}>
-        {!open ? <MenuRoundedIcon onClick={() => handlerMenu()} className='text-[58px] text-slate-900 mt-2' /> :
-          <CloseRoundedIcon onClick={() => handlerMenu()} className='text-[58px] text-slate-900  mt-2' />}
+        {!open ? <MenuRoundedIcon onClick={() => handlerMenu()} className='h-[60px] text-[58px] text-slate-900 mt-2' /> :
+          <CloseRoundedIcon onClick={() => handlerMenu()} className='h-[60px] text-[58px] text-slate-900  mt-2' />}
 
       </div>
     </div>
