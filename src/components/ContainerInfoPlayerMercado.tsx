@@ -24,10 +24,10 @@ const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
 
 
   return (
-    <div className='w-[90%]  rounded-2xl shadow-2xl shadow-slate-700 p-4 bg-[rgba(20,18,18,0.5)] text-slate-50 animated-gradient-border overflow-hidden'>
+    <div className='w-full h-screen flex justify-center items-center p-4'>
 
-      <div className='container_card'>
-        <div className='flex flex-col items-center  w-[100%] h-full '>
+      <div className='container_card  rounded-2xl shadow-2xl shadow-slate-700 p-4 bg-[rgba(20,18,18,0.5)] text-slate-50 animated-gradient-border overflow-hidden'>
+        <div className='flex flex-col items-center justify-center  w-[100%] h-full '>
           <h2 className='text-3xl text-center'>
 
             {jugador?.nombre + " " + jugador?.apellido}
@@ -44,7 +44,7 @@ const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
         <div className='w-[100%] p-2 '>
 
 
-          <div className=' flex justify-start items-center'>
+          <div className=' flex justify-center items-center'>
             <Image src={jugador ? jugador?.club?.logo : ''} width={130} height={130} alt='imagen de un futbolista'
               className='object-cover mb-8 '
             />

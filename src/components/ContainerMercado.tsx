@@ -50,16 +50,16 @@ export const ContainerMercado = () => {
   const { jugadores, loading } = useJugador()
 
 
-  
+
   return (
     <ContenedorCustom >
-      <BreadCrum titulo='Mercado' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
+      <BreadCrum titulo='Jugadores' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
 
 
 
 
 
-     {loading ? <Spinner/> : <div> <FiltrosMercado />
+      {loading ? <Spinner /> : <div> <FiltrosMercado />
         <MercadoTable rows={jugadores} />
       </div>}
     </ContenedorCustom>

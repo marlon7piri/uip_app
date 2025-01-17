@@ -39,10 +39,10 @@ const PageJugador = () => {
 
 
     return (
-        <ContenedorCustom>
+        <div>
 
             <ContainerInfoPlayerMercado jugador={jugador} />
-        </ContenedorCustom>
+        </div>
     )
 }
 

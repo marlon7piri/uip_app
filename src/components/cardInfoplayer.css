@@ -1,9 +1,11 @@
-.container_card{
-  display:flex;
+.container_card {
+  width: 800px;
+  display: flex;
   justify-content: space-between;
+  margin-top: 80px;
 }
 
-  @keyframes gradient-rotation {
+@keyframes gradient-rotation {
   0% {
     background-position: 0% 50%;
   }
@@ -19,7 +21,12 @@
   position: relative;
   padding: 4px; /* Espacio para el borde animado */
   border-radius: 16px;
-  background: linear-gradient(45deg, rgba(243, 234, 234, 0.384), rgba(21, 22, 26, 0.658), rgb(5, 117, 112)); /* Gradiente inicial */
+  background: linear-gradient(
+    45deg,
+    rgba(243, 234, 234, 0.384),
+    rgba(21, 22, 26, 0.658),
+    rgb(5, 117, 112)
+  ); /* Gradiente inicial */
   background-size: 300% 300%; /* Para la animación */
   animation: gradient-rotation 5s infinite linear; /* Animación de rotación */
 }
@@ -31,9 +38,8 @@
   border-radius: 12px; /* Radio interior */
 }
 
-
 .mask-gradient {
-  -webkit-mask-image: linear-gradient(to bottom,black 70% ,transparent);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-image: linear-gradient(to bottom, black 70%, transparent);
@@ -41,9 +47,10 @@
   mask-size: 100% 100%;
 }
 
-@media(width<600px){
-  .container_card{
-    display:flex;
+@media (width<600px) {
+  .container_card {
+    width: 300px;
+    display: flex;
     justify-content: center;
     flex-direction: column;
   }

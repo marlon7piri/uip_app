@@ -8,7 +8,7 @@ interface Props {
 const CardJugadores = ({ jugador }: Props) => {
 
   return (
-    <div className='flex flex-col p-2 justify-center  items-center bg-slate-50 gap-4 text-slate-900 mt-2 w-[200px]
+    <div className='flex flex-col p-2 justify-center  items-center bg-slate-50 gap-4 text-slate-900 mt-2 w-[300px]
      rounded-3xl cursor-pointer hover:scale-105 transition-all duration-300'>
       <img src={jugador?.foto}
         alt={jugador?.nombre}

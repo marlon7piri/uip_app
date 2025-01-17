@@ -1,33 +1,29 @@
-.card{
-   
-     width:250px;
-     height:300px;
-    
-     overflow: hidden;
-     padding: 1rem;
-     cursor: pointer;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     gap:1rem;
-     flex-direction: column;
-     transition: all .5s;
-     border-radius: 1rem 1rem 5rem 5rem;
-     box-shadow: inset 0px 10px 53px 29px rgba(0,0,0,0.3),
-     0px 4px 13px 3px rgba(4, 119, 172, 0.521);
-     background-image: url("../../public/imagenes/fondo3.jpg");
+.card {
+  width: 250px;
+  height: 300px;
 
+  overflow: hidden;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: column;
+  transition: all 0.5s;
+  border-radius: 1rem 1rem 5rem 5rem;
+  box-shadow: inset 0px 10px 53px 29px rgba(0, 0, 0, 0.3),
+    0px 4px 13px 3px rgba(4, 119, 172, 0.521);
+  background-image: url("../../public/imagenes/fondo3.jpg");
 }
-.card:hover{
-   
-     transform: scale(1.05);
-     box-shadow: inset 0px 4px 33px 9px rgba(4, 119, 172, 0.521) ,
-     0px 4px 13px 3px rgba(0,0,0,0.3);
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: inset 0px 4px 33px 9px rgba(4, 119, 172, 0.521),
+    0px 4px 13px 3px rgba(0, 0, 0, 0.3);
 }
 
-
-.txtTitle{
-     color:white;
-     font-weight: 900;
-     font-size: 1.5rem;
+.txtTitle {
+  color: white;
+  font-weight: 900;
+  font-size: 1.5rem;
 }

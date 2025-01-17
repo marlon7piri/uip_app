@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Image from 'next/image';
 import styles from './styles.module.css'
 
-import { TextField, Typography } from '@mui/material';
+import { Box, TextField, Typography } from '@mui/material';
 
 import { Torneos } from '@/infraestrcuture/entities/torneos';
 import { useRouter } from 'next/navigation';
@@ -28,12 +28,11 @@ const FiltrosMercado = () => {
 
 export default function TorneoTablePositioon({ rows }: Props) {
 
-const router = useRouter()
+  const router = useRouter()
 
 
   return (
     <TableContainer component={Paper} style={{ width: '100%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
-      {/* <FiltrosMercado /> */}
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -84,7 +83,7 @@ const router = useRouter()
             const { goles_favor, asistencias, puntos, goles_contra, partidos_jugados, partidos_ganados, partidos_empatados, partidos_perdidos } = row.estadisticasTorneo.estadisticas
             return <TableRow
               key={row._id}
-              onClick={()=>router.push(`/equipos/${row._id}`)}
+              onClick={() => router.push(`/equipos/${row._id}`)}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer'
             >
@@ -96,44 +95,44 @@ const router = useRouter()
 
 
               <TableCell component="th" scope="row">
-                <Typography className='flex gap-2 justify-start items-center'>
+                <Box display={'flex'} alignItems={'center'} gap={2}>
                   <Image src={row.logo} width={50} height={50} alt={row?.nombre}
                     className='object-cover'
                   />
-                  <Typography className={styles.rows}>  {row.nombre}</Typography>
+                  <Typography className={styles.rows}>{row.nombre}</Typography>
 
 
-                </Typography>
+                </Box>
               </TableCell>
-              <TableCell  align="left">
+              <TableCell align="left">
                 <Typography className={styles.rows}>{partidos_jugados}</Typography>
 
-                </TableCell>
-              <TableCell  align="left">
+              </TableCell>
+              <TableCell align="left">
                 <Typography className={styles.rows}>  {partidos_ganados}</Typography>
 
-                </TableCell>
-              <TableCell  align="left">
+              </TableCell>
+              <TableCell align="left">
                 <Typography className={styles.rows}> {partidos_empatados}</Typography>
 
-                </TableCell>
-              <TableCell  align="left">
+              </TableCell>
+              <TableCell align="left">
                 <Typography className={styles.rows}>{partidos_perdidos}</Typography>
 
-                </TableCell>
-              <TableCell  align="left">
+              </TableCell>
+              <TableCell align="left">
                 <Typography className={styles.rows}>  {goles_favor}</Typography>
 
-               </TableCell>
-              <TableCell  align="left">
+              </TableCell>
+              <TableCell align="left">
                 <Typography className={styles.rows}>{goles_contra}</Typography>
 
-                </TableCell>
-              <TableCell  align="left">
+              </TableCell>
+              <TableCell align="left">
                 <Typography className={styles.rows}> {goles_favor - goles_contra}</Typography>
 
-               </TableCell>
-              <TableCell  align="left">
+              </TableCell>
+              <TableCell align="left">
                 <Typography className={styles.rows}>  {puntos}</Typography>
 
               </TableCell>
