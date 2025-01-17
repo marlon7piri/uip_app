@@ -66,8 +66,8 @@ const PartidosByTorneos = () => {
     }
     return (
         <div className={styles.container}>
-            <ContenedorCustom >
-                <div className='flex gap-2 justify-end items-center'>
+            <div className='w-full h-screen flex justify-center items-center flex-col p-4 '>
+                <div className='flex gap-2 justify-end items-center mt-[100px] mb-4'>
                     <BreadCrum titulo='' url={`/ligas/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
                     <BreadCrum titulo='' isLink={false} onClick={handlerModal} labelBtn='Nuevo Partido' />
 
@@ -80,7 +80,7 @@ const PartidosByTorneos = () => {
                     </div>
                 </Modal>
 
-            </ContenedorCustom>
+            </div>
         </div>
     )
 }

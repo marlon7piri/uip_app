@@ -75,8 +75,8 @@
     display: flex;
     justify-content: end;
     position: absolute;
-    right: 0;
+    right: 10;
     z-index: 500;
-    background-color: rgb(5, 228, 5);
+    background-color: white;
   }
 }

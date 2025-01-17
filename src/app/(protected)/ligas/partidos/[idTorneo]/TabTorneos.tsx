@@ -24,6 +24,7 @@ function CustomTabPanel(props: TabPanelProps) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
+
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
@@ -45,28 +46,30 @@ export default function TabTorneos({ partidosByTorneos, loading }: { partidosByT
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'white', paddingBottom: 1 }}>
+    <Box sx={{ width: '100%', overflow: 'scroll' }}>
+      <Box sx={{
+        borderBottom: 1, borderColor: 'white', paddingBottom: 1
+      }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" sx={{
           display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' }, // Cambia la dirección según el tamaño de pantalla
+          flexDirection: 'column', // Cambia la dirección según el tamaño de pantalla
           gap: { xs: 1, sm: 0 }, // Añade espacio entre elementos en pantallas pequeñas
         }}>
-          <Tab label="Tabla de Posiciones" {...a11yProps(0)} sx={{
+          <Tab label="Posiciones" {...a11yProps(0)} sx={{
             color: '#fcf8f8',
             background: 'rgba(25, 33, 36, 0.5)',
             fontWeight: '700',
             borderRadius: '1rem',
             marginRight: '.5rem',
           }} />
-          <Tab label="Partidos del Torneo" {...a11yProps(1)} sx={{
+          <Tab label="Partidos" {...a11yProps(1)} sx={{
             color: '#fcf8f8',
             background: 'rgba(25, 33, 36, 0.5)',
             fontWeight: '700',
             borderRadius: '1rem',
             marginRight: '.5rem',
           }} />
-          <Tab label="Goleadores y Asistentes" {...a11yProps(2)} sx={{
+          <Tab label="Estadisticas" {...a11yProps(2)} sx={{
             color: '#fcf8f8',
             background: 'rgba(25, 33, 36, 0.5)',
             fontWeight: '700',
@@ -74,6 +77,7 @@ export default function TabTorneos({ partidosByTorneos, loading }: { partidosByT
             marginRight: '.5rem',
           }} />
         </Tabs>
+
       </Box>
       <CustomTabPanel value={value} index={0}>
         <TabTablaPosicion />
@@ -84,6 +88,6 @@ export default function TabTorneos({ partidosByTorneos, loading }: { partidosByT
       <CustomTabPanel value={value} index={2}>
         <TabGoleadoresAsistentes />
       </CustomTabPanel>
-    </Box>
+    </Box >
   );
 }
