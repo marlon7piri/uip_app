@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  background-image: linear-gradient(to right, black 0%, blue 90%);
+  background-color: white;
   position: sticky;
   top: 0;
 }
@@ -35,7 +35,7 @@
     flex-direction: column;
     position: absolute;
     transform: translateX(-500px);
-    background-image: linear-gradient(to right, black 0%, blue 90%);
+    background-image: linear-gradient(to right, #0572ee 0%, #304352 70%);
     transition: 0.3s ease-in-out;
     z-index: 100;
   }
@@ -72,7 +72,6 @@
 
   .hamburguerBoottom {
     width: 100%;
-    height: 80px;
     display: block;
     position: absolute;
     right: 0;
