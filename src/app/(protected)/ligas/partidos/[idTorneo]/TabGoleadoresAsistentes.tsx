@@ -21,35 +21,35 @@ const TabGoleadoresAsistentes = () => {
 
 
     useEffect(() => {
+        const getEquiposRegistrados = async () => {
+            const session = await getSession()
+            try {
+                setLoading(true)
 
+
+
+                const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
+
+
+                const goleadoresSorted = res.torneo?.goleadores.sort((a, b) => b.cantidad - a.cantidad)
+                const asistentesSorted = res.torneo?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
+                setGoleadores(goleadoresSorted);
+                setAsistentes(asistentesSorted);
+
+                setLoading(false)
+            } catch (error) {
+                throw new Error('Error fetching los goleadores y asistentes')
+            }
+
+
+        };
         getEquiposRegistrados()
     }, [params.idTorneo])
 
 
 
 
-    const getEquiposRegistrados = async () => {
-        const session = await getSession()
-        try {
-            setLoading(true)
 
-
-
-            const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
-
-
-            const goleadoresSorted = res.torneo?.goleadores.sort((a, b) => b.cantidad - a.cantidad)
-            const asistentesSorted = res.torneo?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
-            setGoleadores(goleadoresSorted);
-            setAsistentes(asistentesSorted);
-
-            setLoading(false)
-        } catch (error) {
-            throw new Error('Error fetching los goleadores y asistentes')
-        }
-
-
-    };
 
 
 

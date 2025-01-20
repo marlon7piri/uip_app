@@ -57,10 +57,10 @@ export default function MercadoTable({ rows }: Props) {
               <Typography className={styles.rows}>Valor de mercado</Typography>
 
             </TableCell>
-            <TableCell align="center">
+            {/* <TableCell align="center">
               <Typography className={styles.rows}>Oferta</Typography>
 
-            </TableCell>
+            </TableCell> */}
 
           </TableRow>
         </TableHead>
@@ -100,7 +100,7 @@ export default function MercadoTable({ rows }: Props) {
                 <Typography className={styles.rows}>${row.estadisticasGlobales
                   ?.valor_mercado}</Typography>
               </TableCell>
-              <TableCell align="center">
+              {/* <TableCell align="center">
                 <IconButton>
                   <Tooltip title='hacer oferta'>
                     <Link href={`/mercado/ofertas/${row?._id}`} className={styles.rows}>
@@ -112,7 +112,7 @@ export default function MercadoTable({ rows }: Props) {
                   </Tooltip>
                 </IconButton>
 
-              </TableCell>
+              </TableCell> */}
 
             </TableRow>
           ))}

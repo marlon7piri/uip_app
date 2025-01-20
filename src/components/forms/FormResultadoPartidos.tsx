@@ -136,7 +136,6 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
       <label>Goleadores</label>
 
       <select
-        value={resultadoPartido.goleadores}
 
         onChange={handlerGoleadores}>
         <option ></option>
@@ -154,7 +153,6 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
       <label>Asistentes</label>
 
       <select
-        value={resultadoPartido.asistentes}
 
         onChange={handlerAsistentes}>
         <option ></option>

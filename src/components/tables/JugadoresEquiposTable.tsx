@@ -33,13 +33,13 @@ export default function JugadoresEquiposTable({ rows }: Props) {
 
 
 
-  if(rows.length== 0){
+  if (rows.length == 0) {
     return <Typography className='text-slate-50 font-bold text-xl'>Este equipo no tiene jugadores aún</Typography>
   }
 
   return (
     <TableContainer component={Paper} style={{ maxWidth: '62%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
-    
+
       <Table sx={{ minWidth: 490, }} aria-label="simple table">
         <TableHead >
           <TableRow>
@@ -55,21 +55,21 @@ export default function JugadoresEquiposTable({ rows }: Props) {
             <TableCell align="right">
               <Typography className={styles.rows}>Edad</Typography>
             </TableCell>
-           
+
 
             <TableCell align="right">
               <Typography className={styles.rows}>Valor de mercado</Typography>
             </TableCell>
-            <TableCell align="right">
+            {/* <TableCell align="right">
               <Typography className={styles.rows}> Oferta</Typography>
-            </TableCell>
+            </TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody className='w-full text-center'>
-          { rows.map((row) => (
+          {rows.map((row) => (
             <TableRow
               key={row._id}
-              onClick={()=>router.push(`/jugadores/${row._id}`)}
+              onClick={() => router.push(`/jugadores/${row._id}`)}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer transition duration-300'
             >
@@ -91,7 +91,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
               <TableCell align="right">
                 <Typography className={styles.rows}> {row.edad}</Typography>
               </TableCell>
-             
+
 
 
 
@@ -99,7 +99,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
                 <Typography className={styles.rows}> ${row.estadisticasGlobales
                   ?.valor_mercado}</Typography>
               </TableCell>
-              <TableCell align="right">
+              {/*  <TableCell align="right">
                 <IconButton>
                   <Tooltip title='hacer oferta'>
                     <Link href={`/mercado/ofertas/${row?._id}`} className={styles.rows}>
@@ -111,7 +111,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
                   </Tooltip>
                 </IconButton>
 
-              </TableCell>
+              </TableCell> */}
             </TableRow>
           ))}
         </TableBody>

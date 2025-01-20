@@ -1,17 +1,16 @@
 import ContenedorCustom from '@/components/ContenedorCustom'
-import FormJugador from '@/components/forms/FormJugador'
-import FormTorneos from '@/components/forms/FormTorneo'
+import FormGruposTorneo from '@/components/forms/FormGruposTorneo'
 import React from 'react'
 
-const NuevaLiga = () => {
+const NuevaTorneo = () => {
   return (
     <ContenedorCustom >
       <div className='flex justify-center items-center p-4'>
-        <FormTorneos />
+        <FormGruposTorneo />
 
       </div>
     </ContenedorCustom>
   )
 }
 
-export default NuevaLiga
+export default NuevaTorneo
