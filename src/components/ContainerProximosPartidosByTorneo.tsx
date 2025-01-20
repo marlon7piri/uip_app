@@ -20,7 +20,7 @@ const ContainerProximosPartidosByTorneo = ({ partidos }: Props) => {
                 })}
             </div>
 
-            
+
         </div>
     )
 }

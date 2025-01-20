@@ -39,7 +39,8 @@ const PartidosByTorneos = () => {
         const getPartidosByTorneo = async () => {
             const session = await getSession()
             const res = await UseCases.getPartidosByTorneosUseCases(fetcherDb, params.idTorneo, session?.token);
-            setPartidosByTorneos(res);
+
+            setPartidosByTorneos(res)
         };
 
 
@@ -51,8 +52,6 @@ const PartidosByTorneos = () => {
 
             setEquiposParticipantes(res.torneo_especifico);
 
-            const goleadoresSorted = res.torneo?.goleadores.sort((a, b) => b.cantidad - a.cantidad)
-            const asistentesSorted = res.torneo?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
 
         };
         getPartidosByTorneo()
