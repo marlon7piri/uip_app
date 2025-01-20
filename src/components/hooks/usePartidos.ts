@@ -113,7 +113,7 @@ export const usePartidos = () => {
       session?.token
     );
     toast.success("Partido creado");
-    router.back();
+    router.push(`ligas/partidos/${params.idTorneo}`);
     await getPartidos();
   };
   const evaluarPartido = async () => {
