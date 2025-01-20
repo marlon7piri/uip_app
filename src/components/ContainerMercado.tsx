@@ -54,7 +54,7 @@ const FiltrosMercado = ({ onFilterChange }: { onFilterChange: (text: string) => 
         defaultValue={inputValue}
         onChange={(e) => debounceChange(e.target.value)}
 
-        className='p-4 outline-none rounded-md bg-transparent border border-slate-900 text-slate-50 font-bold' />
+        className='p-4 outline-none rounded-md bg-transparent border border-slate-900 text-slate-900 font-bold' />
     </div>
   )
 }
@@ -71,6 +71,7 @@ export const ContainerMercado = () => {
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jugadores/list?query=${query}`, {
         cache: 'force-cache',
+
         headers: {
           token: session?.token
         }

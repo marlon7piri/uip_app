@@ -1,28 +1,28 @@
 'use client'
 import React from 'react'
-import BreadCrum from './BreadCrum'
-import { useOfertas } from './hooks/useOfertas'
+import { useNoticias } from './hooks/useNoticias'
 import CardNoticias from './CardNoticias'
 import ContenedorCustom from './ContenedorCustom'
 import { Title } from './Title'
+import BreadCrum from './BreadCrum'
 
 const ContainerNoticias = () => {
-  const { ofertas } = useOfertas()
+  const { noticias } = useNoticias()
 
   return (
-    <ContenedorCustom >
-      <Title content='Noticias' size='text-6xl'/>
+    <div className='pt-24 px-4'>
+      <BreadCrum titulo='Noticias' url='/noticias/new' labelBtn='Crear Noticia' />
 
-      <div className='p-4'>
+      <div className='p-4 flex flex-col gap-10'>
         {
-          ofertas.map((e) => {
-            return <CardNoticias ofertas={e} key={e._id} />
+          noticias.map((e) => {
+            return <CardNoticias noticias={e} key={e._id} />
           })
         }
       </div>
 
 
-    </ContenedorCustom>
+    </div>
   )
 }
 

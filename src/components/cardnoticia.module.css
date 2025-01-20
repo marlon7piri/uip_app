@@ -1,0 +1,25 @@
+.cardNoticia {
+  width: 100%;
+  display: flex;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  gap: 2rem;
+}
+
+.containerTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (width < 600px) {
+  .cardNoticia {
+    flex-direction: column;
+  }
+
+  .containerTitle {
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+}

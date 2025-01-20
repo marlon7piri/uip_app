@@ -43,7 +43,7 @@ const NavBar = () => {
           <Link href={'/ligas'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Ligas</Link>
           <Link href={'/equipos'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Equipos</Link>
           <Link href={'/mercado'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Jugadores</Link>
-          {/* <Link href={'/noticias'} className='text-[18px] text-slate-900 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Noticias</Link> */}
+          <Link href={'/noticias'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Noticias</Link>
         </div>
 
         <IconButton onClick={logoutAuth} className='w-10 h-10  hover:bg-sky-500 rounded-full p-2 transition-colors duration-500'><Tooltip title='Cerrar sesión'><Logout style={{ color: 'white' }} /></Tooltip></IconButton>

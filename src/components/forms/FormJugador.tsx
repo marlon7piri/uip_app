@@ -7,16 +7,12 @@ import { useJugador } from "../hooks/useJugador";
 import { useEquipos } from "../hooks/useEquipos";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { JugadorStore } from "@/utils/zustand/jugador";
-import { CustomInputFileFoto } from "../CustomInputFileFoto";
 import './forms.css'
-import {CloudinaryFile} from "../CloudinaryFile";
 
 export default function FormJugador() {
-  const saveImage = JugadorStore(state => state.saveImage)
-  const currentImage = JugadorStore(state => state.currentImage)
 
-  const { jugador, setJugador, createJugador,setImage ,image} = useJugador()
+
+  const { jugador, setJugador, createJugador, setImage, image } = useJugador()
   const { equipos } = useEquipos()
   const router = useRouter();
 
@@ -29,20 +25,19 @@ export default function FormJugador() {
   };
 
 
-  
+
   // Manejar cambio de archivo
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
   };
 
-console.log(image)
   return (
 
     <>
 
-      
 
-       <form onSubmit={handleSubmit} >
+
+      <form onSubmit={handleSubmit} >
 
 
         <label>Nombre</label>
@@ -83,7 +78,7 @@ console.log(image)
         {/*  <CustomInputFileFoto
         onChange={saveImage}
       /> */}
-      
+
         <input type="file" accept='image/*' onChange={handleFileChange} />
 
         {image && <img src={image} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={jugador.nombre} />}
@@ -262,7 +257,7 @@ console.log(image)
         >
           Crear
         </button>
-        
+
 
       </form >
     </>

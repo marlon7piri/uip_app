@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { fetcherDb } from "@/config/adapters/apiDbAdapter";
 import * as UseCases from "../../config/core/use-cases";
 import { useSession } from "next-auth/react";
@@ -8,6 +8,7 @@ import { Equipos } from "@/infraestrcuture/entities/equipos";
 import { TorneoStore } from "@/utils/zustand/torneos";
 import { useSessionAuth } from "./useSessionAuth";
 import { getSession } from "@/actions/get-session";
+import { uploadFile } from "@/utils/imagenes";
 
 export const useTorneos = () => {
   const [torneos, setTorneos] = useState<Torneos[]>([]);
@@ -16,50 +17,43 @@ export const useTorneos = () => {
     nombre: "",
     foto: "",
   });
-  const currentImageTorneo = TorneoStore((state) => state.currentImageTorneo);
+  const [image, setImage] = useState(null);
+
   const [loading, setLoading] = useState<boolean>(false);
 
-
-
-
   useEffect(() => {
-    
     const loadTorneos = async () => {
       await getTorneos();
     };
     loadTorneos();
-
-    
- 
-
- 
-
- 
   }, []);
-   
 
   const getTorneos = async () => {
-    const session = await getSession()
+    const session = await getSession();
     setLoading(true);
     const res = await UseCases.getTorneosUseCases(fetcherDb, session?.token);
     setTorneos(res);
     setLoading(false);
   };
   const getEquiposByTorneo = async (idTorneo: string) => {
-    const session = await getSession()
+    const session = await getSession();
 
     setLoading(true);
-    const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, idTorneo);
-    console.log(res)
-
+    const res = await UseCases.getEquiposRegistrados(
+      fetcherDb,
+      session?.token,
+      idTorneo
+    );
+    console.log(res);
   };
 
   const crearTorneo = async () => {
-    const session = await getSession()
+    const session = await getSession();
+    const img = await uploadFile(image);
 
     const newTorneo = {
       ...torneo,
-      foto: currentImageTorneo,
+      foto: img,
     };
     const res = await UseCases.createTorneoUseCases(
       fetcherDb,
@@ -70,7 +64,7 @@ export const useTorneos = () => {
     setLoading(false);
   };
   const registrarEquiposTorneos = async (idTorneo: string) => {
-    const session = await getSession()
+    const session = await getSession();
 
     const ids = equiposRegistrados.map((e) => e._id);
 
@@ -96,6 +90,8 @@ export const useTorneos = () => {
     setEquiposRegistrados,
     registrarEquiposTorneos,
     crearTorneo,
-    getEquiposByTorneo
+    getEquiposByTorneo,
+    image,
+    setImage,
   };
 };

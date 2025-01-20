@@ -1,27 +1,27 @@
-import { Jugadores } from '@/infraestrcuture/entities/jugadores'
-import { Ofertas } from '@/infraestrcuture/entities/ofertas'
+import { Noticias } from '@/infraestrcuture/entities/noticias'
 import React from 'react'
+import styles from './cardnoticia.module.css'
+import { convertirFecha } from '@/utils/convertirFecha'
 
 interface Props {
-  ofertas: Ofertas
+  noticias: Noticias
 }
 
-const CardNoticias = ({ ofertas }: Props) => {
-
+const CardNoticias = ({ noticias }: Props) => {
 
   return (
-    <div className='flex  p-2 justify-center  items-center bg-slate-50 gap-4 text-slate-900 mt-2 w-full
-     rounded-3xl  transition-all duration-300'>
-      <img src={ofertas?.jugador?.club?.logo}
-        alt={ofertas?.jugador?.nombre}
-        className='w-[130px] h-[130px] rounded-full object-cover' />
-      <img src={ofertas?.jugador?.foto}
-        alt={ofertas?.jugador?.nombre}
-        className='w-[130px] h-[130px] rounded-full object-cover' />
-      <h3>Jugador: {ofertas?.jugador?.nombre + " " + ofertas?.jugador?.apellido}</h3>
-      <h3>Oferta: ${ofertas?.monto}</h3>
-      <h3>Descripcion: {ofertas?.descripcion}</h3>
-      <h3>Autor: {ofertas?.author?.nameUser}</h3>
+    <div className={styles.cardNoticia}>
+      {noticias?.foto && <img src={noticias?.foto}
+        alt={noticias?.titulo}
+        className='w-[430px] h-[330px] object-cover rounded-md' />}
+
+      <div className='w-full flex flex-col gap-4'>
+        <div className={styles.containerTitle}>
+          <h1 className='font-black text-4xl'>{noticias?.titulo}</h1>
+          <h3 className='font-bold text-slate-700'>Fecha: {convertirFecha(noticias?.createdAt)}</h3>
+        </div>
+        <p className='font-extralight text-slate-700'>{noticias?.subtitulo}</p>
+      </div>
 
 
 
