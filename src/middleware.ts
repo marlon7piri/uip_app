@@ -1,46 +1,48 @@
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
-import authConfig from "@/auth.config"
-import NextAuth from 'next-auth'
-import { ApiAuthPefix, protectedRoutes, DefaultLoginRedirect,AuthRoutes,publicRoutes } from "./routes";
-
+import authConfig from "@/auth.config";
+import NextAuth from "next-auth";
+import {
+  ApiAuthPefix,
+  protectedRoutes,
+  DefaultLoginRedirect,
+  AuthRoutes,
+  publicRoutes,
+} from "./routes";
 
 const secret = process.env.AUTH_SECRET;
 
-const { auth } = NextAuth(authConfig)
+const { auth } = NextAuth(authConfig);
 
+export default auth(async (req) => {
+  const { nextUrl } = req;
 
+  const token = await getToken({ req, secret });
 
-export default auth((req) => {
+  const isLoggin = !!token; // Usuario autenticado si el token existe
 
-  const { nextUrl } = req
+  console.log(token);
 
-  const isLoggin = !!req.auth
-
-  const isApiRoute = nextUrl.pathname.startsWith(ApiAuthPefix)
-  const isAuthRoute = AuthRoutes.includes(nextUrl.pathname)
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
+  const isApiRoute = nextUrl.pathname.startsWith(ApiAuthPefix);
+  const isAuthRoute = AuthRoutes.includes(nextUrl.pathname);
+  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
 
   if (isApiRoute) {
-    return null
+    return null;
   }
 
-  if(isAuthRoute){
-    if(isLoggin){
-      return Response.redirect(new URL(DefaultLoginRedirect,nextUrl))
+  if (isAuthRoute) {
+    if (isLoggin) {
+      return Response.redirect(new URL(DefaultLoginRedirect, nextUrl));
     }
-    return null
+    return null;
   }
   if (!isLoggin && !isPublicRoute) {
-    return Response.redirect(new URL('/auth/login', nextUrl))
+    return Response.redirect(new URL("/auth/login", nextUrl));
   }
 
-  return null
-
-})
+  return null;
+});
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
-}
-
-
-
+};
