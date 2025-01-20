@@ -18,7 +18,7 @@ export default auth(async (req) => {
   const { nextUrl } = req;
 
   const isLoggin = !!req.auth;
-  const { token } = await getToken({ req, secret });
+  const  token  = await getToken({ req, secret });
 
   const isApiRoute = nextUrl.pathname.startsWith(ApiAuthPefix);
   const isAuthRoute = AuthRoutes.includes(nextUrl.pathname);
