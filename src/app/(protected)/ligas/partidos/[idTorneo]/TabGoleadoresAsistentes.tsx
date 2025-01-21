@@ -16,6 +16,8 @@ const TabGoleadoresAsistentes = () => {
 
     const [goleadores, setGoleadores] = useState([])
     const [asistentes, setAsistentes] = useState([])
+    const [amarillas, setAmarillas] = useState([])
+    const [rojas, setRojas] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
@@ -33,8 +35,12 @@ const TabGoleadoresAsistentes = () => {
 
                 const goleadoresSorted = res.torneo?.goleadores.sort((a, b) => b.cantidad - a.cantidad)
                 const asistentesSorted = res.torneo?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
+                const amarillassorted = res.torneo?.sancionados_amarilla.sort((a, b) => b.cantidad - a.cantidad)
+                const rojassorted = res.torneo?.sancionados_roja.sort((a, b) => b.cantidad - a.cantidad)
                 setGoleadores(goleadoresSorted);
                 setAsistentes(asistentesSorted);
+                setAmarillas(amarillassorted);
+                setRojas(rojassorted);
 
                 setLoading(false)
             } catch (error) {
@@ -66,6 +72,14 @@ const TabGoleadoresAsistentes = () => {
                 <div>
                     <Title content='Asistentes' size='text-2xl' color='text-slate-50' />
                     <TorneoTableGoleadores rows={asistentes} />
+                </div>
+                <div>
+                    <Title content='Amarillas' size='text-2xl' color='text-slate-50' />
+                    <TorneoTableGoleadores rows={amarillas} />
+                </div>
+                <div>
+                    <Title content='Rojas' size='text-2xl' color='text-slate-50' />
+                    <TorneoTableGoleadores rows={rojas} />
                 </div>
 
 

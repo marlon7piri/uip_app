@@ -2,8 +2,6 @@
 
 import React from "react";
 ;
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 
 import { usePartidos } from "../hooks/usePartidos";
 import './forms.css'
@@ -37,9 +35,9 @@ export default function FormPartido({ equiposParticipantes }: Props) {
 
       <select
         value={partido.local}
-
+        disabled={equiposParticipantes.length == 0}
         onChange={(e) => setPartido({ ...partido, local: e.target.value })}>
-        <option value={''} ></option>
+        <option value={''} >{equiposParticipantes.length == 0 ? 'Cargando...' : 'Seleccione un equipo'}</option>
         {equiposParticipantes.map((e) => {
           return <option key={e?._id} value={e?._id} >
 
@@ -54,9 +52,9 @@ export default function FormPartido({ equiposParticipantes }: Props) {
 
       <select
         value={partido.visitante}
-
+        disabled={equiposParticipantes.length == 0}
         onChange={(e) => setPartido({ ...partido, visitante: e.target.value })}>
-        <option value={''} ></option>
+        <option value={''} >{equiposParticipantes.length == 0 ? 'Cargando...' : 'Seleccione un equipo'}</option>
         {equiposParticipantes.map((e) => {
           return <option key={e?._id} value={e?._id} >
 
@@ -65,6 +63,20 @@ export default function FormPartido({ equiposParticipantes }: Props) {
 
 
         })}
+
+      </select>
+      <label>Tipo</label>
+
+      <select
+        value={partido.tipo}
+
+        onChange={(e) => setPartido({ ...partido, tipo: e.target.value })}>
+        <option value={''} >Seleccione un equipo</option>
+        <option value={'clasificacion'} >Clasificacion</option>
+        <option value={'cuartos'} >Cuartos de Final</option>
+        <option value={'octavos'} >Octavos de Final</option>
+        <option value={'final'} >Final</option>
+
 
       </select>
 

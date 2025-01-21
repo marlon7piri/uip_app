@@ -28,8 +28,8 @@ export default function TorneoTableGoleadores({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ width: '100%',minHeight:'100vh', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white' }}>
-     
+    <TableContainer component={Paper} style={{ width: '100%', minHeight: '100vh', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white' }}>
+
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -48,28 +48,31 @@ export default function TorneoTableGoleadores({ rows }: Props) {
           {rows?.map((row, index) => (
             <TableRow
               key={row._id}
-              onClick={()=>router.push(`/jugadores/${row.jugador?._id}`)}
+              onClick={() => router.push(`/jugadores/${row.jugador?._id}`)}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='hover:bg-slate-900 cursor-pointer'
             >
               <TableCell align="right" >
-              <Typography className={styles.rows}>{index + 1}</Typography>
-                </TableCell>
+                <Typography className={styles.rows}>{index + 1}</Typography>
+              </TableCell>
 
-              <TableCell align="center" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', gap: 1 }}>
-                <Image src={row?.jugador?.foto} width={50} height={50} alt='una imagen del jugador'
-                  className='rounded-full'
-                />
-              <Typography className={styles.rows}>{row.jugador?.nombre + " " + row.jugador?.apellido}</Typography>
+              <TableCell align="center"  >
+                <div className='flex justify-center items-center gap-1'>
+                  <Image src={row?.jugador?.foto} width={50} height={50} alt='una imagen del jugador'
+                    className='rounded-full'
+                  />
+                  <Typography className={styles.rows}>{row.jugador?.nombre + " " + row.jugador?.apellido}</Typography>
+                </div>
 
-                
+
+
               </TableCell>
 
 
               <TableCell align="right" >
-              <Typography className={styles.rows}>{row?.cantidad}</Typography>
-                
-                </TableCell>
+                <Typography className={styles.rows}>{row?.cantidad}</Typography>
+
+              </TableCell>
 
             </TableRow>
           ))}

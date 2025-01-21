@@ -8,8 +8,12 @@ import * as UseCases from '@/config/core/use-cases';
 import { fetcherDb } from '@/config/adapters/apiDbAdapter';
 import Spinner from '@/components/Spinner';
 
-const TabPartidos = ({partidosByTorneos,loading}:{partidosByTorneos:any,loading:boolean}) => {
- 
+const TabPartidos = ({ partidosByTorneos, loading }: { partidosByTorneos: any, loading: boolean }) => {
+
+
+  if (!partidosByTorneos) {
+    return <h1>No hay partidos</h1>
+  }
 
   return (
     <div>

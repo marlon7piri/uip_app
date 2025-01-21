@@ -16,6 +16,8 @@ interface TypePartido {
   exist_ganador: false;
   fecha: null;
   goles: number;
+  tipo: string;
+
   is_draw: false;
   torneo_id: string;
 }
@@ -43,6 +45,8 @@ const initialPartido: TypePartido = {
   exist_ganador: false,
   fecha: null,
   goles: 0,
+  tipo: "clasificacion",
+
   is_draw: false,
   torneo_id: "",
 };
@@ -106,15 +110,16 @@ export const usePartidos = () => {
   const createPartido = async () => {
     const session = await getSession();
 
-    const newMatch: TypePartido = { ...partido, torneo_id: params.idTorneo };
+    const newMatch: TypePartido = {
+      ...partido,
+      torneo_id: idTorneo,
+    };
     const res = await UseCases.createPartidoUseCases(
       fetcherDb,
       newMatch,
       session?.token
     );
     toast.success("Partido creado");
-    router.push(`ligas/partidos/${params.idTorneo}`);
-    await getPartidos();
   };
   const evaluarPartido = async () => {
     const session = await getSession();
@@ -144,7 +149,7 @@ export const usePartidos = () => {
     );
 
     toast.success("Partido evaluado");
-    router.push(`/ligas/partidos/${idTorneo}`);
+    router.replace(`/ligas/partidos/${idTorneo}`);
     router.refresh();
     setLoading(false);
   };

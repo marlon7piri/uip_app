@@ -68,16 +68,11 @@ const PartidosByTorneos = () => {
             <div className='w-full h-screen flex justify-center items-center flex-col p-4 '>
                 <div className='flex gap-2 justify-end items-center mt-[100px] mb-4'>
                     <BreadCrum titulo='' url={`/ligas/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
-                    <BreadCrum titulo='' isLink={false} onClick={handlerModal} labelBtn='Nuevo Partido' />
+                    <BreadCrum titulo='' url={`/ligas/partidos/nuevo?idTorneo=${params.idTorneo}`} labelBtn='Nuevo Partido' />
 
                 </div>
                 <TabTorneos partidosByTorneos={partidosByTorneos} loading={loading} />
 
-                <Modal open={openModal} onClose={handlerModal}>
-                    <div className='w-max h-max m-auto translate-y-52 bg-slate-700 p-4 rounded-md '>
-                        <FormPartido equiposParticipantes={equiposParticipantes} />
-                    </div>
-                </Modal>
 
             </div>
         </div>
