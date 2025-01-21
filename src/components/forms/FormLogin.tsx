@@ -23,30 +23,26 @@ export const FormLogin = () => {
     setLoginInProgress(true);
     setError("");
 
-    try {
-
-      const credential = {
-        username: email,
-        password: password
-
-      }
 
 
-      const res = await loginAuth(credential)
+    const credential = {
+      username: email,
+      password: password
 
-
-
-      if (res?.error) {
-        setError(res.error); // Esto mostrará errores enviados desde NextAuth
-        setEmail("");
-        setPassword("");
-      }
-
-    } catch (err) {
-      setError('Error');
-    } finally {
-      setLoginInProgress(false);
     }
+
+
+    const res = await loginAuth(credential)
+
+
+
+    if (res?.error) {
+      setError(res.error); // Esto mostrará errores enviados desde NextAuth
+      setEmail("");
+      setPassword("");
+    }
+    setLoginInProgress(false);
+
   }
 
   const handlerShowPassword = () => {

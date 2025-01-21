@@ -48,13 +48,14 @@ export default function MercadoTable({ rows }: Props) {
               <Typography className={styles.rows}>Edad</Typography>
 
             </TableCell>
+
+
             <TableCell align="center">
-              <Typography className={styles.rows}>Club</Typography>
+              <Typography className={styles.rows}>Estatura</Typography>
 
             </TableCell>
-
             <TableCell align="center">
-              <Typography className={styles.rows}>Valor de mercado</Typography>
+              <Typography className={styles.rows}>Club</Typography>
 
             </TableCell>
             {/* <TableCell align="center">
@@ -86,6 +87,9 @@ export default function MercadoTable({ rows }: Props) {
                 <Typography className={styles.rows}>{row.edad}</Typography>
 
               </TableCell>
+              <TableCell align="center">
+                <Typography className={styles.rows}>{row.estatura} cm</Typography>
+              </TableCell>
               <TableCell align="center" >
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <Image src={row.club?.logo} width={50} height={50} alt={row.club?.nombre}
@@ -96,10 +100,7 @@ export default function MercadoTable({ rows }: Props) {
               </TableCell>
 
 
-              <TableCell align="center">
-                <Typography className={styles.rows}>${row.estadisticasGlobales
-                  ?.valor_mercado}</Typography>
-              </TableCell>
+
               {/* <TableCell align="center">
                 <IconButton>
                   <Tooltip title='hacer oferta'>
