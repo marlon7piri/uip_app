@@ -39,7 +39,7 @@ const NuevoEquipo = () => {
     <div className='h-screen'>
       <Title content='Nuevo Partido' size='text-4xl' />
 
-      <div className='flex justify-center items-center'>
+      <div className='flex justify-center items-center p-4'>
         <FormPartido equiposParticipantes={equiposParticipantes} />
 
       </div>

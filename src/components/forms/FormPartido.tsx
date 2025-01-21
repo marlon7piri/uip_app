@@ -29,7 +29,7 @@ export default function FormPartido({ equiposParticipantes }: Props) {
 
 
   return (
-    <form onSubmit={handleSubmit} className="w-[600px] h-[300px]  m-auto overflow-y-scroll ">
+    <form onSubmit={handleSubmit} >
 
       <label>Club Local</label>
 
