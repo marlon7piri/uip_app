@@ -43,7 +43,7 @@ export const FormLogin = () => {
       }
 
     } catch (err) {
-      setError(err);
+      setError('Error');
     } finally {
       setLoginInProgress(false);
     }

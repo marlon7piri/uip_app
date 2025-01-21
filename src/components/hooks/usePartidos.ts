@@ -26,8 +26,8 @@ export interface TypeResultado {
   goles_visitante: number;
   asistencias_local: number;
   asistencias_visitantes: number;
-  tarjetas_amarillas: number;
-  tarjetas_rojas: number;
+  tarjetas_amarillas: string[];
+  tarjetas_rojas: string[];
   is_draw: boolean;
   torneoId: string | null;
   partidoId: string | null;
@@ -53,8 +53,8 @@ const initialResultado: TypeResultado = {
   goles_visitante: 0,
   asistencias_local: 0,
   asistencias_visitantes: 0,
-  tarjetas_amarillas: 0,
-  tarjetas_rojas: 0,
+  tarjetas_amarillas: [],
+  tarjetas_rojas: [],
   is_draw: true,
   torneoId: "",
   partidoId: "",
@@ -122,11 +122,15 @@ export const usePartidos = () => {
 
     const idsGoleadores = resultadoPartido.goleadores.map((e) => e.ids);
     const idsAsistentes = resultadoPartido.asistentes.map((e) => e.ids);
+    const idsAmarillas = resultadoPartido.tarjetas_amarillas.map((e) => e.ids);
+    const idsRojas = resultadoPartido.tarjetas_rojas.map((e) => e.ids);
 
     const result: TypeResultado = {
       ...resultadoPartido,
       goleadores: idsGoleadores,
       asistentes: idsAsistentes,
+      tarjetas_amarillas: idsAmarillas,
+      tarjetas_rojas: idsRojas,
       id_local: local,
       id_visitante: visitante,
       torneoId: idTorneo,

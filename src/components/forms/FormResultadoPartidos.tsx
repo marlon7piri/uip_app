@@ -24,6 +24,12 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
   const nombreVisitante = search.get('nombreVisitante')
 
 
+  useEffect(() => {
+    getEquiposPorPartido(local, visitante)
+
+  }, [])
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     evaluarPartido()
@@ -71,11 +77,49 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
     })
   }
 
+  const handlerAmarillas = (e) => {
 
-  useEffect(() => {
-    getEquiposPorPartido(local, visitante)
 
-  }, [])
+    const id = e.target.value
+    const player = jugadores.find(item => item._id == id)
+
+    setResultadoPartido((prevState) => {
+      const { tarjetas_amarillas } = prevState
+
+      const new_amarillas = [...tarjetas_amarillas, { ids: player._id, nombre: player.nombre + " " + player.apellido }]
+
+      return { ...prevState, tarjetas_amarillas: new_amarillas }
+
+
+
+
+
+
+    })
+  }
+
+  const handlerRojas = (e) => {
+
+
+    const id = e.target.value
+    const player = jugadores.find(item => item._id == id)
+
+    setResultadoPartido((prevState) => {
+      const { tarjetas_rojas } = prevState
+
+      const new_rojas = [...tarjetas_rojas, { ids: player._id, nombre: player.nombre + " " + player.apellido }]
+
+      return { ...prevState, tarjetas_rojas: new_rojas }
+
+
+
+
+
+
+    })
+  }
+
+
 
 
   return (
@@ -149,7 +193,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
 
       </select>
-      {resultadoPartido.goleadores.map((e) => <p className="text-slate-50">{e.nombre}</p>)}
+      {resultadoPartido.goleadores.map((e) => <p className="text-slate-50" key={e.ids}>{e.nombre}</p>)}
       <label>Asistentes</label>
 
       <select
@@ -167,11 +211,45 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
 
       </select>
-      {resultadoPartido.asistentes.map((e) => <p className="text-slate-50">{e.nombre}</p>)}
+      {resultadoPartido.asistentes.map((e) => <p className="text-slate-50" key={e.ids}>{e.nombre}</p>)}
+
+      <label>Tarjetas Amarillas</label>
+
+      <select
+
+        onChange={handlerAmarillas}>
+        <option ></option>
+
+        {jugadores?.map(elem => {
+          return <option key={elem._id} value={elem._id} >{elem.nombre + " " + elem.apellido}</option>
+
+        })}
 
 
 
 
+
+      </select>
+      {resultadoPartido.tarjetas_amarillas.map((e) => <p className="text-slate-50" key={e.ids}>{e.nombre}</p>)}
+
+      <label>Tarjetas Rojas</label>
+
+      <select
+
+        onChange={handlerRojas}>
+        <option ></option>
+
+        {jugadores?.map(elem => {
+          return <option key={elem._id} value={elem._id} >{elem.nombre + " " + elem.apellido}</option>
+
+        })}
+
+
+
+
+
+      </select>
+      {resultadoPartido.tarjetas_rojas.map((e) => <p className="text-slate-50" key={e.ids}>{e.nombre}</p>)}
       <button
         type="submit"
       >
