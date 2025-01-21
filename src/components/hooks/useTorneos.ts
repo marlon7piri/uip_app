@@ -44,7 +44,6 @@ export const useTorneos = () => {
       session?.token,
       idTorneo
     );
-    console.log(res);
   };
 
   const crearTorneo = async () => {

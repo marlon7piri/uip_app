@@ -14,14 +14,13 @@ export default function FormJugador() {
 
   const { jugador, setJugador, createJugador, setImage, image } = useJugador()
   const { equipos } = useEquipos()
-  const router = useRouter();
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    createJugador()
-    toast.success('Jugador creado')
-    router.push('/mercado')
+    await createJugador()
+
+
   };
 
 
@@ -63,7 +62,7 @@ export default function FormJugador() {
 
 
           value={jugador.edad}
-          onChange={(e) => setJugador({ ...jugador, edad: e.target.value })}
+          onChange={(e) => setJugador({ ...jugador, edad: parseInt(e.target.value) })}
         />
         <label>Estatura</label>
         <input
@@ -73,17 +72,29 @@ export default function FormJugador() {
 
 
           value={jugador.estatura}
-          onChange={(e) => setJugador({ ...jugador, estatura: e.target.value })}
+          onChange={(e) => setJugador({ ...jugador, estatura: parseInt(e.target.value) })}
         />
-        {/*  <CustomInputFileFoto
-        onChange={saveImage}
-      /> */}
+
 
         <input type="file" accept='image/*' onChange={handleFileChange} />
 
         {image && <img src={image} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={jugador.nombre} />}
 
-        <label>Rol</label>
+
+
+        <label>Email</label>
+        <input
+          type="email"
+
+          name="email"
+
+
+          value={jugador.email}
+          onChange={(e) => setJugador({ ...jugador, email: e.target.value })}
+        />
+        {/*  
+        
+          <label>Rol</label>
 
         <select
 
@@ -101,17 +112,7 @@ export default function FormJugador() {
           </option>
 
         </select>
-
-        <label>Email</label>
-        <input
-          type="email"
-
-          name="email"
-
-
-          value={jugador.email}
-          onChange={(e) => setJugador({ ...jugador, email: e.target.value })}
-        />
+        
         <label>Estudiante</label>
 
         <select
@@ -140,7 +141,7 @@ export default function FormJugador() {
 
           value={jugador.valor_mercado}
           onChange={(e) => setJugador({ ...jugador, valor_mercado: e.target.value })}
-        />
+        /> */}
 
         <label>Posicion</label>
 
@@ -177,7 +178,7 @@ export default function FormJugador() {
 
 
           value={jugador.velocidad}
-          onChange={(e) => setJugador({ ...jugador, velocidad: e.target.value })}
+          onChange={(e) => setJugador({ ...jugador, velocidad: parseInt(e.target.value) })}
         />
         <label>Ataque</label>
         <input
@@ -187,7 +188,7 @@ export default function FormJugador() {
 
 
           value={jugador.ataque}
-          onChange={(e) => setJugador({ ...jugador, ataque: e.target.value })}
+          onChange={(e) => setJugador({ ...jugador, ataque: parseInt(e.target.value) })}
         />
         <label>Defensa</label>
         <input
@@ -197,7 +198,7 @@ export default function FormJugador() {
 
 
           value={jugador.defensa}
-          onChange={(e) => setJugador({ ...jugador, defensa: e.target.value })}
+          onChange={(e) => setJugador({ ...jugador, defensa: parseInt(e.target.value) })}
         />
         <label>Regate</label>
         <input
@@ -207,7 +208,7 @@ export default function FormJugador() {
 
 
           value={jugador.regate}
-          onChange={(e) => setJugador({ ...jugador, regate: e.target.value })}
+          onChange={(e) => setJugador({ ...jugador, regate: parseInt(e.target.value) })}
         />
 
         <label>Club</label>
@@ -217,6 +218,7 @@ export default function FormJugador() {
           value={jugador.club}
 
           onChange={(e) => setJugador({ ...jugador, club: e.target.value })}>
+          <option></option>
           {equipos.map((e) => {
             return <option key={e?._id} value={e?._id} >
 
@@ -236,7 +238,10 @@ export default function FormJugador() {
           value={jugador.status}
 
           onChange={(e) => setJugador({ ...jugador, status: e.target.value })}>
+          <option value={''} >
 
+
+          </option>
           <option value={'activo'} >
 
             Activo

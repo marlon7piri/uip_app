@@ -6,6 +6,7 @@ import { loginAuth } from '@/actions/auth-login';
 import './formlogin.css'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { CircularProgress } from '@mui/material';
 
 
 
@@ -42,8 +43,7 @@ export const FormLogin = () => {
       }
 
     } catch (err) {
-      console.error("Error during login:", err);
-      setError("Ocurrió un error inesperado. Inténtalo de nuevo.");
+      setError(err);
     } finally {
       setLoginInProgress(false);
     }
@@ -100,7 +100,7 @@ export const FormLogin = () => {
           type="submit"
 
         >
-          {loginInProgress ? "loading..." : "Iniciar"}
+          {loginInProgress ? <CircularProgress size={24} color='inherit' /> : "Iniciar"}
         </button>
         <Link href={'/auth/register'} className=" p-2 text-slate-50 text-center hover:text-sky-500">
           Registrarse

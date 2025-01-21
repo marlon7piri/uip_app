@@ -70,7 +70,7 @@ export const ContainerMercado = () => {
 
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jugadores/list?query=${query}`, {
-        cache: 'force-cache',
+        cache: 'no-store',
 
         headers: {
           token: session?.token

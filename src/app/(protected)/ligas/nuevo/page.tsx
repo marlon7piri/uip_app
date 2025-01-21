@@ -6,7 +6,7 @@ import React from 'react'
 const NuevoTorneo = () => {
   return (
     <ContenedorCustom >
-      <Title content='Nueva Liga' size='text-4xl' />
+      <Title content='Nuevo Grupo' size='text-4xl' />
 
       <div className=' flex justify-center items-center'>
         <FormTorneos />

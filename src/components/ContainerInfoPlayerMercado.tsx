@@ -5,12 +5,12 @@ import React from 'react'
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import './cardInfoplayer.css'
-import { Jugador } from '@/infraestrcuture/entities/ofertas';
 import Spinner from './Spinner';
+import { Jugadores } from '@/infraestrcuture/entities/jugadores';
 
 
 interface Props {
-  jugador: Jugador;
+  jugador: Jugadores;
 }
 const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
 
@@ -60,11 +60,11 @@ const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
 
           <div>
             <Typography className='flex gap-2  items-center'>
-              Tarjetas Amarillas:2 </Typography>
+              Tarjetas Amarillas: {jugador.estadisticasGlobales.tarjetas_amarillas}</Typography>
 
           </div>
           <div >
-            <Typography className='flex gap-2  items-center relative'>Tarjetas Rojas:3 </Typography>
+            <Typography className='flex gap-2  items-center relative'>Tarjetas Rojas: {jugador.estadisticasGlobales.tarjetas_rojas}</Typography>
 
 
           </div>

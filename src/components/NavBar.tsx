@@ -40,7 +40,7 @@ const NavBar = () => {
 
         <div className={styles.ulContainer}>
           <Link href={'/torneos'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Torneos</Link>
-          <Link href={'/ligas'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Ligas</Link>
+          <Link href={'/ligas'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Grupos</Link>
           <Link href={'/equipos'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Equipos</Link>
           <Link href={'/mercado'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Jugadores</Link>
           <Link href={'/noticias'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Noticias</Link>

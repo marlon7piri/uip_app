@@ -7,65 +7,91 @@ import { JugadorStore } from "@/utils/zustand/jugador";
 import { Equipos } from "@/infraestrcuture/entities/equipos";
 import { getSession } from "@/actions/get-session";
 import { uploadFile } from "@/utils/imagenes";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-const initialStateJugador: Jugadores = {
+interface NewJugador {
+  nombre: string;
+  apellido: string;
+  edad: number;
+  estatura: number;
+  foto: string;
+  ataque: number;
+  defensa: number;
+  posicion: string;
+  valor_mercado: number;
+  velocidad: number;
+  regate: number;
+  asistencias: number;
+  goles: number;
+
+  club: string;
+
+  email: string;
+  estudiante: string;
+  rol: string;
+  status: string;
+}
+
+const initialStateJugador: NewJugador = {
   nombre: "",
   apellido: "",
   edad: 0,
   estatura: 0,
   foto: "",
-  club: {
-    nombre: "",
-    logo: "",
-  },
+
   ataque: 0,
   defensa: 0,
-  email: "",
-  estudiante: "si",
   posicion: "delantero",
-  regate: 0,
-  rol: "jugador",
-  status: "activo",
   valor_mercado: 0,
   velocidad: 0,
+  regate: 0,
+  asistencias: 0,
+  goles: 0,
+
+  club: "",
+
+  email: "",
+  estudiante: "si",
+  rol: "jugador",
+  status: "activo",
 };
 
 export const useJugador = () => {
-  const [jugador, setJugador] = useState<Jugadores>(initialStateJugador);
+  const [jugador, setJugador] = useState<NewJugador>(initialStateJugador);
   const [loading, setLoading] = useState<boolean>(false);
   const [jugadores, setJugadores] = useState<Jugadores[]>([]);
   const [jugadoresByEquipos, setJugadoresByEquipos] = useState<Jugadores[]>([]);
   const [equipoDelJugador, setEquipoDelJugador] = useState<Equipos>(null);
   const [image, setImage] = useState(null);
+  const router = useRouter();
 
   const loadJugadores = JugadorStore((state) => state.loadJugadores);
   const selectPlayer = JugadorStore((state) => state.selectPlayer);
   const currentImage = JugadorStore((state) => state.currentImage);
 
   useEffect(() => {
-
-
     const loadJugadores = async () => {
       await getJugadores();
     };
 
-
-     loadJugadores();
+    loadJugadores();
   }, []);
 
   const getJugadores = async () => {
     try {
       const session = await getSession();
 
-    setLoading(true);
-    const res = await UseCases.getJugadoresUseCases(fetcherDb, session?.token);
+      setLoading(true);
+      const res = await UseCases.getJugadoresUseCases(
+        fetcherDb,
+        session?.token
+      );
 
-    setJugadores(res);
-    loadJugadores(res);
-    setLoading(false);
-    } catch (error) {
-      
-    }
+      setJugadores(res);
+      loadJugadores(res);
+      setLoading(false);
+    } catch (error) {}
   };
 
   const getJugadoresByEquipos = async (idEquipo: string) => {
@@ -83,11 +109,15 @@ export const useJugador = () => {
     setLoading(false);
   };
   const createJugador = async () => {
+    if (!jugador.club || !jugador.posicion) {
+      toast.error("Seleccione un club");
+      return;
+    }
+
     const session = await getSession();
-    const img= await uploadFile(image)
+    const img = await uploadFile(image);
 
-    if(img){
-
+    if (img) {
       const newPlayer = {
         ...jugador,
         estadisticasGlobales: {
@@ -96,25 +126,26 @@ export const useJugador = () => {
           velocidad: jugador.velocidad,
           ataque: jugador.ataque,
           defensa: jugador.defensa,
-          regate: jugador.regate
-  
+          regate: jugador.regate,
         },
         foto: img,
       };
-  
+
       const res = await UseCases.createJugadorUseCases(
         fetcherDb,
         newPlayer,
         session?.token
       );
+
+      toast.success("Jugador creado");
+      router.push("/mercado");
+      router.refresh();
     }
-    
   };
   const handlerPlayer = (id: string) => {
     selectPlayer(id);
   };
 
-  
   return {
     jugador,
     jugadores,
@@ -126,6 +157,6 @@ export const useJugador = () => {
     getJugadoresByEquipos,
     loading,
     setImage,
-    image
+    image,
   };
 };

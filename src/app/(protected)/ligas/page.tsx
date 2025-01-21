@@ -16,10 +16,10 @@ import Spinner from '@/components/Spinner';
 
 const Torneos = () => {
 
-  const { torneos } = useTorneos()
+  const { torneos, loading } = useTorneos()
 
 
-  if (!torneos) {
+  if (loading) {
     return <Spinner />
   }
 
