@@ -12,7 +12,7 @@ export const getPartidosUseCases = async (
       },
     });
 
-    console.log(res);
+   
     return res;
   } catch (error) {
     throw new Error(`Error fetching`);

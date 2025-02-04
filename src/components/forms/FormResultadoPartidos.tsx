@@ -37,10 +37,11 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
   };
 
 
-  const handlerGoleadores = (e) => {
+  const handlerGoleadores = (e: string) => {
 
-    const id = e.target.value
+    const id = e
     const player = jugadores.find(item => item._id == id)
+
 
     setResultadoPartido((prevState) => {
 
@@ -59,7 +60,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
   const handlerAsistentes = (e) => {
 
 
-    const id = e.target.value
+    const id = e
     const player = jugadores.find(item => item._id == id)
 
     setResultadoPartido((prevState) => {
@@ -80,7 +81,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
   const handlerAmarillas = (e) => {
 
 
-    const id = e.target.value
+    const id = e
     const player = jugadores.find(item => item._id == id)
 
     setResultadoPartido((prevState) => {
@@ -101,7 +102,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
   const handlerRojas = (e) => {
 
 
-    const id = e.target.value
+    const id = e
     const player = jugadores.find(item => item._id == id)
 
     setResultadoPartido((prevState) => {
@@ -121,7 +122,54 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
 
 
+  const deleteGoleador = (idAEliminar: string) => {
 
+
+    const res = resultadoPartido.goleadores.filter(i => {
+      return i.ids !== idAEliminar
+    })
+
+    setResultadoPartido({ ...resultadoPartido, goleadores: res })
+
+
+
+  }
+  const deleteAsistente = (idAEliminar: string) => {
+
+
+    const res = resultadoPartido.asistentes.filter(i => {
+      return i.ids !== idAEliminar
+    })
+
+    setResultadoPartido({ ...resultadoPartido, asistentes: res })
+
+
+
+  }
+  const deleteAmarillas = (idAEliminar: string) => {
+
+
+    const res = resultadoPartido.tarjetas_amarillas.filter(i => {
+      return i.ids !== idAEliminar
+    })
+
+    setResultadoPartido({ ...resultadoPartido, tarjetas_amarillas: res })
+
+
+
+  }
+  const deleteRojas = (idAEliminar: string) => {
+
+
+    const res = resultadoPartido.tarjetas_rojas.filter(i => {
+      return i.ids !== idAEliminar
+    })
+
+    setResultadoPartido({ ...resultadoPartido, tarjetas_rojas: res })
+
+
+
+  }
   return (
     <form onSubmit={handleSubmit}>
       <label>Es Empate?</label>
@@ -179,77 +227,98 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
       <label>Goleadores</label>
 
-      <select
+      <div className="  relative">
+        <ul className="w-full p-4 rounded-md bg-slate-50  h-[100px] absolute top-0  left-0 overflow-y-scroll">
 
-        onChange={handlerGoleadores}>
-        <option ></option>
-        {jugadores?.map(elem => {
-          return <option key={elem._id} value={elem._id}>{elem.nombre + " " + elem.apellido}</option>
 
+          {jugadores?.map(elem => {
+            return <li key={elem._id} value={elem._id} onClick={() => handlerGoleadores(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
+
+          })}
+        </ul>
+      </div>
+
+
+
+
+      <ol className="mt-24">
+        {resultadoPartido.goleadores.map((e, index) => {
+          return <div className="flex justify-between" key={`${e.ids}-${index}`}>
+            <li className="text-slate-50">{e?.nombre}</li>
+            <span className="w-8 h-8 flex justify-center items-center bg-red-500 hover:bg-red-900  cursor-pointer p-2 rounded-full text-slate-50 " onClick={() => deleteGoleador(e.ids)}>x</span>
+          </div>
         })}
 
 
-
-
-
-      </select>
-      {resultadoPartido.goleadores.map((e) => <p className="text-slate-50" key={e.ids}>{e.nombre}</p>)}
+      </ol>
       <label>Asistentes</label>
+      <div className="  relative">
+        <ul className="w-full p-4 rounded-md bg-slate-50  h-[100px] absolute top-0  left-0 overflow-y-scroll">
 
-      <select
-
-        onChange={handlerAsistentes}>
-        <option ></option>
 
         {jugadores?.map(elem => {
-          return <option key={elem._id} value={elem._id} >{elem.nombre + " " + elem.apellido}</option>
+          return <li key={elem._id} value={elem._id} onClick={() => handlerAsistentes(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
 
+        })}
+        </ul>
+      </div>
+
+     
+      <ol className="mt-24">
+        {resultadoPartido.asistentes.map((e, index) => {
+          return <div className="flex justify-between" key={`${e.ids}-${index}`}>
+            <li className="text-slate-50">{e?.nombre}</li>
+            <span className="w-8 h-8 flex justify-center items-center bg-red-500 hover:bg-red-900  cursor-pointer p-2 rounded-full text-slate-50 " onClick={() => deleteAsistente(e.ids)}>x</span>
+          </div>
         })}
 
 
-
-
-
-      </select>
-      {resultadoPartido.asistentes.map((e) => <p className="text-slate-50" key={e.ids}>{e.nombre}</p>)}
+      </ol>
 
       <label>Tarjetas Amarillas</label>
-
-      <select
-
-        onChange={handlerAmarillas}>
-        <option ></option>
+      <div className="  relative">
+        <ul className="w-full p-4 rounded-md bg-slate-50  h-[100px] absolute top-0  left-0 overflow-y-scroll">
 
         {jugadores?.map(elem => {
-          return <option key={elem._id} value={elem._id} >{elem.nombre + " " + elem.apellido}</option>
+          return <li key={elem._id} value={elem._id} onClick={() => handlerAmarillas(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
 
+        })}
+        </ul>
+      </div>
+      <ol className="mt-24">
+        {resultadoPartido.tarjetas_amarillas.map((e, index) => {
+          return <div className="flex justify-between" key={`${e.ids}-${index}`}>
+            <li className="text-slate-50">{e?.nombre}</li>
+            <span className="w-8 h-8 flex justify-center items-center bg-red-500 hover:bg-red-900  cursor-pointer p-2 rounded-full text-slate-50 " onClick={() => deleteAmarillas(e.ids)}>x</span>
+          </div>
         })}
 
 
-
-
-
-      </select>
-      {resultadoPartido.tarjetas_amarillas.map((e) => <p className="text-slate-50" key={e.ids}>{e.nombre}</p>)}
+      </ol>
+    
 
       <label>Tarjetas Rojas</label>
-
-      <select
-
-        onChange={handlerRojas}>
-        <option ></option>
+      <div className="  relative">
+        <ul className="w-full p-4 rounded-md bg-slate-50  h-[100px] absolute top-0  left-0 overflow-y-scroll">
 
         {jugadores?.map(elem => {
-          return <option key={elem._id} value={elem._id} >{elem.nombre + " " + elem.apellido}</option>
+          return <li key={elem._id} value={elem._id} onClick={() => handlerRojas(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
 
+        })}
+        </ul>
+      </div>
+
+      <ol className="mt-24">
+        {resultadoPartido.tarjetas_rojas.map((e, index) => {
+          return <div className="flex justify-between" key={`${e.ids}-${index}`}>
+            <li className="text-slate-50">{e?.nombre}</li>
+            <span className="w-8 h-8 flex justify-center items-center bg-red-500 hover:bg-red-900  cursor-pointer p-2 rounded-full text-slate-50 " onClick={() => deleteRojas(e.ids)}>x</span>
+          </div>
         })}
 
 
-
-
-
-      </select>
-      {resultadoPartido.tarjetas_rojas.map((e) => <p className="text-slate-50" key={e.ids}>{e.nombre}</p>)}
+      </ol>
+     
       <button
         type="submit"
       >
