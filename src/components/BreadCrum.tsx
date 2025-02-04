@@ -36,7 +36,7 @@ const BreadCrum = ({ titulo, url,labelBtn ='Nuevo',isLink =true,onClick}: Props)
   return (
     <div className='container_breadcrum'>
       <Title content={titulo} size='text-6xl' />
-      {renderItem()}
+      {session?.rol === 'admin' && renderItem()}
     </div>
   )
 }
