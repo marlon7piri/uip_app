@@ -8,35 +8,35 @@ import { getSession } from '@/actions/get-session'
 
 interface Props {
   titulo: string,
-  url?: string ,
+  url?: string,
   labelBtn: string,
-  isLink?:boolean,
-  onClick?:()=>void,
+  isLink?: boolean,
+  onClick?: () => void,
 }
-const BreadCrum = ({ titulo, url,labelBtn ='Nuevo',isLink =true,onClick}: Props) => {
-  const [session,setSession]=useState()
+const BreadCrum = ({ titulo, url, labelBtn = 'Nuevo', isLink = true, onClick }: Props) => {
+  const [session, setSession] = useState()
 
-  useEffect(()=>{
+  useEffect(() => {
 
-    const loadSession =async()=>{
+    const loadSession = async () => {
       const data = await getSession()
       setSession(data)
     }
     loadSession()
-  },[])
+  }, [])
 
-  const renderItem = ()=>{
+  const renderItem = () => {
 
     return (
       isLink ? <Link href={url} className='btn_link'>{labelBtn}</Link> : <button onClick={onClick} className='btn_link'>{labelBtn}</button>
     )
-    
+
   }
 
   return (
     <div className='container_breadcrum'>
       <Title content={titulo} size='text-6xl' />
-      {session?.rol === 'admin' && renderItem()}
+      {renderItem()}
     </div>
   )
 }
