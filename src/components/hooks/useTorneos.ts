@@ -47,6 +47,7 @@ export const useTorneos = () => {
   };
 
   const crearTorneo = async () => {
+    setLoading(true);
     const session = await getSession();
     const img = await uploadFile(image);
 

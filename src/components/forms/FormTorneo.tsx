@@ -8,10 +8,11 @@ import { useTorneos } from "../hooks/useTorneos";
 import toast from "react-hot-toast";
 import './forms.css'
 import { useRouter } from "next/navigation";
+import { CircularProgress } from "@mui/material";
 
 export default function FormTorneos() {
 
-  const { setTorneo, torneo, crearTorneo, image, setImage } = useTorneos()
+  const { setTorneo, torneo, crearTorneo, image, setImage, loading } = useTorneos()
   const router = useRouter()
 
 
@@ -53,7 +54,7 @@ export default function FormTorneos() {
 
         type="submit"
       >
-        Guardar
+        {loading ? <CircularProgress size={24} color='inherit' /> : "Guardar"}
       </button>
 
 

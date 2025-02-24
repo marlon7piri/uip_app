@@ -18,7 +18,7 @@ export const FormLogin = () => {
   const [loginInProgress, setLoginInProgress] = useState(false);
   const [error, setError] = useState("");
 
-  async function handleFormSubmit(ev) {
+  async function handleFormSubmit(ev: any) {
     ev.preventDefault();
     setLoginInProgress(true);
     setError("");

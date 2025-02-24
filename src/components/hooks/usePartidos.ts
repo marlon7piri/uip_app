@@ -30,7 +30,7 @@ export interface TypeResultado {
   asistencias_visitantes: number;
   tarjetas_amarillas: string[];
   tarjetas_rojas: string[];
-  is_draw: boolean;
+  is_draw: string;
   torneoId: string | null;
   partidoId: string | null;
   goleadores: string[];
@@ -59,7 +59,7 @@ const initialResultado: TypeResultado = {
   asistencias_visitantes: 0,
   tarjetas_amarillas: [],
   tarjetas_rojas: [],
-  is_draw: true,
+  is_draw: "true",
   torneoId: "",
   partidoId: "",
   goleadores: [],
@@ -108,6 +108,7 @@ export const usePartidos = () => {
   };
 
   const createPartido = async () => {
+    setLoading(true);
     const session = await getSession();
 
     const newMatch: TypePartido = {
@@ -120,6 +121,7 @@ export const usePartidos = () => {
       session?.token
     );
     toast.success("Partido creado");
+    setLoading(false);
   };
   const evaluarPartido = async () => {
     const session = await getSession();

@@ -5,6 +5,7 @@ import React from "react";
 
 import { usePartidos } from "../hooks/usePartidos";
 import './forms.css'
+import { CircularProgress } from "@mui/material";
 
 
 interface Props {
@@ -14,7 +15,7 @@ interface Props {
 export default function FormPartido({ equiposParticipantes }: Props) {
 
 
-  const { partido, setPartido, createPartido } = usePartidos()
+  const { partido, setPartido, createPartido, loading } = usePartidos()
 
 
 
@@ -101,7 +102,7 @@ export default function FormPartido({ equiposParticipantes }: Props) {
       <button
         type="submit"
       >
-        Crear
+        {loading ? <CircularProgress size={24} color='inherit' /> : 'Crear'}
       </button>
 
 

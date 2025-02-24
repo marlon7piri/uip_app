@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { usePartidos } from "../hooks/usePartidos";
 import { Jugadores } from "@/infraestrcuture/entities/jugadores";
 import './forms.css'
+import { CircularProgress } from "@mui/material";
 
 interface Props {
   jugadores: Jugadores[];
@@ -322,7 +323,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
       <button
         type="submit"
       >
-        {loading ? 'Cargando...' : 'Evaluar Partido'}
+        {loading ? <CircularProgress size={24} color='inherit' /> : 'Evaluar Partido'}
       </button>
 
 

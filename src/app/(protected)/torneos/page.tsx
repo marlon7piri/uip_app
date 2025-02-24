@@ -8,7 +8,6 @@ import React from 'react'
 const Torneos = () => {
   const { grupos } = useGrupos()
 
-  console.log(grupos)
 
   return (
     <ContenedorCustom>
@@ -31,7 +30,7 @@ interface Props {
 }
 const CardGrupos = ({ item }: Props) => {
   return (
-    <div className='w-[200px] h-[200px] bg-slate-50 text-slate-900 rounded-md p-4 text-center'>
+    <div className='w-[250px] h-[250px] bg-slate-50 text-slate-900 rounded-md p-4 text-center'>
       <h1>{item.nombre}</h1>
     </div>
   )
