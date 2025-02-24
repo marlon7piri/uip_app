@@ -18,7 +18,7 @@ const CardTorneos = ({ torneo }: Props) => {
     >
       <img src={torneo?.foto}
         alt={torneo.nombre}
-        className='w-full h-[250px]  object-cover' />
+        className='w-full h-[350px]  object-cover' />
       <h3 className='txtTitle'>{torneo.nombre}</h3>
 
 

@@ -4,10 +4,10 @@ import { ContainerMercado } from '@/components/ContainerMercado'
 import React, { useEffect, useState } from 'react'
 import styles from './mercado.module.css'
 
-const Mercado =  () => {
- 
-  
-  
+const Mercado = () => {
+
+
+
 
   return (
     <div className={styles.containerMercado}>

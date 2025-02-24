@@ -28,8 +28,9 @@ export default function MercadoTable({ rows }: Props) {
   const router = useRouter()
 
 
-
-  console.log(rows)
+  if (rows.length == 0) {
+    return <Spinner />
+  }
 
 
   return (
@@ -65,7 +66,7 @@ export default function MercadoTable({ rows }: Props) {
 
           </TableRow>
         </TableHead>
-        <TableBody className='w-full'>
+        <TableBody className='w-full '>
           {rows?.map((row) => (
             <TableRow
               key={row._id}
