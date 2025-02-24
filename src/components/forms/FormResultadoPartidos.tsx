@@ -178,8 +178,8 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
         value={resultadoPartido.is_draw}
 
         onChange={(e) => setResultadoPartido({ ...resultadoPartido, is_draw: e.target.value })}>
-        <option value={true} >Si</option>
-        <option value={false} >No</option>
+        <option value={"true"} >Si</option>
+        <option value={"false"} >No</option>
 
 
 
@@ -256,14 +256,14 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
         <ul className="w-full p-4 rounded-md bg-slate-50  h-[100px] absolute top-0  left-0 overflow-y-scroll">
 
 
-        {jugadores?.map(elem => {
-          return <li key={elem._id} value={elem._id} onClick={() => handlerAsistentes(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
+          {jugadores?.map(elem => {
+            return <li key={elem._id} value={elem._id} onClick={() => handlerAsistentes(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
 
-        })}
+          })}
         </ul>
       </div>
 
-     
+
       <ol className="mt-24">
         {resultadoPartido.asistentes.map((e, index) => {
           return <div className="flex justify-between" key={`${e.ids}-${index}`}>
@@ -279,10 +279,10 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
       <div className="  relative">
         <ul className="w-full p-4 rounded-md bg-slate-50  h-[100px] absolute top-0  left-0 overflow-y-scroll">
 
-        {jugadores?.map(elem => {
-          return <li key={elem._id} value={elem._id} onClick={() => handlerAmarillas(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
+          {jugadores?.map(elem => {
+            return <li key={elem._id} value={elem._id} onClick={() => handlerAmarillas(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
 
-        })}
+          })}
         </ul>
       </div>
       <ol className="mt-24">
@@ -295,16 +295,16 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
 
       </ol>
-    
+
 
       <label>Tarjetas Rojas</label>
       <div className="  relative">
         <ul className="w-full p-4 rounded-md bg-slate-50  h-[100px] absolute top-0  left-0 overflow-y-scroll">
 
-        {jugadores?.map(elem => {
-          return <li key={elem._id} value={elem._id} onClick={() => handlerRojas(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
+          {jugadores?.map(elem => {
+            return <li key={elem._id} value={elem._id} onClick={() => handlerRojas(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
 
-        })}
+          })}
         </ul>
       </div>
 
@@ -318,7 +318,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
 
       </ol>
-     
+
       <button
         type="submit"
       >

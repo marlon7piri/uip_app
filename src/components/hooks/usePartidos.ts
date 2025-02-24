@@ -140,6 +140,7 @@ export const usePartidos = () => {
       id_visitante: visitante,
       torneoId: idTorneo,
       partidoId: idPartido,
+      is_draw: resultadoPartido.is_draw.toString(),
     };
 
     const res = await UseCases.evaluarPartidoUseCases(
