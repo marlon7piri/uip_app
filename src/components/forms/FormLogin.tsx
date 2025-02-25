@@ -66,6 +66,7 @@ export const FormLogin = () => {
           type="text"
           name="username"
           placeholder="username"
+          required
           value={email}
           disabled={loginInProgress}
           onChange={(ev) => setEmail(ev.target.value)}
@@ -75,6 +76,7 @@ export const FormLogin = () => {
             type={!showPassword ? "password" : "text"}
             name="password"
             placeholder="password"
+            required
             value={password}
             disabled={loginInProgress}
             className='w-full'

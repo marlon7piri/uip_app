@@ -27,11 +27,11 @@ export const FormRegister = () => {
 
     async function handleFormSubmit(ev) {
 
-       
+
 
         ev.preventDefault();
 
-        if(!user.clasificacion){
+        if (!user.clasificacion) {
             alert("Debe seleccionar una categoria")
             return
         }
@@ -73,7 +73,7 @@ export const FormRegister = () => {
 
                 <input
                     type="text"
-
+                    required
                     name="username"
                     placeholder="Usuario"
                     value={user.nameUser}
@@ -86,6 +86,7 @@ export const FormRegister = () => {
                         type={!showPassword ? "password" : "text"}
                         name="password"
                         placeholder="Contraseña"
+                        required
                         className='w-full'
                         value={user.password}
                         disabled={loginInProgress}
@@ -101,6 +102,7 @@ export const FormRegister = () => {
                 <input
                     type="email"
                     name="email"
+                    required
                     placeholder="Email"
                     value={user.email}
                     disabled={loginInProgress}
@@ -112,8 +114,8 @@ export const FormRegister = () => {
                     </span>
                 )}
                 <label htmlFor="" className='text-slate-50'>Categoria</label>
-                <select name="" id=""  onChange={(ev) => setUser({ ...user, clasificacion: ev.target.value })} value={user.clasificacion} className='p-2 rounded-md'>
-                    <option value=""></option>
+                <select name="" id="" required onChange={(ev) => setUser({ ...user, clasificacion: ev.target.value })} value={user.clasificacion} className='p-2 rounded-md'>
+                    <option value="">Seleccione</option>
                     <option value="jugador">jugador</option>
                     <option value="entrenador">entrenador</option>
                 </select>

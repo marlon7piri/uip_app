@@ -16,6 +16,9 @@
     color:white;
     transition:  .5s ease-in-out ;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items:center;
 }
 
 .btn_link:hover{

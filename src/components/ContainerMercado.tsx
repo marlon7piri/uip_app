@@ -1,13 +1,12 @@
 'use client'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MercadoTable from './tables/MercadoTable'
-import { useJugador } from './hooks/useJugador'
 import ContenedorCustom from './ContenedorCustom'
 import BreadCrum from './BreadCrum'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import Spinner from './Spinner'
-import { getSession } from '@/actions/get-session'
+
 import { useDebouncedCallback } from 'use-debounce'
+import { Jugadores } from '@/infraestrcuture/entities/jugadores'
 
 
 
@@ -23,13 +22,7 @@ const FiltrosMercado = ({ onFilterChange }: { onFilterChange: (text: string) => 
 
 
 
-  const debounce = (func: Function, delay: number) => {
-    let timer: NodeJS.Timeout
-    return (...args: any[]) => {
-      clearTimeout(timer)
-      timer = setTimeout(() => func(...args), delay)
-    }
-  }
+
 
   const handlerChange = (text: string) => {
     const params = new URLSearchParams(searchparams)
@@ -54,51 +47,23 @@ const FiltrosMercado = ({ onFilterChange }: { onFilterChange: (text: string) => 
         defaultValue={inputValue}
         onChange={(e) => debounceChange(e.target.value)}
 
-        className='p-4 outline-none rounded-md bg-transparent border border-slate-900 text-slate-900 font-bold' />
+        className='p-4 outline-none rounded-md bg-slate-50 border border-slate-900 text-slate-900 font-bold' />
     </div>
   )
 }
+interface Props {
+  jugadores: Jugadores[],
+  fetchJugadores: () => void
+}
 
+export const ContainerMercado = ({ jugadores, fetchJugadores }: Props) => {
 
-export const ContainerMercado = () => {
-
-  const [jugadores, setJugadores] = useState([])
-
-  const fetchJugadores = async (query: string) => {
-    const session = await getSession()
-    try {
-
-
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jugadores/list?query=${query}`, {
-        cache: 'no-cache',
-
-        headers: {
-          token: session?.token
-        }
-      })
-      const data = await response.json()
-      setJugadores(data)
-
-    } catch (error) {
-      console.error('Error fetching jugadores:', error)
-    }
-  }
-
-  useEffect(() => {
-    fetchJugadores('') // Fetch initial data
-  }, [])
 
   return (
     <ContenedorCustom >
       <BreadCrum titulo='Jugadores' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
-
-
-
-
-
-      {/*      {loading ? <Spinner /> : <div> <FiltrosMercado onFilterChange={fetchJugadores} />
-        <MercadoTable rows={jugadores} /> */}
-      <div> <FiltrosMercado onFilterChange={fetchJugadores} />
+      <div>
+        <FiltrosMercado onFilterChange={fetchJugadores} />
         <MercadoTable rows={jugadores} />
       </div>
 

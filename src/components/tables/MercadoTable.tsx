@@ -28,11 +28,11 @@ export default function MercadoTable({ rows }: Props) {
   const router = useRouter()
 
 
+
   if (rows.length == 0) {
-    return <Spinner />
+    return <h1 className='text-4xl text-slate-50'>No se encontráron jugadores</h1>
   }
-
-
+  
   return (
     <TableContainer component={Paper} style={{ maxWidth: '100%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
       <Table sx={{ minWidth: 490, }} aria-label="simple table">

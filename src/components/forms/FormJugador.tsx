@@ -14,6 +14,7 @@ export default function FormJugador() {
 
   const { jugador, setJugador, createJugador, setImage, image } = useJugador()
   const { equipos } = useEquipos()
+  const [imagePreview, setImagePreview] = useState('')
 
 
   const handleSubmit = async (e) => {
@@ -27,7 +28,10 @@ export default function FormJugador() {
 
   // Manejar cambio de archivo
   const handleFileChange = (event) => {
-    setImage(event.target.files[0]);
+    const file = event.target.files[0]
+    setImage(file);
+    setImagePreview(URL.createObjectURL(file))
+
   };
 
   return (
@@ -64,7 +68,7 @@ export default function FormJugador() {
           value={jugador.edad}
           onChange={(e) => setJugador({ ...jugador, edad: parseInt(e.target.value) })}
         />
-        <label>Estatura</label>
+        <label>Estatura (cm)</label>
         <input
           type="number"
 
@@ -75,10 +79,10 @@ export default function FormJugador() {
           onChange={(e) => setJugador({ ...jugador, estatura: parseInt(e.target.value) })}
         />
 
+        <label>Foto</label>
+        <input type="file" required accept='image/*' onChange={handleFileChange} />
 
-        <input type="file" accept='image/*' onChange={handleFileChange} />
-
-        {image && <img src={image} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={jugador.nombre} />}
+        {imagePreview && <img src={imagePreview} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={jugador.nombre} />}
 
 
 

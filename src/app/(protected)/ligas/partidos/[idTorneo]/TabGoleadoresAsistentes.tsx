@@ -53,12 +53,6 @@ const TabGoleadoresAsistentes = () => {
     }, [params.idTorneo])
 
 
-
-
-
-
-
-
     return (
         <div className='w-full flex gap-2'>
 

@@ -9,13 +9,15 @@ import BreadCrum from './BreadCrum'
 const ContainerNoticias = () => {
   const { noticias } = useNoticias()
 
+
+
   return (
     <div className='pt-24 px-4'>
       <BreadCrum titulo='Noticias' url='/noticias/new' labelBtn='Crear Noticia' />
 
       <div className='p-4 flex flex-col gap-10'>
         {
-          noticias.map((e) => {
+          noticias.length == 0 ? <h1 className='text-4xl text-slate-50'>No hay Noticias</h1> : noticias.map((e) => {
             return <CardNoticias noticias={e} key={e._id} />
           })
         }

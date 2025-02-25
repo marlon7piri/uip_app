@@ -5,23 +5,11 @@ import { useTorneos } from '@/components/hooks/useTorneos';
 import Spinner from '@/components/Spinner';
 
 
-
-
-
-
-
-
-
-
-
 const Torneos = () => {
 
-  const { torneos, loading } = useTorneos()
+  const { torneos} = useTorneos()
 
 
-  if (loading) {
-    return <Spinner />
-  }
 
 
   return (

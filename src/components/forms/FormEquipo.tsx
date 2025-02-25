@@ -1,12 +1,13 @@
 'use client'
 
-import React from "react";
+import React, { useState } from "react";
 import { useEquipos } from "../hooks/useEquipos";
 import './forms.css'
 
 export default function FormEquipo() {
 
   const { equipo, setEquipo, createEquipo, setImage, image } = useEquipos()
+  const [imageSelected, setImageSelected] = useState('second')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +17,10 @@ export default function FormEquipo() {
 
   // Manejar cambio de archivo
   const handleFileChange = (event) => {
-    setImage(event.target.files[0]);
+    const file = event.target.files[0]
+    
+    setImage(file);
+    setImageSelected(URL.createObjectURL(file))
   };
 
   return (
@@ -24,14 +28,15 @@ export default function FormEquipo() {
       <label>Nombre</label>
       <input
         name="namePlan"
+        required
         value={equipo.nombre}
         onChange={(e) => setEquipo({ ...equipo, nombre: e.target.value })}
       />
 
       <label>Logo</label>
-      <input type="file" accept='image/*' onChange={handleFileChange} />
+      <input type="file" required accept='image/*' onChange={handleFileChange} />
 
-      {image && <img src={image} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={equipo.nombre} />}
+      {imageSelected && <img src={imageSelected} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={equipo.nombre} />}
 
 
       <button

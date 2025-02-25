@@ -11,8 +11,8 @@ import Spinner from '@/components/Spinner';
 const TabPartidos = ({ partidosByTorneos, loading }: { partidosByTorneos: any, loading: boolean }) => {
 
 
-  if (!partidosByTorneos) {
-    return <h1>No hay partidos</h1>
+  if (partidosByTorneos.length == 0) {
+    return <h1 className='text-slate-50 text-3xl text-center'>No hay partidos</h1>
   }
 
   return (
