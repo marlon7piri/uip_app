@@ -18,7 +18,7 @@ const CardNoticias = ({ noticias }: Props) => {
       <div className='w-full flex flex-col gap-4'>
         <div className={styles.containerTitle}>
           <h1 className='font-black text-4xl'>{noticias?.titulo}</h1>
-          <h3 className='font-bold text-slate-700'>Fecha: {convertirFecha(noticias?.createdAt)}</h3>
+          <h3 className='font-bold text-slate-700'>Publicado: {convertirFecha(noticias?.createdAt)}</h3>
         </div>
         <p className='font-extralight text-slate-700'>{noticias?.subtitulo}</p>
       </div>
