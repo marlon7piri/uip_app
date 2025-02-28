@@ -31,27 +31,31 @@ export const FormRegister = () => {
 
         ev.preventDefault();
 
-        if (!user.clasificacion) {
-            alert("Debe seleccionar una categoria")
-            return
+        try {
+            if (!user.clasificacion) {
+                alert("Debe seleccionar una categoria")
+                return
+            }
+
+            setLoginInProgress(true);
+
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/create`, user)
+
+
+
+            if (res?.status == 200) {
+                toast.success('Usuario creado correctamente')
+                router.push("/auth/login");
+                setLoginInProgress(false);
+            }
+
+
+
+
+
+        } catch (error) {
+            throw new Error("Error server", error)
         }
-
-        setLoginInProgress(true);
-
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/create`, user)
-
-
-
-        if (res?.status == 200) {
-            toast.success('Usuario creado correctamente')
-            router.push("/auth/login");
-            setLoginInProgress(false);
-        }
-
-
-
-
-
 
     }
 
