@@ -109,37 +109,43 @@ export const useJugador = () => {
     setLoading(false);
   };
   const createJugador = async () => {
-    if (!jugador.club || !jugador.posicion) {
-      toast.error("Seleccione un club");
-      return;
-    }
+    try {
+      if (!jugador.club || !jugador.posicion) {
+        toast.error("Seleccione un club");
+        return;
+      }
 
-    const session = await getSession();
-    const img = await uploadFile(image);
+      const session = await getSession();
+      const img = await uploadFile(image);
 
-    if (img) {
-      const newPlayer = {
-        ...jugador,
-        estadisticasGlobales: {
-          posicion: jugador.posicion,
-          valor_mercado: jugador.valor_mercado,
-          velocidad: jugador.velocidad,
-          ataque: jugador.ataque,
-          defensa: jugador.defensa,
-          regate: jugador.regate,
-        },
-        foto: img,
-      };
+      if (img) {
+        const newPlayer = {
+          ...jugador,
+          estadisticasGlobales: {
+            posicion: jugador.posicion,
+            valor_mercado: jugador.valor_mercado,
+            velocidad: jugador.velocidad,
+            ataque: jugador.ataque,
+            defensa: jugador.defensa,
+            regate: jugador.regate,
+          },
+          foto: img,
+        };
+        setLoading(true);
+        const res = await UseCases.createJugadorUseCases(
+          fetcherDb,
+          newPlayer,
+          session?.token
+        );
 
-      const res = await UseCases.createJugadorUseCases(
-        fetcherDb,
-        newPlayer,
-        session?.token
-      );
-
-      toast.success("Jugador creado");
-      router.push("/mercado");
-      router.refresh();
+        toast.success("Jugador creado");
+        router.push("/mercado");
+        router.refresh();
+      }
+    } catch (error) {
+      throw new Error("Error creando jugador");
+    } finally {
+      setLoading(false);
     }
   };
   const handlerPlayer = (id: string) => {

@@ -65,7 +65,7 @@ export const FormLogin = () => {
         <input
           type="text"
           name="username"
-          placeholder="username"
+          placeholder="Usuario"
           required
           value={email}
           disabled={loginInProgress}
@@ -75,7 +75,7 @@ export const FormLogin = () => {
           <input
             type={!showPassword ? "password" : "text"}
             name="password"
-            placeholder="password"
+            placeholder="Contraseña"
             required
             value={password}
             disabled={loginInProgress}

@@ -8,6 +8,7 @@ import './formlogin.css'
 import axios from "axios";
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+import { CircularProgress } from '@mui/material';
 
 export const FormRegister = () => {
 
@@ -31,29 +32,31 @@ export const FormRegister = () => {
 
         ev.preventDefault();
 
+
+
         try {
-            if (!user.clasificacion) {
-                alert("Debe seleccionar una categoria")
-                return
-            }
+
 
             setLoginInProgress(true);
+
 
             const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/create`, user)
 
 
-
-            if (res?.status == 200) {
+            if (res?.status == 201) {
                 toast.success('Usuario creado correctamente')
                 router.push("/auth/login");
                 setLoginInProgress(false);
             }
+            setError(res?.data?.messages)
 
 
 
 
 
         } catch (error) {
+            setLoginInProgress(false)
+            setError(error?.response?.data?.messages)
             throw new Error("Error server", error)
         }
 
@@ -112,22 +115,19 @@ export const FormRegister = () => {
                     disabled={loginInProgress}
                     onChange={(ev) => setUser({ ...user, email: ev.target.value })}
                 />
-                {error && (
-                    <span className="bg-red-500 p-2 text-salte-50 text-center">
-                        {error}
-                    </span>
-                )}
+
                 <label htmlFor="" className='text-slate-50'>Categoria</label>
                 <select name="" id="" required onChange={(ev) => setUser({ ...user, clasificacion: ev.target.value })} value={user.clasificacion} className='p-2 rounded-md'>
                     <option value="">Seleccione</option>
                     <option value="jugador">jugador</option>
                     <option value="entrenador">entrenador</option>
                 </select>
+                {error && <p className='bg-red-500 p-4 w-full text-slate-50'>{error}</p>}
                 <button
                     disabled={loginInProgress}
                     type="submit"
                 >
-                    {loginInProgress ? "loading..." : "Registrarse"}
+                    {loginInProgress ? <CircularProgress color='inherit' size={18} /> : "Registrarse"}
                 </button>
                 <Link href={'/auth/login'} className=" p-2 text-slate-50 text-center hover:text-sky-500">
                     Login

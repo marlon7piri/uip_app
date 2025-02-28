@@ -1,6 +1,6 @@
 'use client'
 
-import { Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import { useJugador } from "../hooks/useJugador";
@@ -12,7 +12,7 @@ import './forms.css'
 export default function FormJugador() {
 
 
-  const { jugador, setJugador, createJugador, setImage, image } = useJugador()
+  const { jugador, setJugador, createJugador, setImage, image, loading } = useJugador()
   const { equipos } = useEquipos()
   const [imagePreview, setImagePreview] = useState('')
 
@@ -264,7 +264,7 @@ export default function FormJugador() {
 
           type="submit"
         >
-          Crear
+          {loading ? <CircularProgress color='inherit' size={18} /> : 'Crear'}
         </button>
 
 
