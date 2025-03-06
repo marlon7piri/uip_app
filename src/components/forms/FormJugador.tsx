@@ -17,12 +17,7 @@ export default function FormJugador() {
   const [imagePreview, setImagePreview] = useState('')
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await createJugador()
-
-
-  };
+ 
 
 
 
@@ -40,7 +35,7 @@ export default function FormJugador() {
 
 
 
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={createJugador} >
 
 
         <label>Nombre</label>

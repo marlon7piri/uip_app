@@ -1,5 +1,5 @@
 import { Jugadores } from "@/infraestrcuture/entities/jugadores";
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, FormEventHandler, useEffect, useState } from "react";
 import * as UseCases from "@/config/core/use-cases";
 import { fetcherDb } from "@/config/adapters/apiDbAdapter";
 import { useSession } from "next-auth/react";
@@ -108,13 +108,14 @@ export const useJugador = () => {
     setEquipoDelJugador(res.infoClub);
     setLoading(false);
   };
-  const createJugador = async () => {
+  const createJugador = async (e:FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
       if (!jugador.club || !jugador.posicion) {
         toast.error("Seleccione un club");
         return;
       }
-
+      setLoading(true);
       const session = await getSession();
       const img = await uploadFile(image);
 
@@ -131,7 +132,7 @@ export const useJugador = () => {
           },
           foto: img,
         };
-        setLoading(true);
+        
         const res = await UseCases.createJugadorUseCases(
           fetcherDb,
           newPlayer,
