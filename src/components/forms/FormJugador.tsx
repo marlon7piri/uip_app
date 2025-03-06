@@ -261,7 +261,7 @@ export default function FormJugador() {
 
 
         <button
-
+          disabled={loading}
           type="submit"
         >
           {loading ? <CircularProgress color='inherit' size={18} /> : 'Crear'}
