@@ -25,7 +25,10 @@ const FiltrosMercado = ({ onFilterChange }: { onFilterChange: (text: string) => 
 
 
   const handlerChange = (text: string) => {
+
     const params = new URLSearchParams(searchparams)
+    text = text.replace(/[^a-zA-Z\s]/g, "")
+
     setInputValue(text)
 
     if (text) {
@@ -62,10 +65,10 @@ export const ContainerMercado = ({ jugadores, fetchJugadores }: Props) => {
   return (
     <ContenedorCustom >
       <BreadCrum titulo='Jugadores' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
-      <div>
+      {jugadores && <div>
         <FiltrosMercado onFilterChange={fetchJugadores} />
         <MercadoTable rows={jugadores} />
-      </div>
+      </div>}
 
     </ContenedorCustom>
   )

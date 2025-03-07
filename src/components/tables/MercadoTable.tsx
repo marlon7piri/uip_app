@@ -15,7 +15,7 @@ import { JugadorStore } from '@/utils/zustand/jugador';
 import Link from 'next/link';
 import styles from './styles.module.css'
 import Spinner from '../Spinner';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 
 interface Props {
@@ -26,13 +26,14 @@ interface Props {
 export default function MercadoTable({ rows }: Props) {
 
   const router = useRouter()
+  const search = useSearchParams()
 
 
-
-  if (rows.length == 0) {
-    return <h1 className='text-4xl text-slate-50'>No se encontráron jugadores</h1>
+  if (!rows && !search.get("query")) {
+    return <h1 className='text-4xl text-slate-50'>No hay jugadores</h1>
   }
-  
+
+
   return (
     <TableContainer component={Paper} style={{ maxWidth: '100%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
       <Table sx={{ minWidth: 490, }} aria-label="simple table">
