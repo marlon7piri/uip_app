@@ -15,8 +15,10 @@
 }
 
 body {
-  color: var(--foreground);
   background-image: linear-gradient(to right, #0572ee 0%, #304352 70%);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 .nav_container {
   width: 100%;
@@ -63,7 +65,6 @@ body {
   .nav_container {
     width: 100vw;
     z-index: 999;
-    color: #0a0a0a;
   }
   .menu_botton {
     display: block;
@@ -89,7 +90,6 @@ body {
     align-items: center;
     background-color: var(--background);
     border-radius: 0rem;
-
     min-height: 100vh;
     transition: 0.3s ease;
   }

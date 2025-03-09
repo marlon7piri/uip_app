@@ -1,11 +1,11 @@
 
-import React  from 'react'
+import React from 'react'
 
-const ContenedorCustom = ({ children }:{children:React.ReactNode} ) => {
+const ContenedorCustom = ({ children }: { children: React.ReactNode }) => {
 
 
     return (
-        <div className='w-full h-full min-h-screen p-20'>
+        <div className='w-full  min-h-screen py-20 px-4'>
             {children}
         </div>
     )

@@ -52,3 +52,10 @@
     opacity: 1;
   }
 }
+
+@media (width<500px) {
+  .card {
+    width: 650px;
+    height: 450px;
+  }
+}

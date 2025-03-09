@@ -44,9 +44,9 @@ const NavBar = () => {
 
 
         <ul className="menu">
-          <div className='flex gap-1 justify-center items-center'>
+          <div className='flex gap-1 justify-center items-center '>
             <Image src={require('../../public/imagenes/logouipApp.png')} alt='logo' width={60} height={40} className='object-cover' />
-            <span className=' uppercase'>Hola 👋 {session?.user?.name}</span>
+            <span className=' text-red-500 uppercase font-bold  drop-shadow-[0_0_2px_black]'>Hola 👋 {session?.user?.name}</span>
 
           </div>
 
@@ -63,8 +63,8 @@ const NavBar = () => {
 
         </ul>
         <div className="menu_botton">
-          {!open ? <MenuRoundedIcon onClick={() => handlerMenu()} className='h-[60px] text-[58px]  mt-2' /> :
-            <CloseRoundedIcon onClick={() => handlerMenu()} className='h-[60px] text-[58px]   mt-2' />}
+          {!open ? <MenuRoundedIcon onClick={() => handlerMenu()} className='text-[78px]  mt-2' /> :
+            <CloseRoundedIcon onClick={() => handlerMenu()} className=' text-[78px]   mt-2' />}
 
         </div>
       </nav>

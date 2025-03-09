@@ -22,14 +22,16 @@ const ContainerTorneos = ({ torneos }: Props) => {
 
   return (
     <ContenedorCustom>
+      <div className='w-full p-4'>
+        <BreadCrum titulo='Grupos' url='/ligas/nuevo' labelBtn='Crear Grupo' />
 
-      <BreadCrum titulo='Grupos' url='/ligas/nuevo' labelBtn='Crear Grupo' />
-
-      <div className='w-full h-full flex  flex-wrap justify-center items-center gap-6'>
-        {torneos?.map((e) => {
-          return <CardTorneos torneo={e} key={e?._id} />
-        })}
+        <div className=' w-full h-full flex  flex-wrap justify-center items-center gap-6'>
+          {torneos?.map((e) => {
+            return <CardTorneos torneo={e} key={e?._id} />
+          })}
+        </div>
       </div>
+
 
 
 

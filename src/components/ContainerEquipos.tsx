@@ -16,12 +16,12 @@ interface Props {
 const ContainerEquipos = ({ equipos }: Props) => {
 
 
-  
+
   return (
     <ContenedorCustom>
-      <BreadCrum titulo='Equipos' url='/equipos/nuevo' labelBtn='Nuevo Equipo'/>
+      <BreadCrum titulo='Equipos' url='/equipos/nuevo' labelBtn='Nuevo Equipo' />
 
-    <div className='flex flex-wrap gap-8 mt-8'>
+      <div className=' flex flex-wrap items-center justify-center gap-8 mt-8'>
         {equipos.map((e) => {
           return <CardEquipos equipos={e} key={e.logo} />
 
