@@ -15,6 +15,7 @@ export const useNoticias = () => {
     subtitulo: "",
     foto: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const [image, setImage] = useState(null);
 
@@ -37,26 +38,42 @@ export const useNoticias = () => {
   };
 
   const createNoticia = async () => {
-    const img = await uploadFile(image);
-    const noticianew = {
-      ...noticia,
-      foto: img,
-    };
-    const session = await getSession();
+    try {
+      setLoading(true);
+      const img = await uploadFile(image);
+      const noticianew = {
+        ...noticia,
+        foto: img,
+      };
 
-    console.log(noticianew);
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/noticias/create`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          token: session?.token,
-        },
-        body: JSON.stringify(noticianew),
-      }
-    );
+      const session = await getSession();
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/noticias/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            token: session?.token,
+          },
+          body: JSON.stringify(noticianew),
+        }
+      );
+    } catch (error) {
+      setLoading(true);
+      throw new Error("Error creando noticia", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  return { noticias, image, setImage, createNoticia, noticia, setNoticia };
+  return {
+    noticias,
+    image,
+    setImage,
+    createNoticia,
+    noticia,
+    setNoticia,
+    loading,
+  };
 };

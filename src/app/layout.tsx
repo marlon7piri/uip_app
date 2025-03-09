@@ -27,18 +27,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
- 
+
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistMono.variable} ${geistMono.variable} antialiased`}
       >
         <AuthWrapper>
           {children}
 
         </AuthWrapper>
-        
-        
+
+
       </body>
 
     </html>

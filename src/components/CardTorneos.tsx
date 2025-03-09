@@ -3,6 +3,7 @@ import { Torneos } from '@/infraestrcuture/entities/torneos'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 import './cardtorneos.css'
+import Image from 'next/image'
 
 interface Props {
   torneo: Torneos
@@ -16,9 +17,10 @@ const CardTorneos = ({ torneo }: Props) => {
 
 
     >
-      <img src={torneo?.foto}
+      <Image src={torneo?.foto}
         alt={torneo.nombre}
-        className='w-full h-[350px]  object-cover' />
+        width={350} height={350}
+        className='w-full h-[380px]  object-cover' />
       <h3 className='txtTitle'>{torneo.nombre}</h3>
 
 

@@ -45,8 +45,8 @@ const FiltrosMercado = ({ onFilterChange }: { onFilterChange: (text: string) => 
   const debounceChange = useDebouncedCallback(handlerChange, 300)
 
   return (
-    <div className='p-2'>
-      <input type="text" placeholder='nombre'
+    <div className='p-2 my-8'>
+      <input type="text" placeholder='Buscar por nombre'
         defaultValue={inputValue}
         onChange={(e) => debounceChange(e.target.value)}
 

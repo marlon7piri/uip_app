@@ -5,9 +5,10 @@ import './forms.css'
 import { useNoticias } from "../hooks/useNoticias";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { CircularProgress } from "@mui/material";
 
 export default function FormNoticia() {
-  const { image, setImage, noticia, setNoticia, createNoticia } = useNoticias()
+  const { image, setImage, noticia, setNoticia, createNoticia, loading } = useNoticias()
   const router = useRouter()
   const [imagePreview, setImagePreview] = useState('')
 
@@ -58,8 +59,9 @@ export default function FormNoticia() {
 
       <button
         type="submit"
+        disabled={loading}
       >
-        Crear
+        {loading ? <CircularProgress size={24} /> : 'Crear'}
       </button>
 
     </form>

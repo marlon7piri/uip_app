@@ -11,8 +11,13 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        
       },
+    },
+
+    screens: {
+      sm: "600px",
+      md: "740px",
+      lg: "1240px",
     },
   },
   plugins: [],
