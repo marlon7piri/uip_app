@@ -24,9 +24,9 @@ const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
 
 
   return (
-    <div className='w-full h-screen flex justify-center items-center p-4'>
+    <div className='w-full min-h-screen flex justify-center items-center py-20 px-4'>
 
-      <div className='container_card  rounded-2xl shadow-2xl shadow-slate-700 p-4 bg-[rgba(20,18,18,0.5)] text-slate-50 animated-gradient-border overflow-hidden'>
+      <div className='container_card  rounded-2xl shadow-2xl shadow-slate-700 bg-[rgba(20,18,18,0.5)] text-slate-50 animated-gradient-border overflow-hidden mt-20 '>
         <div className='flex flex-col items-center justify-center  w-[100%] h-full '>
           <h2 className='text-3xl text-center'>
 

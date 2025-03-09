@@ -64,11 +64,13 @@ export const ContainerMercado = ({ jugadores, fetchJugadores }: Props) => {
 
   return (
     <ContenedorCustom >
-      <BreadCrum titulo='Jugadores' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
-      {jugadores && <div>
-        <FiltrosMercado onFilterChange={fetchJugadores} />
-        <MercadoTable rows={jugadores} />
-      </div>}
+      <div className='w-full p-4'>
+        <BreadCrum titulo='Jugadores' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
+        {jugadores && <div>
+          <FiltrosMercado onFilterChange={fetchJugadores} />
+          <MercadoTable rows={jugadores} />
+        </div>}
+      </div>
 
     </ContenedorCustom>
   )

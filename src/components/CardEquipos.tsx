@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import styles from './cardequipos.module.css'
+import { CircularProgress } from '@mui/material'
 
 
 
@@ -14,9 +15,9 @@ const CardEquipos = ({ equipos }: Props) => {
     <Link href={`/equipos/${equipos._id}`} key={equipos.nombre} className={styles.card}>
       <h3 className={styles.txtTitle}>{equipos.nombre}</h3>
 
-      <Image src={equipos.logo} width={340} height={340} alt={equipos?.nombre}
+      {equipos ? <Image src={equipos.logo} width={340} height={340} alt={equipos?.nombre}
         className=' object-cover '
-      />
+      /> : <CircularProgress />}
     </Link>
   )
 }

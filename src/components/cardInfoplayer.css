@@ -49,9 +49,10 @@
 
 @media (width<600px) {
   .container_card {
-    width: 300px;
+    width: 400px;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding: 1rem;
   }
 }
