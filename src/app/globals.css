@@ -75,7 +75,7 @@ body {
     color: black;
     background-color: var(--background);
     overflow: hidden;
-    margin-top: 0px;
+    padding: 1rem;
   }
   .menu {
     width: 100vw;

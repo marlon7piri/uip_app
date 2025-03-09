@@ -8,9 +8,9 @@ const ProtectedLayout = async ({ children }: { children: React.ReactNode }) => {
     return (
         <main>
 
-          
-          <NavBar />
-          
+
+            <NavBar />
+
 
             <Suspense fallback={<Loading />} >
                 {children}
