@@ -2,15 +2,10 @@
 
 import { Button, CircularProgress, FormLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useUploadPicture } from "../hooks/useUploadFile";
 import axios from "axios";
-import { useSession } from "next-auth/react";
-import { useJugador } from "../hooks/useJugador";
 import { useEquipos } from "../hooks/useEquipos";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
-import { JugadorStore } from "@/utils/zustand/jugador";
-import { CustomInputFileFoto } from "../CustomInputFileFoto";
 import { useTorneos } from "../hooks/useTorneos";
 import { usePartidos } from "../hooks/usePartidos";
 import './forms.css'
@@ -57,7 +52,6 @@ export default function FormRegistroTorneo() {
 
   return (
     <form onSubmit={handleSubmit} >
-      <div className="flex flex-col gap-4">
 
         <label className="text-2xl font-bold text-slate-50">Equipos</label>
 
@@ -83,13 +77,10 @@ export default function FormRegistroTorneo() {
 
 
 
-        <div >
           <button>
             {loading ? <CircularProgress size={24} color="inherit" /> : 'Crear'}
           </button>
 
-        </div>
-      </div>
 
 
 
