@@ -2,7 +2,8 @@ import NextAuth from "next-auth"
 import authconfig from './auth.config'
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-trustHost:true,
+  trustHost: true,
+
   callbacks: {
     async session({ session, token }) {
       if (token) {
@@ -22,6 +23,8 @@ trustHost:true,
         token.token = user.token; // Guarda el token en el JWT si lo necesitas
         token.rol = user.rol; // Guarda el rol en el JWT si lo necesitas
       }
+
+      token.exp = Math.floor(Date.now() / 1000) + 60 // Expira en 1 minuto
       return token;
     },
 
@@ -34,7 +37,11 @@ trustHost:true,
   },
   session: {
     strategy: "jwt",
+    maxAge : 1 * 60
 
+  },
+  jwt:{
+    maxAge: 1 * 60
   }
 
 })

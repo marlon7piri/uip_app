@@ -38,7 +38,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
   }
 
   return (
-    <TableContainer component={Paper} style={{ maxWidth: '62%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
+    <TableContainer component={Paper} style={{ maxWidth: '62%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white',marginTop:50 }}>
 
       <Table sx={{ minWidth: 490, }} aria-label="simple table">
         <TableHead >

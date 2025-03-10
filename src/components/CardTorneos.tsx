@@ -4,6 +4,7 @@ import Link from 'next/link'
 import React, { useEffect } from 'react'
 import './cardtorneos.css'
 import Image from 'next/image'
+import Spinner from './Spinner'
 
 interface Props {
   torneo: Torneos
@@ -12,8 +13,12 @@ interface Props {
 const CardTorneos = ({ torneo }: Props) => {
 
 
+  if(!torneo){
+    return <Spinner/>
+  }
+
   return (
-    <Link href={`/ligas/partidos/${torneo._id}`} className={'card'}
+    <Link href={`/ligas/partidos/${torneo._id}`} className={'card hover:scale-105'}
 
 
     >

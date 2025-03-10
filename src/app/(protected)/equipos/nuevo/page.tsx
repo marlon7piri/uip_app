@@ -5,7 +5,7 @@ import React from 'react'
 
 const NuevoEquipo = () => {
   return (
-    <div className='h-screen'>
+    <div className=' py-28 min-h-screen'>
       <Title content='Nuevo equipo' size='text-4xl' />
 
       <div className='flex justify-center items-center'>

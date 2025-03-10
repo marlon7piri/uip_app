@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import AuthWrapper from "./AuthWraper";
-import FollowSession from "@/components/FollowSession";
 
 
 const poppins = Poppins({
@@ -31,7 +30,7 @@ export default async function RootLayout({
       >
 
         <AuthWrapper>
-          {/* <FollowSession /> */}
+         
           {children}
 
         </AuthWrapper>

@@ -9,7 +9,7 @@ const FollowSession = () => {
 
   })
   return (
-    <div className='absolute top-0 left-0 w-screen h-screen flex items-center justify-center bg-black bg-opacity-50 z-[999]'>
+    <div className='absolute top-0 left-0 bottom-0 w-screen h-screen  flex items-center justify-center bg-black bg-opacity-50 z-[999]'>
 
       <div className="bg-white p-6 rounded-lg shadow-lg text-center">
         <h1 className="text-lg font-bold">Sesión expirada</h1>

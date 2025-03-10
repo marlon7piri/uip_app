@@ -12,13 +12,13 @@
   transition: all 0.5s;
   border-radius: 1rem;
   box-shadow: inset 0px 10px 53px 29px rgba(0, 0, 0, 0.3);
-  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+ /*  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
     both;
-  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; */
 }
 
 .card:hover {
-  transform: scale(2);
+
   box-shadow: inset 0px 10px 53px 29px rgba(2, 63, 99, 0.3);
 }
 

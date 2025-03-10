@@ -27,7 +27,6 @@ export default auth(async (req) => {
   if (isApiRoute) {
     return null;
   }
-
   if (isAuthRoute) {
     if (isLoggin) {
       return Response.redirect(new URL(DefaultLoginRedirect, nextUrl));
@@ -36,6 +35,11 @@ export default auth(async (req) => {
   }
   if (!isLoggin && !isPublicRoute) {
     return Response.redirect(new URL("/auth/login", nextUrl));
+  }
+
+  if(!token || !isLoggin || (token.exp && Date.now() >= token?.exp  * 1000)){
+    return Response.redirect(new URL("/auth/login", nextUrl));
+
   }
 
   return null;

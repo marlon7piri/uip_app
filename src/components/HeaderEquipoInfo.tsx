@@ -16,7 +16,7 @@ const HeaderEquipoInfo = ({ equipo }: Props) => {
     <div className={styles.card}>
 
       <div className={styles.containerInfo}>
-        <div className='flex justify-center items-center flex-col'>
+        <div className='flex justify-center items-center flex-col '>
           <Title content={equipo?.nombre} size='text-3xl' color='text-slate-50' />
 
           <Image src={equipo ? equipo?.logo : ''} width={150} height={80} alt={equipo?.nombre ? equipo?.nombre : 'foto del club'}

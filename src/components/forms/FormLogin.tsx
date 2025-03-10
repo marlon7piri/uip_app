@@ -60,7 +60,7 @@ export const FormLogin = () => {
 
       >
         <h1 className="text-center text-primary text-4xl mb-4 text-slate-50 font-bold">
-          Inicio de Session
+          Inicio de Sesión
         </h1>
         <input
           type="text"
