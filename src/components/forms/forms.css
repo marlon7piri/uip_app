@@ -47,3 +47,11 @@ input:focus, select:focus {
     box-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Opcional: Efecto de brillo */
 }
 
+@media(width<700px){
+    form{
+        width: 400px;
+       
+        
+    
+    }
+}
