@@ -37,9 +37,10 @@ export default auth(async (req) => {
     return Response.redirect(new URL("/auth/login", nextUrl));
   }
 
-  if(!token || !isLoggin || (token.exp && Date.now() >= token?.exp  * 1000)){
-    return Response.redirect(new URL("/auth/login", nextUrl));
-
+  
+  if (!req.auth && req.nextUrl.pathname !== "/auth/login") {
+    return Response.redirect( new URL("/auth/login", nextUrl))
+    
   }
 
   return null;
