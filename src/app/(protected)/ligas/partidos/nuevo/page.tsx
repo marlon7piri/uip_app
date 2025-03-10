@@ -7,7 +7,7 @@ import * as UseCases from '@/config/core/use-cases'
 import { Torneos } from '@/infraestrcuture/entities/torneos'
 import { useParams, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-
+import styles from './style.module.css'
 const NuevoEquipo = () => {
 
   const search = useSearchParams()
@@ -36,7 +36,7 @@ const NuevoEquipo = () => {
   }, [])
 
   return (
-    <div className='h-screen'>
+    <div className={styles.container}>
       <Title content='Nuevo Partido' size='text-4xl' />
 
       <div className='flex justify-center items-center p-4'>
