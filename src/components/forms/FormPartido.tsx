@@ -36,6 +36,7 @@ export default function FormPartido({ equiposParticipantes }: Props) {
 
       <select
         value={partido.local}
+        defaultValue={""}
         disabled={equiposParticipantes.length == 0}
         onChange={(e) => setPartido({ ...partido, local: e.target.value })}>
         <option value={''} >{equiposParticipantes.length == 0 ? 'Cargando...' : 'Seleccione un equipo'}</option>
@@ -53,6 +54,8 @@ export default function FormPartido({ equiposParticipantes }: Props) {
 
       <select
         value={partido.visitante}
+        defaultValue={""}
+
         disabled={equiposParticipantes.length == 0}
         onChange={(e) => setPartido({ ...partido, visitante: e.target.value })}>
         <option value={''} >{equiposParticipantes.length == 0 ? 'Cargando...' : 'Seleccione un equipo'}</option>
@@ -70,7 +73,7 @@ export default function FormPartido({ equiposParticipantes }: Props) {
 
       <select
         value={partido.tipo}
-
+        defaultValue={""}
         onChange={(e) => setPartido({ ...partido, tipo: e.target.value })}>
         <option value={''} >Seleccione un equipo</option>
         <option value={'clasificacion'} >Clasificacion</option>

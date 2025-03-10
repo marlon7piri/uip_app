@@ -7,7 +7,7 @@ import './forms.css'
 export default function FormEquipo() {
 
   const { equipo, setEquipo, createEquipo, setImage, image } = useEquipos()
-  const [imageSelected, setImageSelected] = useState('second')
+  const [imageSelected, setImageSelected] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault();

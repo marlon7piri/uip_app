@@ -1,6 +1,6 @@
 'use client'
 
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 
 import { TorneoStore } from "@/utils/zustand/torneos";
 import { CustomInputFileFoto } from "../CustomInputFileFoto";
@@ -14,6 +14,7 @@ export default function FormTorneos() {
 
   const { setTorneo, torneo, crearTorneo, image, setImage, loading } = useTorneos()
   const router = useRouter()
+  const [imagePreview, setImagePreview] = useState('')
 
 
   const handleSubmit = async (e:FormEvent) => {
@@ -27,7 +28,9 @@ export default function FormTorneos() {
 
   // Manejar cambio de archivo
   const handleFileChange = (event) => {
-    setImage(event.target.files[0]);
+    const file = event.target.files[0]
+    setImage(file);
+    setImagePreview(URL.createObjectURL(file))
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -46,13 +49,14 @@ export default function FormTorneos() {
       <label>Foto</label>
       <input type="file"  required accept='image/*' onChange={handleFileChange} />
 
-      {image && <img src={image} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={torneo.nombre} />}
+      {imagePreview && <img src={imagePreview} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={torneo.nombre} />}
 
 
 
       <button
 
         type="submit"
+        disabled={loading}
       >
         {loading ? <CircularProgress size={24} color='inherit' /> : "Guardar"}
       </button>

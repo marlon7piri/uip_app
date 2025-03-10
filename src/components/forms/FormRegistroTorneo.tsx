@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, FormLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Button, CircularProgress, FormLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useUploadPicture } from "../hooks/useUploadFile";
 import axios from "axios";
@@ -18,7 +18,7 @@ import './forms.css'
 export default function FormRegistroTorneo() {
 
   const { partido, setPartido, createPartido } = usePartidos()
-  const { equiposRegistrados, setEquiposRegistrados, registrarEquiposTorneos } = useTorneos()
+  const { equiposRegistrados, setEquiposRegistrados, registrarEquiposTorneos, loading } = useTorneos()
   const { equipos } = useEquipos()
   const router = useRouter();
   const search = useSearchParams()
@@ -58,39 +58,35 @@ export default function FormRegistroTorneo() {
   return (
     <form onSubmit={handleSubmit} >
       <div className="flex flex-col gap-4">
-        
-          <label className="text-2xl font-bold text-slate-50">Equipos</label>
-         
-          <Select
-            fullWidth
-className="border border-slate-50"
-            onChange={(e) => registrarEquipos(e)}>
-            {equipos.map((e) => {
-              return <MenuItem key={e?._id} value={e} >
 
-                {e?.nombre}</MenuItem>
+        <label className="text-2xl font-bold text-slate-50">Equipos</label>
+
+        <Select
+          fullWidth
+          defaultValue={""}
+          className="border border-slate-50"
+          onChange={(e) => registrarEquipos(e)}>
+          {equipos.map((e) => {
+            return <MenuItem key={e?._id} value={e} >
+
+              {e?.nombre}</MenuItem>
 
 
 
-            })}
-
-          </Select> 
-        
-          {equiposRegistrados.length == 0 ? <p>No hay equipos registrados</p> : equiposRegistrados.map((e) => {
-            return <p key={e._id} className="text-slate-50">{e.nombre}</p>
           })}
+
+        </Select>
+
+        {equiposRegistrados.length == 0 ? <p className="text-white">No hay equipos registrados</p> : equiposRegistrados.map((e) => {
+          return <p key={e._id} className="text-slate-50">{e.nombre}</p>
+        })}
 
 
 
         <div >
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ mr: 1 }}
-            type="submit"
-          >
-            Crear
-          </Button>
+          <button>
+            {loading ? <CircularProgress size={24} color="inherit" /> : 'Crear'}
+          </button>
 
         </div>
       </div>

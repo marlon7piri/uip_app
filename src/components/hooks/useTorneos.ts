@@ -30,10 +30,8 @@ export const useTorneos = () => {
 
   const getTorneos = async () => {
     const session = await getSession();
-    setLoading(true);
     const res = await UseCases.getTorneosUseCases(fetcherDb, session?.token);
     setTorneos(res);
-    setLoading(false);
   };
   const getEquiposByTorneo = async (idTorneo: string) => {
     const session = await getSession();
@@ -64,6 +62,7 @@ export const useTorneos = () => {
     setLoading(false);
   };
   const registrarEquiposTorneos = async (idTorneo: string) => {
+    setLoading(true)
     const session = await getSession();
 
     const ids = equiposRegistrados.map((e) => e._id);

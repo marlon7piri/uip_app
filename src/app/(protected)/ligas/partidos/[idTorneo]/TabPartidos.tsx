@@ -18,7 +18,7 @@ const TabPartidos = ({ partidosByTorneos, loading }: { partidosByTorneos: any, l
   return (
     <div>
       <Title content="Partidos" size="text-4xl" color="text-slate-50" />
-      {loading ? <Spinner /> : <ContainerProximosPartidosByTorneo partidos={partidosByTorneos} />}
+      <ContainerProximosPartidosByTorneo partidos={partidosByTorneos} />
     </div>
   );
 };
