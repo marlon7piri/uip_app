@@ -37,12 +37,9 @@ const NuevoEquipo = () => {
   }, [])
 
   return (
-<<<<<<< Updated upstream
-    <div className={styles.container}>
-      <Title content='Nuevo Partido' size='text-4xl' />
-=======
+
     <ContenedorCustom>
->>>>>>> Stashed changes
+
 
 
       <div className=' flex flex-col justify-center items-center mt-24'>
