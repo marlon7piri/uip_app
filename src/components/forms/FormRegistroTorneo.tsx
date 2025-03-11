@@ -13,7 +13,7 @@ import './forms.css'
 export default function FormRegistroTorneo() {
 
   const { partido, setPartido, createPartido } = usePartidos()
-  const { equiposRegistrados, setEquiposRegistrados, registrarEquiposTorneos, loading } = useTorneos()
+  const { equiposRegistrados, setEquiposRegistrados, registrarEquiposTorneos } = useTorneos()
   const { equipos } = useEquipos()
   const router = useRouter();
   const search = useSearchParams()
@@ -54,57 +54,48 @@ export default function FormRegistroTorneo() {
 
   return (
     <form onSubmit={handleSubmit} >
-<<<<<<< Updated upstream
-=======
-      <div className="flex flex-col gap-4">
->>>>>>> Stashed changes
-
-        <label className="text-2xl font-bold text-slate-50">Equipos</label>
-
-        <Select
-          fullWidth
-          defaultValue={""}
-          className="border border-slate-50"
-          onChange={(e) => registrarEquipos(e)}>
-          {equipos.map((e) => {
-            return <MenuItem key={e?._id} value={e} >
-
-              {e?.nombre}</MenuItem>
 
 
 
-          })}
 
-        </Select>
 
-<<<<<<< Updated upstream
-        {equiposRegistrados.length == 0 ? <p className="text-white">No hay equipos registrados</p> : equiposRegistrados.map((e) => {
-          return <p key={e._id} className="text-slate-50">{e.nombre}</p>
+      <label className="text-2xl font-bold text-slate-50">Equipos</label>
+
+      <Select
+        fullWidth
+        defaultValue={""}
+        className="border border-slate-50"
+        onChange={(e) => registrarEquipos(e)}>
+        {equipos.map((e) => {
+          return <MenuItem key={e?._id} value={e} >
+
+            {e?.nombre}</MenuItem>
+
+
+
         })}
 
-
-=======
-        {equiposRegistrados.length == 0 ? <p>No hay equipos registrados</p> : equiposRegistrados.map((e) => {
-          return <p key={e._id} className="text-slate-50">{e.nombre}</p>
-        })}
+      </Select>
 
 
-
-        <div >
-          <button
+      {equiposRegistrados.length == 0 ? <p className="text-white">No hay equipos registrados</p> : equiposRegistrados.map((e) => {
+        return <p key={e._id} className="text-slate-50">{e.nombre}</p>
+      })}
 
 
 
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? <CircularProgress size={24} color="inherit" /> : 'Crear'}
-          </button>
->>>>>>> Stashed changes
+      {equiposRegistrados.length == 0 ? <p>No hay equipos registrados</p> : equiposRegistrados.map((e) => {
+        return <p key={e._id} className="text-slate-50">{e.nombre}</p>
+      })}
 
-          <button>
-            {loading ? <CircularProgress size={24} color="inherit" /> : 'Crear'}
-          </button>
+
+
+
+
+
+      <button>
+        {loading ? <CircularProgress size={24} color="inherit" /> : 'Crear'}
+      </button>
 
 
 

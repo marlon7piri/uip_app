@@ -14,12 +14,11 @@ export default function FormTorneos() {
 
   const { setTorneo, torneo, crearTorneo, image, setImage, } = useTorneos()
   const router = useRouter()
-<<<<<<< Updated upstream
-  const [imagePreview, setImagePreview] = useState('')
-=======
+
+
   const [imagePreview, setImagePreview] = useState("")
   const [loading, setLoading] = useState(false)
->>>>>>> Stashed changes
+
 
 
   const handleSubmit = async (e: FormEvent) => {
