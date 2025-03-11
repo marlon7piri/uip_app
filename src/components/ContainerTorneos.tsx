@@ -10,10 +10,11 @@ import Spinner from './Spinner';
 
 
 interface Props {
-  torneos: Torneos[]
+  torneos: Torneos[];
+  loading: boolean
 }
 
-const ContainerTorneos = ({ torneos }: Props) => {
+const ContainerTorneos = ({ torneos, loading }: Props) => {
 
 
 
@@ -26,7 +27,7 @@ const ContainerTorneos = ({ torneos }: Props) => {
         <BreadCrum titulo='Grupos' url='/ligas/nuevo' labelBtn='Crear Grupo' />
 
         <div className=' w-full h-full flex  flex-wrap justify-center items-center gap-6'>
-          {torneos?.map((e) => {
+          {loading ? <Spinner /> : torneos?.map((e) => {
             return <CardTorneos torneo={e} key={e?._id} />
           })}
         </div>

@@ -18,15 +18,17 @@ export default function FormRegistroTorneo() {
   const router = useRouter();
   const search = useSearchParams()
   const idTorneo = search.get('idTorneo')
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
 
     await registrarEquiposTorneos(idTorneo)
 
     toast.success('Registro creado')
     router.back()
+    setLoading(false)
   };
 
   const registrarEquipos = (e) => {
@@ -52,6 +54,10 @@ export default function FormRegistroTorneo() {
 
   return (
     <form onSubmit={handleSubmit} >
+<<<<<<< Updated upstream
+=======
+      <div className="flex flex-col gap-4">
+>>>>>>> Stashed changes
 
         <label className="text-2xl font-bold text-slate-50">Equipos</label>
 
@@ -71,11 +77,30 @@ export default function FormRegistroTorneo() {
 
         </Select>
 
+<<<<<<< Updated upstream
         {equiposRegistrados.length == 0 ? <p className="text-white">No hay equipos registrados</p> : equiposRegistrados.map((e) => {
           return <p key={e._id} className="text-slate-50">{e.nombre}</p>
         })}
 
 
+=======
+        {equiposRegistrados.length == 0 ? <p>No hay equipos registrados</p> : equiposRegistrados.map((e) => {
+          return <p key={e._id} className="text-slate-50">{e.nombre}</p>
+        })}
+
+
+
+        <div >
+          <button
+
+
+
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? <CircularProgress size={24} color="inherit" /> : 'Crear'}
+          </button>
+>>>>>>> Stashed changes
 
           <button>
             {loading ? <CircularProgress size={24} color="inherit" /> : 'Crear'}

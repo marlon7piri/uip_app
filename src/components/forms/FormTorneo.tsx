@@ -12,16 +12,23 @@ import { CircularProgress } from "@mui/material";
 
 export default function FormTorneos() {
 
-  const { setTorneo, torneo, crearTorneo, image, setImage, loading } = useTorneos()
+  const { setTorneo, torneo, crearTorneo, image, setImage, } = useTorneos()
   const router = useRouter()
+<<<<<<< Updated upstream
   const [imagePreview, setImagePreview] = useState('')
+=======
+  const [imagePreview, setImagePreview] = useState("")
+  const [loading, setLoading] = useState(false)
+>>>>>>> Stashed changes
 
 
-  const handleSubmit = async (e:FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
+    setLoading(true)
     e.preventDefault();
     await crearTorneo()
     toast.success("Torneo creado")
     router.back()
+    setLoading(false)
 
   };
 
@@ -47,7 +54,7 @@ export default function FormTorneos() {
 
 
       <label>Foto</label>
-      <input type="file"  required accept='image/*' onChange={handleFileChange} />
+      <input type="file" required accept='image/*' onChange={handleFileChange} />
 
       {imagePreview && <img src={imagePreview} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={torneo.nombre} />}
 

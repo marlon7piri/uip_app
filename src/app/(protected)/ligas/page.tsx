@@ -6,7 +6,8 @@ import { useTorneos } from '@/components/hooks/useTorneos';
 
 const Torneos = () => {
 
-  const { torneos } = useTorneos()
+  const { torneos, loading } = useTorneos()
+
 
 
 
@@ -14,7 +15,7 @@ const Torneos = () => {
   return (
 
     <div className={styles.container}>
-      <ContainerTorneos torneos={torneos} />
+      <ContainerTorneos torneos={torneos} loading={loading} />
 
 
     </div>

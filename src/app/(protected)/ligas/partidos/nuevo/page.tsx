@@ -1,5 +1,6 @@
 'use client'
 import { getSession } from '@/actions/get-session'
+import ContenedorCustom from '@/components/ContenedorCustom'
 import FormPartido from '@/components/forms/FormPartido'
 import { Title } from '@/components/Title'
 import { fetcherDb } from '@/config/adapters/apiDbAdapter'
@@ -36,15 +37,20 @@ const NuevoEquipo = () => {
   }, [])
 
   return (
+<<<<<<< Updated upstream
     <div className={styles.container}>
       <Title content='Nuevo Partido' size='text-4xl' />
+=======
+    <ContenedorCustom>
+>>>>>>> Stashed changes
 
-      <div className='flex justify-center items-center p-4'>
+
+      <div className=' flex flex-col justify-center items-center mt-24'>
+        <Title content='Nuevo Partido' size='text-4xl' />
         <FormPartido equiposParticipantes={equiposParticipantes} />
-
       </div>
 
-    </div>
+    </ContenedorCustom>
   )
 }
 
