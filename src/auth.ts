@@ -1,5 +1,5 @@
-import NextAuth from "next-auth"
-import authconfig from './auth.config'
+import NextAuth from "next-auth";
+import authconfig from "./auth.config";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   trustHost: true,
@@ -24,25 +24,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.rol = user.rol; // Guarda el rol en el JWT si lo necesitas
       }
 
-      token.exp = Math.floor(Date.now() / 1000) + 60 // Expira en 1 minuto
       return token;
     },
-
-
   },
   ...authconfig,
   pages: {
-    signIn: '/auth/login',
-    signOut: '/auth/login'
+    signIn: "/auth/login",
+    signOut: "/auth/login",
   },
   session: {
     strategy: "jwt",
     maxAge: 60, // 1 hora
     updateAge: 0, // Actualiza la sesión en cada request
-
   },
-  jwt:{
-    maxAge:60
-  }
-
-})
+  jwt: {
+    maxAge: 60,
+  },
+});
