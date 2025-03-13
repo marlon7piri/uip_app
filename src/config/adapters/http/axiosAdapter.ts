@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from "axios";
 import { HttpAdapter } from "./httpAdapter";
 
 interface Options {
@@ -36,6 +36,23 @@ export class AxiosAdapter implements HttpAdapter {
       return data;
     } catch (error) {
       throw new Error(`Error creating post :${url}`);
+    }
+  }
+
+  async put<T>(url: string, item?: unknown, options?: AxiosRequestConfig): Promise<T> {
+    try {
+      const { data } = await this.axiosInstance.put<T>(url, item,options)
+      return data
+    } catch (error) {
+      throw new Error("Error editing player" + error)
+    }
+  }
+  async delete<T>(url: string,options?: AxiosRequestConfig): Promise<T> {
+    try {
+      const { data } = await this.axiosInstance.delete<T>(url,options)
+      return data
+    } catch (error) {
+      throw new Error("Error deleting player" + error)
     }
   }
 }

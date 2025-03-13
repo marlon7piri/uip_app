@@ -8,7 +8,7 @@ import { Equipos } from "@/infraestrcuture/entities/equipos";
 import { getSession } from "@/actions/get-session";
 import { uploadFile } from "@/utils/imagenes";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface NewJugador {
   nombre: string;
@@ -65,6 +65,7 @@ export const useJugador = () => {
   const [equipoDelJugador, setEquipoDelJugador] = useState<Equipos>(null);
   const [image, setImage] = useState(null);
   const router = useRouter();
+  const idPlayer = useSearchParams().get("idPlayer")
 
   const loadJugadores = JugadorStore((state) => state.loadJugadores);
   const selectPlayer = JugadorStore((state) => state.selectPlayer);
@@ -91,7 +92,7 @@ export const useJugador = () => {
       setJugadores(res);
       loadJugadores(res);
       setLoading(false);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const getJugadoresByEquipos = async (idEquipo: string) => {
@@ -108,10 +109,18 @@ export const useJugador = () => {
     setEquipoDelJugador(res.infoClub);
     setLoading(false);
   };
-  const createJugador = async (e:FormEvent<HTMLFormElement>) => {
+  const createJugador = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!idPlayer) {
+      await crearPlayer()
+    } else {
+
+      await editarPlayer()
+    }
+  };
+  const crearPlayer = async () => {
     try {
-      if (!jugador.club || !jugador.posicion) {
+      if (!jugador.club) {
         toast.error("Seleccione un club");
         return;
       }
@@ -132,7 +141,7 @@ export const useJugador = () => {
           },
           foto: img,
         };
-        
+
         const res = await UseCases.createJugadorUseCases(
           fetcherDb,
           newPlayer,
@@ -148,10 +157,83 @@ export const useJugador = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }
+  const editarPlayer = async () => {
+    if (idPlayer) {
+      try {
+        if (!jugador.club) {
+          toast.error("Seleccione un club");
+          return;
+        }
+        setLoading(true);
+        const session = await getSession();
+        const img = await uploadFile(image);
+
+        if (img) {
+          const newPlayer = {
+            ...jugador,
+            estadisticasGlobales: {
+              posicion: jugador.posicion,
+              valor_mercado: jugador.valor_mercado,
+              velocidad: jugador.velocidad,
+              ataque: jugador.ataque,
+              defensa: jugador.defensa,
+              regate: jugador.regate,
+            },
+            foto: img,
+          };
+
+          const res = await UseCases.editJugadorUseCases(
+            fetcherDb,
+            idPlayer,
+            newPlayer,
+            session?.token
+          );
+
+          toast.success("Jugador editado");
+          router.push("/mercado");
+          router.refresh();
+        }
+      } catch (error) {
+        throw new Error("Error editando jugador");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+  }
+
+  const getJugadorById = async (id: string) => {
+
+
+    if (id) {
+      const session = await getSession();
+
+      const jugador = await UseCases.getJugadorByIdUseCases(fetcherDb, id, session?.token)
+      return jugador
+    }
+
+
+  }
   const handlerPlayer = (id: string) => {
     selectPlayer(id);
   };
+
+  const eliminarJugador =  (id: string) => {
+    const eliminar =async ()=>{
+      const session = await getSession()
+      const res = await UseCases.eliminarJugadorUseCases(fetcherDb, id, session?.token)
+      console.log({res})
+      router.back()
+  
+    }
+     toast.promise(eliminar(),{
+      success:"Jugador eliminado",
+      error:"Error eliminando, intente de nuevo",
+      loading:"Eliminando..."
+    })
+
+  }
 
   return {
     jugador,
@@ -162,6 +244,8 @@ export const useJugador = () => {
     jugadoresByEquipos,
     equipoDelJugador,
     getJugadoresByEquipos,
+    getJugadorById,
+    eliminarJugador,
     loading,
     setImage,
     image,

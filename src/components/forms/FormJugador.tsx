@@ -1,23 +1,39 @@
 'use client'
 
 import { CircularProgress, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useJugador } from "../hooks/useJugador";
 import { useEquipos } from "../hooks/useEquipos";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import './forms.css'
 
 export default function FormJugador() {
 
 
-  const { jugador, setJugador, createJugador, setImage, image, loading } = useJugador()
+  const { jugador, setJugador, createJugador, setImage, image, loading, getJugadorById } = useJugador()
   const { equipos } = useEquipos()
   const [imagePreview, setImagePreview] = useState('')
+  const idPlayer = useSearchParams().get("idPlayer")
+
+  useEffect(() => {
 
 
- 
+    const loadPlayer = async () => {
+      const jugador = await getJugadorById(idPlayer)
+      setJugador({ ...jugador })
+    }
+
+    if (idPlayer) {
+      loadPlayer()
+    }
+
+
+  }, [idPlayer])
+
+
+
 
 
 
@@ -147,7 +163,7 @@ export default function FormJugador() {
         <select
 
           value={jugador.posicion}
-
+          required
           onChange={(e) => setJugador({ ...jugador, posicion: e.target.value })}>
 
           <option value={'delantero'} >
@@ -212,16 +228,18 @@ export default function FormJugador() {
 
         <label>Club</label>
 
+
         <select
 
-          value={jugador.club}
-
+          value={jugador?.club || null}
           onChange={(e) => setJugador({ ...jugador, club: e.target.value })}>
           <option></option>
           {equipos.map((e) => {
+            console.log(e)
             return <option key={e?._id} value={e?._id} >
 
               {e?.nombre}</option>
+
 
 
 
@@ -259,7 +277,7 @@ export default function FormJugador() {
           disabled={loading}
           type="submit"
         >
-          {loading ? <CircularProgress color='inherit' size={18} /> : 'Crear'}
+          {loading ? <CircularProgress color='inherit' size={18} /> : (idPlayer ? 'Editar' : 'Crear')}
         </button>
 
 
