@@ -223,15 +223,18 @@ export const useJugador = () => {
     const eliminar =async ()=>{
       const session = await getSession()
       const res = await UseCases.eliminarJugadorUseCases(fetcherDb, id, session?.token)
-      console.log({res})
       router.back()
   
     }
-     toast.promise(eliminar(),{
-      success:"Jugador eliminado",
-      error:"Error eliminando, intente de nuevo",
-      loading:"Eliminando..."
-    })
+
+    if(confirm("Seguro que desea eliminar al jugador?")){
+      toast.promise(eliminar(),{
+        success:"Jugador eliminado",
+        error:"Error eliminando, intente de nuevo",
+        loading:"Eliminando..."
+      })
+    }
+     
 
   }
 

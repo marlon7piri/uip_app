@@ -40,8 +40,8 @@ const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
           {session?.rol == "admin" &&
 
             <div>
-              <button onClick={() => eliminarJugador(jugador?._id)} className='absolute top-2 right-10 hover:text-red-500 cursor-pointer'><DeleteOutline /></button>
-              <Link href={`/jugadores/nuevo?idPlayer=${jugador._id}`} className='absolute top-2 right-2 hover:text-sky-500 cursor-pointer'><EditNote /></Link>
+              <button onClick={() => eliminarJugador(jugador?._id)} className='z-10 absolute lg:top-2 right-10 sm:top-16 sm:right-16 bg-red-500 p-1 rounded-md hover:bg-red-900 cursor-pointer'><DeleteOutline /></button>
+              <Link href={`/jugadores/nuevo?idPlayer=${jugador._id}`} className='z-10 absolute lg:top-2 right-2 sm:top-16 sm:right-4 bg-sky-500 p-1 rounded-md hover:bg-sky-900 cursor-pointer'><EditNote /></Link>
             </div>
           }
           <Image src={jugador ? jugador?.foto : ''} width={400} height={400} alt='imagen de un futbolista'
