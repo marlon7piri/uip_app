@@ -24,7 +24,6 @@ export default async function RootLayout({
 
   return (
     <html lang="es">
-
       <body
         className={`${poppins.className} antialiased`}
       >

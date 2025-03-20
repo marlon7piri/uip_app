@@ -20,7 +20,7 @@ export default function FormRegistroTorneo() {
   const idTorneo = search.get('idTorneo')
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:React.FormEvent) => {
     e.preventDefault();
     setLoading(true)
 
@@ -42,7 +42,7 @@ export default function FormRegistroTorneo() {
       }
 
 
-      return [...prevState]
+      return prevState
 
     })
 
@@ -84,9 +84,7 @@ export default function FormRegistroTorneo() {
 
 
 
-      {equiposRegistrados.length == 0 ? <p>No hay equipos registrados</p> : equiposRegistrados.map((e) => {
-        return <p key={e._id} className="text-slate-50">{e.nombre}</p>
-      })}
+      
 
 
 

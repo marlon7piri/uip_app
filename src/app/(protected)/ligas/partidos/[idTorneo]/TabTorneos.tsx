@@ -55,6 +55,7 @@ export default function TabTorneos({ partidosByTorneos, loading }: { partidosByT
           flexDirection: 'column', // Cambia la dirección según el tamaño de pantalla
           gap: { xs: 1, sm: 0 }, // Añade espacio entre elementos en pantallas pequeñas
         }}>
+          
           <Tab label="Posiciones" {...a11yProps(0)} sx={{
             color: '#fcf8f8',
             background: 'rgba(25, 33, 36, 0.5)',
@@ -62,6 +63,7 @@ export default function TabTorneos({ partidosByTorneos, loading }: { partidosByT
             borderRadius: '1rem',
             marginRight: '.5rem',
           }} />
+          
           <Tab label="Partidos" {...a11yProps(1)} sx={{
             color: '#fcf8f8',
             background: 'rgba(25, 33, 36, 0.5)',

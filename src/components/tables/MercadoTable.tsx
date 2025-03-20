@@ -29,8 +29,12 @@ export default function MercadoTable({ rows }: Props) {
   const search = useSearchParams()
 
 
-  if (!rows && !search.get("query")) {
-    return <h1 className='text-4xl text-slate-50'>No hay jugadores</h1>
+  if (rows?.length == 0 && !search.get("query")) {
+    return <Spinner/>
+  }
+
+  if (!rows) {
+    return <h1 className="text-4xl text-slate-50">No hay jugadores</h1>
   }
 
 

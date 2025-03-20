@@ -24,17 +24,23 @@ export const useNoticias = () => {
   }, []);
 
   const getNoticias = async () => {
-    const session = await getSession();
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/noticias/list`,
-      {
-        headers: {
-          token: session?.token,
-        },
-      }
-    );
-    const data = await res.json();
-    setNoticias(data);
+    try {
+      const session = await getSession();
+      setLoading(true)
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/noticias/list`,
+        {
+          headers: {
+            token: session?.token,
+          },
+        }
+      );
+      const data = await res.json();
+      setNoticias(data);
+      setLoading(false)
+    } catch (error) {
+      throw new Error("Error obteniendo las noticias")
+    }
   };
 
   const createNoticia = async () => {

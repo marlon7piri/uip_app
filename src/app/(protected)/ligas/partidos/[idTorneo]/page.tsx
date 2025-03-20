@@ -37,22 +37,25 @@ const PartidosByTorneos = () => {
 
     useEffect(() => {
         const getPartidosByTorneo = async () => {
+            setLoading(true)
             const session = await getSession()
             const res = await UseCases.getPartidosByTorneosUseCases(fetcherDb, params.idTorneo, session?.token);
 
             setPartidosByTorneos(res)
+            setLoading(false)
         };
 
 
 
         const getEquiposRegistrados = async () => {
+            setLoading(true)
             const session = await getSession()
 
             const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
 
-            setEquiposParticipantes(res.torneo_especifico);
+            setEquiposParticipantes(res?.torneo_especifico);
 
-
+            setLoading(false)
         };
         getPartidosByTorneo()
         getEquiposRegistrados()

@@ -7,7 +7,7 @@ const FollowSession = () => {
 
 
 
-  })
+  },[])
   return (
     <div className='absolute top-0 left-0 bottom-0 w-screen h-screen  flex items-center justify-center bg-black bg-opacity-50 z-[999]'>
 
