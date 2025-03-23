@@ -3,7 +3,9 @@ import React from 'react'
 import { Title } from './Title'
 import Image from 'next/image'
 import styles from './headerequipoinfo.module.css'
-
+import EditNote from '@mui/icons-material/EditNote';
+import Link from 'next/link'
+import EditIcon from './EditIcon'
 
 interface Props {
   equipo: Equipos
@@ -17,7 +19,10 @@ const HeaderEquipoInfo = ({ equipo }: Props) => {
 
       <div className={styles.containerInfo}>
         <div className='flex justify-center items-center flex-col '>
+
           <Title content={equipo?.nombre} size='text-3xl' color='text-slate-50' />
+
+
 
           <Image src={equipo ? equipo?.logo : ''} width={150} height={80} alt={equipo?.nombre ? equipo?.nombre : 'foto del club'}
             className=' object-cover'
@@ -34,6 +39,7 @@ const HeaderEquipoInfo = ({ equipo }: Props) => {
             <li>Partidos Empatados:  {equipo?.estadisticasGlobales?.partidos_empatados}</li>
           </ul>
         </div>
+        <EditIcon link={`/equipos/nuevo?idEquipo=${equipo._id}`} />
 
       </div>
     </div>

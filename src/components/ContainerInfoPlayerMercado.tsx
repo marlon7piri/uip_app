@@ -10,6 +10,8 @@ import { Jugadores } from '@/infraestrcuture/entities/jugadores';
 import Link from 'next/link';
 import { useJugador } from './hooks/useJugador';
 import { useSessionAuth } from './hooks/useSessionAuth';
+import EditIcon from './EditIcon';
+import DeleteIcon from './DeleteIcon';
 
 
 interface Props {
@@ -17,7 +19,7 @@ interface Props {
 }
 const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
   const { eliminarJugador } = useJugador()
-  const {session} = useSessionAuth()
+  const { session } = useSessionAuth()
 
 
   if (!jugador) {
@@ -40,8 +42,9 @@ const ContainerInfoPlayerMercado = ({ jugador }: Props) => {
           {session?.rol == "admin" &&
 
             <div>
-              <button onClick={() => eliminarJugador(jugador?._id)} className='z-10 absolute lg:top-2 right-10 sm:top-16 sm:right-16 bg-red-500 p-1 rounded-md hover:bg-red-900 cursor-pointer'><DeleteOutline /></button>
-              <Link href={`/jugadores/nuevo?idPlayer=${jugador._id}`} className='z-10 absolute lg:top-2 right-2 sm:top-16 sm:right-4 bg-sky-500 p-1 rounded-md hover:bg-sky-900 cursor-pointer'><EditNote /></Link>
+              <DeleteIcon onClick={() => eliminarJugador(jugador?._id)} />
+              <EditIcon link={`/jugadores/nuevo?idPlayer=${jugador._id}`} />
+
             </div>
           }
           <Image src={jugador ? jugador?.foto : ''} width={400} height={400} alt='imagen de un futbolista'

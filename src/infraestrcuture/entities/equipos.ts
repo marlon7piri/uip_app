@@ -4,7 +4,6 @@ export interface Equipos {
   nombre:               string;
   logo:                 string;
   torneos:              Torneo[];
-  __v:                  number;
 }
 
 export interface Estadisticas {
