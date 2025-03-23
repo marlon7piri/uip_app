@@ -57,9 +57,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
             </TableCell>
 
 
-            <TableCell align="right">
-              <Typography className={styles.rows}>Valor de mercado</Typography>
-            </TableCell>
+            
             {/* <TableCell align="right">
               <Typography className={styles.rows}> Oferta</Typography>
             </TableCell> */}
@@ -95,10 +93,7 @@ export default function JugadoresEquiposTable({ rows }: Props) {
 
 
 
-              <TableCell align="right">
-                <Typography className={styles.rows}> ${row.estadisticasGlobales
-                  ?.valor_mercado}</Typography>
-              </TableCell>
+              
               {/*  <TableCell align="right">
                 <IconButton>
                   <Tooltip title='hacer oferta'>
