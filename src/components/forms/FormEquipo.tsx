@@ -1,13 +1,16 @@
 'use client'
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useEquipos } from "../hooks/useEquipos";
 import './forms.css'
+import { useSearchParams } from "next/navigation";
 
 export default function FormEquipo() {
 
   const { equipo, setEquipo, createEquipo, setImage, image } = useEquipos()
   const [imageSelected, setImageSelected] = useState('')
+  const search = useSearchParams()
+  const idEquipo = search.get('idEquipo') || null
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,13 +21,22 @@ export default function FormEquipo() {
   // Manejar cambio de archivo
   const handleFileChange = (event) => {
     const file = event.target.files[0]
-    
+
     setImage(file);
     setImageSelected(URL.createObjectURL(file))
   };
 
+
+  useEffect(() => {
+    if (idEquipo) {
+      alert(`vamos a editar al equipo con id:${idEquipo}`)
+    }
+   
+  }, [])
+
   return (
     <form onSubmit={handleSubmit}>
+
       <label>Nombre</label>
       <input
         name="namePlan"
@@ -42,7 +54,7 @@ export default function FormEquipo() {
       <button
         type="submit"
       >
-        Guardar
+        {idEquipo ? "Editar" : "Guardar"}
       </button>
 
     </form>

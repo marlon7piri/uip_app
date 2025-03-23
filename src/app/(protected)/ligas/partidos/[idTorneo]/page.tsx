@@ -39,7 +39,7 @@ const PartidosByTorneos = () => {
         const getPartidosByTorneo = async () => {
             setLoading(true)
             const session = await getSession()
-            const res = await UseCases.getPartidosByTorneosUseCases(fetcherDb, params.idTorneo, session?.token);
+            const res = await UseCases.getPartidosByTorneosUseCases(fetcherDb, params?.idTorneo, session?.token);
 
             setPartidosByTorneos(res)
             setLoading(false)
@@ -51,7 +51,7 @@ const PartidosByTorneos = () => {
             setLoading(true)
             const session = await getSession()
 
-            const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
+            const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params?.idTorneo);
 
             setEquiposParticipantes(res?.torneo_especifico);
 

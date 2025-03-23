@@ -52,10 +52,10 @@ const NavBar = () => {
 
           <div className="menu_links">
             {/*  <Link href={'/torneos'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Torneos</Link> */}
+            <Link href={'/noticias'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'>Noticias</Link>
             <Link href={'/ligas'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'>Grupos</Link>
             <Link href={'/equipos'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'>Equipos</Link>
             <Link href={'/mercado'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'>Jugadores</Link>
-            <Link href={'/noticias'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'>Noticias</Link>
           </div>
 
           <IconButton onClick={logoutAuth} className='w-10 h-10  hover:bg-sky-500 rounded-full p-2 transition-colors duration-500'><Tooltip title='Cerrar sesión'><Logout style={{ color: 'white' }} /></Tooltip></IconButton>

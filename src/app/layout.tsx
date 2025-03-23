@@ -24,12 +24,19 @@ export default async function RootLayout({
 
   return (
     <html lang="es">
+      <head>
+        <meta charSet="UTF-8"/>
+        <meta name="viewport" content="width=device-width" />
+        <title>LigasTotal- Ligas de futbol no profesional en Panamá</title>
+        <meta name="description" content="Administra torneos de futbol" />
+
+      </head>
       <body
         className={`${poppins.className} antialiased`}
       >
 
         <AuthWrapper>
-         
+
           {children}
 
         </AuthWrapper>
