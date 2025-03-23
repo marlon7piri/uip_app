@@ -38,7 +38,7 @@ const TabTablaPosicion = () => {
 
 
 
-    if (equiposParticipantes.length == 0) {
+    if (!equiposParticipantes) {
         return <h1 className='text-slate-50 text-3xl text-center'>No hay equipos registrados aún</h1>
     }
 

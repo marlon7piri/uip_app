@@ -28,14 +28,14 @@ export default function TorneoTableGoleadores({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ width: '100%', minHeight: '100vh', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white' }}>
+    <TableContainer component={Paper} style={{ width: '100%', background: 'rgba(20,18,18,0.5)',  }}>
 
       <Table aria-label="simple table">
-        <TableHead>
+        <TableHead >
           <TableRow>
             <TableCell className={styles.rows}></TableCell>
             <TableCell >
-              <Typography className={styles.rows}>Nombre</Typography>
+              <Typography className={styles.rows}>Jugador</Typography>
             </TableCell>
             <TableCell align="right">
               <Typography className={styles.rows}>Cantidad</Typography>
@@ -56,10 +56,10 @@ export default function TorneoTableGoleadores({ rows }: Props) {
                 <Typography className={styles.rows}>{index + 1}</Typography>
               </TableCell>
 
-              <TableCell align="center"  >
-                <div className='flex justify-center items-center gap-1'>
-                  <Image src={row?.jugador?.foto} width={50} height={50} alt='una imagen del jugador'
-                    className='rounded-full'
+              <TableCell  align='left' >
+                <div className='flex justify-center items-center gap-4 '>
+                  <Image src={row?.jugador?.foto} width={100} height={100} alt='una imagen del jugador'
+                    className='rounded-md object-cover'
                   />
                   <Typography className={styles.rows}>{row.jugador?.nombre + " " + row.jugador?.apellido}</Typography>
                 </div>

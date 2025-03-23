@@ -165,8 +165,11 @@ export default function FormJugador() {
           value={jugador.posicion}
           required
           onChange={(e) => setJugador({ ...jugador, posicion: e.target.value })}>
+          <option value={''} >
 
-          <option value={'delantero'} >
+            Seleccione
+          </option>
+          <option value={'Delantero'} >
 
             Delantero
           </option>
@@ -235,7 +238,7 @@ export default function FormJugador() {
           onChange={(e) => setJugador({ ...jugador, club: e.target.value })}>
           <option></option>
           {equipos.map((e) => {
-            console.log(e)
+
             return <option key={e?._id} value={e?._id} >
 
               {e?.nombre}</option>

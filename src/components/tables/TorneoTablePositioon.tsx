@@ -94,15 +94,15 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
 
 
-              <TableCell component="th" scope="row">
-                <Box display={'flex'} alignItems={'center'} gap={2}>
-                  <Image src={row.logo} width={50} height={50} alt={row?.nombre}
+              <TableCell component="th"  >
+                <div className='flex flex-col sm:flex-col md:flex-row  justify-start items-center  gap-2 '>
+                  <Image src={row.logo} width={80} height={80} alt={row?.nombre} decoding='async'
                     className='object-cover'
                   />
                   <Typography className={styles.rows}>{row.nombre}</Typography>
 
 
-                </Box>
+                </div>
               </TableCell>
               <TableCell align="left">
                 <Typography className={styles.rows}>{partidos_jugados}</Typography>

@@ -54,10 +54,10 @@ const TabGoleadoresAsistentes = () => {
 
 
     return (
-        <div className='w-full flex gap-2'>
+        <div className='w-full min-h-screen  flex gap-2 '>
 
 
-            {loading ? <Spinner /> : <div className='w-full flex justify-between items-center gap-4'>
+            {loading ? <Spinner /> : <div className='w-full flex justify-between items-start gap-4'>
                 <div>
                     <Title content='Goleadores' size='text-2xl' color='text-slate-50' />
                     <TorneoTableGoleadores rows={goleadores} />

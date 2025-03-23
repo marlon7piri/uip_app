@@ -15,9 +15,13 @@ export default {
     },
 
     screens: {
-      sm: "600px",
-      md: "740px",
-      lg: "1240px",
+      'sm': '640px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
     },
   },
   plugins: [],
