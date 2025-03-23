@@ -5,6 +5,7 @@ import Image from 'next/image'
 import styles from './headerequipoinfo.module.css'
 import EditNote from '@mui/icons-material/EditNote';
 import Link from 'next/link'
+import EditIcon from './EditIcon'
 
 interface Props {
   equipo: Equipos
@@ -38,11 +39,8 @@ const HeaderEquipoInfo = ({ equipo }: Props) => {
             <li>Partidos Empatados:  {equipo?.estadisticasGlobales?.partidos_empatados}</li>
           </ul>
         </div>
-        <div className='absolute top-2 right-2 text-slate-50 cursor-pointer hover:text-sky-500 duration-500'>
-        <Link href={`/equipos/nuevo?idEquipo=${equipo._id}`} >
-        <EditNote />
-        </Link>
-        </div>
+        <EditIcon link={`/equipos/nuevo?idEquipo=${equipo._id}`} />
+
       </div>
     </div>
   )

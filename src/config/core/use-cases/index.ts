@@ -10,6 +10,7 @@ export * from "./jugadores/getJugadoresByEquipo.use-cases";
 export * from "./equipos/getEquipos.use-cases";
 export * from "./equipos/getEquiposPorPartido.use-cases";
 export * from "./equipos/createEquipo.use-cases";
+export * from "./equipos/editarEquipo.use-cases";
 export * from "./ofertas/getOfertas.use-cases";
 export * from "./partidos/getPartidos.use-cases";
 export * from "./partidos/getPartidosByTorneo.use-cases";

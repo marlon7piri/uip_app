@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { getSession } from "@/actions/get-session";
 import { uploadFile } from "@/utils/imagenes";
 
-const initialStateEquipo: Equipos = {
+const initialStateEquipo: Pick<Equipos,"nombre"| "logo"> = {
   nombre: "",
   logo: "",
 };
@@ -19,7 +19,7 @@ export const useEquipos = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
-  const [equipo, setEquipo] = useState<Equipos>(initialStateEquipo);
+  const [equipo, setEquipo] = useState(initialStateEquipo);
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -32,7 +32,6 @@ export const useEquipos = () => {
       setLoading(true);
       const res = await UseCases.getEquiposUseCases(fetcherDb, session?.token);
 
-      console.log(res);
       setEquipos(res);
       setLoading(false);
     } catch (error) {
@@ -57,9 +56,28 @@ export const useEquipos = () => {
     toast.success("Equipo creado");
     router.push("/equipos");
   };
+  const editarEquipo = async (idEquipo:string) => {
+    const session = await getSession();
+    const img = await uploadFile(image);
+
+    const newEquipo = {
+      ...equipo,
+      logo: img,
+    };
+    const res = await UseCases.editEquipoUseCases(
+      fetcherDb,
+      newEquipo,
+      idEquipo,
+      session?.token
+    );
+
+    toast.success("Equipo actualizado");
+    router.push("/equipos");
+  };
   return {
     equipos,
     createEquipo,
+    editarEquipo,
     equipo,
     setEquipo,
     loading,
