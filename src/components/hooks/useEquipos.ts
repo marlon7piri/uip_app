@@ -52,8 +52,9 @@ export const useEquipos = () => {
       newEquipo,
       session?.token
     );
-
+    setEquipo({logo:"",nombre:""})
     toast.success("Equipo creado");
+    
     router.push("/equipos");
   };
   const editarEquipo = async (idEquipo:string) => {
@@ -71,6 +72,7 @@ export const useEquipos = () => {
       session?.token
     );
 
+    setEquipo({logo:"",nombre:""})
     toast.success("Equipo actualizado");
     router.push("/equipos");
   };

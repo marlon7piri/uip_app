@@ -5,6 +5,7 @@ import { useEquipos } from "../hooks/useEquipos";
 import './forms.css'
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { CircularProgress } from "@mui/material";
 
 export default function FormEquipo() {
 
@@ -18,13 +19,14 @@ export default function FormEquipo() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
+    setLoading(true)
     if (!idEquipo) {
 
       await createEquipo()
     } else {
       await editarEquipo(idEquipo)
     }
+    setLoading(false)
   };
 
   // Manejar cambio de archivo
@@ -77,7 +79,8 @@ export default function FormEquipo() {
         type="submit"
         disabled={loading}
       >
-        {idEquipo ? "Editar" : "Guardar"}
+        {loading ? <CircularProgress size={24} color="inherit" /> : idEquipo ? ("Editar") : "Guardar"}
+
       </button>
 
     </form>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, } from "react";
+import React, { FormEvent, useEffect, } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { usePartidos } from "../hooks/usePartidos";
@@ -31,9 +31,9 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
   }, [])
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:FormEvent) => {
     e.preventDefault();
-    evaluarPartido()
+    await evaluarPartido()
 
   };
 
@@ -322,6 +322,7 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
       <button
         type="submit"
+        disabled={loading}
       >
         {loading ? <CircularProgress size={24} color='inherit' /> : 'Evaluar Partido'}
       </button>
