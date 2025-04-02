@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { useEquipos } from "../hooks/useEquipos";
 import './forms.css'
 import { useSearchParams } from "next/navigation";
@@ -9,24 +9,26 @@ import { CircularProgress } from "@mui/material";
 
 export default function FormEquipo() {
 
-  const { equipo, setEquipo, createEquipo, editarEquipo, setImage, image } = useEquipos()
+  const { equipo, setEquipo, createEquipo, editarEquipo, setImage, image, isloading, setIsloading } = useEquipos()
   const [imageSelected, setImageSelected] = useState('')
   const { data: session } = useSession()
   const [loading, setLoading] = useState(false)
   const search = useSearchParams()
   const idEquipo = search.get('idEquipo') || null
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
-    setLoading(true)
+   
     if (!idEquipo) {
 
       await createEquipo()
+
     } else {
+
       await editarEquipo(idEquipo)
+
     }
-    setLoading(false)
+   
   };
 
   // Manejar cambio de archivo
@@ -64,7 +66,7 @@ export default function FormEquipo() {
       <input
         name="namePlan"
         required
-        disabled={loading}
+        disabled={isloading}
         value={equipo.nombre}
         onChange={(e) => setEquipo({ ...equipo, nombre: e.target.value })}
       />
@@ -77,9 +79,9 @@ export default function FormEquipo() {
 
       <button
         type="submit"
-        disabled={loading}
+        disabled={isloading}
       >
-        {loading ? <CircularProgress size={24} color="inherit" /> : idEquipo ? ("Editar") : "Guardar"}
+        {isloading ? <CircularProgress size={24} color="inherit" /> : idEquipo ? ("Editar") : "Guardar"}
 
       </button>
 

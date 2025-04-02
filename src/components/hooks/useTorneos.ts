@@ -30,7 +30,7 @@ export const useTorneos = () => {
 
   const getTorneos = async () => {
     const session = await getSession();
-    const res = await UseCases.getTorneosUseCases(fetcherDb, session?.token);
+    const res = await UseCases.getTorneosUseCases(fetcherDb, session?.token,session?.user?.id);
     setTorneos(res);
   };
   const getEquiposByTorneo = async (idTorneo: string) => {
@@ -52,6 +52,7 @@ export const useTorneos = () => {
     const newTorneo = {
       ...torneo,
       foto: img,
+      autorId:session?.user?.id
     };
     const res = await UseCases.createTorneoUseCases(
       fetcherDb,
