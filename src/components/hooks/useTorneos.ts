@@ -30,7 +30,8 @@ export const useTorneos = () => {
 
   const getTorneos = async () => {
     const session = await getSession();
-    const res = await UseCases.getTorneosUseCases(fetcherDb, session?.token,session?.user?.id);
+    
+    const res = await UseCases.getTorneosUseCases(fetcherDb, session?.token);
     setTorneos(res);
   };
   const getEquiposByTorneo = async (idTorneo: string) => {

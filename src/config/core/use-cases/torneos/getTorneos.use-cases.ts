@@ -4,10 +4,9 @@ import { Torneos } from "@/infraestrcuture/entities/torneos";
 export const getTorneosUseCases = async (
   fetcherAdapter: HttpAdapter,
   token: string,
-  autorId:string
 ): Promise<Torneos[]> => {
   try {
-    const res = await fetcherAdapter.get<Torneos>(`/torneos/list?autorId=${autorId}`, {
+    const res = await fetcherAdapter.get<Torneos>(`/torneos/list`, {
       headers: {
         token
       },
