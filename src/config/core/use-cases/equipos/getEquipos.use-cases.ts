@@ -5,10 +5,14 @@ import { headers } from "next/headers";
 
 export const getEquiposUseCases = async (
   fetcherAdapter: HttpAdapter,
-  token: string
+  token: string,
+ 
 ): Promise<Equipos[]> => {
   try {
-    const res = await fetcherAdapter.get<Equipos>("/equipos/list", {
+
+    const url = `/equipos/list`
+    console.log({url})
+    const res = await fetcherAdapter.get<Equipos>(url, {
       headers: {
         token,
       },

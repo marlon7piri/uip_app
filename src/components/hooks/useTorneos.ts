@@ -30,6 +30,7 @@ export const useTorneos = () => {
 
   const getTorneos = async () => {
     const session = await getSession();
+    
     const res = await UseCases.getTorneosUseCases(fetcherDb, session?.token);
     setTorneos(res);
   };
@@ -52,6 +53,7 @@ export const useTorneos = () => {
     const newTorneo = {
       ...torneo,
       foto: img,
+      autorId:session?.user?.id
     };
     const res = await UseCases.createTorneoUseCases(
       fetcherDb,

@@ -140,6 +140,7 @@ export const useJugador = () => {
             regate: jugador.regate,
           },
           foto: img,
+          autorId:session?.user?.id
         };
 
         const res = await UseCases.createJugadorUseCases(
@@ -153,6 +154,7 @@ export const useJugador = () => {
         router.refresh();
       }
     } catch (error) {
+      
       throw new Error("Error creando jugador");
     } finally {
       setLoading(false);
@@ -187,7 +189,8 @@ export const useJugador = () => {
             fetcherDb,
             idPlayer,
             newPlayer,
-            session?.token
+            session?.token,
+            session?.user?.id
           );
 
           toast.success("Jugador editado");
@@ -195,6 +198,7 @@ export const useJugador = () => {
           router.refresh();
         }
       } catch (error) {
+        toast.error(error?.message)
         throw new Error("Error editando jugador");
       } finally {
         setLoading(false);

@@ -23,7 +23,7 @@ const Mercado = () => {
       const data = await response.json()
       setJugadores(data)
     } catch (error) {
-      console.error('Error fetching jugadores:', error)
+      throw new Error('Error fetching jugadores')
     }
   }
 

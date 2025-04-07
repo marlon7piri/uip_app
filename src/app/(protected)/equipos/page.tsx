@@ -8,15 +8,19 @@ import { fetcherDb } from '@/config/adapters/apiDbAdapter';
 
 const getEquipos = async (session) => {
   try {
-  const res = await UseCases.getEquiposUseCases(fetcherDb, session?.token);
+  const res = await UseCases.getEquiposUseCases(fetcherDb, session?.token,session?.user?.id);
   return res
-  } catch (error) {
-    throw new Error('Error obteniendo los equipos')
+  } catch (error:unknown) {
+    if(error instanceof Error){
+      throw new Error('Error obteniendo los equipos')
+    }
+   
   }
   
 };
 
 const Equipos = async () => {
+  
   const session = await auth();
   const equipos = await getEquipos(session);
 
