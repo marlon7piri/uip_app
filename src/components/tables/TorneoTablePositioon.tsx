@@ -60,6 +60,10 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
             </TableCell>
             <TableCell align="left">
+              <Typography className={styles.rows}>Puntos</Typography>
+
+            </TableCell>
+            <TableCell align="left">
               <Typography className={styles.rows}>GF</Typography>
 
             </TableCell>
@@ -71,10 +75,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
               <Typography className={styles.rows}>DG</Typography>
 
             </TableCell>
-            <TableCell align="left">
-              <Typography className={styles.rows}>Puntos</Typography>
-
-            </TableCell>
+            
           </TableRow>
         </TableHead>
         <TableBody>
@@ -121,6 +122,10 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
               </TableCell>
               <TableCell align="left">
+                <Typography className={[...styles.rows,"font-bold"]}>  {puntos}</Typography>
+
+              </TableCell>
+              <TableCell align="left">
                 <Typography className={styles.rows}>  {goles_favor}</Typography>
 
               </TableCell>
@@ -132,10 +137,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
                 <Typography className={styles.rows}> {goles_favor - goles_contra}</Typography>
 
               </TableCell>
-              <TableCell align="left">
-                <Typography className={styles.rows}>  {puntos}</Typography>
-
-              </TableCell>
+              
 
 
 
