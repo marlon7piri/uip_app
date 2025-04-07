@@ -122,7 +122,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
               </TableCell>
               <TableCell align="left">
-                <Typography className={[...styles.rows,"font-bold"]}>  {puntos}</Typography>
+                <Typography className={"font-bold text-slate-50"}>  {puntos}</Typography>
 
               </TableCell>
               <TableCell align="left">
