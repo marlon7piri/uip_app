@@ -60,7 +60,7 @@ const NavBar = () => {
           </div>
 
          <div className='flex gap-4 justify-center items-center'>
-         <Link href={'/perfil'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'><Tooltip title='Perfil'><Person style={{ color: 'white' }} /></Tooltip></Link>
+         {/* <Link href={'/perfil'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'><Tooltip title='Perfil'><Person style={{ color: 'white' }} /></Tooltip></Link> */}
          <IconButton onClick={logoutAuth} className='w-10 h-10  hover:bg-sky-500 rounded-full p-2 transition-colors duration-500'><Tooltip title='Cerrar sesión'><Logout style={{ color: 'white' }} /></Tooltip></IconButton>
          </div>
 
