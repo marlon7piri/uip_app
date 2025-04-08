@@ -32,47 +32,47 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ width: '100%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
-      <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
+    <TableContainer  component={Paper} className='bg-slate-900/85 max-w-3xl  mx-auto '>
+      <Table aria-label="simple table" >
+        <TableHead >
+          <TableRow> 
             <TableCell>
 
-              <Typography className={styles.rows}></Typography>
+              <Typography ></Typography>
             </TableCell>
             <TableCell >
-              <Typography className={styles.rows}>Equipo</Typography>
+              <Typography style={{color:'white',fontWeight:'300'}}>Equipo</Typography>
             </TableCell>
             <TableCell align="left">
-              <Typography className={styles.rows}>Partidos</Typography>
+              <Typography  style={{color:'white',fontWeight:'300'}}>PJ</Typography>
             </TableCell>
             <TableCell align="left">
-              <Typography className={styles.rows}>Victorias</Typography>
+              <Typography  style={{color:'white',fontWeight:'300'}}>V</Typography>
 
             </TableCell>
             <TableCell align="left">
-              <Typography className={styles.rows}>Empates</Typography>
+              <Typography  style={{color:'white',fontWeight:'300'}}>E</Typography>
 
             </TableCell>
 
             <TableCell align="left">
-              <Typography className={styles.rows}>Derrotas</Typography>
+              <Typography  style={{color:'white',fontWeight:'300'}}>D</Typography>
 
             </TableCell>
             <TableCell align="left">
-              <Typography className={styles.rows}>Puntos</Typography>
+              <Typography  style={{color:'white',fontWeight:'300'}}>PT</Typography>
 
             </TableCell>
             <TableCell align="left">
-              <Typography className={styles.rows}>GF</Typography>
+              <Typography  style={{color:'white',fontWeight:'300'}}>GF</Typography>
 
             </TableCell>
             <TableCell align="left">
-              <Typography className={styles.rows}>GC</Typography>
+              <Typography  style={{color:'white',fontWeight:'300'}}>GC</Typography>
 
             </TableCell>
             <TableCell align="left">
-              <Typography className={styles.rows}>DG</Typography>
+              <Typography  style={{color:'white',fontWeight:'300'}}>DG</Typography>
 
             </TableCell>
             

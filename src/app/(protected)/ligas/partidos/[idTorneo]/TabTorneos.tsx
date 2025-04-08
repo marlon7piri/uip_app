@@ -26,7 +26,7 @@ function CustomTabPanel(props: TabPanelProps) {
       {...other}
 
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box sx={{ p: 5 }}>{children}</Box>}
     </div>
   );
 }
@@ -46,9 +46,9 @@ export default function TabTorneos({ partidosByTorneos, loading }: { partidosByT
   };
 
   return (
-    <Box sx={{ width: '100%', overflow: 'scroll' }}>
+    <div>
       <Box sx={{
-        borderBottom: 1, borderColor: 'white', paddingBottom: 1
+        paddingBottom: 1,display:'flex' ,justifyContent:'center',
       }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" sx={{
           display: 'flex',
@@ -90,6 +90,6 @@ export default function TabTorneos({ partidosByTorneos, loading }: { partidosByT
       <CustomTabPanel value={value} index={2}>
         <TabGoleadoresAsistentes />
       </CustomTabPanel>
-    </Box >
+    </div >
   );
 }
