@@ -54,26 +54,47 @@ const TabGoleadoresAsistentes = () => {
 
 
     return (
-        <div className='w-full min-h-screen  flex gap-2 '>
+        <div className='w-full h-screen flex gap-2 '>
 
 
-            {loading ? <Spinner /> : <div className='w-full flex justify-between items-start gap-4'>
+            {loading ? <Spinner /> : <div className='w-full flex  flex-wrap items-start gap-4 '>
                 <div>
-                    <Title content='Goleadores' size='text-2xl' color='text-slate-50' />
+                    <div className='flex gap-2 justify-center items-center pb-6'>
+                        <span className='text-xl text-slate-50 font-bold'>
+                            Goleadores
+                        </span>
+                        <img src="/soccer-ball.svg" alt="icono" width={30} height={30} />
+                    </div>
+
                     <TorneoTableGoleadores rows={goleadores} />
                 </div>
 
                 <div>
-                    <Title content='Asistentes' size='text-2xl' color='text-slate-50' />
+                <div className='flex gap-2 justify-center items-center pb-6'>
+                        <span className='text-xl text-slate-50 font-bold'>
+                        Asistentes
+                        </span>
+                        <img src="/shoes.svg" alt="icono" width={30} height={30} />
+                    </div>
                     <TorneoTableGoleadores rows={asistentes} />
                 </div>
                 <div>
-                    <Title content='Amarillas' size='text-2xl' color='text-slate-50' />
+                <div className='flex gap-2 justify-center items-center pb-6 relative'>
+                        <span className='text-xl text-slate-50 font-bold'>
+                        Amarillas
+                        </span>
+                        <span className='w-4 h-4  bg-yellow-600'/>
+                    </div>
                     <TorneoTableGoleadores rows={amarillas} />
                 </div>
                 <div>
-                    <Title content='Rojas' size='text-2xl' color='text-slate-50' />
-                    <TorneoTableGoleadores rows={rojas} />
+                <div className='flex gap-2 justify-center items-center pb-6'>
+                        <span className='text-xl text-slate-50 font-bold'>
+                        Rojas
+                        </span>
+                        <span className='w-4 h-4  bg-red-700'/>
+                    </div>
+               <TorneoTableGoleadores rows={rojas} />
                 </div>
 
 

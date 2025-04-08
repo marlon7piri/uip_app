@@ -2,20 +2,11 @@
 
 import { getSession } from '@/actions/get-session'
 import BreadCrum from '@/components/BreadCrum'
-import ContainerProximosPartidosByTorneo from '@/components/ContainerProximosPartidosByTorneo'
-import ContenedorCustom from '@/components/ContenedorCustom'
-import FormPartido from '@/components/forms/FormPartido'
-import { useJugador } from '@/components/hooks/useJugador'
-import { useSessionAuth } from '@/components/hooks/useSessionAuth'
-import MercadoTable from '@/components/tables/MercadoTable'
-import TorneoTableGoleadores from '@/components/tables/TorneoTableGoleadores'
-import TorneoTablePositioon from '@/components/tables/TorneoTablePositioon'
-import { Title } from '@/components/Title'
+
 import { fetcherDb } from '@/config/adapters/apiDbAdapter'
 import * as UseCases from '@/config/core/use-cases'
 import { Partidos } from '@/infraestrcuture/entities/partidos'
 import { Torneos } from '@/infraestrcuture/entities/torneos'
-import { Button, Modal } from '@mui/material'
 import { useParams } from 'next/navigation'
 import styles from './styles.module.css'
 import '@/components/botonlink.css'
@@ -68,7 +59,7 @@ const PartidosByTorneos = () => {
     }
     return (
         <div className={styles.container}>
-            <div className='w-full h-screen flex justify-center items-center flex-col p-4 '>
+            <div className='w-full flex justify-center items-center flex-col p-4 overflow-scroll'>
                 <div className='flex gap-2 justify-end items-center mt-[100px] mb-4'>
                     <BreadCrum titulo='' url={`/ligas/registrar?idTorneo=${params.idTorneo}`} labelBtn='Registrar equipos' />
                     <BreadCrum titulo='' url={`/ligas/partidos/nuevo?idTorneo=${params.idTorneo}`} labelBtn='Nuevo Partido' />
