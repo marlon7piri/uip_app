@@ -67,5 +67,6 @@ form button:hover {
 
     .container_nombre {
         flex-direction: column;
+        gap:10px
     }
 }
