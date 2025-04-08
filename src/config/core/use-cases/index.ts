@@ -4,6 +4,8 @@ export * from "./torneos/registrarEquiposTorneos.use-cases";
 export * from "./jugadores/createJugador.use-cases";
 export * from "./jugadores/getJugadores.use-cases";
 export * from "./jugadores/getJugadorById.use-cases";
+export * from "./jugadores/getJugadorByUserId.use-cases";
+export * from "./jugadores/editJugadorByUserId.use-cases";
 export * from "./jugadores/editJugador.use-cases";
 export * from "./jugadores/eliminarJugador.use-cases";
 export * from "./jugadores/getJugadoresByEquipo.use-cases";

@@ -1,9 +1,9 @@
-form{
+form {
     width: 600px;
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap:1rem;
+    gap: 1rem;
     padding: 2rem;
 
     backdrop-filter: blur(1px) saturate(155%);
@@ -15,45 +15,57 @@ form{
 
 }
 
-form input{
+form input {
     border-radius: 10px;
     padding: 1rem;
     outline: none;
-    
+
 }
 
-form button{
+form button {
     width: 100%;
     background-color: rgb(8, 151, 151);
-    border:1px solid transparent;
-    color:white;
+    border: 1px solid transparent;
+    color: white;
     border-radius: 10px;
     padding: 1rem;
     transition: 0.3s ease-in-out;
 
-     
 
 
-    
+
+
 }
-form button:hover{
+
+form button:hover {
     background-color: rgb(8, 75, 75);
-    
+
     border-color: white;
 
-    
 
 
+
+
+}
+
+.container_nombre {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+   
     
 }
 
-@media (width < 600px){
-    form{
+@media (width < 600px) {
+    form {
         width: 350px;
         height: 100%;
-        
-    
-    
+
+
+
+    }
+
+    .container_nombre {
+        flex-direction: column;
     }
 }
-

@@ -1,6 +1,7 @@
 'use client'
 import { logoutAuth } from '@/actions/auth-login'
 import Logout from '@mui/icons-material/Logout';
+import Person from '@mui/icons-material/Person';
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { useSessionAuth } from './hooks/useSessionAuth'
@@ -58,7 +59,10 @@ const NavBar = () => {
             <Link href={'/mercado'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'>Jugadores</Link>
           </div>
 
-          <IconButton onClick={logoutAuth} className='w-10 h-10  hover:bg-sky-500 rounded-full p-2 transition-colors duration-500'><Tooltip title='Cerrar sesión'><Logout style={{ color: 'white' }} /></Tooltip></IconButton>
+         <div className='flex gap-4 justify-center items-center'>
+         <Link href={'/perfil'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'><Tooltip title='Perfil'><Person style={{ color: 'white' }} /></Tooltip></Link>
+         <IconButton onClick={logoutAuth} className='w-10 h-10  hover:bg-sky-500 rounded-full p-2 transition-colors duration-500'><Tooltip title='Cerrar sesión'><Logout style={{ color: 'white' }} /></Tooltip></IconButton>
+         </div>
 
 
         </ul>
