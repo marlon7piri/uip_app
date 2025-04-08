@@ -1,0 +1,56 @@
+form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    max-height: 600px;
+    background: transparent;
+    border: 1px solid rgb(8, 140, 145);
+    overflow: scroll;
+    scrollbar-width: none;
+  }
+  form button {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: linear-gradient(to right, rgb(8, 140, 145), rgb(27, 27, 9));
+    color: white;
+    transition: background 1s ease-in-out; /* Transición aplicada al background */
+    border: none;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background: linear-gradient(to right, rgb(4, 10, 10), rgb(8, 109, 122));
+  }
+  
+  input,
+  select {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    outline: none;
+    border: 2px solid transparent;
+    background-image: linear-gradient(white, white),
+      linear-gradient(to right, lightgreen, black);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: all 0.3s ease-in-out;
+  }
+  label {
+    color: #f8fafc;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: transparent;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Opcional: Efecto de brillo */
+  }
+  
+  @media (width<700px) {
+    form {
+      width: 400px;
+    }
+  }
+  

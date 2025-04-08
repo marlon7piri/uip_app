@@ -25,7 +25,7 @@ const ContainerNoticias = () => {
 
       <div className='p-4 flex flex-col gap-10 mt-8'>
         {
-          noticias.map((e) => {
+          noticias?.map((e) => {
             return <CardNoticias noticias={e} key={e._id} />
           })
         }

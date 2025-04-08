@@ -14,7 +14,10 @@ export const FormRegister = () => {
         email: "",
         password: "",
         rol: "client",
-        clasificacion: ""
+        clasificacion: "",
+        nombre:"",
+        apellido:"",
+
     });
 
     const [loginInProgress, setLoginInProgress] = useState(false);
@@ -53,6 +56,29 @@ export const FormRegister = () => {
                 Registro
             </h1>
             <form onSubmit={handleFormSubmit}>
+
+               <div className='container_nombre'>
+               <input
+                    type="text"
+                    required
+                    name="nombre"
+                    placeholder="Nombre"
+                    value={user.nombre}
+                    disabled={loginInProgress}
+                    onChange={(ev) => setUser({ ...user, nombre: ev.target.value.trim() })}
+                    onBlur={(ev) => setUser({ ...user, nombre: ev.target.value.trim() })}
+                />
+                <input
+                    type="text"
+                    required
+                    name="apellido"
+                    placeholder="Apellidos"
+                    value={user.apellido}
+                    disabled={loginInProgress}
+                    onChange={(ev) => setUser({ ...user, apellido: ev.target.value.trim() })}
+                    onBlur={(ev) => setUser({ ...user, apellido: ev.target.value.trim() })}
+                />
+               </div>
                 <input
                     type="text"
                     required

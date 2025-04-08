@@ -9,6 +9,7 @@ import { getSession } from "@/actions/get-session";
 import { uploadFile } from "@/utils/imagenes";
 import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Jugador } from "@/infraestrcuture/entities/ofertas";
 
 interface NewJugador {
   nombre: string;
@@ -140,7 +141,7 @@ export const useJugador = () => {
             regate: jugador.regate,
           },
           foto: img,
-          autorId:session?.user?.id
+          userId: session?.user?.id
         };
 
         const res = await UseCases.createJugadorUseCases(
@@ -154,7 +155,7 @@ export const useJugador = () => {
         router.refresh();
       }
     } catch (error) {
-      
+
       throw new Error("Error creando jugador");
     } finally {
       setLoading(false);
@@ -189,8 +190,8 @@ export const useJugador = () => {
             fetcherDb,
             idPlayer,
             newPlayer,
-            session?.token,
-            session?.user?.id
+            session?.token
+            
           );
 
           toast.success("Jugador editado");
@@ -219,29 +220,86 @@ export const useJugador = () => {
 
 
   }
+  const getJugadorByUserId = async () => {
+
+
+
+    const session = await getSession();
+
+    if (session) {
+      const jugador = await UseCases.getJugadorByUserIdUseCases(fetcherDb, session?.user?.id,session?.token)
+      return jugador
+    }
+
+
+
+
+  }
   const handlerPlayer = (id: string) => {
     selectPlayer(id);
   };
 
-  const eliminarJugador =  (id: string) => {
-    const eliminar =async ()=>{
+  const eliminarJugador = (id: string) => {
+    const eliminar = async () => {
       const session = await getSession()
       const res = await UseCases.eliminarJugadorUseCases(fetcherDb, id, session?.token)
       router.back()
-  
+
     }
 
-    if(confirm("Seguro que desea eliminar al jugador?")){
-      toast.promise(eliminar(),{
-        success:"Jugador eliminado",
-        error:"Error eliminando, intente de nuevo",
-        loading:"Eliminando..."
+    if (confirm("Seguro que desea eliminar al jugador?")) {
+      toast.promise(eliminar(), {
+        success: "Jugador eliminado",
+        error: "Error eliminando, intente de nuevo",
+        loading: "Eliminando..."
       })
     }
-     
+
 
   }
+  const editarPlayerByUserId = async (player:Jugador) => {
 
+      try {
+        
+    
+        const session = await getSession();
+        const img = await uploadFile(image);
+
+        if (img) {
+          const newPlayer = {
+            ...player,
+            estadisticasGlobales: {
+              posicion: jugador.posicion,
+              valor_mercado: jugador.valor_mercado,
+              velocidad: jugador.velocidad,
+              ataque: jugador.ataque,
+              defensa: jugador.defensa,
+              regate: jugador.regate,
+            },
+            foto: img,
+          };
+
+          const res = await UseCases.editJugadorByUserIdUseCases(
+            fetcherDb,
+            session?.user?.id,
+            newPlayer,
+            session?.token
+            
+          );
+
+          toast.success("Jugador editado");
+          
+          router.refresh();
+        }
+      } catch (error) {
+        toast.error(error?.message)
+        throw new Error("Error editando jugador");
+      } finally {
+        setLoading(false);
+      }
+   
+
+  }
   return {
     jugador,
     jugadores,
@@ -256,5 +314,6 @@ export const useJugador = () => {
     loading,
     setImage,
     image,
+    getJugadorByUserId,editarPlayerByUserId
   };
 };
