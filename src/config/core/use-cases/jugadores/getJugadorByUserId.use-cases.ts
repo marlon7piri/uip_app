@@ -1,11 +1,11 @@
 import { HttpAdapter } from '@/config/adapters/http/httpAdapter'
 import { Jugador } from '@/infraestrcuture/entities/ofertas'
 
-export const getJugadorByUserIdUseCases = async (fetcherAdapter: HttpAdapter, id: string,token:string): Promise<Jugador> => {
+export const getJugadorByUserIdUseCases = async (fetcherAdapter: HttpAdapter, id: string,email:string,token:string): Promise<Jugador> => {
 
     try {
 
-        const jugador = await fetcherAdapter.get<Jugador>(`jugadores/getByUserId/${id}`,{
+        const jugador = await fetcherAdapter.get<Jugador>(`jugadores/getByUserId/${id}?email=${email}`,{
             headers:{
                 token
     }})

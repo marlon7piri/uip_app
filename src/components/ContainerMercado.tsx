@@ -45,7 +45,7 @@ const FiltrosMercado = ({ onFilterChange }: { onFilterChange: (text: string) => 
   const debounceChange = useDebouncedCallback(handlerChange, 300)
 
   return (
-    <div className='p-2 my-8'>
+    <div className='p-2 my-8 '>
       <input type="text" placeholder='Buscar por nombre'
         defaultValue={inputValue}
         onChange={(e) => debounceChange(e.target.value)}
@@ -64,9 +64,9 @@ export const ContainerMercado = ({ jugadores, fetchJugadores }: Props) => {
 
   return (
     <ContenedorCustom >
-      <div className='w-full p-4'>
+      <div className='max-w-4xl m-auto  p-4'>
         <BreadCrum titulo='Jugadores' labelBtn='Nuevo Jugador' url='/jugadores/nuevo' />
-        {jugadores && <div>
+        {jugadores && <div className='w-full  '>
           <FiltrosMercado onFilterChange={fetchJugadores} />
           <MercadoTable rows={jugadores} />
         </div>}
