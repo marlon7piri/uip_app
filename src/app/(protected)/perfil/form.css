@@ -50,7 +50,7 @@ form {
   
   @media (width<700px) {
     form {
-      width: 400px;
+      width: 350px;
     }
   }
   

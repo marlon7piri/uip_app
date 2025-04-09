@@ -26,7 +26,7 @@ export default async function RootLayout({
     <html lang="es">
       <head>
         <meta charSet="UTF-8"/>
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>LigasTotal- Ligas de futbol no profesional en Panamá</title>
         <meta name="description" content="Administra torneos de futbol" />
 

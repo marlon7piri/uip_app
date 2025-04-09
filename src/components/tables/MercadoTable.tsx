@@ -39,7 +39,7 @@ export default function MercadoTable({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ maxWidth: '100%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white', }}>
+    <TableContainer component={Paper} style={{ maxWidth: '100%', background: 'rgba(20,18,18,0.5)', borderWidth: 1, color: 'white' }}>
       <Table sx={{ minWidth: 490, }} aria-label="simple table">
         <TableHead >
           <TableRow>

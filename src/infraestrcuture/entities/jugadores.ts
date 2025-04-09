@@ -31,3 +31,9 @@ export interface EstadisticasGlobales {
   tarjetas_amarillas: number;
   tarjetas_rojas: number;
 }
+
+
+export interface JugadorWithVerification extends Jugadores {
+  used_same_picture: boolean
+  posicion:string
+}

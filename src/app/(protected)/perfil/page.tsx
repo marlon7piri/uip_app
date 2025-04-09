@@ -1,9 +1,11 @@
 'use client'
 import { useEquipos } from '@/components/hooks/useEquipos'
 import { useJugador } from '@/components/hooks/useJugador'
-import { CircularProgress } from '@mui/material'
+import { Checkbox, CircularProgress, FormControlLabel, FormGroup, IconButton, Tooltip } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import './form.css'
+import { Jugadores, JugadorWithVerification } from '@/infraestrcuture/entities/jugadores'
+import CollectionsIcon from '@mui/icons-material/Collections';
 
 const Perfil = () => {
     const [imagenSelected, setImagenSelected] = useState("")
@@ -11,15 +13,34 @@ const Perfil = () => {
     const [loading, setLoading] = useState(false)
     const [isloadingImage, setIsloadingImage] = useState(false)
     const { equipos } = useEquipos()
-    const [miplayer, setMiplayer] = useState({
+    const [miplayer, setMiplayer] = useState<Partial<JugadorWithVerification>>({
 
-        nombre: "Pedro",
-        apellido: "Miguel",
-        edad: "23",
-        estatura: "187",
-        email: "test@gmail.com",
-        club: "Panteras",
-        foto:""
+        nombre: "Cargando...",
+        apellido: "Cargando...",
+        edad: 0,
+        estatura: 0,
+        email: "Cargando...",
+        club: {
+            logo: "",
+            nombre: "",
+
+        },
+        estadisticasGlobales: {
+            valor_mercado: 0,
+            posicion: "",
+            velocidad: 0,
+            ataque: 0,
+            defensa: 0,
+            regate: 0,
+            goles: 0,
+            asistencias: 0,
+            tarjetas_amarillas: 0,
+            tarjetas_rojas: 0,
+        },
+        posicion: "",
+        foto: "",
+        used_same_picture: false,
+
     })
 
     const cargarImagen = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,13 +49,13 @@ const Perfil = () => {
         if (file) {
             setImage(file)
 
-            setMiplayer({ ...miplayer,foto:URL.createObjectURL(file)})
-        } else{
+            setMiplayer({ ...miplayer, foto: URL.createObjectURL(file) })
+        } else {
             setImagenSelected("")
-            setMiplayer({ ...miplayer,foto:"" })
+            setMiplayer({ ...miplayer, foto: "" })
         }
-           
-       
+
+
 
 
     }
@@ -42,14 +63,26 @@ const Perfil = () => {
     useEffect(() => {
         const loadJugador = async () => {
             setIsloadingImage(true)
-            const jugador = await getJugadorByUserId()
-            setMiplayer({...jugador,club:jugador?.club.nombre})
-           
+            const jugador: Jugadores = await getJugadorByUserId()
+
+            console.log({ jugador })
+            setMiplayer({ ...jugador, club: jugador.club._id })
+
+            const file = await urlToFile(jugador.foto, 'jugador_foto.jpg')
+
+            setImage(file)
             setIsloadingImage(false)
         }
         loadJugador()
     }, [])
 
+
+    const urlToFile = async (url: string, filename: string): Promise<File> => {
+        const res = await fetch(url);
+        const blob = await res.blob();
+        const mime = blob.type || 'image/jpeg';
+        return new File([blob], filename, { type: mime });
+    };
 
     const onsubmit = async (e) => {
         e.preventDefault()
@@ -58,44 +91,91 @@ const Perfil = () => {
         setLoading(false)
     }
     return (
-        <div className='w-full p-24 min-h-screen'>
+        <div className='w-full py-24  px-4 min-h-screen flex justify-center items-center'>
 
-            <div className='m-auto max-w-4xl h-full sm:h-full bg-sky-900 grid  grid-cols-2   gap-4 items-center justify-center'>
+            <div className='w-6xl   m-auto  min-h-screen  bg-sky-900 grid  sm:grid-cols-1   lg:grid-cols-2  gap-4 items-center justify-center'>
 
                 <div className='flex flex-col gap-2 p-2 '>
 
                     <figure className='aspect-video flex justify-center items-center'>
                         {isloadingImage ? <CircularProgress /> :
-                            miplayer.foto == ""
-                                ? <img
-                                    src="/avatares\avatar.png"
-                                    alt="avatar de jugador"
-                                    className='w-96 h-[400px] rounded-md aspect-video object-cover' />
-                                : <img
-                                    src={miplayer.foto}
-                                    alt="avatar de jugador"
-                                    className='w-96 h-[400px] rounded-md aspect-video object-cover' />
+                            <img
+                                src={miplayer?.foto || undefined}
+                                alt=""
+                                className='w-96 h-[400px] rounded-md aspect-video object-cover block border-none' />
                         }
+
                     </figure>
 
-                  
-                  
+                    <div className='w-full flex justify-center items-center'>
+                        <label htmlFor="upload-photo">
+                            <input
+                                style={{ display: 'none' }}
+                                id="upload-photo"
+                                name="upload-photo"
+                                type="file"
+                                accept="image/*"
+                                onChange={cargarImagen}
+                                disabled={isloadingImage || miplayer.used_same_picture}
+                            />
+                            <IconButton disabled={isloadingImage || miplayer.used_same_picture} color="inherit" component="span" className='hover:bg-sky-800 hover:rotate-45 transition-transform ease-in-out duration-300'>
+                                <CollectionsIcon />
+                            </IconButton>
+                        </label>
+                    </div>
+
+
 
                 </div>
 
-                <div className='w-80 p-2'>
+                <div className='w-full p-2 flex justify-center items-center'>
                     <form className='flex flex-col gap-2 ' onSubmit={onsubmit}>
-                        <input type="text" value={miplayer.nombre} onChange={(e) => setMiplayer({ ...miplayer, nombre: e.target.value })} required placeholder='Nombre'  />
-                        <input type="text" value={miplayer.apellido} onChange={(e) => setMiplayer({ ...miplayer, apellido: e.target.value })} required placeholder='Apellido'  />
-                        <input type="text" value={miplayer.edad} onChange={(e) => setMiplayer({ ...miplayer, edad: e.target.value })} required placeholder='Edad'  />
-                        <input type="text" value={miplayer.estatura} onChange={(e) => setMiplayer({ ...miplayer, estatura: e.target.value })} required placeholder='Estatura'  />
-                        <input type="email" value={miplayer.email} onChange={(e) => setMiplayer({ ...miplayer, email: e.target.value })} required placeholder='Email'  />
+                        <input type="text" disabled value={miplayer.nombre} onChange={(e) => setMiplayer({ ...miplayer, nombre: e.target.value })} required placeholder='Nombre' />
+                        <input type="text" disabled value={miplayer.apellido} onChange={(e) => setMiplayer({ ...miplayer, apellido: e.target.value })} required placeholder='Apellido' />
+                        <input type="text" value={miplayer.edad} onChange={(e) => setMiplayer({ ...miplayer, edad: e.target.value })} required placeholder='Edad' />
+                        <input type="text" value={miplayer.estatura} onChange={(e) => setMiplayer({ ...miplayer, estatura: e.target.value })} required placeholder='Estatura' />
+                        <input type="email" disabled value={miplayer.email} onChange={(e) => setMiplayer({ ...miplayer, email: e.target.value })} required placeholder='Email' />
+                        <label>Posicion</label>
+
+                        <select
+
+                            value={miplayer.posicion}
+                            required
+                            onChange={(e) => setMiplayer({
+                                ...miplayer,
+                                estadisticasGlobales: {
+                                    ...miplayer.estadisticasGlobales,
+                                    posicion: e.target.value
+                                }
+                            })}>
+                            <option value={''} >
+
+                                Seleccione
+                            </option>
+                            <option value={'Delantero'} >
+
+                                Delantero
+                            </option>
+                            <option value={'Defensa'} >
+
+                                Defensa
+                            </option>
+                            <option value={'Centro Campista'} >
+
+                                Centro Campista
+                            </option>
+                            <option value={'Portero'} >
+
+                                Portero
+                            </option>
+
+                        </select>
                         <label className='text-slate-50'>Club</label>
-                        
+
 
 
                         <select
-                           
+
                             value={miplayer?.club || null}
                             required
                             onChange={(e) => setMiplayer({ ...miplayer, club: e.target.value })}>
@@ -112,8 +192,28 @@ const Perfil = () => {
                             })}
 
                         </select>
-                        <label className='text-slate-50'>Foto</label>
-                       <input type="file" required accept='image/*' onChange={cargarImagen} placeholder='Cargar Imagen' />
+                        <FormGroup sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                        }}>
+
+                            <FormControlLabel control={<Checkbox color='info' sx={{
+                                color: '#f8fafc  '
+                            }}
+                                value={miplayer.used_same_picture}
+                                onChange={(e) => {
+                                    if (e.target.checked) {
+                                        setMiplayer({ ...miplayer, used_same_picture: true })
+                                    } else {
+                                        setMiplayer({ ...miplayer, used_same_picture: false })
+
+                                    }
+                                }} />} label="Quieres usar la foto actual?" />
+
+
+                        </FormGroup>
+
+
 
                         <button type="submit"
                             disabled={loading}

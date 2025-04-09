@@ -1,4 +1,4 @@
-import { Jugadores } from "@/infraestrcuture/entities/jugadores";
+import { Jugadores, JugadorWithVerification } from "@/infraestrcuture/entities/jugadores";
 import React, { FormEvent, FormEventHandler, useEffect, useState } from "react";
 import * as UseCases from "@/config/core/use-cases";
 import { fetcherDb } from "@/config/adapters/apiDbAdapter";
@@ -10,6 +10,7 @@ import { uploadFile } from "@/utils/imagenes";
 import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Jugador } from "@/infraestrcuture/entities/ofertas";
+import { AxiosError, isAxiosError } from "axios";
 
 interface NewJugador {
   nombre: string;
@@ -191,7 +192,7 @@ export const useJugador = () => {
             idPlayer,
             newPlayer,
             session?.token
-            
+
           );
 
           toast.success("Jugador editado");
@@ -227,7 +228,7 @@ export const useJugador = () => {
     const session = await getSession();
 
     if (session) {
-      const jugador = await UseCases.getJugadorByUserIdUseCases(fetcherDb, session?.user?.id,session?.token)
+      const jugador = await UseCases.getJugadorByUserIdUseCases(fetcherDb, session?.user?.id, session?.user?.email, session?.token)
       return jugador
     }
 
@@ -257,49 +258,75 @@ export const useJugador = () => {
 
 
   }
-  const editarPlayerByUserId = async (player:Jugador) => {
+  const editarPlayerByUserId = async (player: JugadorWithVerification) => {
+    const session = await getSession();
 
-      try {
-        
-    
-        const session = await getSession();
-        const img = await uploadFile(image);
 
-        if (img) {
-          const newPlayer = {
-            ...player,
-            estadisticasGlobales: {
-              posicion: jugador.posicion,
-              valor_mercado: jugador.valor_mercado,
-              velocidad: jugador.velocidad,
-              ataque: jugador.ataque,
-              defensa: jugador.defensa,
-              regate: jugador.regate,
-            },
-            foto: img,
-          };
+    const jugadorEstandar = {
+      ...player,
+     
+      email: session?.user?.email,
+      foto: player.foto,
+    };
 
-          const res = await UseCases.editJugadorByUserIdUseCases(
-            fetcherDb,
-            session?.user?.id,
-            newPlayer,
-            session?.token
-            
-          );
+    try {
 
-          toast.success("Jugador editado");
-          
-          router.refresh();
+
+      if (player.used_same_picture == true) {
+
+        const res = await UseCases.editJugadorByUserIdUseCases(
+          fetcherDb,
+          session?.user?.id,
+          jugadorEstandar,
+          session?.token
+
+        );
+        console.log("Jugador editado sin subir la imagen a cloudinary")
+        toast.success("Jugador editado");
+      } else {
+       
+        if(image !== null){
+          console.log(image)
+          const img = await uploadFile(image);
+         
+          console.log("paso por aqui")
+          if (img) {
+            const newPlayer = {
+              ...jugadorEstandar, foto: img,
+            };
+  
+            const res = await UseCases.editJugadorByUserIdUseCases(
+              fetcherDb,
+              session?.user?.id,
+              newPlayer,
+              session?.token
+  
+            );
+  
+  
+            console.log("Jugador editado y subiendo la imagen a cloudinary....")
+            toast.success("Jugador editado");
+          }
         }
-      } catch (error) {
-        toast.error(error?.message)
-        throw new Error("Error editando jugador");
-      } finally {
-        setLoading(false);
+        
+
+
+       
       }
-   
+      
+
+    } catch (error: Error) {
+
+
+      toast.error(error?.message)
+      throw new Error("Error editando jugador");
+    } finally {
+      setLoading(false);
+    }
+
 
   }
+
   return {
     jugador,
     jugadores,
@@ -314,6 +341,6 @@ export const useJugador = () => {
     loading,
     setImage,
     image,
-    getJugadorByUserId,editarPlayerByUserId
+    getJugadorByUserId, editarPlayerByUserId
   };
 };
