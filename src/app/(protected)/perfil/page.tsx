@@ -102,7 +102,7 @@ const Perfil = () => {
                             <img
                                 src={miplayer?.foto || undefined}
                                 alt=""
-                                className='w-96 h-[400px] rounded-md aspect-video object-cover block border-none' />
+                                className='w-96 h-[500px] rounded-md aspect-video object-cover block border-none' />
                         }
 
                     </figure>
