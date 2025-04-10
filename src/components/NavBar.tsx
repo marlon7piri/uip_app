@@ -7,7 +7,6 @@ import React, { useEffect, useState } from 'react'
 import { useSessionAuth } from './hooks/useSessionAuth'
 import { IconButton, Tooltip } from '@mui/material';
 import Image from 'next/image';
-import styles from './navbar.module.css'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import { usePathname } from 'next/navigation';
@@ -40,7 +39,7 @@ const NavBar = () => {
   }, [])
 
   return (
-    <div className='w-screen'>
+    <div className='w-screen overflow-hidden'>
       <nav className={`${scroll < 10 ? "nav_container" : "nav_container_bajando"}`}>
 
 
@@ -53,15 +52,15 @@ const NavBar = () => {
 
           <div className="menu_links">
             {/*  <Link href={'/torneos'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Torneos</Link> */}
-            <Link href={'/noticias'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'>Noticias</Link>
-            <Link href={'/ligas'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'>Grupos</Link>
-            <Link href={'/equipos'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'>Equipos</Link>
-            <Link href={'/mercado'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'>Jugadores</Link>
+            <Link href={'/noticias'} className='text-[18px]  hover:text-sky-500  font-semibold transition duration-500'>Noticias</Link>
+            <Link href={'/ligas'} className='text-[18px]  hover:text-sky-500  font-semibold transition duration-500'>Grupos</Link>
+            <Link href={'/equipos'} className='text-[18px]  hover:text-sky-500  font-semibold transition duration-500'>Equipos</Link>
+            <Link href={'/mercado'} className='text-[18px]  hover:text-sky-500  font-semibold transition duration-500'>Jugadores</Link>
           </div>
 
-         <div className='flex gap-4 justify-center items-center'>
-         <Link href={'/perfil'} className='text-[18px]  hover:text-blue-900 hover:underline font-semibold transition duration-500'><Tooltip title='Perfil'><Person style={{ color: 'white' }} /></Tooltip></Link> 
-         <IconButton onClick={logoutAuth} className='w-10 h-10  hover:bg-sky-500 rounded-full p-2 transition-colors duration-500'><Tooltip title='Cerrar sesión'><Logout style={{ color: 'white' }} /></Tooltip></IconButton>
+         <div className='flex gap-4 justify-center items-center '>
+         <Link href={'/perfil'} className=' bg-slate-900 shadow-sm hover:bg-slate-900 hover:shadow-white hover:shadow-md   shadow-white p-2 rounded-full transition duration-500'><Person style={{ color: 'white' }} className='text-md  lg:text-slate-50 font-semibold ' /></Link> 
+         <IconButton onClick={logoutAuth} className='bg-slate-900 shadow-sm hover:bg-slate-900 hover:shadow-md  hover:shadow-white  shadow-white  p-2 rounded-full transition duration-500'><Logout style={{ color: 'white' }} className='text-md  lg:text-slate-50 font-semibold ' /></IconButton>
          </div>
 
 

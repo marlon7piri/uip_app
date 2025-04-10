@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import EditNote from '@mui/icons-material/EditNote';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import { getSession } from '@/actions/get-session';
 
 interface Props {
     link: string
 }
 const EditIcon = ({ link }: Props) => {
-    const { data: session } = useSession()
+    const [session, setSession] = useState()
+    
+      useEffect(() => {
+    
+        const loadSession = async () => {
+          const data = await getSession()
+          setSession(data)
+        }
+        loadSession()
+      }, [])
 
 
     const isAdmin = session && session?.rol === 'admin'
