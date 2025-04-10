@@ -57,7 +57,7 @@ const TabGoleadoresAsistentes = () => {
         <div className='w-full h-screen flex gap-2 '>
 
 
-            {loading ? <Spinner /> : <div className='w-full grid  sm:grid-cols-2 lg:grid-cols-2 items-start gap-4 '>
+            {loading ? <Spinner /> : <div className='w-full flex flex-wrap items-start gap-4 '>
                 <div>
                     <div className='flex gap-2 justify-center items-center pb-6'>
                         <span className='text-xl text-slate-50 font-bold'>

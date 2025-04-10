@@ -28,7 +28,7 @@ export default function TorneoTableGoleadores({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ width: '80%',height:'400px', background: 'rgba(20,18,18,0.5)',overflowY:'scroll' }}>
+    <TableContainer component={Paper} style={{ width: '100%', background: 'rgba(20,18,18,0.5)' }}>
 
       <Table aria-label="simple table">
         <TableHead >
