@@ -32,7 +32,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
 
   return (
-    <TableContainer  component={Paper} style={{ width: '100%', background: 'rgba(20,18,18,0.5)', }}>
+    <TableContainer  component={Paper} style={{ width: '100%', background: 'rgba(20,18,18,0.5)' }}>
       <Table aria-label="simple table" >
         <TableHead >
           <TableRow> 
@@ -122,7 +122,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
               </TableCell>
               <TableCell align="left">
-                <Typography className={"font-black text-slate-50"}>  {puntos}</Typography>
+                <Typography className={styles.rows_point}>  {puntos}</Typography>
 
               </TableCell>
               <TableCell align="left">
