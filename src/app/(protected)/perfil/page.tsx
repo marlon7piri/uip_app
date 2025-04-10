@@ -4,8 +4,10 @@ import { useJugador } from '@/components/hooks/useJugador'
 import { Checkbox, CircularProgress, FormControlLabel, FormGroup, IconButton, Tooltip } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import './form.css'
+import styles from './styles.module.css'
 import { Jugadores, JugadorWithVerification } from '@/infraestrcuture/entities/jugadores'
 import CollectionsIcon from '@mui/icons-material/Collections';
+import QuestionAnswer from '@mui/icons-material/QuestionMark';
 
 const Perfil = () => {
     const [imagenSelected, setImagenSelected] = useState("")
@@ -91,18 +93,18 @@ const Perfil = () => {
         setLoading(false)
     }
     return (
-        <div className='w-full py-24  px-4 min-h-screen flex justify-center items-center'>
+        <div className={styles.container}>
 
-            <div className='w-6xl   m-auto  min-h-screen  bg-sky-900 grid  sm:grid-cols-1   lg:grid-cols-2  gap-4 items-center justify-center'>
+            <div className='sm:w-[100%] lg:w-[calc(100%-200px)] m-auto py-10 h-full bg-sky-900 rounded-md  grid  sm:grid-cols-1   lg:grid-cols-2  gap-4 items-center justify-center'>
 
                 <div className='flex flex-col gap-2 p-2 '>
 
-                    <figure className='aspect-video flex justify-center items-center'>
+                    <figure className=' flex justify-center items-center  '>
                         {isloadingImage ? <CircularProgress /> :
                             <img
                                 src={miplayer?.foto || undefined}
-                                alt=""
-                                className='w-96 h-[500px] rounded-md aspect-video object-cover block border-none' />
+                                alt={`imagen del jugador ${miplayer.nombre}`}
+                                className='w-96 h-[500px] rounded-md  object-cover  mask-gradient' />
                         }
 
                     </figure>
@@ -123,6 +125,13 @@ const Perfil = () => {
                             </IconButton>
                         </label>
                     </div>
+
+                    <Tooltip title="Si deseas quitarle el fondo a tu imagen" >
+                       <div className='pl-10'>
+                       <QuestionAnswer className="text-slate-50 text-md bg-slate-900 rounded-full p-1"/>
+                       <label htmlFor="" className='text-sm pl-2'>Visita <a href="https://www.pixelcut.ai/" target="_blank" className='text-sky-500 underline'>aqui</a> si deseas quitarle el fondo a tu imagen</label>
+                       </div>
+                    </Tooltip>
 
 
 
