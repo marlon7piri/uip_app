@@ -28,7 +28,7 @@ export default function TorneoTableGoleadores({ rows }: Props) {
 
 
   return (
-    <TableContainer component={Paper} style={{ width: '100%', background: 'rgba(20,18,18,0.5)', }}>
+    <TableContainer component={Paper} style={{ width: '80%',height:'400px', background: 'rgba(20,18,18,0.5)',overflowY:'scroll' }}>
 
       <Table aria-label="simple table">
         <TableHead >
@@ -57,7 +57,7 @@ export default function TorneoTableGoleadores({ rows }: Props) {
               </TableCell>
 
               <TableCell  align='left' >
-                <div className='flex justify-center items-center gap-4 '>
+                <div className='flex  items-center gap-4 '>
                   <Image src={row?.jugador?.foto} width={100} height={100} alt='una imagen del jugador'
                     className='rounded-md object-cover'
                   />
@@ -69,7 +69,7 @@ export default function TorneoTableGoleadores({ rows }: Props) {
               </TableCell>
 
 
-              <TableCell align="right" >
+              <TableCell align="center" >
                 <Typography className={styles.rows}>{row?.cantidad}</Typography>
 
               </TableCell>

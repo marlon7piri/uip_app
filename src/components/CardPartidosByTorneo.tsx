@@ -1,10 +1,11 @@
 import { Equipos } from '@/infraestrcuture/entities/equipos'
 import { Partidos } from '@/infraestrcuture/entities/partidos'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '@/app/(protected)/ligas/partidos/[idTorneo]/styles.module.css'
 import Image from 'next/image'
 import { convertirFecha } from '@/utils/convertirFecha'
+import { getSession } from '@/actions/get-session'
 
 interface Props {
   partido: Partidos
@@ -20,7 +21,19 @@ interface typeColores {
 const CardPartidosByTorneo = ({ partido }: Props) => {
   const isFinalizado = partido.estado === "finalizado";
 
+  const [session, setSession] = useState()
 
+  useEffect(() => {
+
+    const loadSession = async () => {
+      const data = await getSession()
+      setSession(data)
+    }
+    loadSession()
+  }, [])
+
+
+  const isAdmin = session && session?.rol === 'admin'
 
 
   const typeColores: typeColores = {
@@ -77,7 +90,7 @@ const CardPartidosByTorneo = ({ partido }: Props) => {
     renderCardContent()
   ) : (
     <Link
-      href={`/ligas/partidos/edit?idTorneo=${partido.torneo_id._id}&idPartido=${partido._id}&idLocal=${partido.local._id}&nombreLocal=${partido?.local?.nombre}&idVisitante=${partido.visitante._id}&nombreVisitante=${partido?.visitante?.nombre}`}
+      href={`${isAdmin ? `/ligas/partidos/edit?idTorneo=${partido.torneo_id._id}&idPartido=${partido._id}&idLocal=${partido.local._id}&nombreLocal=${partido?.local?.nombre}&idVisitante=${partido.visitante._id}&nombreVisitante=${partido?.visitante?.nombre}` :'#'}`}
     >
       {renderCardContent()}
     </Link>
