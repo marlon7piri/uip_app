@@ -1,13 +1,10 @@
 import { JugadorStore } from '@/utils/zustand/jugador'
-import { Card, Chip, Typography } from '@mui/material'
+import {  Typography } from '@mui/material'
 import Image from 'next/image'
 import React from 'react'
-import EditNote from '@mui/icons-material/EditNote';
-import DeleteOutline from '@mui/icons-material/DeleteOutline';
 import './cardInfoplayer.css'
 import Spinner from './Spinner';
 import { Jugadores } from '@/infraestrcuture/entities/jugadores';
-import Link from 'next/link';
 import { useJugador } from './hooks/useJugador';
 import { useSessionAuth } from './hooks/useSessionAuth';
 import EditIcon from './EditIcon';
