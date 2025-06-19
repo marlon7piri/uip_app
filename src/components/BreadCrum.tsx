@@ -33,12 +33,12 @@ const BreadCrum = ({ titulo, url, labelBtn = 'Nuevo', isLink = true, onClick }: 
 
   }
 
-  const isAdmin = session && session?.rol === "admin"
+  const isPremium = session && session?.plan !== "free"
 
   return (
     <div className='container_breadcrum p-4'>
       <Title content={titulo} size='text-6xl' />
-      {isAdmin && renderItem()}
+      {isPremium && renderItem()}
     </div>
   )
 }

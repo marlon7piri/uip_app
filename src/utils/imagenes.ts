@@ -1,4 +1,4 @@
-export const uploadFile = async (image:any) => {
+export const uploadFile = async (image:any,token:string) => {
 
     const formData = new FormData()
 
@@ -6,7 +6,9 @@ export const uploadFile = async (image:any) => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload/upload`, {
         method: 'POST',
-
+    headers:{
+token
+          },
         body: formData
       })
 

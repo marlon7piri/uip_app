@@ -31,6 +31,7 @@ export default {
                             email: user.email,
                             token: response.data.token,
                             rol: user.rol,
+                            plan: user.plan,
                         }
 
                     } else {

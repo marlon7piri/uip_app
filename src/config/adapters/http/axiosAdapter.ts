@@ -20,8 +20,14 @@ export class AxiosAdapter implements HttpAdapter {
       const { data } = await this.axiosInstance.get<T>(url, options);
 
       return data;
-    } catch (error) {
-      throw new Error(`Error fetching get :${url}`);
+    }catch (error:any) {
+      const message =
+      error.response?.data?.message ||
+      error.response?.data?.error ||
+      error.message ||
+      `Error al hacer GET a ${url}`;
+
+    throw new Error(message);
     }
   }
 
@@ -34,8 +40,14 @@ export class AxiosAdapter implements HttpAdapter {
       const { data } = await this.axiosInstance.post<T>(url, item, options);
 
       return data;
-    } catch (error) {
-      throw new Error(`Error creating post :${url}`);
+    } catch (error:any) {
+      const message =
+      error.response?.data?.message ||
+      error.response?.data?.error ||
+      error.message ||
+      `Error al hacer POST a ${url}`;
+
+    throw new Error(message);
     }
   }
 
@@ -43,16 +55,28 @@ export class AxiosAdapter implements HttpAdapter {
     try {
       const { data } = await this.axiosInstance.put<T>(url, item,options)
       return data
-    } catch (error) {
-      throw new Error("Error editing player" + error)
+    } catch (error:any) {
+      const message =
+      error.response?.data?.message ||
+      error.response?.data?.error ||
+      error.message ||
+      `Error al hacer PUT a ${url}`;
+
+    throw new Error(message);
     }
   }
   async delete<T>(url: string,options?: AxiosRequestConfig): Promise<T> {
     try {
       const { data } = await this.axiosInstance.delete<T>(url,options)
       return data
-    } catch (error) {
-      throw new Error("Error deleting player" + error)
+    }  catch (error:any) {
+      const message =
+      error.response?.data?.message ||
+      error.response?.data?.error ||
+      error.message ||
+      `Error al hacer DELETE a ${url}`;
+
+    throw new Error(message);
     }
   }
 }

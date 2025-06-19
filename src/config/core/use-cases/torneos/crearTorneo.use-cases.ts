@@ -13,8 +13,13 @@ export const createTorneoUseCases = async (
         token
       },
     });
+
     return res;
-  } catch (error) {
-    throw new Error(`Error creating torneo`);
+  } catch (error:any) {
+
+    // Si tu adaptador lanza con error.response?.data
+    const message =
+      error?.response?.data?.message || error.message || "Error desconocido";
+    throw new Error(message);
   }
 };

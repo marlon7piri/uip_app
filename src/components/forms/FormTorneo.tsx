@@ -5,31 +5,22 @@ import React, { FormEvent, useState } from "react";
 import { TorneoStore } from "@/utils/zustand/torneos";
 import { CustomInputFileFoto } from "../CustomInputFileFoto";
 import { useTorneos } from "../hooks/useTorneos";
-import toast from "react-hot-toast";
 import './forms.css'
+import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material";
 
 export default function FormTorneos() {
 
-  const { setTorneo, torneo, crearTorneo, image, setImage, } = useTorneos()
+  const { setTorneo, torneo, crearTorneo, image, setImage,error,loading } = useTorneos()
   const router = useRouter()
 
 
   const [imagePreview, setImagePreview] = useState("")
-  const [loading, setLoading] = useState(false)
 
 
 
-  const handleSubmit = async (e: FormEvent) => {
-    setLoading(true)
-    e.preventDefault();
-    await crearTorneo()
-    toast.success("Torneo creado")
-    router.back()
-    setLoading(false)
-
-  };
+  
 
 
   // Manejar cambio de archivo
@@ -39,7 +30,7 @@ export default function FormTorneos() {
     setImagePreview(URL.createObjectURL(file))
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={crearTorneo}>
 
 
       <label>Nombre</label>
@@ -58,7 +49,7 @@ export default function FormTorneos() {
       {imagePreview && <img src={imagePreview} className='w-[100px] h-[100px] rounded-full bg-cover ' alt={torneo.nombre} />}
 
 
-
+{error && <p className='text-red-500'>{error}</p>}
       <button
 
         type="submit"
