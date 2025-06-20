@@ -15,6 +15,7 @@ interface Props {
 }
 const BreadCrum = ({ titulo, url, labelBtn = 'Nuevo', isLink = true, onClick }: Props) => {
   const [session, setSession] = useState()
+  const isPremium = session && session?.plan !== "free"
 
   useEffect(() => {
 
@@ -33,7 +34,8 @@ const BreadCrum = ({ titulo, url, labelBtn = 'Nuevo', isLink = true, onClick }: 
 
   }
 
-  const isPremium = session && session?.plan !== "free"
+ 
+
 
   return (
     <div className='container_breadcrum p-4'>
