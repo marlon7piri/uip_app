@@ -12,6 +12,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.user.email = token.email;
         session.token = token.token; // Pasa el token a la sesión si lo necesitas
         session.rol = token.rol; // Pasa el rol a la sesión si lo necesitas
+        session.plan = token.plan; // Pasa el plan a la sesión si lo necesitas
       }
       return session;
     },
@@ -22,6 +23,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.email = user.email;
         token.token = user.token; // Guarda el token en el JWT si lo necesitas
         token.rol = user.rol; // Guarda el rol en el JWT si lo necesitas
+        token.plan = user.plan; // Guarda el plan en el JWT si lo necesitas
       }
 
       return token;

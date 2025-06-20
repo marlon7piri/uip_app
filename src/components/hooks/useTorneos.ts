@@ -9,6 +9,8 @@ import { TorneoStore } from "@/utils/zustand/torneos";
 import { useSessionAuth } from "./useSessionAuth";
 import { getSession } from "@/actions/get-session";
 import { uploadFile } from "@/utils/imagenes";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export const useTorneos = () => {
   const [torneos, setTorneos] = useState<Torneos[]>([]);
@@ -20,7 +22,8 @@ export const useTorneos = () => {
   const [image, setImage] = useState(null);
 
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [error, setError] = useState(null)
+  const router = useRouter()
   useEffect(() => {
     const loadTorneos = async () => {
       await getTorneos();
@@ -45,10 +48,12 @@ export const useTorneos = () => {
     );
   };
 
-  const crearTorneo = async () => {
-    setLoading(true);
+  const crearTorneo = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
     const session = await getSession();
-    const img = await uploadFile(image);
+    const img = await uploadFile(image,session?.token);
 
     const newTorneo = {
       ...torneo,
@@ -60,8 +65,19 @@ export const useTorneos = () => {
       newTorneo,
       session?.token
     );
+
+
     setTorneos(res);
-    setLoading(false);
+    setError(null)
+    toast.success("Torneo creado")
+    router.back()
+    } catch (error:any) {
+      console.error(error);
+    setError(error.message)
+      
+    }finally{
+      setLoading(false)
+    }
   };
   const registrarEquiposTorneos = async (idTorneo: string) => {
     setLoading(true)
@@ -79,6 +95,7 @@ export const useTorneos = () => {
       newRegistro,
       session?.token
     );
+  
     setLoading(false);
   };
 
@@ -94,5 +111,6 @@ export const useTorneos = () => {
     getEquiposByTorneo,
     image,
     setImage,
+    error
   };
 };
