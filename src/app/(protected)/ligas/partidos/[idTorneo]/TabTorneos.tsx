@@ -56,26 +56,26 @@ export default function TabTorneos({ partidosByTorneos, loading }: { partidosByT
           gap: { xs: 1, sm: 0 }, // Añade espacio entre elementos en pantallas pequeñas
         }}>
           
-          <Tab label="Posiciones" {...a11yProps(0)} sx={{
-            color: '#fcf8f8',
-            background: 'rgba(25, 33, 36, 0.5)',
+          <Tab label="Tabla" {...a11yProps(0)} sx={{
+            color: 'white',
+            
             fontWeight: '700',
-            borderRadius: '1rem',
+            
             marginRight: '.5rem',
           }} />
           
           <Tab label="Partidos" {...a11yProps(1)} sx={{
-            color: '#fcf8f8',
-            background: 'rgba(25, 33, 36, 0.5)',
+            color: 'white',
+            
             fontWeight: '700',
-            borderRadius: '1rem',
+            
             marginRight: '.5rem',
           }} />
           <Tab label="Estadisticas" {...a11yProps(2)} sx={{
-            color: '#fcf8f8',
-            background: 'rgba(25, 33, 36, 0.5)',
+            color: 'white',
+            
             fontWeight: '700',
-            borderRadius: '1rem',
+            
             marginRight: '.5rem',
           }} />
         </Tabs>

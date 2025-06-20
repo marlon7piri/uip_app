@@ -13,7 +13,16 @@
     --foreground: #ededed;
   }
 }
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE y Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari y Opera */
+  }
+}
 body {
   background-image: linear-gradient(to right, #0572ee 0%, #304352 70%);
   box-sizing: border-box;

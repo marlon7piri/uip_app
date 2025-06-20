@@ -18,17 +18,17 @@ const ContainerEquipos = ({ equipos }: Props) => {
 
 
   return (
-    <ContenedorCustom>
+    <div className='pt-[100px]'>
       <BreadCrum titulo='Equipos' url='/equipos/nuevo' labelBtn='Nuevo Equipo' />
 
-      <div className=' flex flex-wrap items-center justify-center gap-8 mt-8'>
-        {equipos.map((e) => {
+      <div className=' grid  sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8  p-4'>
+        {equipos?.map((e) => {
           return <CardEquipos equipos={e} key={e.logo} />
 
         })}
       </div>
 
-    </ContenedorCustom>
+    </div>
   )
 }
 

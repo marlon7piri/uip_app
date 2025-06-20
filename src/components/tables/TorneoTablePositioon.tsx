@@ -81,7 +81,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
         <TableBody>
           {rows?.map((row, index: number) => {
 
-            const { goles_favor, asistencias, puntos, goles_contra, partidos_jugados, partidos_ganados, partidos_empatados, partidos_perdidos } = row.estadisticasTorneo.estadisticas
+            const { goles_favor, asistencias, puntos, goles_contra, partidos_jugados, partidos_ganados, partidos_empatados, partidos_perdidos } = row?.estadisticasTorneo?.estadisticas
             return <TableRow
               key={row._id}
               onClick={() => router.push(`/equipos/${row._id}`)}
@@ -97,10 +97,10 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
               <TableCell component="th"  >
                 <div className='flex flex-col sm:flex-col md:flex-row  justify-start items-center  gap-2 '>
-                  <Image src={row.logo} width={80} height={80} alt={row?.nombre} decoding='async'
+                  <Image src={row?.logo} width={45} height={45} alt={row?.nombre} decoding='async'
                     className='object-cover'
                   />
-                  <Typography className={styles.rows}>{row.nombre}</Typography>
+                  <Typography className={styles.rows}>{row?.nombre}</Typography>
 
 
                 </div>
@@ -122,7 +122,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
               </TableCell>
               <TableCell align="left">
-                <Typography className={styles.rows_point}>  {puntos}</Typography>
+                <Typography   className={styles.rows_point}>{puntos}</Typography>
 
               </TableCell>
               <TableCell align="left">

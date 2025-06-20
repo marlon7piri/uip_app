@@ -1,12 +1,18 @@
 .rows{
-    color:#fcf8f8
+    color:#fcf8f8;
+    font-size: .8rem;
 }
 .rows_point{
-    color:#fcf8f8;
+    width: 30px;
+    height: 30px;
+    font-size: .8rem;
+    color:#080202;
     font-weight: 700;
-    background-color: rgba(0, 128, 0, 0.719);
-    padding:.5rem;
+    background-color: rgb(247, 250, 247);
+    padding:.2rem;
     border-radius: 50%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }

@@ -24,7 +24,6 @@ interface Props {
 
 
 export default function MercadoTable({ rows }: Props) {
-
   const router = useRouter()
   const search = useSearchParams()
 
@@ -72,7 +71,7 @@ export default function MercadoTable({ rows }: Props) {
           </TableRow>
         </TableHead>
         <TableBody className='w-full '>
-          {rows?.map((row) => (
+          {rows && rows?.map((row) => (
             <TableRow
               key={row._id}
               onClick={() => router.push(`/jugadores/${row._id}`)}
@@ -80,25 +79,25 @@ export default function MercadoTable({ rows }: Props) {
               className='hover:bg-slate-900 cursor-pointer transition duration-300'
             >
               <TableCell align="center">
-                <Image src={row.foto} width={80} height={80} alt={row.club?.nombre}
+                <Image src={row?.foto} width={80} height={80} alt={row?.club?.nombre}
                   className='object-contain'
                 />
               </TableCell>
 
               <TableCell component="th" scope="row">
-                <Typography className={styles.rows}>{row.nombre + " " + row.apellido}</Typography>
+                <Typography className={styles.rows}>{row?.nombre + " " + row?.apellido}</Typography>
 
               </TableCell>
               <TableCell align="center">
-                <Typography className={styles.rows}>{row.edad}</Typography>
+                <Typography className={styles.rows}>{row?.edad}</Typography>
 
               </TableCell>
               <TableCell align="center">
-                <Typography className={styles.rows}>{row.estatura} cm</Typography>
+                <Typography className={styles.rows}>{row?.estatura} cm</Typography>
               </TableCell>
               <TableCell align="center" >
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <Image src={row.club?.logo} width={50} height={50} alt={row.club?.nombre}
+                  <Image src={row?.club?.logo} width={50} height={50} alt={row?.club?.nombre}
                     className='object-cover '
                   />
                 </div>

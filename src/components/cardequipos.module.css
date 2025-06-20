@@ -1,6 +1,6 @@
 .card {
-  width: 250px;
-  height: 300px;
+  width: 150px;
+  height: 200px;
 
   overflow: hidden;
   padding: 1.5rem;
@@ -11,7 +11,7 @@
   gap: 1rem;
   flex-direction: column;
   transition: all 0.5s;
-  border-radius: 1rem 1rem 5rem 5rem;
+  border-radius: 1rem 1rem 2rem 2rem;
   box-shadow: inset 0px 10px 53px 29px rgba(0, 0, 0, 0.3),
     0px 4px 13px 3px rgba(4, 119, 172, 0.521);
   background-image: url("https://res.cloudinary.com/dxi9fwjsu/image/upload/v1741537585/xvcy6zpklpugj7hc7ajo.jpg");
@@ -25,11 +25,11 @@
 .txtTitle {
   color: white;
   font-weight: 900;
-  font-size: 1.5rem;
+  font-size: .8rem;
 }
 @media (width<500px) {
   .card {
-    width: 400px;
-    height: 400px;
+    width: 150px;
+    height: 200px;
   }
 }

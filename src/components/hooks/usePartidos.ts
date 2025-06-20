@@ -17,7 +17,7 @@ interface TypePartido {
   fecha: null;
   goles: number;
   tipo: string;
-
+autorId:string;
   is_draw: false;
   torneo_id: string;
 }
@@ -46,7 +46,7 @@ const initialPartido: TypePartido = {
   fecha: null,
   goles: 0,
   tipo: "clasificacion",
-
+autorId:"",
   is_draw: false,
   torneo_id: "",
 };
@@ -113,6 +113,7 @@ export const usePartidos = () => {
 
     const newMatch: TypePartido = {
       ...partido,
+      autorId:session?.user.id,
       torneo_id: idTorneo,
     };
     const res = await UseCases.createPartidoUseCases(

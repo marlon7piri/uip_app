@@ -15,7 +15,7 @@ const Torneos = () => {
       <BreadCrum titulo='Torneos' labelBtn='Crear Torneo' url='/torneos/nueva' />
 
       {
-        grupos.map((item) => <CardGrupos item={item} key={item._id} />)
+        grupos?.map((item) => <CardGrupos item={item} key={item._id} />)
       }
     </ContenedorCustom>
   )

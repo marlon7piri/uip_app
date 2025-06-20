@@ -12,7 +12,6 @@ const Mercado = () => {
   const fetchJugadores = async (query: string) => {
     const session = await getSession()
     try {
-
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jugadores/list?query=${query}`, {
         cache: 'no-cache',
 
@@ -21,7 +20,8 @@ const Mercado = () => {
         }
       })
       const data = await response.json()
-      setJugadores(data)
+      console.log({data:data})
+      setJugadores(data?.jugadores)
     } catch (error) {
       throw new Error('Error fetching jugadores')
     }

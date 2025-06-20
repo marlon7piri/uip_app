@@ -44,7 +44,7 @@ const TabTablaPosicion = () => {
 
     return (
         <div className='flex justify-center items-center flex-col'>
-            <Title content='Tabla Posiciones' size='text-4xl' color='text-slate-50' />
+           
             {loading ? <Spinner /> : <div className="pl-20"><TorneoTablePositioon rows={equiposParticipantes} /></div>}
         </div>
     )
