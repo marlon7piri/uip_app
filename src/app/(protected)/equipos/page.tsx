@@ -1,28 +1,16 @@
-import { auth } from '@/auth'
+"use client"
 import ContainerEquipos from '@/components/ContainerEquipos'
-import * as UseCases from "../../../config/core/use-cases";
 import styles from './equipos.module.css'
 import React from 'react'
-import { fetcherDb } from '@/config/adapters/apiDbAdapter';
+import { useEquipos } from '@/components/hooks/useEquipos';
 
 
-const getEquipos = async (session) => {
-  try {
-  const res = await UseCases.getEquiposUseCases(fetcherDb, session?.token,session?.user?.id);
-  return res
-  } catch (error:unknown) {
-    if(error instanceof Error){
-      throw new Error('Error obteniendo los equipos')
-    }
-   
-  }
-  
-};
 
-const Equipos = async () => {
-  
-  const session = await auth();
-  const equipos = await getEquipos(session);
+
+const Equipos = () => {
+  const { equipos } = useEquipos()
+
+
 
   return (
     <div className={styles.container}>

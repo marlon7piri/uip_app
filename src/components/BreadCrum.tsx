@@ -34,12 +34,12 @@ const BreadCrum = ({ titulo, url, labelBtn = 'Nuevo', isLink = true, onClick }: 
 
   }
 
- 
+
 
 
   return (
     <div className='container_breadcrum p-4'>
-      <Title content={titulo} size='text-6xl' />
+      <Title content={titulo} size='text-4xl' />
       {isPremium && renderItem()}
     </div>
   )

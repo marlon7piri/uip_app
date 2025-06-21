@@ -14,7 +14,7 @@ const initialStateEquipo: Pick<Equipos, "nombre" | "logo"> = {
 export const useEquipos = () => {
   const [equipos, setEquipos] = useState<Equipos[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [isloading, setIsloading] = useState(false)
+  const [isloading, setIsloading] = useState(false);
   const router = useRouter();
 
   const [equipo, setEquipo] = useState(initialStateEquipo);
@@ -29,8 +29,7 @@ export const useEquipos = () => {
     try {
       setLoading(true);
 
-      let autorId: string | undefined = session?.user?.id
-
+      let autorId: string | undefined = session?.user?.id;
 
       const res = await UseCases.getEquiposUseCases(fetcherDb, session?.token);
 
@@ -48,50 +47,44 @@ export const useEquipos = () => {
     const newEquipo = {
       ...equipo,
       logo: img,
-      autorId: session?.user?.id
+      autorId: session?.user?.id,
     };
     const res = await UseCases.createEquipoUseCases(
       fetcherDb,
       newEquipo,
       session?.token
     );
-    setEquipo({ logo: "", nombre: "" })
+    setEquipo({ logo: "", nombre: "" });
     toast.success("Equipo creado");
 
     router.push("/equipos");
   };
   const editarEquipo = async (idEquipo: string) => {
-   try {
-    setIsloading(true)
-    const session = await getSession();
-    const img = await uploadFile(image);
+    try {
+      setIsloading(true);
+      const session = await getSession();
+      const img = await uploadFile(image);
 
-    const newEquipo = {
-      ...equipo,
-      logo: img,
-    };
-    const res = await UseCases.editEquipoUseCases(
-      fetcherDb,
-      newEquipo,
-      idEquipo,
-      session?.token,
-      session?.user?.id
-    );
+      const newEquipo = {
+        ...equipo,
+        logo: img,
+      };
+      const res = await UseCases.editEquipoUseCases(
+        fetcherDb,
+        newEquipo,
+        idEquipo,
+        session?.token,
+        session?.user?.id
+      );
 
-    
-    
-      setEquipo({ logo: "", nombre: "" })
-        toast.success("Equipo actualizado");
-        router.push("/equipos");
-   
-
-    
-    
-   } catch (error:any) {
-   toast.error(error.message)
-   }finally{
-    setIsloading(false)
-   }
+      setEquipo({ logo: "", nombre: "" });
+      toast.success("Equipo actualizado");
+      router.push("/equipos");
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      setIsloading(false);
+    }
   };
   return {
     equipos,
@@ -100,7 +93,8 @@ export const useEquipos = () => {
     equipo,
     setEquipo,
     loading,
-    isloading, setIsloading,
+    isloading,
+    setIsloading,
     image,
     setImage,
   };
