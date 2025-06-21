@@ -13,18 +13,22 @@ export const editEquipoUseCases = async (
       headers: { token },
     });
 
-    return res.data;
+    return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // ⚡ Si el servidor responde con error, capturamos su mensaje
       if (error.response) {
         console.error("Error del servidor:", error.response.data);
-        throw new Error(error.response.data.message || "Error desconocido en la API");
+        throw new Error(
+          error.response.data.message || "Error desconocido en la API"
+        );
       }
-      
+
       // ⚡ Si el error es de red o Axios no tiene `response`
       console.error("Error de red o sin respuesta:", error.message);
-      throw new Error("No se pudo conectar con el servidor. Verifica tu conexión.");
+      throw new Error(
+        "No se pudo conectar con el servidor. Verifica tu conexión."
+      );
     }
 
     // ⚡ Error inesperado (no es de Axios)

@@ -10,7 +10,7 @@ export interface Partidos {
   is_draw: boolean;
   goles: number;
   asistencias: number;
-
+  autorId: string;
   estadio: string;
   __v?: number;
 }

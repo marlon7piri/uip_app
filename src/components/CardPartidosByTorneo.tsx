@@ -33,7 +33,7 @@ const CardPartidosByTorneo = ({ partido }: Props) => {
   }, [])
 
 
-  const isAdmin = session && session?.rol === 'admin'
+  const isAutor = session && session?.user?.id === partido.autorId
 
 
   const typeColores: typeColores = {
@@ -89,11 +89,17 @@ const CardPartidosByTorneo = ({ partido }: Props) => {
   return isFinalizado ? (
     renderCardContent()
   ) : (
-    <Link
-      href={`${isAdmin ? `/ligas/partidos/edit?idTorneo=${partido.torneo_id._id}&idPartido=${partido._id}&idLocal=${partido.local._id}&nombreLocal=${partido?.local?.nombre}&idVisitante=${partido.visitante._id}&nombreVisitante=${partido?.visitante?.nombre}` :'#'}`}
+
+    isAutor ? <Link
+      href={`/ligas/partidos/edit?idTorneo=${partido.torneo_id._id}&idPartido=${partido._id}&idLocal=${partido.local._id}&nombreLocal=${partido?.local?.nombre}&idVisitante=${partido.visitante._id}&nombreVisitante=${partido?.visitante?.nombre}`}
     >
       {renderCardContent()}
-    </Link>
+    </Link> :
+      <div
+
+      >
+        {renderCardContent()}
+      </div>
   );
 };
 

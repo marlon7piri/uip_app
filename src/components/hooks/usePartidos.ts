@@ -17,7 +17,7 @@ interface TypePartido {
   fecha: null;
   goles: number;
   tipo: string;
-
+  autorId: string;
   is_draw: false;
   torneo_id: string;
 }
@@ -46,7 +46,7 @@ const initialPartido: TypePartido = {
   fecha: null,
   goles: 0,
   tipo: "clasificacion",
-
+  autorId: "",
   is_draw: false,
   torneo_id: "",
 };
@@ -108,20 +108,25 @@ export const usePartidos = () => {
   };
 
   const createPartido = async () => {
-    setLoading(true);
-    const session = await getSession();
+    try {
+      setLoading(true);
+      const session = await getSession();
 
-    const newMatch: TypePartido = {
-      ...partido,
-      torneo_id: idTorneo,
-    };
-    const res = await UseCases.createPartidoUseCases(
-      fetcherDb,
-      newMatch,
-      session?.token
-    );
-    toast.success("Partido creado");
-    setLoading(false);
+      const newMatch: TypePartido = {
+        ...partido,
+        autorId: session?.user?.id,
+        torneo_id: idTorneo,
+      };
+      const res = await UseCases.createPartidoUseCases(
+        fetcherDb,
+        newMatch,
+        session?.token
+      );
+      toast.success("Partido creado");
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
   const evaluarPartido = async () => {
     const session = await getSession();

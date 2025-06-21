@@ -8,10 +8,10 @@ const NuevoEquipo = () => {
   const search = useSearchParams()
   const idEquipo = search.get('idEquipo') || null
   return (
-    <div className=' py-28 min-h-screen'>
+    <div className='py-[200px] '>
       <Title content={idEquipo ? 'Editar Equipo' : ' Nuevo equipo'} size='text-4xl' />
 
-      <div className='flex justify-center items-center'>
+      <div className='flex justify-center items-center '>
         <FormEquipo />
 
       </div>

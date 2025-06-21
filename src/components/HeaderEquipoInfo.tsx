@@ -6,14 +6,24 @@ import styles from './headerequipoinfo.module.css'
 import EditNote from '@mui/icons-material/EditNote';
 import Link from 'next/link'
 import EditIcon from './EditIcon'
+import { useSession } from 'next-auth/react'
 
 interface Props {
   equipo: Equipos
 }
 const HeaderEquipoInfo = ({ equipo }: Props) => {
 
+  const { data: session, status } = useSession()
 
+  // Mostrar mensaje mientras se carga la sesión
+  if (status === "loading") {
+    return <p>Cargando sesión...</p>
+  }
 
+  // Si no está autenticado
+  if (!session || status !== "authenticated") {
+    return <p>Acceso denegado. Debes iniciar sesión para ver esta información.</p>
+  }
   return (
     <div className={styles.card}>
 
@@ -39,7 +49,10 @@ const HeaderEquipoInfo = ({ equipo }: Props) => {
             <li>Partidos Empatados:  {equipo?.estadisticasGlobales?.partidos_empatados}</li>
           </ul>
         </div>
-        <EditIcon link={`/equipos/nuevo?idEquipo=${equipo._id}`} />
+        {session?.user?.id === equipo?.autorId
+          ? <EditIcon link={`/equipos/nuevo?idEquipo=${equipo._id}`} />
+          : null
+        }
 
       </div>
     </div>

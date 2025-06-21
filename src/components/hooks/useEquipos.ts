@@ -63,7 +63,7 @@ export const useEquipos = () => {
     try {
       setIsloading(true);
       const session = await getSession();
-      const img = await uploadFile(image);
+      const img = await uploadFile(image, session?.token);
 
       const newEquipo = {
         ...equipo,
@@ -77,9 +77,11 @@ export const useEquipos = () => {
         session?.user?.id
       );
 
-      setEquipo({ logo: "", nombre: "" });
-      toast.success("Equipo actualizado");
-      router.push("/equipos");
+      if (res.status == 201) {
+        setEquipo({ logo: "", nombre: "" });
+        toast.success("Equipo actualizado");
+        router.push("/equipos");
+      }
     } catch (error: any) {
       toast.error(error.message);
     } finally {

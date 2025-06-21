@@ -51,10 +51,10 @@ export class AxiosAdapter implements HttpAdapter {
     }
   }
 
-  async put<T>(url: string, item?: unknown, options?: AxiosRequestConfig): Promise<T> {
+  async put<T>(url: string, item?: unknown, options?: AxiosRequestConfig): Promise<any> {
     try {
-      const { data } = await this.axiosInstance.put<T>(url, item,options)
-      return data
+      const res = await this.axiosInstance.put<T>(url, item,options)
+      return res
     } catch (error:any) {
       const message =
       error.response?.data?.message ||

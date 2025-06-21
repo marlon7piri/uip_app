@@ -58,10 +58,10 @@ const NavBar = () => {
             <Link href={'/mercado'} className='text-[18px]  hover:text-sky-500  font-semibold transition duration-500'>Jugadores</Link>
           </div>
 
-         <div className='flex gap-4 justify-center items-center '>
-         <Link href={'/perfil'} className=' bg-slate-900 shadow-sm hover:bg-slate-900 hover:shadow-white hover:shadow-md   shadow-white p-2 rounded-full transition duration-500'><Person style={{ color: 'white' }} className='text-md  lg:text-slate-50 font-semibold ' /></Link> 
-         <button onClick={logoutAuth} className='bg-slate-900 shadow-sm hover:bg-slate-900 hover:shadow-md  hover:shadow-white  shadow-white  p-2 rounded-full transition duration-500'><Logout style={{ color: 'white' }} className='text-md  lg:text-slate-50 font-semibold ' /></button>
-         </div>
+          <div className='flex gap-4 justify-center items-center  pt-2 pr-4'>
+            <Link href={'/perfil'} className=' bg-slate-900 shadow-sm hover:bg-slate-900 hover:shadow-white hover:shadow-md   shadow-white p-2 rounded-full transition duration-500'><Person style={{ color: 'white' }} className='text-md  lg:text-slate-50 font-semibold ' /></Link>
+            <button onClick={logoutAuth} className='bg-slate-900 shadow-sm hover:bg-slate-900 hover:shadow-md  hover:shadow-white  shadow-white  p-2 rounded-full transition duration-500'><Logout style={{ color: 'white' }} className='text-md  lg:text-slate-50 font-semibold ' /></button>
+          </div>
 
 
         </ul>
