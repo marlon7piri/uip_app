@@ -15,7 +15,7 @@ const CardEquipos = ({ equipos }: Props) => {
     <Link href={`/equipos/${equipos._id}`} key={equipos.nombre} className={styles.card}>
       <h3 className={styles.txtTitle}>{equipos.nombre}</h3>
 
-      {equipos ? <Image src={equipos.logo} width={340} height={340} alt={equipos?.nombre}
+      {equipos ? <Image src={equipos.logo} width={100} height={100} alt={equipos?.nombre}
         className=' object-cover '
       /> : <CircularProgress />}
     </Link>

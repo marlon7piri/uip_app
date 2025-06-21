@@ -13,7 +13,7 @@ const Mercado = () => {
     const session = await getSession()
     try {
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jugadores/list?query=${query}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jugadores/list?name=${query}`, {
         cache: 'no-cache',
 
         headers: {
@@ -21,7 +21,7 @@ const Mercado = () => {
         }
       })
       const data = await response.json()
-      setJugadores(data)
+      setJugadores(data.jugadores)
     } catch (error) {
       throw new Error('Error fetching jugadores')
     }
@@ -31,14 +31,14 @@ const Mercado = () => {
     fetchJugadores('') // Fetch initial data
   }, [])
 
- 
 
-  
+
+
 
 
   return (
     <div className={styles.containerMercado}>
-      <ContainerMercado jugadores={jugadores} fetchJugadores={fetchJugadores}/>
+      <ContainerMercado jugadores={jugadores} fetchJugadores={fetchJugadores} />
 
     </div>
   )

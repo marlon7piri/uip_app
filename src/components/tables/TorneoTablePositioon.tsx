@@ -32,10 +32,10 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
 
   return (
-    <TableContainer  component={Paper} style={{ width: '100%', background: 'rgba(20,18,18,0.5)' }}>
+    <TableContainer component={Paper} style={{ width: '100%', background: 'rgba(20,18,18,0.5)' }}>
       <Table aria-label="simple table" >
         <TableHead >
-          <TableRow> 
+          <TableRow>
             <TableCell>
 
               <Typography ></Typography>
@@ -44,38 +44,38 @@ export default function TorneoTablePositioon({ rows }: Props) {
               <Typography className={styles.rows}>Equipo</Typography>
             </TableCell>
             <TableCell align="left">
-              <Typography  className={styles.rows}>PJ</Typography>
+              <Typography className={styles.rows}>PJ</Typography>
             </TableCell>
             <TableCell align="left">
-              <Typography  className={styles.rows}>V</Typography>
-
-            </TableCell>
-            <TableCell align="left">
-              <Typography  className={styles.rows}>E</Typography>
-
-            </TableCell>
-
-            <TableCell align="left">
-              <Typography  className={styles.rows}>D</Typography>
+              <Typography className={styles.rows}>V</Typography>
 
             </TableCell>
             <TableCell align="left">
-              <Typography  className={styles.rows}>PT</Typography>
+              <Typography className={styles.rows}>E</Typography>
+
+            </TableCell>
+
+            <TableCell align="left">
+              <Typography className={styles.rows}>D</Typography>
 
             </TableCell>
             <TableCell align="left">
-              <Typography  className={styles.rows}>GF</Typography>
+              <Typography className={styles.rows}>PT</Typography>
 
             </TableCell>
             <TableCell align="left">
-              <Typography  className={styles.rows}>GC</Typography>
+              <Typography className={styles.rows}>GF</Typography>
 
             </TableCell>
             <TableCell align="left">
-              <Typography  className={styles.rows}>DG</Typography>
+              <Typography className={styles.rows}>GC</Typography>
 
             </TableCell>
-            
+            <TableCell align="left">
+              <Typography className={styles.rows}>DG</Typography>
+
+            </TableCell>
+
           </TableRow>
         </TableHead>
         <TableBody>
@@ -97,7 +97,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
 
               <TableCell component="th"  >
                 <div className='flex flex-col sm:flex-col md:flex-row  justify-start items-center  gap-2 '>
-                  <Image src={row.logo} width={80} height={80} alt={row?.nombre} decoding='async'
+                  <Image src={row.logo} width={45} height={45} alt={row?.nombre} decoding='async'
                     className='object-cover'
                   />
                   <Typography className={styles.rows}>{row.nombre}</Typography>
@@ -137,7 +137,7 @@ export default function TorneoTablePositioon({ rows }: Props) {
                 <Typography className={styles.rows}> {goles_favor - goles_contra}</Typography>
 
               </TableCell>
-              
+
 
 
 

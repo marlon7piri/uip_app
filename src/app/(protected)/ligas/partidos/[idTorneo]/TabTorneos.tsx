@@ -48,34 +48,28 @@ export default function TabTorneos({ partidosByTorneos, loading }: { partidosByT
   return (
     <div>
       <Box sx={{
-        paddingBottom: 1,display:'flex' ,justifyContent:'center',
+        paddingBottom: 1, display: 'flex', justifyContent: 'center',
       }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" sx={{
           display: 'flex',
           flexDirection: 'column', // Cambia la dirección según el tamaño de pantalla
           gap: { xs: 1, sm: 0 }, // Añade espacio entre elementos en pantallas pequeñas
         }}>
-          
+
           <Tab label="Posiciones" {...a11yProps(0)} sx={{
             color: '#fcf8f8',
-            background: 'rgba(25, 33, 36, 0.5)',
-            fontWeight: '700',
-            borderRadius: '1rem',
+
             marginRight: '.5rem',
           }} />
-          
+
           <Tab label="Partidos" {...a11yProps(1)} sx={{
             color: '#fcf8f8',
-            background: 'rgba(25, 33, 36, 0.5)',
-            fontWeight: '700',
-            borderRadius: '1rem',
+
             marginRight: '.5rem',
           }} />
           <Tab label="Estadisticas" {...a11yProps(2)} sx={{
             color: '#fcf8f8',
-            background: 'rgba(25, 33, 36, 0.5)',
-            fontWeight: '700',
-            borderRadius: '1rem',
+
             marginRight: '.5rem',
           }} />
         </Tabs>

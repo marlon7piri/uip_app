@@ -1,12 +1,16 @@
-.rows{
-    color:#fcf8f8
+.rows {
+  color: #fcf8f8;
+  font-size: 1rem;
 }
-.rows_point{
-    color:#fcf8f8;
-    font-weight: 700;
-    background-color: rgba(0, 128, 0, 0.719);
-    padding:.5rem;
-    border-radius: 50%;
-    text-align: center;
-    
+.rows_point {
+  width: 30px;
+  height: 30px;
+  color: #0c0b0b;
+  font-weight: 500;
+  background-color: rgb(242, 247, 242);
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
