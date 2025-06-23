@@ -3,12 +3,10 @@ import BreadCrum from './BreadCrum'
 import CardTorneos from './CardTorneos'
 import ContenedorCustom from './ContenedorCustom'
 import { Torneos } from '@/infraestrcuture/entities/torneos';
-import { useTorneos } from './hooks/useTorneos';
 import Spinner from './Spinner';
-import { useSession } from "next-auth/react";
-import axios from "axios"
 
 import { getSession } from "@/actions/get-session";
+import { useSessionAuth } from './hooks/useSessionAuth';
 
 
 interface Props {
@@ -19,7 +17,7 @@ interface Props {
 const ContainerTorneos = ({ torneos, loading }: Props) => {
 
 
-  const { data: session } = useSession()
+  const session = useSessionAuth()
   const isPremium = session && session?.user?.plan !== "free"
 
 

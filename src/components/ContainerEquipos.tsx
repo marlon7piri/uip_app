@@ -18,7 +18,7 @@ const ContainerEquipos = ({ equipos }: Props) => {
 
 
   return (
-    <div className='pt-[100px]'>
+    <div className='w-full pt-[100px]'>
       <BreadCrum titulo='Equipos' url='/equipos/nuevo' labelBtn='Nuevo Equipo' />
 
       <div className=' grid  sm:grid-cols-2 md:grid-cols-4 items-center justify-center gap-8 mt-8'>
