@@ -37,6 +37,7 @@ const ContainerTorneos = ({ torneos, loading }: Props) => {
     const data = await res.json()
 
     if (data?.url) {
+      console.error("Navegando");
       window.location.href = data.url;
     } else {
       console.error("No se recibió URL de redirección");
