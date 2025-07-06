@@ -32,11 +32,10 @@ const TabGoleadoresAsistentes = () => {
 
                 const res = await UseCases.getEquiposRegistrados(fetcherDb, session?.token, params.idTorneo);
 
-
-                const goleadoresSorted = res.torneo?.goleadores.sort((a, b) => b.cantidad - a.cantidad)
-                const asistentesSorted = res.torneo?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
-                const amarillassorted = res.torneo?.sancionados_amarilla.sort((a, b) => b.cantidad - a.cantidad)
-                const rojassorted = res.torneo?.sancionados_roja.sort((a, b) => b.cantidad - a.cantidad)
+                const goleadoresSorted = res.torneos?.goleadores.sort((a, b) => b.cantidad - a.cantidad)
+                const asistentesSorted = res.torneos?.asistentes.sort((a, b) => b.cantidad - a.cantidad)
+                const amarillassorted = res.torneos?.sancionados_amarilla.sort((a, b) => b.cantidad - a.cantidad)
+                const rojassorted = res.torneos?.sancionados_roja.sort((a, b) => b.cantidad - a.cantidad)
                 setGoleadores(goleadoresSorted);
                 setAsistentes(asistentesSorted);
                 setAmarillas(amarillassorted);
@@ -70,31 +69,31 @@ const TabGoleadoresAsistentes = () => {
                 </div>
 
                 <div>
-                <div className='flex gap-2 justify-center items-center pb-6'>
+                    <div className='flex gap-2 justify-center items-center pb-6'>
                         <span className='text-xl text-slate-50 font-bold'>
-                        Asistentes
+                            Asistentes
                         </span>
                         <img src="/shoes.svg" alt="icono" width={30} height={30} />
                     </div>
                     <TorneoTableGoleadores rows={asistentes} />
                 </div>
                 <div>
-                <div className='flex gap-2 justify-center items-center pb-6 relative'>
+                    <div className='flex gap-2 justify-center items-center pb-6 relative'>
                         <span className='text-xl text-slate-50 font-bold'>
-                        Amarillas
+                            Amarillas
                         </span>
-                        <span className='w-4 h-4  bg-yellow-600'/>
+                        <span className='w-4 h-4  bg-yellow-600' />
                     </div>
                     <TorneoTableGoleadores rows={amarillas} />
                 </div>
                 <div>
-                <div className='flex gap-2 justify-center items-center pb-6'>
+                    <div className='flex gap-2 justify-center items-center pb-6'>
                         <span className='text-xl text-slate-50 font-bold'>
-                        Rojas
+                            Rojas
                         </span>
-                        <span className='w-4 h-4  bg-red-700'/>
+                        <span className='w-4 h-4  bg-red-700' />
                     </div>
-               <TorneoTableGoleadores rows={rojas} />
+                    <TorneoTableGoleadores rows={rojas} />
                 </div>
 
 
