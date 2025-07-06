@@ -15,8 +15,8 @@ export const FormRegister = () => {
         password: "",
         rol: "client",
         clasificacion: "",
-        nombre:"",
-        apellido:"",
+        nombre: "",
+        apellido: "",
 
     });
 
@@ -25,7 +25,7 @@ export const FormRegister = () => {
     const [error, setError] = useState("");
     const router = useRouter();
 
-    async function handleFormSubmit(ev:HTMLFormElement) {
+    async function handleFormSubmit(ev: HTMLFormElement) {
         ev.preventDefault();
 
         try {
@@ -38,11 +38,13 @@ export const FormRegister = () => {
                 router.push("/auth/login");
                 setLoginInProgress(false);
             }
-            setError(res?.data?.messages);
-        } catch (error) {
-            setLoginInProgress(false);
-            setError(error?.response?.data?.messages);
+        } catch (error: any) {
+
+            console.log(error)
+            toast.error(error.response.data.message)
             throw new Error("Error server", error);
+        } finally {
+            setLoginInProgress(false);
         }
     }
 
@@ -57,28 +59,28 @@ export const FormRegister = () => {
             </h1>
             <form onSubmit={handleFormSubmit}>
 
-               <div className='container_nombre'>
-               <input
-                    type="text"
-                    required
-                    name="nombre"
-                    placeholder="Nombre"
-                    value={user.nombre}
-                    disabled={loginInProgress}
-                    onChange={(ev) => setUser({ ...user, nombre: ev.target.value.trim() })}
-                    onBlur={(ev) => setUser({ ...user, nombre: ev.target.value.trim() })}
-                />
-                <input
-                    type="text"
-                    required
-                    name="apellido"
-                    placeholder="Apellidos"
-                    value={user.apellido}
-                    disabled={loginInProgress}
-                    onChange={(ev) => setUser({ ...user, apellido: ev.target.value.trim() })}
-                    onBlur={(ev) => setUser({ ...user, apellido: ev.target.value.trim() })}
-                />
-               </div>
+                <div className='container_nombre'>
+                    <input
+                        type="text"
+                        required
+                        name="nombre"
+                        placeholder="Nombre"
+                        value={user.nombre}
+                        disabled={loginInProgress}
+                        onChange={(ev) => setUser({ ...user, nombre: ev.target.value.trim() })}
+                        onBlur={(ev) => setUser({ ...user, nombre: ev.target.value.trim() })}
+                    />
+                    <input
+                        type="text"
+                        required
+                        name="apellido"
+                        placeholder="Apellidos"
+                        value={user.apellido}
+                        disabled={loginInProgress}
+                        onChange={(ev) => setUser({ ...user, apellido: ev.target.value.trim() })}
+                        onBlur={(ev) => setUser({ ...user, apellido: ev.target.value.trim() })}
+                    />
+                </div>
                 <input
                     type="text"
                     required
@@ -116,10 +118,10 @@ export const FormRegister = () => {
                     onBlur={(ev) => setUser({ ...user, email: ev.target.value.trim() })}
                 />
                 <label htmlFor="" className='text-slate-50'>Categoría</label>
-                <select 
-                    required 
-                    onChange={(ev) => setUser({ ...user, clasificacion: ev.target.value })} 
-                    value={user.clasificacion} 
+                <select
+                    required
+                    onChange={(ev) => setUser({ ...user, clasificacion: ev.target.value })}
+                    value={user.clasificacion}
                     className='p-2 rounded-md'
                 >
                     <option value="">Seleccione</option>
