@@ -4,12 +4,10 @@ import React from 'react'
 
 const NuevaTorneo = () => {
   return (
-    <ContenedorCustom >
-      <div className='flex justify-center items-center p-4'>
-        <FormGruposTorneo />
+    <div className='w-full  py-[100px] bg-red-500'>
+      <FormGruposTorneo />
 
-      </div>
-    </ContenedorCustom>
+    </div>
   )
 }
 

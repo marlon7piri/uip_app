@@ -14,10 +14,28 @@ interface Props {
   onClick?: () => void,
 }
 const BreadCrum = ({ titulo, url, labelBtn = 'Nuevo', isLink = true, onClick }: Props) => {
-  const { data: session, status, update } = useSession()
+
+  const [session, setSession] = useState(null)
 
 
-  const isPremium = session && session?.user.plan !== "free"
+
+  const loadSession = async () => {
+    const data = await getSession()
+    console.log({ data })
+
+    if (data) {
+
+      setSession(data)
+
+    }
+  }
+
+  useEffect(() => {
+    loadSession()
+  }, [])
+
+
+  const isPremium = session && session?.plan === "premium" ? true : false
 
 
 

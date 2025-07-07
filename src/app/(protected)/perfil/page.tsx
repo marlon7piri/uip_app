@@ -95,7 +95,7 @@ const Perfil = () => {
     return (
         <div className={styles.container}>
 
-            <div className='sm:w-[100%] lg:w-[calc(100%-200px)] m-auto py-10 h-full bg-sky-900 rounded-md  grid  sm:grid-cols-1   lg:grid-cols-2  gap-4 items-center justify-center'>
+            <div className='sm:w-[100%] lg:w-[calc(100%-200px)] m-auto py-10 h-auto bg-sky-900 rounded-md  grid  sm:grid-cols-1   lg:grid-cols-2  gap-4 items-center justify-center'>
 
                 <div className='flex flex-col gap-2 p-2 '>
 
@@ -104,7 +104,7 @@ const Perfil = () => {
                             <img
                                 src={miplayer?.foto || undefined}
                                 alt={`imagen del jugador ${miplayer.nombre}`}
-                                className='w-96 h-[500px] rounded-md  object-cover  mask-gradient' />
+                                className='w-56 h-[350px] rounded-md  object-cover  mask-gradient' />
                         }
 
                     </figure>
@@ -127,10 +127,10 @@ const Perfil = () => {
                     </div>
 
                     <Tooltip title="Si deseas quitarle el fondo a tu imagen" >
-                       <div className='pl-10'>
-                       <QuestionAnswer className="text-slate-50 text-md bg-slate-900 rounded-full p-1"/>
-                       <label htmlFor="" className='text-sm pl-2'>Visita <a href="https://www.pixelcut.ai/" target="_blank" className='text-sky-500 underline'>aqui</a> si deseas quitarle el fondo a tu imagen</label>
-                       </div>
+                        <div className='pl-10'>
+                            <QuestionAnswer className="text-slate-50 text-md bg-slate-900 rounded-full p-1" />
+                            <label htmlFor="" className='text-sm pl-2'>Visita <a href="https://www.pixelcut.ai/" target="_blank" className='text-sky-500 underline'>aqui</a> si deseas quitarle el fondo a tu imagen</label>
+                        </div>
                     </Tooltip>
 
 

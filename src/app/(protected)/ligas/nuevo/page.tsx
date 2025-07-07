@@ -5,14 +5,16 @@ import React from 'react'
 
 const NuevoTorneo = () => {
   return (
-    <ContenedorCustom >
-      <Title content='Nuevo Grupo' size='text-4xl' />
+    <div className='w-full min-h-screen flex flex-col  items-center justify-center'>
+      <div className=''>
+        <Title content='Nuevo Grupo' size='text-4xl' />
 
-      <div className=' flex justify-center items-center'>
+
         <FormTorneos />
-
       </div>
-    </ContenedorCustom>
+
+
+    </div>
   )
 }
 
