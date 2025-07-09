@@ -7,7 +7,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 // Configurar el localizador con date-fns
 const locales = {
-  'en-US': enUS,
+  'en-En': enUS,
 }
 const localizer = dateFnsLocalizer({
   format,

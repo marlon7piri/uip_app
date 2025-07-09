@@ -4,7 +4,8 @@ import React from 'react'
 const page = () => {
   return (
     <div >
-      <Mapa />
+      {/*  <Mapa /> */}
+      <h1>Estamos trabajando en esta funcionalidad</h1>
     </div>
   )
 }
