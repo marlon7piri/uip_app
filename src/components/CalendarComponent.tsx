@@ -2,12 +2,12 @@
 import React, { useState } from 'react'
 import { Calendar, dateFnsLocalizer, SlotInfo, Event as RBCEvent } from 'react-big-calendar'
 import { format, parse, startOfWeek, getDay, isEqual } from 'date-fns'
-import { enUS } from 'date-fns/locale/en-US'
+import { es } from 'date-fns/locale/es'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 // Configurar el localizador con date-fns
 const locales = {
-  'en-En': enUS,
+  'es': es,
 }
 const localizer = dateFnsLocalizer({
   format,
@@ -66,7 +66,7 @@ export const CalendarComponent = () => {
         title: 'Ocupado',
         start: start,
         end: end,
-        allDay: slotInfo.action == 'select'
+
       }
 
 
@@ -110,6 +110,7 @@ export const CalendarComponent = () => {
   return (
     <div >
       <Calendar
+        culture='es'
         localizer={localizer}
         selectable
         events={eventos}
@@ -118,7 +119,7 @@ export const CalendarComponent = () => {
         eventPropGetter={eventStylegetter}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: '700px', backgroundColor: "white", marginTop: 150 }}
+        style={{ height: '700px', backgroundColor: "white", marginTop: 150, zIndex: 500 }}
         messages={{
           next: 'Siguiente',
           previous: 'Anterior',

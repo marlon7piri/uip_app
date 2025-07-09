@@ -8,6 +8,7 @@ import styles from './styles.module.css'
 import { Jugadores, JugadorWithVerification } from '@/infraestrcuture/entities/jugadores'
 import CollectionsIcon from '@mui/icons-material/Collections';
 import QuestionAnswer from '@mui/icons-material/QuestionMark';
+import Link from 'next/link'
 
 const Perfil = () => {
     const [imagenSelected, setImagenSelected] = useState("")
@@ -98,6 +99,9 @@ const Perfil = () => {
             <div className='sm:w-[100%] lg:w-[calc(100%-200px)] m-auto py-10 h-auto bg-sky-900 rounded-md  grid  sm:grid-cols-1   lg:grid-cols-2  gap-4 items-center justify-center'>
 
                 <div className='flex flex-col gap-2 p-2 '>
+                    <Link href={`/perfil/ajustes?userId=${miplayer._id}`}>
+                        Ajustes
+                    </Link>
 
                     <figure className=' flex justify-center items-center  '>
                         {isloadingImage ? <CircularProgress /> :
