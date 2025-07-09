@@ -52,6 +52,7 @@ const NavBar = () => {
 
           <div className="menu_links">
             {/*  <Link href={'/torneos'} className='text-[18px] text-slate-50 hover:text-blue-900 hover:underline font-semibold transition duration-500'>Torneos</Link> */}
+            <Link href={'/mapa'} className='text-[18px]  hover:text-sky-500  font-semibold transition duration-500'>Mapa</Link>
             <Link href={'/noticias'} className='text-[18px]  hover:text-sky-500  font-semibold transition duration-500'>Noticias</Link>
             <Link href={'/ligas'} className='text-[18px]  hover:text-sky-500  font-semibold transition duration-500'>Grupos</Link>
             <Link href={'/equipos'} className='text-[18px]  hover:text-sky-500  font-semibold transition duration-500'>Equipos</Link>
