@@ -1,19 +1,26 @@
+'use client'
 import { CalendarComponent } from '@/components/CalendarComponent'
 import { FormularioCancha } from '@/components/FormCancha'
-import React from 'react'
+import React, { useState } from 'react'
+import { CircleOff } from 'lucide-react'
 
 
 
 const page = () => {
+  const [showForm, setShowForm] = useState(false)
   return (
-    <div className='w-full flex flex-wrap gap-4 p-10'>
-      <div className='w-[60%]'>
+    <div className='w-full  p-10'>
+
+      <div className='w-full mt-20'>
+        <button onClick={() => setShowForm(!showForm)}>
+          Crear Cancha
+        </button>
         <CalendarComponent />
       </div>
-      <div className='w-[30%]'>
+      {showForm && <div className='fixed h-full overflow-y-scroll inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 z-[900]'>
 
-        <FormularioCancha />
-      </div>
+        <FormularioCancha closeModal={() => setShowForm(!showForm)} />
+      </div>}
     </div>
   )
 }

@@ -119,7 +119,7 @@ export const CalendarComponent = () => {
         eventPropGetter={eventStylegetter}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: '700px', backgroundColor: "white", marginTop: 150, zIndex: 500 }}
+        style={{ height: '700px', backgroundColor: "white", zIndex: 500 }}
         messages={{
           next: 'Siguiente',
           previous: 'Anterior',
