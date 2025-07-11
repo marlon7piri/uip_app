@@ -3,6 +3,7 @@ import React, { Suspense } from 'react'
 import Loading from './loading'
 import SkeletonLoading from '@/components/SkeletonLoading'
 import FollowSession from '@/components/FollowSession'
+import NavBar2 from '@/components/NavBar2'
 
 const ProtectedLayout = async ({ children }: { children: React.ReactNode }) => {
 
@@ -11,7 +12,8 @@ const ProtectedLayout = async ({ children }: { children: React.ReactNode }) => {
             {/* <FollowSession /> */}
 
 
-            <NavBar />
+            {/* <NavBar /> */}
+            <NavBar2 />
 
 
             <Suspense fallback={<Loading />} >
