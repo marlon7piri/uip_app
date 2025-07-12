@@ -9,6 +9,7 @@ import { Jugadores, JugadorWithVerification } from '@/infraestrcuture/entities/j
 import CollectionsIcon from '@mui/icons-material/Collections';
 import QuestionAnswer from '@mui/icons-material/QuestionMark';
 import Link from 'next/link'
+import { ShieldUser, CalendarClock } from 'lucide-react'
 
 const Perfil = () => {
     const [imagenSelected, setImagenSelected] = useState("")
@@ -99,16 +100,21 @@ const Perfil = () => {
             <div className='sm:w-[100%] lg:w-[calc(100%-200px)] m-auto py-10 h-auto bg-sky-900 rounded-md  grid  sm:grid-cols-1   lg:grid-cols-2  gap-4 items-center justify-center'>
 
                 <div className='flex flex-col gap-2 p-2 '>
-                    <Link href={`/perfil/ajustes?userId=${miplayer._id}`}>
-                        Ajustes
-                    </Link>
+                    <div className='flex gap-2'>
+                        <Link href={`/perfil/nuevaCancha?userId=${miplayer._id}`} className='flex justify-center items-center gap-2 w-max bg-sky-500 hover:bg-sky-700 text-white p-2 rounded-md'>
+                            <ShieldUser size={16} color='white' /> Administrar Cancha
+                        </Link>
+                        <Link href={`/perfil/horarioCancha?userId=${miplayer._id}`} className='flex justify-center items-center gap-2 w-max bg-sky-500 hover:bg-sky-700 text-white p-2 rounded-md'>
+                            <CalendarClock size={16} color='white' /> Administrar Horarios
+                        </Link>
+                    </div>
 
-                    <figure className=' flex justify-center items-center  '>
+                    <figure className=' flex h-[350px] justify-center items-center  '>
                         {isloadingImage ? <CircularProgress /> :
                             <img
                                 src={miplayer?.foto || undefined}
                                 alt={`imagen del jugador ${miplayer.nombre}`}
-                                className='w-56 h-[350px] rounded-md  object-cover  mask-gradient' />
+                                className='w-56 h-[350px] rounded-md  object-cover  mask-gradient ' />
                         }
 
                     </figure>

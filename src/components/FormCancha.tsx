@@ -1,4 +1,5 @@
 'use client'
+import axios from 'axios'
 import {
   ParkingCircle,
   Wifi,
@@ -8,75 +9,50 @@ import {
   CheckCircle,
   Home,
   CircleOff,
+  X
 } from 'lucide-react'
 import React, { FormEvent, useState } from 'react'
+import { useCancha } from './hooks/useCancha'
+import { CircularProgress } from '@mui/material'
 
 
-const initialCancha = {
-  nombre: "Cancha Deportiva San Miguelito",
-  direccion: "Calle 15, San Miguelito, Panamá",
-  horario: "07:00 - 23:00",
-  telefono: "+507 6123-4567",
-  precioPorHora: 30,
-  tipo: "baloncesto",
-  imagenUrl: "https://example.com/cancha-san-miguelito.jpg",
-  ubicacion: {
-    type: "Point",
-    coordinates: [-79.5250, 9.0500]
+const comodidades = [
+  {
+    label: "Restaurante",
+    icono: <Utensils size={16} className="text-sky-600" />,
   },
-  comodidades: ["Duchas", "Baños", "Estacionamiento gratis"]
-}
+  {
+    label: "Estacionamiento gratis",
+    icono: <ParkingCircle size={16} className="text-sky-600 " />,
+  },
+  {
+    label: "Wifi",
+    icono: <Wifi size={16} className="text-sky-600" />,
+  },
+  {
+    label: "Baños",
+    icono: <Bath size={16} className="text-sky-600" />,
+  },
+  {
+    label: "Duchas",
+    icono: <ShowerHead size={16} className="text-sky-600" />,
+  }
+]
 
 export const FormularioCancha = ({ closeModal }: { closeModal: () => void }) => {
-  const [cancha, setCancha] = useState(initialCancha)
-  const comodidades = [
-    {
-      label: "Restaurante",
-      icono: <Utensils size={16} className="text-sky-600" />,
-    },
-    {
-      label: "Estacionamiento gratis",
-      icono: <ParkingCircle size={16} className="text-sky-600 " />,
-    },
-    {
-      label: "Wifi",
-      icono: <Wifi size={16} className="text-sky-600" />,
-    },
-    {
-      label: "Baños",
-      icono: <Bath size={16} className="text-sky-600" />,
-    },
-    {
-      label: "Duchas",
-      icono: <ShowerHead size={16} className="text-sky-600" />,
-    }
-  ]
-
-  const handlerSubmit = (event: FormEvent) => {
-    event.preventDefault()
-    alert("Enviando datos...")
-    console.log(cancha)
-  }
+  const { cancha, setCancha, loading, createCancha, handlerComodidades } = useCancha()
 
 
-  const handlerComodidades = (e: any) => {
 
-    setCancha((prevState => {
-      const exist = prevState?.comodidades?.find(e => e === e.target.value)
 
-      if (!exist) {
-        return { ...prevState, comodidades: [...prevState.comodidades, e] }
-      }
-      return prevState
-    }))
 
-  }
+
   return (
     <form
-      onSubmit={handlerSubmit}
+      onSubmit={createCancha}
       className="max-w-2xl mx-auto mt-[100px] bg-white text-slate-800 p-8 shadow-lg rounded-lg space-y-4"
     >
-      <div className='flex justify-between '>
+      <div className='flex justify-between items-center'>
         <h2 className="text-2xl font-semibold flex items-center gap-2 mb-4">
           <Home className="text-sky-600" size={24} />
           Información de la cancha
@@ -85,7 +61,7 @@ export const FormularioCancha = ({ closeModal }: { closeModal: () => void }) => 
           className=" "
           onClick={closeModal}
         >
-          <CircleOff size={24} color='red' />
+          <X size={24} color='red' />
         </button>
       </div>
       <div className="flex flex-col gap-1">
@@ -113,7 +89,7 @@ export const FormularioCancha = ({ closeModal }: { closeModal: () => void }) => 
         <input
           type="number"
           value={cancha.precioPorHora}
-          onChange={(e) => setCancha({ ...cancha, precioPorHora: e.target.value })}
+          onChange={(e) => setCancha({ ...cancha, precioPorHora: Number(e.target.value) })}
           className="p-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
         />
       </div>
@@ -151,6 +127,7 @@ export const FormularioCancha = ({ closeModal }: { closeModal: () => void }) => 
                 name="comodidades"
                 value={c.label}
                 onChange={handlerComodidades}
+                checked={cancha.comodidades?.includes(c.label)}
                 className="accent-sky-600"
               />
               {c.icono}
@@ -164,8 +141,8 @@ export const FormularioCancha = ({ closeModal }: { closeModal: () => void }) => 
         type="submit"
         className="w-full bg-sky-600 text-white font-semibold py-3 rounded-md hover:bg-sky-700 transition duration-300 flex items-center justify-center gap-2"
       >
-        <CheckCircle size={20} />
-        Crear cancha
+        {!loading ? <><CheckCircle size={20} />
+          'Crear cancha'</> : <CircularProgress size={24} color='inherit' />}
       </button>
     </form>
   )

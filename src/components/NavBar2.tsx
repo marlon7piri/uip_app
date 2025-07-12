@@ -47,7 +47,7 @@ const NavBar2 = () => {
           />
           {session?.user?.name && (
             <span className="text-red-500 uppercase font-bold text-sm drop-shadow-sm">
-              Hola 👋 {session.user.name}
+              Hola 👋 {session?.user?.name}
             </span>
           )}
         </div>
