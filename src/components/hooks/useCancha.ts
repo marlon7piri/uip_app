@@ -20,6 +20,7 @@ const initialCancha = {
 };
 export const useCancha = () => {
   const [cancha, setCancha] = useState(initialCancha);
+  const [myCanchas, setMyCanchas] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -28,7 +29,7 @@ export const useCancha = () => {
     const session = await getSession();
     try {
       setLoading(true);
-      const canchawithUserId = {...cancha,userId:session?.user.id}
+      const canchawithUserId = { ...cancha, userId: session?.user.id };
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/cancha`,
         canchawithUserId,
@@ -38,7 +39,6 @@ export const useCancha = () => {
           },
         }
       );
-      console.log(res.status);
       if (res.status == 201) {
         toast.success("Cancha creada");
         router.push("/canchas");
@@ -49,6 +49,25 @@ export const useCancha = () => {
     }
   };
 
+  const getMyCancha = async () => {
+    const session = await getSession();
+    try {
+      setLoading(true);
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/cancha/canchaByUserId/${session?.user.id}`,
+
+        {
+          headers: {
+            token: session?.token,
+          },
+        }
+      );
+      setMyCanchas(res.data);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
   const handlerComodidades = (e: any) => {
     const value = e.target.value;
 
@@ -71,5 +90,7 @@ export const useCancha = () => {
     loading,
     handlerComodidades,
     createCancha,
+    getMyCancha,
+    myCanchas,
   };
 };

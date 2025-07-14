@@ -105,7 +105,7 @@ const Perfil = () => {
                         <Link href={`/perfil/nuevaCancha?userId=${miplayer._id}`} className='flex justify-center items-center gap-2 w-max bg-sky-500 hover:bg-sky-700 text-white p-2 rounded-md'>
                             <ShieldUser size={16} color='white' /> Administrar Cancha
                         </Link>
-                        <Link href={`/perfil/horarioCancha?userId=${miplayer?.userId}`} className='flex justify-center items-center gap-2 w-max bg-sky-500 hover:bg-sky-700 text-white p-2 rounded-md'>
+                        <Link href={`/perfil/misCancha?userId=${miplayer?.userId}`} className='flex justify-center items-center gap-2 w-max bg-sky-500 hover:bg-sky-700 text-white p-2 rounded-md'>
                             <CalendarClock size={16} color='white' /> Administrar Horarios
                         </Link>
                     </div>
