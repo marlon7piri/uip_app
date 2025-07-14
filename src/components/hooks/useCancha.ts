@@ -28,9 +28,10 @@ export const useCancha = () => {
     const session = await getSession();
     try {
       setLoading(true);
+      const canchawithUserId = {...cancha,userId:session?.user.id}
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/cancha`,
-        cancha,
+        canchawithUserId,
         {
           headers: {
             token: session?.token,
