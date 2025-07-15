@@ -31,7 +31,7 @@ interface Props {
   eventos: any[]
 }
 export const CalendarComponent = ({ eventos }: Props) => {
-  const { handleDoubleClickEvent, handlerSelectSlot,reserva,setReserva} = useReservas()
+  const { handleDoubleClickEvent, handlerSelectSlot, reserva, setReserva } = useReservas()
   const eventStylegetter = (event: EventType) => {
 
     const backgroundColor = event.title == "Ocupado" ? '#e74c3c' : '#3174ad'
@@ -53,7 +53,7 @@ export const CalendarComponent = ({ eventos }: Props) => {
 
 
   return (
-    <div className='w-full h-full'>
+    <div className=' min-w-[500px] h-full'>
       <Calendar
         culture='es'
         localizer={localizer}
@@ -76,57 +76,57 @@ export const CalendarComponent = ({ eventos }: Props) => {
         }}
       />
 
-       <Modal open={showModalResserva} onClose={() => authReserva.getState().closeModal()}>
-  <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg w-full max-w-md">
-    <h2 className="text-xl font-semibold mb-4">Formulario de Reserva</h2>
+      <Modal open={showModalResserva} onClose={() => authReserva.getState().closeModal()}>
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg w-full max-w-md">
+          <h2 className="text-xl font-semibold mb-4">Formulario de Reserva</h2>
 
-    <form
-      className="flex flex-col gap-4"
-      onSubmit={(e) => {
-        e.preventDefault()
-        // Aquí puedes manejar el envío
-        const form = e.target as HTMLFormElement
-        const formData = new FormData(form)
+          <form
+            className="flex flex-col gap-4 outline-none"
+            onSubmit={(e) => {
+              e.preventDefault()
+              // Aquí puedes manejar el envío
+              const form = e.target as HTMLFormElement
+              const formData = new FormData(form)
 
-        
 
-        // Aquí puedes enviar a tu API con axios, por ejemplo
 
-        // axios.post('/api/reservas', reserva)
-        authReserva.getState().closeModal()
-      }}
-    >
-      <label className="flex flex-col">
-        Título
-        <input name="title" required className="border p-2 rounded" defaultValue="Partido de fútbol 2" />
-      </label>
+              // Aquí puedes enviar a tu API con axios, por ejemplo
 
-      <label className="flex flex-col">
-        Inicio
-        <p className="border p-2 rounded"  >{format(reserva.start,"yyyy-MM-dd HH:mm")}</p>
-      </label>
+              // axios.post('/api/reservas', reserva)
+              authReserva.getState().closeModal()
+            }}
+          >
+            <label className="flex flex-col">
+              Título
+              <input name="title" required className="border p-2 rounded" defaultValue="Partido de fútbol 2" />
+            </label>
 
-      <label className="flex flex-col">
-        Fin
-        <p className="border p-2 rounded"  >{format(reserva.end,"yyyy-MM-dd HH:mm")}</p>
-      </label>
+            <label className="flex flex-col">
+              Inicio
+              <p className="border p-2 rounded"  >{format(reserva.start, "yyyy-MM-dd HH:mm")}</p>
+            </label>
 
-      <label className="flex flex-col">
-        ID de Usuario
-        <input name="userId" required className="border p-2 rounded" defaultValue="6853477c40a55afe73ff1397" />
-      </label>
+            <label className="flex flex-col">
+              Fin
+              <p className="border p-2 rounded"  >{format(reserva.end, "yyyy-MM-dd HH:mm")}</p>
+            </label>
 
-      <label className="flex flex-col">
-        ID de Cancha
-        <input name="canchaId" required className="border p-2 rounded" defaultValue="687481c511bd405209b53df7" />
-      </label>
+            <label className="flex flex-col">
+              ID de Usuario
+              <input name="userId" required className="border p-2 rounded" defaultValue="6853477c40a55afe73ff1397" />
+            </label>
 
-      <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-        Reservar
-      </button>
-    </form>
-  </div>
-</Modal> 
+            <label className="flex flex-col">
+              ID de Cancha
+              <input name="canchaId" required className="border p-2 rounded" defaultValue="687481c511bd405209b53df7" />
+            </label>
+
+            <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+              Reservar
+            </button>
+          </form>
+        </div>
+      </Modal>
 
     </div>
   )

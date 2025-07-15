@@ -88,7 +88,7 @@ export const FormularioCancha = ({ closeModal }: { closeModal: () => void }) => 
 
       <div className="input-group">
         <label className="font-medium">Comodidades disponibles</label>
-        <div className="grid grid-cols-2 gap-3 mt-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
           {comodidades.map((c, index) => (
             <label
               key={index}

@@ -9,47 +9,47 @@ import React, { useEffect, useState } from 'react'
 
 const page = () => {
   const [cancha, setCancha] = useState(null)
-  const {eventos,loading,setEventos,setLoading}=useReservas()
+  const { eventos, loading, setEventos, setLoading } = useReservas()
 
   const params = useParams()
   const query = useSearchParams()
   const nombre = query.get('cancha')
 
-  useEffect(()=>{
+  useEffect(() => {
 
-   const loadReservas = async()=>{
-     try {
+    const loadReservas = async () => {
+      try {
         setLoading(true)
-     const session = await getSession()
-    const {data} = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reserva/${params.id}`,{headers:{token:session?.token}})
+        const session = await getSession()
+        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reserva/${params.id}`, { headers: { token: session?.token } })
 
 
-    // Transformar fechas
-    const eventosTransformados = data.map((e: any) => ({
-      ...e,
-      start: new Date(e.start),
-      end: new Date(e.end),
-    }))
-setEventos(eventosTransformados)
-     } catch (error) {
-      throw new Error(error)
-     }finally{
+        // Transformar fechas
+        const eventosTransformados = data.map((e: any) => ({
+          ...e,
+          start: new Date(e.start),
+          end: new Date(e.end),
+        }))
+        setEventos(eventosTransformados)
+      } catch (error) {
+        throw new Error(error)
+      } finally {
         setLoading(false)
-     }
-   }
-loadReservas()
-  },[params.id])
+      }
+    }
+    loadReservas()
+  }, [params.id])
 
-  if(loading){
-    return <div className='w-full h-screen flex justify-center items-center'><CircularProgress color='primary'/></div>
+  if (loading) {
+    return <div className='w-full h-screen flex justify-center items-center'><CircularProgress color='primary' /></div>
   }
 
 
 
   return (
-    <div className='w-full  p-[80px]'>
+    <div className='  p-[80px] overflow-scroll'>
       <h1>{nombre}</h1>
-      <CalendarComponent eventos={eventos}/>
+      <CalendarComponent eventos={eventos} />
     </div>
   )
 }

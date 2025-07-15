@@ -9,7 +9,7 @@ import { getSession } from '@/actions/get-session'
 interface Props {
   titulo: string,
   url?: string,
-  labelBtn: string,
+  labelBtn?: string,
   isLink?: boolean,
   onClick?: () => void,
 }

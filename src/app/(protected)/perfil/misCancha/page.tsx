@@ -17,8 +17,8 @@ const page = () => {
 
   console.log(myCanchas)
   return (
-    <div className='w-full  p-[80px]'>
-      {myCanchas.map(e =><CardMyCancha item={e} key={e?._id} />
+    <div className='w-full h-screen p-[80px] grid gap-5 grid-cols-1 sm:grid-cols-4 justify-center items-center'>
+      {myCanchas.map(e => <CardMyCancha item={e} key={e?._id} />
       )}
     </div>
   )
