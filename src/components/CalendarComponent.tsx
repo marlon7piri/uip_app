@@ -6,6 +6,8 @@ import { es } from 'date-fns/locale/es'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { useReservas } from './hooks/useReservas'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { Modal } from '@mui/material'
+import { authReserva } from '@/utils/zustand/reservas'
 
 // Configurar el localizador con date-fns
 const locales = {
@@ -26,12 +28,11 @@ interface EventType {
   allDay?: boolean
 }
 
-interface Props{
-  eventos:any[]
+interface Props {
+  eventos: any[]
 }
-export const CalendarComponent = ({eventos}:Props) => {
-  const {handleDoubleClickEvent,handlerSelectSlot} = useReservas()
-const calendarRef = useRef<Calendar>()
+export const CalendarComponent = ({ eventos }: Props) => {
+  const { handleDoubleClickEvent, handlerSelectSlot } = useReservas()
   const eventStylegetter = (event: EventType) => {
 
     const backgroundColor = event.title == "Ocupado" ? '#e74c3c' : '#3174ad'
@@ -49,12 +50,12 @@ const calendarRef = useRef<Calendar>()
     }
   }
 
-  
+  const showModalResserva = authReserva(state => state.showModalResserva)
+
 
   return (
-    <div >
+    <div className='w-full h-full'>
       <Calendar
-      ref={calendarRef}
         culture='es'
         localizer={localizer}
         selectable
@@ -64,7 +65,7 @@ const calendarRef = useRef<Calendar>()
         eventPropGetter={eventStylegetter}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: '700px', backgroundColor: "white", zIndex: 500 }}
+        style={{ height: '700px', backgroundColor: "white", zIndex: 1000 }}
         messages={{
           next: 'Siguiente',
           previous: 'Anterior',
@@ -75,6 +76,66 @@ const calendarRef = useRef<Calendar>()
           agenda: 'Agenda',
         }}
       />
+
+       <Modal open={showModalResserva} onClose={() => authReserva.getState().closeModal()}>
+  <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg w-full max-w-md">
+    <h2 className="text-xl font-semibold mb-4">Formulario de Reserva</h2>
+
+    <form
+      className="flex flex-col gap-4"
+      onSubmit={(e) => {
+        e.preventDefault()
+        // Aquí puedes manejar el envío
+        const form = e.target as HTMLFormElement
+        const formData = new FormData(form)
+
+        const reserva = {
+          title: formData.get('title'),
+          start: new Date(formData.get('start') as string),
+          end: new Date(formData.get('end') as string),
+          userId: formData.get('userId'),
+          canchaId: formData.get('canchaId'),
+          allDay: false,
+        }
+
+        console.log('Reserva enviada:', reserva)
+        // Aquí puedes enviar a tu API con axios, por ejemplo
+        // axios.post('/api/reservas', reserva)
+        authReserva.getState().closeModal()
+      }}
+    >
+      <label className="flex flex-col">
+        Título
+        <input name="title" required className="border p-2 rounded" defaultValue="Partido de fútbol 2" />
+      </label>
+
+      <label className="flex flex-col">
+        Inicio
+        <input type="datetime-local" name="start" required className="border p-2 rounded" defaultValue="2025-07-28T18:00" />
+      </label>
+
+      <label className="flex flex-col">
+        Fin
+        <input type="datetime-local" name="end" required className="border p-2 rounded" defaultValue="2025-07-28T19:30" />
+      </label>
+
+      <label className="flex flex-col">
+        ID de Usuario
+        <input name="userId" required className="border p-2 rounded" defaultValue="6853477c40a55afe73ff1397" />
+      </label>
+
+      <label className="flex flex-col">
+        ID de Cancha
+        <input name="canchaId" required className="border p-2 rounded" defaultValue="687481c511bd405209b53df7" />
+      </label>
+
+      <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+        Reservar
+      </button>
+    </form>
+  </div>
+</Modal> 
+
     </div>
   )
 }

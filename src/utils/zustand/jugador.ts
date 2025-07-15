@@ -1,6 +1,5 @@
 import { Jugadores } from "@/infraestrcuture/entities/jugadores";
 import { create } from "zustand";
-import { jugadores } from "../jugadores";
 
 interface ActionsJugador {
   jugadorSelected: Jugadores | null;

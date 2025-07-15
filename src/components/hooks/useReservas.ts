@@ -1,4 +1,5 @@
 import { getSession } from "@/actions/get-session"
+import { authReserva } from "@/utils/zustand/reservas"
 import axios from "axios"
 import { isEqual } from "date-fns"
 import { useSearchParams } from "next/navigation"
@@ -33,7 +34,7 @@ export const useReservas = ()=>{
 const [eventos, setEventos] = useState<EventType[]>([])
 const params = useSearchParams()
 const [loading, setLoading] = useState(false)
-
+const openModal = authReserva(state=>state.openModal)
 
 
   const isDateConflict = (start: Date, end: Date) => {
@@ -42,17 +43,25 @@ const [loading, setLoading] = useState(false)
   const handlerSelectSlot = (slotInfo: SlotInfo) => {
     const { start, end } = slotInfo
 
+
+    
+
     if (isDateConflict(start, end)) {
       alert('Esta fecha ya está ocupada.')
       return
     }
 
 
+    
+    const confirm = window.confirm("¿Desea hacer una reserva?")
+
     //Aqui abriremos el modal
 
-    const confirm = window.confirm("¿Marcar esta fecha como ocupada?")
+    
 
-    if (confirm) {
+   if (confirm) {
+    openModal()
+
       const ocupado = {
         title: 'Ocupado',
         start: start,
