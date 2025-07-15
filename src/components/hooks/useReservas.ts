@@ -3,7 +3,7 @@ import { authReserva } from "@/utils/zustand/reservas"
 import axios from "axios"
 import { isEqual } from "date-fns"
 import { useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import { SlotInfo ,Event as RBCEvent} from "react-big-calendar"
 
 
@@ -32,6 +32,13 @@ interface EventType {
 export const useReservas = ()=>{
 
 const [eventos, setEventos] = useState<EventType[]>([])
+const [reserva, setReserva] = useState<EventType>({
+    start:new Date(),
+    end:new Date(),
+    title:'',
+    allDay:false
+
+})
 const params = useSearchParams()
 const [loading, setLoading] = useState(false)
 const openModal = authReserva(state=>state.openModal)
@@ -60,19 +67,21 @@ const openModal = authReserva(state=>state.openModal)
     
 
    if (confirm) {
+    setReserva({...reserva,title:reserva.title,start,end})
     openModal()
 
-      const ocupado = {
-        title: 'Ocupado',
-        start: start,
-        end: end,
-
-      }
+    
 
 
-      setEventos(prevState => [...prevState, ocupado])
+      
     }
 
+
+  }
+
+  const confirmRserva =(e:FormEvent)=>{
+    e.preventDefault()
+    setEventos([...eventos,reserva])
 
   }
 
@@ -95,6 +104,6 @@ const openModal = authReserva(state=>state.openModal)
  
 
     return {
-eventos,setEventos,loading,setLoading,handleDoubleClickEvent,handlerSelectSlot,
+eventos,reserva,setReserva,setEventos,loading,setLoading,handleDoubleClickEvent,handlerSelectSlot,confirmRserva
     }
 }

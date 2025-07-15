@@ -5,7 +5,6 @@ import { format, parse, startOfWeek, getDay, isEqual } from 'date-fns'
 import { es } from 'date-fns/locale/es'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { useReservas } from './hooks/useReservas'
-import { useRouter, useSearchParams } from 'next/navigation'
 import { Modal } from '@mui/material'
 import { authReserva } from '@/utils/zustand/reservas'
 
@@ -32,7 +31,7 @@ interface Props {
   eventos: any[]
 }
 export const CalendarComponent = ({ eventos }: Props) => {
-  const { handleDoubleClickEvent, handlerSelectSlot } = useReservas()
+  const { handleDoubleClickEvent, handlerSelectSlot,reserva,setReserva} = useReservas()
   const eventStylegetter = (event: EventType) => {
 
     const backgroundColor = event.title == "Ocupado" ? '#e74c3c' : '#3174ad'
@@ -89,17 +88,10 @@ export const CalendarComponent = ({ eventos }: Props) => {
         const form = e.target as HTMLFormElement
         const formData = new FormData(form)
 
-        const reserva = {
-          title: formData.get('title'),
-          start: new Date(formData.get('start') as string),
-          end: new Date(formData.get('end') as string),
-          userId: formData.get('userId'),
-          canchaId: formData.get('canchaId'),
-          allDay: false,
-        }
+        
 
-        console.log('Reserva enviada:', reserva)
         // Aquí puedes enviar a tu API con axios, por ejemplo
+
         // axios.post('/api/reservas', reserva)
         authReserva.getState().closeModal()
       }}
@@ -111,12 +103,12 @@ export const CalendarComponent = ({ eventos }: Props) => {
 
       <label className="flex flex-col">
         Inicio
-        <input type="datetime-local" name="start" required className="border p-2 rounded" defaultValue="2025-07-28T18:00" />
+        <p className="border p-2 rounded"  >{format(reserva.start,"yyyy-MM-dd HH:mm")}</p>
       </label>
 
       <label className="flex flex-col">
         Fin
-        <input type="datetime-local" name="end" required className="border p-2 rounded" defaultValue="2025-07-28T19:30" />
+        <p className="border p-2 rounded"  >{format(reserva.end,"yyyy-MM-dd HH:mm")}</p>
       </label>
 
       <label className="flex flex-col">
