@@ -59,7 +59,6 @@ export const FormRegister = () => {
             </h1>
             <form onSubmit={handleFormSubmit}>
 
-                <div className='container_nombre'>
                     <input
                         type="text"
                         required
@@ -80,7 +79,6 @@ export const FormRegister = () => {
                         onChange={(ev) => setUser({ ...user, apellido: ev.target.value.trim() })}
                         onBlur={(ev) => setUser({ ...user, apellido: ev.target.value.trim() })}
                     />
-                </div>
                 <input
                     type="text"
                     required

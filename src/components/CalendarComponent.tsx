@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Calendar, dateFnsLocalizer, SlotInfo, Event as RBCEvent } from 'react-big-calendar'
 import { format, parse, startOfWeek, getDay, isEqual } from 'date-fns'
 import { es } from 'date-fns/locale/es'
@@ -25,9 +25,13 @@ interface EventType {
   end: Date
   allDay?: boolean
 }
-export const CalendarComponent = () => {
-  const {eventos, handleDoubleClickEvent,handlerSelectSlot,obtenerCancha} = useReservas()
 
+interface Props{
+  eventos:any[]
+}
+export const CalendarComponent = ({eventos}:Props) => {
+  const {handleDoubleClickEvent,handlerSelectSlot} = useReservas()
+const calendarRef = useRef<Calendar>()
   const eventStylegetter = (event: EventType) => {
 
     const backgroundColor = event.title == "Ocupado" ? '#e74c3c' : '#3174ad'
@@ -45,14 +49,12 @@ export const CalendarComponent = () => {
     }
   }
 
-  useEffect(()=>{
-obtenerCancha()
-  },[])
-
   
+
   return (
     <div >
       <Calendar
+      ref={calendarRef}
         culture='es'
         localizer={localizer}
         selectable

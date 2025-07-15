@@ -1,5 +1,7 @@
 'use client'
 import { CalendarComponent } from '@/components/CalendarComponent'
+import CardCancha from '@/components/CardCancha'
+import CardMyCancha from '@/components/CardMyCancha'
 import { useCancha } from '@/components/hooks/useCancha'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
@@ -16,9 +18,8 @@ const page = () => {
   console.log(myCanchas)
   return (
     <div className='w-full  p-[80px]'>
-      {myCanchas.map(e => <Link href={`/perfil/misCancha/${e._id}`} className='bg-slate-50 p-4 mt-64'>
-        <p>{e.nombre}</p>
-      </Link>)}
+      {myCanchas.map(e =><CardMyCancha item={e} key={e?._id} />
+      )}
     </div>
   )
 }

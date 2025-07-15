@@ -1,6 +1,5 @@
 'use client'
-import { CalendarComponent } from '@/components/CalendarComponent'
-import { FormularioCancha } from '@/components/FormCancha'
+import { FormularioCancha } from '@/components/forms/FormCancha'
 import React, { useState } from 'react'
 
 

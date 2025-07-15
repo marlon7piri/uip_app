@@ -172,166 +172,146 @@ export default function FormResultadoPartidos({ jugadores }: Props) {
 
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Es Empate?</label>
+    <form onSubmit={handleSubmit} className="form-container">
+  <div className="input-group">
+    <label>¿Es Empate?</label>
+    <select
+      value={resultadoPartido.is_draw}
+      onChange={(e) => setResultadoPartido({ ...resultadoPartido, is_draw: e.target.value })}
+    >
+      <option value="true">Sí</option>
+      <option value="false">No</option>
+    </select>
+  </div>
 
-      <select
-        value={resultadoPartido.is_draw}
+  <div className="input-group">
+    <label>Goles del {nombreLocal}</label>
+    <input
+      type="number"
+      value={resultadoPartido.goles_local}
+      onChange={(e) => setResultadoPartido({ ...resultadoPartido, goles_local: parseInt(e.target.value) })}
+    />
+  </div>
 
-        onChange={(e) => setResultadoPartido({ ...resultadoPartido, is_draw: e.target.value })}>
-        <option value={"true"} >Si</option>
-        <option value={"false"} >No</option>
+  <div className="input-group">
+    <label>Goles del {nombreVisitante}</label>
+    <input
+      type="number"
+      value={resultadoPartido.goles_visitante}
+      onChange={(e) => setResultadoPartido({ ...resultadoPartido, goles_visitante: parseInt(e.target.value) })}
+    />
+  </div>
 
+  <div className="input-group">
+    <label>Asistencias del {nombreLocal}</label>
+    <input
+      type="number"
+      value={resultadoPartido.asistencias_local}
+      onChange={(e) => setResultadoPartido({ ...resultadoPartido, asistencias_local: parseInt(e.target.value) })}
+    />
+  </div>
 
+  <div className="input-group">
+    <label>Asistencias del {nombreVisitante}</label>
+    <input
+      type="number"
+      value={resultadoPartido.asistencias_visitantes}
+      onChange={(e) => setResultadoPartido({ ...resultadoPartido, asistencias_visitantes: parseInt(e.target.value) })}
+    />
+  </div>
 
+  {/* Goleadores */}
+  <div className="input-group">
+    <label>Goleadores</label>
+    <div className="player-list">
+      <ul className="player-scroll">
+        {jugadores.map(j => (
+          <li key={j._id} onClick={() => handlerGoleadores(j._id)}>
+            {j.nombre} {j.apellido}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <ol className="player-selected-list">
+      {resultadoPartido.goleadores.map((e, index) => (
+        <div className="player-selected-item" key={`${e.ids}-${index}`}>
+          <li>{e.nombre}</li>
+          <span className="badge-remove" onClick={() => deleteGoleador(e.ids)}>x</span>
+        </div>
+      ))}
+    </ol>
+  </div>
 
+  {/* Asistentes */}
+  <div className="input-group">
+    <label>Asistentes</label>
+    <div className="player-list">
+      <ul className="player-scroll">
+        {jugadores.map(j => (
+          <li key={j._id} onClick={() => handlerAsistentes(j._id)}>
+            {j.nombre} {j.apellido}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <ol className="player-selected-list">
+      {resultadoPartido.asistentes.map((e, index) => (
+        <div className="player-selected-item" key={`${e.ids}-${index}`}>
+          <li>{e.nombre}</li>
+          <span className="badge-remove" onClick={() => deleteAsistente(e.ids)}>x</span>
+        </div>
+      ))}
+    </ol>
+  </div>
 
-      </select>
+  {/* Amarillas */}
+  <div className="input-group">
+    <label>Tarjetas Amarillas</label>
+    <div className="player-list">
+      <ul className="player-scroll">
+        {jugadores.map(j => (
+          <li key={j._id} onClick={() => handlerAmarillas(j._id)}>
+            {j.nombre} {j.apellido}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <ol className="player-selected-list">
+      {resultadoPartido.tarjetas_amarillas.map((e, index) => (
+        <div className="player-selected-item" key={`${e.ids}-${index}`}>
+          <li>{e.nombre}</li>
+          <span className="badge-remove" onClick={() => deleteAmarillas(e.ids)}>x</span>
+        </div>
+      ))}
+    </ol>
+  </div>
 
+  {/* Rojas */}
+  <div className="input-group">
+    <label>Tarjetas Rojas</label>
+    <div className="player-list">
+      <ul className="player-scroll">
+        {jugadores.map(j => (
+          <li key={j._id} onClick={() => handlerRojas(j._id)}>
+            {j.nombre} {j.apellido}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <ol className="player-selected-list">
+      {resultadoPartido.tarjetas_rojas.map((e, index) => (
+        <div className="player-selected-item" key={`${e.ids}-${index}`}>
+          <li>{e.nombre}</li>
+          <span className="badge-remove" onClick={() => deleteRojas(e.ids)}>x</span>
+        </div>
+      ))}
+    </ol>
+  </div>
 
-      <label>Goles del {nombreLocal}</label>
+  <button type="submit" className="submit-button" disabled={loading}>
+    {loading ? <CircularProgress size={24} color="inherit" /> : "Evaluar Partido"}
+  </button>
+</form>
 
-      <input
-        type="number"
-        value={resultadoPartido.goles_local}
-
-        onChange={(e) => setResultadoPartido({ ...resultadoPartido, goles_local: parseInt(e.target.value) })} />
-
-
-      <label>Goles del {nombreVisitante}</label>
-
-      <input
-        type="number"
-        value={resultadoPartido.goles_visitante}
-
-        onChange={(e) => setResultadoPartido({ ...resultadoPartido, goles_visitante: parseInt(e.target.value) })} />
-
-
-      <label>Asistencias del {nombreLocal}</label>
-
-      <input
-        type="number"
-        value={resultadoPartido.asistencias_local}
-
-        onChange={(e) => setResultadoPartido({ ...resultadoPartido, asistencias_local: parseInt(e.target.value) })} />
-
-
-      <label>Asistencias del {nombreVisitante}</label>
-
-      <input
-        type="number"
-        value={resultadoPartido.asistencias_visitantes}
-
-        onChange={(e) => setResultadoPartido({ ...resultadoPartido, asistencias_visitantes: parseInt(e.target.value) })} />
-
-
-
-      <label>Goleadores</label>
-
-      <div className="  relative">
-        <ul className="w-full p-4 rounded-md bg-slate-50  h-[100px] absolute top-0  left-0 overflow-y-scroll">
-
-
-          {jugadores?.map(elem => {
-            return <li key={elem._id} value={elem._id} onClick={() => handlerGoleadores(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
-
-          })}
-        </ul>
-      </div>
-
-
-
-
-      <ol className="mt-24">
-        {resultadoPartido.goleadores.map((e, index) => {
-          return <div className="flex justify-between" key={`${e.ids}-${index}`}>
-            <li className="text-slate-50">{e?.nombre}</li>
-            <span className="w-8 h-8 flex justify-center items-center bg-red-500 hover:bg-red-900  cursor-pointer p-2 rounded-full text-slate-50 " onClick={() => deleteGoleador(e.ids)}>x</span>
-          </div>
-        })}
-
-
-      </ol>
-      <label>Asistentes</label>
-      <div className="  relative">
-        <ul className="w-full p-4 rounded-md bg-slate-50  h-[100px] absolute top-0  left-0 overflow-y-scroll">
-
-
-          {jugadores?.map(elem => {
-            return <li key={elem._id} value={elem._id} onClick={() => handlerAsistentes(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
-
-          })}
-        </ul>
-      </div>
-
-
-      <ol className="mt-24">
-        {resultadoPartido.asistentes.map((e, index) => {
-          return <div className="flex justify-between" key={`${e.ids}-${index}`}>
-            <li className="text-slate-50">{e?.nombre}</li>
-            <span className="w-8 h-8 flex justify-center items-center bg-red-500 hover:bg-red-900  cursor-pointer p-2 rounded-full text-slate-50 " onClick={() => deleteAsistente(e.ids)}>x</span>
-          </div>
-        })}
-
-
-      </ol>
-
-      <label>Tarjetas Amarillas</label>
-      <div className="  relative">
-        <ul className="w-full p-4 rounded-md bg-slate-50  h-[100px] absolute top-0  left-0 overflow-y-scroll">
-
-          {jugadores?.map(elem => {
-            return <li key={elem._id} value={elem._id} onClick={() => handlerAmarillas(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
-
-          })}
-        </ul>
-      </div>
-      <ol className="mt-24">
-        {resultadoPartido.tarjetas_amarillas.map((e, index) => {
-          return <div className="flex justify-between" key={`${e.ids}-${index}`}>
-            <li className="text-slate-50">{e?.nombre}</li>
-            <span className="w-8 h-8 flex justify-center items-center bg-red-500 hover:bg-red-900  cursor-pointer p-2 rounded-full text-slate-50 " onClick={() => deleteAmarillas(e.ids)}>x</span>
-          </div>
-        })}
-
-
-      </ol>
-
-
-      <label>Tarjetas Rojas</label>
-      <div className="  relative">
-        <ul className="w-full p-4 rounded-md bg-slate-50  h-[100px] absolute top-0  left-0 overflow-y-scroll">
-
-          {jugadores?.map(elem => {
-            return <li key={elem._id} value={elem._id} onClick={() => handlerRojas(elem._id)} className="hover:bg-slate-200 cursor-pointer p-1 rounded-md">{elem.nombre + " " + elem.apellido}</li>
-
-          })}
-        </ul>
-      </div>
-
-      <ol className="mt-24">
-        {resultadoPartido.tarjetas_rojas.map((e, index) => {
-          return <div className="flex justify-between" key={`${e.ids}-${index}`}>
-            <li className="text-slate-50">{e?.nombre}</li>
-            <span className="w-8 h-8 flex justify-center items-center bg-red-500 hover:bg-red-900  cursor-pointer p-2 rounded-full text-slate-50 " onClick={() => deleteRojas(e.ids)}>x</span>
-          </div>
-        })}
-
-
-      </ol>
-
-      <button
-        type="submit"
-        disabled={loading}
-      >
-        {loading ? <CircularProgress size={24} color='inherit' /> : 'Evaluar Partido'}
-      </button>
-
-
-
-
-
-
-    </form >
   );
 }

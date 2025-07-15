@@ -50,8 +50,7 @@ form button:hover {
 
 .container_nombre {
     width:100%;
-    display: flex;
-    justify-content: space-between;
+    
    
     
 }

@@ -13,6 +13,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Liga Total",
   description: "Ligas no profesionales de futbol en Panamá",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default async function RootLayout({

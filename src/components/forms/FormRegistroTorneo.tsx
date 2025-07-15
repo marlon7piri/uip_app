@@ -1,105 +1,79 @@
 'use client'
 
-import { Button, CircularProgress, FormLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import {
+  CircularProgress,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import React, { useState } from "react";
-import axios from "axios";
 import { useEquipos } from "../hooks/useEquipos";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { useTorneos } from "../hooks/useTorneos";
-import { usePartidos } from "../hooks/usePartidos";
-import './forms.css'
+import './forms.css';
 
 export default function FormRegistroTorneo() {
-
-  const { partido, setPartido, createPartido } = usePartidos()
-  const { equiposRegistrados, setEquiposRegistrados, registrarEquiposTorneos } = useTorneos()
-  const { equipos } = useEquipos()
+  const { equiposRegistrados, setEquiposRegistrados, registrarEquiposTorneos } = useTorneos();
+  const { equipos } = useEquipos();
   const router = useRouter();
-  const search = useSearchParams()
-  const idTorneo = search.get('idTorneo')
-  const [loading, setLoading] = useState(false)
+  const search = useSearchParams();
+  const idTorneo = search.get('idTorneo');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e:React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
-    await registrarEquiposTorneos(idTorneo)
-
-    toast.success('Registro creado')
-    router.back()
-    setLoading(false)
+    await registrarEquiposTorneos(idTorneo);
+    toast.success('Registro creado');
+    router.back();
+    setLoading(false);
   };
 
-  const registrarEquipos = (e) => {
-
-    const { _id, nombre } = e.target.value
-    setEquiposRegistrados((prevState) => {
-      const exist = prevState.find(item => item._id === _id)
-
-      if (!exist) {
-        return [...prevState, e.target.value]
-      }
-
-
-      return prevState
-
-    })
-
-
-  }
-
-
-
+  const registrarEquipos = (e: any) => {
+    const equipo = e.target.value;
+    const exist = equiposRegistrados.find(item => item._id === equipo._id);
+    if (!exist) {
+      setEquiposRegistrados(prev => [...prev, equipo]);
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit} >
+    <form onSubmit={handleSubmit} className="form-container">
+      <div className="input-group">
+        <label className="text-xl">Equipos</label>
+        <Select
+          fullWidth
+          defaultValue=""
+          onChange={registrarEquipos}
+        >
+          {equipos.map((e) => (
+            <MenuItem key={e._id} value={e}>
+              {e.nombre}
+            </MenuItem>
+          ))}
+        </Select>
+      </div>
 
+      <div className="input-group">
+        {equiposRegistrados.length === 0 ? (
+          <p className="text-slate-500">No hay equipos registrados</p>
+        ) : (
+          equiposRegistrados.map((e) => (
+            <p key={e._id} className="text-slate-700 font-medium">
+              {e.nombre}
+            </p>
+          ))
+        )}
+      </div>
 
-
-
-
-      <label className="text-2xl font-bold text-slate-50">Equipos</label>
-
-      <Select
-        fullWidth
-        defaultValue={""}
-        className="border border-slate-50"
-        onChange={(e) => registrarEquipos(e)}>
-        {equipos.map((e) => {
-          return <MenuItem key={e?._id} value={e} >
-
-            {e?.nombre}</MenuItem>
-
-
-
-        })}
-
-      </Select>
-
-
-      {equiposRegistrados.length == 0 ? <p className="text-white">No hay equipos registrados</p> : equiposRegistrados.map((e) => {
-        return <p key={e._id} className="text-slate-50">{e.nombre}</p>
-      })}
-
-
-
-      
-
-
-
-
-
-
-      <button>
+      <button
+        type="submit"
+        className="submit-button"
+        disabled={loading}
+      >
         {loading ? <CircularProgress size={24} color="inherit" /> : 'Crear'}
       </button>
-
-
-
-
-
-
-    </form >
+    </form>
   );
 }

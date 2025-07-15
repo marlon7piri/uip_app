@@ -30,9 +30,9 @@ interface EventType {
 }
 export const useReservas = ()=>{
 
-const [eventos, setEventos] = useState(events)
+const [eventos, setEventos] = useState<EventType[]>([])
 const params = useSearchParams()
-const userId = params.get('userId')
+const [loading, setLoading] = useState(false)
 
 
 
@@ -46,6 +46,9 @@ const userId = params.get('userId')
       alert('Esta fecha ya está ocupada.')
       return
     }
+
+
+    //Aqui abriremos el modal
 
     const confirm = window.confirm("¿Marcar esta fecha como ocupada?")
 
@@ -80,26 +83,9 @@ const userId = params.get('userId')
 
   
 
-  const obtenerCancha = async()=>{
-    try {
-        const session = await getSession()
-    const res = await axios.get(`http://localhost:3003/api/v1/cancha/canchaByUserId/6853466140a55afe73ff132d`,{
-        headers:{
-            token:session?.token
-        }
-    })
-    //const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/cancha/canchaByUserId/${userId}`)
-
-
-    console.log({cancha:res.data})
-
-    
-    } catch (error) {
-        
-    }
-  }
+ 
 
     return {
-eventos,handleDoubleClickEvent,handlerSelectSlot,obtenerCancha
+eventos,setEventos,loading,setLoading,handleDoubleClickEvent,handlerSelectSlot,
     }
 }
