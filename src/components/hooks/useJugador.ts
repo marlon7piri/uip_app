@@ -1,4 +1,7 @@
-import { Jugadores, JugadorWithVerification } from "@/infraestrcuture/entities/jugadores";
+import {
+  Jugadores,
+  JugadorWithVerification,
+} from "@/infraestrcuture/entities/jugadores";
 import React, { FormEvent, FormEventHandler, useEffect, useState } from "react";
 import * as UseCases from "@/config/core/use-cases";
 import { fetcherDb } from "@/config/adapters/apiDbAdapter";
@@ -67,7 +70,7 @@ export const useJugador = () => {
   const [equipoDelJugador, setEquipoDelJugador] = useState<Equipos>(null);
   const [image, setImage] = useState(null);
   const router = useRouter();
-  const idPlayer = useSearchParams().get("idPlayer")
+  const idPlayer = useSearchParams().get("idPlayer");
 
   const loadJugadores = JugadorStore((state) => state.loadJugadores);
   const selectPlayer = JugadorStore((state) => state.selectPlayer);
@@ -94,7 +97,7 @@ export const useJugador = () => {
       setJugadores(res);
       loadJugadores(res);
       setLoading(false);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const getJugadoresByEquipos = async (idEquipo: string) => {
@@ -114,10 +117,9 @@ export const useJugador = () => {
   const createJugador = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!idPlayer) {
-      await crearPlayer()
+      await crearPlayer();
     } else {
-
-      await editarPlayer()
+      await editarPlayer();
     }
   };
   const crearPlayer = async () => {
@@ -142,7 +144,7 @@ export const useJugador = () => {
             regate: jugador.regate,
           },
           foto: img,
-          userId: session?.user?.id
+          userId: session?.user?.id,
         };
 
         const res = await UseCases.createJugadorUseCases(
@@ -156,12 +158,11 @@ export const useJugador = () => {
         router.refresh();
       }
     } catch (error) {
-
       throw new Error("Error creando jugador");
     } finally {
       setLoading(false);
     }
-  }
+  };
   const editarPlayer = async () => {
     if (idPlayer) {
       try {
@@ -171,7 +172,7 @@ export const useJugador = () => {
         }
         setLoading(true);
         const session = await getSession();
-        const img = await uploadFile(image);
+        const img = await uploadFile(image, session?.token);
 
         if (img) {
           const newPlayer = {
@@ -192,7 +193,6 @@ export const useJugador = () => {
             idPlayer,
             newPlayer,
             session?.token
-
           );
 
           toast.success("Jugador editado");
@@ -200,132 +200,115 @@ export const useJugador = () => {
           router.refresh();
         }
       } catch (error) {
-        toast.error(error?.message)
+        toast.error(error?.message);
         throw new Error("Error editando jugador");
       } finally {
         setLoading(false);
       }
     }
-
-  }
+  };
 
   const getJugadorById = async (id: string) => {
-
-
     if (id) {
       const session = await getSession();
 
-      const jugador = await UseCases.getJugadorByIdUseCases(fetcherDb, id, session?.token)
-      return jugador
+      const jugador = await UseCases.getJugadorByIdUseCases(
+        fetcherDb,
+        id,
+        session?.token
+      );
+      return jugador;
     }
-
-
-  }
+  };
   const getJugadorByUserId = async () => {
-
-
-
     const session = await getSession();
 
     if (session) {
-      const jugador = await UseCases.getJugadorByUserIdUseCases(fetcherDb, session?.user?.id, session?.user?.email, session?.token)
-      return jugador
+      const jugador = await UseCases.getJugadorByUserIdUseCases(
+        fetcherDb,
+        session?.user?.id,
+        session?.user?.email,
+        session?.token
+      );
+      return jugador;
     }
-
-
-
-
-  }
+  };
   const handlerPlayer = (id: string) => {
     selectPlayer(id);
   };
 
   const eliminarJugador = (id: string) => {
     const eliminar = async () => {
-      const session = await getSession()
-      const res = await UseCases.eliminarJugadorUseCases(fetcherDb, id, session?.token)
-      router.back()
-
-    }
+      const session = await getSession();
+      const res = await UseCases.eliminarJugadorUseCases(
+        fetcherDb,
+        id,
+        session?.token
+      );
+      router.back();
+    };
 
     if (confirm("Seguro que desea eliminar al jugador?")) {
       toast.promise(eliminar(), {
         success: "Jugador eliminado",
         error: "Error eliminando, intente de nuevo",
-        loading: "Eliminando..."
-      })
+        loading: "Eliminando...",
+      });
     }
-
-
-  }
+  };
   const editarPlayerByUserId = async (player: JugadorWithVerification) => {
     const session = await getSession();
 
-
     const jugadorEstandar = {
       ...player,
-     
+
       email: session?.user?.email,
       foto: player.foto,
     };
 
     try {
-
-
       if (player.used_same_picture == true) {
-
         const res = await UseCases.editJugadorByUserIdUseCases(
           fetcherDb,
           session?.user?.id,
           jugadorEstandar,
           session?.token
-
         );
-        console.log("Jugador editado sin subir la imagen a cloudinary")
+        console.log("Jugador editado sin subir la imagen a cloudinary");
         toast.success("Jugador editado");
       } else {
-       
-        if(image !== null){
-          console.log(image)
+        if (image !== null) {
+          console.log(image);
           const img = await uploadFile(image);
-         
-          console.log("paso por aqui")
+
+          console.log("paso por aqui");
           if (img) {
             const newPlayer = {
-              ...jugadorEstandar, foto: img,
+              ...jugadorEstandar,
+              foto: img,
             };
-  
+
             const res = await UseCases.editJugadorByUserIdUseCases(
               fetcherDb,
               session?.user?.id,
               newPlayer,
               session?.token
-  
             );
-  
-  
-            console.log("Jugador editado y subiendo la imagen a cloudinary....")
+
+            console.log(
+              "Jugador editado y subiendo la imagen a cloudinary...."
+            );
             toast.success("Jugador editado");
           }
         }
-        
-
-
-       
       }
-      
-
     } catch (error: Error) {
-
-
-      toast.error(error?.message)
+      toast.error(error?.message);
       throw new Error("Error editando jugador");
     } finally {
       setLoading(false);
     }
-
-
-  }
+  };
 
   return {
     jugador,
@@ -341,6 +324,7 @@ export const useJugador = () => {
     loading,
     setImage,
     image,
-    getJugadorByUserId, editarPlayerByUserId
+    getJugadorByUserId,
+    editarPlayerByUserId,
   };
 };
