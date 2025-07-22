@@ -69,11 +69,16 @@ const Perfil = () => {
             setIsloadingImage(true)
             const jugador: Jugadores = await getJugadorByUserId()
 
-            setMiplayer({ ...jugador, club: jugador.club._id })
+            if (jugador) {
 
-            const file = await urlToFile(jugador.foto, 'jugador_foto.jpg')
+                setMiplayer({ ...jugador, club: jugador?.club?._id })
 
-            setImage(file)
+                const file = await urlToFile(jugador.foto, 'jugador_foto.jpg')
+
+                setImage(file)
+            }
+
+
             setIsloadingImage(false)
         }
         loadJugador()
@@ -94,7 +99,6 @@ const Perfil = () => {
         setLoading(false)
     }
 
-    console.log(miplayer)
     return (
         <div className={styles.container}>
 
